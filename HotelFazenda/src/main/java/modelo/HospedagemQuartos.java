@@ -1,6 +1,6 @@
 package modelo;
 
-public class Hospedagem_Quartos {
+public class HospedagemQuartos {
 	private int Id_Hospedagens_Quartos,Id_Quartos,Hospedagens_Id,Hospede_Id;
 
 	public int getId_Hospedagens_Quartos() {
