@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Hospedagens {
 	
-	private int Hospedagens_id;
+	private int Hospedagens_id,Hospede_Id;
 	private LocalDate checkin, checkout;
 	public int getHospedagens_id() {
 		return Hospedagens_id;

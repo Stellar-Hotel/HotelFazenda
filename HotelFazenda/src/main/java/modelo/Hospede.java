@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Hospede {
 	
-	private int Hospede_id;
+	private int Hospede_id,Id_Usuario;
 	private String nome, sobrenome, nacionalidade, pronome, email;
 	private LocalDate data_nasc;
 	public int getHospede_id() {
