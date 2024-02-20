@@ -6,6 +6,12 @@ public class Hospedagens {
 	
 	private int Hospedagens_id,Hospede_Id;
 	private LocalDate checkin, checkout;
+	Float PrecoTotal;
+	
+	public Float CalcularVT(int Dias,Float PrecoQuarto) {
+		Float ValorTotal= Dias*PrecoQuarto;
+		return ValorTotal;
+	}
 	public int getHospedagens_id() {
 		return Hospedagens_id;
 	}

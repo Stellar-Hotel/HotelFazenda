@@ -1,18 +1,19 @@
 package modelo;
 
+import java.util.Random;
+
 public class Usuario {
 
 	private int Id_Usuario;
 	private String Senha;
 	private int Nivel_De_Acesso;
 	private String Login;
-
-	public int getId_Usuario() {
-		return Id_Usuario;
-	}
-
-	public void setId_Usuario(int id_Usuario) {
-		Id_Usuario = id_Usuario;
+	Random gerador=new Random();
+	
+	public void GerarID()
+	{
+		int id = gerador.nextInt(9999);
+		Id_Usuario=id;
 	}
 
 	public String getSenha() {
