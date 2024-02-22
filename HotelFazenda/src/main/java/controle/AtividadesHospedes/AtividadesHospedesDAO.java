@@ -1,18 +1,32 @@
 package controle.AtividadesHospedes;
 
+import java.util.ArrayList;
+
 import modelo.AtividadesHospedes;
-public class AtividadesHospedesDAO {
-	public AtividadesHospedesDAO() {
-		
+public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
+
+	@Override
+	public int InserirAtividadesHospedes(AtividadesHospedes A) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	public Boolean Inserir(AtividadesHospedes a) {
-		return true;
-		
+
+	@Override
+	public ArrayList<AtividadesHospedes> ListarAtividadesHospedes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public Boolean Alterar(AtividadesHospedes a) {
-		return true;
+
+	@Override
+	public boolean AtualizarAtividadesHospedes(AtividadesHospedes A) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public Boolean Excluir(AtividadesHospedes a) {
-		return true;
+
+	@Override
+	public AtividadesHospedes BuscarAtividadesHospedesPorNome(String Nome) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }
