@@ -1,4 +1,4 @@
-package controle;
+package controle.HospedagemQuartos;
 
 import modelo.HospedagemQuartos;
 

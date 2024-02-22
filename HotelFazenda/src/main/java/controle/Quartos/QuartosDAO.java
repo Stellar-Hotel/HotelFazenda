@@ -1,4 +1,4 @@
-package controle;
+package controle.Quartos;
 
 import modelo.Quartos;
 public class QuartosDAO {

@@ -1,4 +1,4 @@
-package controle;
+package controle.Servicos;
 import modelo.Servicos;
 
 public class ServicosDAO {

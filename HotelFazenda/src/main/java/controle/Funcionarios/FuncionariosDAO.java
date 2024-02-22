@@ -1,4 +1,4 @@
-package controle;
+package controle.Funcionarios;
 
 import modelo.Funcionarios;
 
