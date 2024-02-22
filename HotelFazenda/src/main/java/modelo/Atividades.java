@@ -3,67 +3,56 @@ package modelo;
 import java.time.LocalDate;
 
 public class Atividades {
-    private int Id_Atividade, restricao_idade,Funcionario_Id;
-    private String horario, horario_fim, nome_atividade;
-    private LocalDate data;
-
-
-    public int getRestricao_idade() {
+    private int IdAtividade, restricao_idade,FuncionarioId;
+    private String Horario, HorarioFim, NomeAtividade;
+    private LocalDate Data;
+    
+	public int getIdAtividade() {
+		return IdAtividade;
+	}
+	public void setIdAtividade(int idAtividade) {
+		IdAtividade = idAtividade;
+	}
+	public int getRestricao_idade() {
 		return restricao_idade;
 	}
-
-
 	public void setRestricao_idade(int restricao_idade) {
 		this.restricao_idade = restricao_idade;
 	}
-
-
+	public int getFuncionarioId() {
+		return FuncionarioId;
+	}
+	public void setFuncionarioId(int funcionarioId) {
+		FuncionarioId = funcionarioId;
+	}
 	public String getHorario() {
-		return horario;
+		return Horario;
 	}
-
-
 	public void setHorario(String horario) {
-		this.horario = horario;
+		Horario = horario;
 	}
-
-
-	public String getHorario_fim() {
-		return horario_fim;
+	public String getHorarioFim() {
+		return HorarioFim;
 	}
-
-
-	public void setHorario_fim(String horario_fim) {
-		this.horario_fim = horario_fim;
+	public void setHorarioFim(String horarioFim) {
+		HorarioFim = horarioFim;
 	}
-
-
-	public String getNome_atividade() {
-		return nome_atividade;
+	public String getNomeAtividade() {
+		return NomeAtividade;
 	}
-
-
-	public void setNome_atividade(String nome_atividade) {
-		this.nome_atividade = nome_atividade;
+	public void setNomeAtividade(String nomeAtividade) {
+		NomeAtividade = nomeAtividade;
 	}
-
-
 	public LocalDate getData() {
-		return data;
+		return Data;
 	}
-
-
 	public void setData(LocalDate data) {
-		this.data = data;
+		Data = data;
 	}
 
 
-	public void setId_Atividade(int id_Atividade) {
-		Id_Atividade = id_Atividade;
-	}
+   
 
 
-	public int getId_Atividade() {
-        return Id_Atividade;
-    }
+	
 }

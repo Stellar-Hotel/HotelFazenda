@@ -7,6 +7,7 @@ public class Hospede {
 	private int Hospede_id,Id_Usuario;
 	private String nome, sobrenome, nacionalidade, pronome, email;
 	private LocalDate data_nasc;
+	
 	public int getHospede_id() {
 		return Hospede_id;
 	}
@@ -49,6 +50,7 @@ public class Hospede {
 	public void setData_nasc(LocalDate data_nasc) {
 		this.data_nasc = data_nasc;
 	}
+	
 	
 
 }
