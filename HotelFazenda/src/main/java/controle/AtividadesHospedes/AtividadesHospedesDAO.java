@@ -1,4 +1,4 @@
-package controle;
+package controle.AtividadesHospedes;
 
 import modelo.AtividadesHospedes;
 public class AtividadesHospedesDAO {

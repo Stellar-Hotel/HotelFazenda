@@ -1,4 +1,4 @@
-package controle;
+package controle.Usuarios;
 import modelo.Usuario;
 
 public class UsuariosDAO {

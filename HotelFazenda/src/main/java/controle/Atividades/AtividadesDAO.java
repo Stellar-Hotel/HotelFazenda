@@ -1,4 +1,4 @@
-package controle;
+package controle.Atividades;
 
 import modelo.Atividades;
 

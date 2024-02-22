@@ -1,4 +1,4 @@
-package controle;
+package controle.Hospedagens;
 
 import modelo.Hospedagens;
 public class HospedagensDAO {
