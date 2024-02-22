@@ -1,20 +1,20 @@
 package modelo;
 
 public class Quartos {
-	private int Id_Quartos, Tipo_cama, Manutencao, Max_Pessoas;
-	private Boolean Frigobar, Ar_Condicionado, Banheira, TV;
-	private Float Preco_Diaria;
-	public int getId_Quartos() {
-		return Id_Quartos;
+	private int IdQuartos, TipoCama, Manutencao, MaxPessoas;
+	private Boolean Frigobar, ArCondicionado, Banheira, TV;
+	private Float PrecoDiaria;
+	public int getIdQuartos() {
+		return IdQuartos;
 	}
-	public void setId_Quartos(int id_Quartos) {
-		Id_Quartos = id_Quartos;
+	public void setIdQuartos(int idQuartos) {
+		IdQuartos = idQuartos;
 	}
-	public int getTipo_cama() {
-		return Tipo_cama;
+	public int getTipoCama() {
+		return TipoCama;
 	}
-	public void setTipo_cama(int tipo_cama) {
-		Tipo_cama = tipo_cama;
+	public void setTipoCama(int tipoCama) {
+		TipoCama = tipoCama;
 	}
 	public int getManutencao() {
 		return Manutencao;
@@ -22,11 +22,11 @@ public class Quartos {
 	public void setManutencao(int manutencao) {
 		Manutencao = manutencao;
 	}
-	public int getMax_Pessoas() {
-		return Max_Pessoas;
+	public int getMaxPessoas() {
+		return MaxPessoas;
 	}
-	public void setMax_Pessoas(int max_Pessoas) {
-		Max_Pessoas = max_Pessoas;
+	public void setMaxPessoas(int maxPessoas) {
+		MaxPessoas = maxPessoas;
 	}
 	public Boolean getFrigobar() {
 		return Frigobar;
@@ -34,11 +34,11 @@ public class Quartos {
 	public void setFrigobar(Boolean frigobar) {
 		Frigobar = frigobar;
 	}
-	public Boolean getAr_Condicionado() {
-		return Ar_Condicionado;
+	public Boolean getArCondicionado() {
+		return ArCondicionado;
 	}
-	public void setAr_Condicionado(Boolean ar_Condicionado) {
-		Ar_Condicionado = ar_Condicionado;
+	public void setArCondicionado(Boolean arCondicionado) {
+		ArCondicionado = arCondicionado;
 	}
 	public Boolean getBanheira() {
 		return Banheira;
@@ -52,12 +52,13 @@ public class Quartos {
 	public void setTV(Boolean tV) {
 		TV = tV;
 	}
-	public Float getPreco_Diaria() {
-		return Preco_Diaria;
+	public Float getPrecoDiaria() {
+		return PrecoDiaria;
 	}
-	public void setPreco_Diaria(Float preco_Diaria) {
-		Preco_Diaria = preco_Diaria;
+	public void setPrecoDiaria(Float precoDiaria) {
+		PrecoDiaria = precoDiaria;
 	}
+	
 
 	
 

@@ -3,8 +3,14 @@ package modelo;
 import java.time.LocalDate;
 
 public class Atividades {
-    private int IdAtividade, restricao_idade,FuncionarioId;
-    private String Horario, HorarioFim, NomeAtividade;
+    private int IdAtividade, RestricaoIdade,FuncionarioId;
+    public int getRestricaoIdade() {
+		return RestricaoIdade;
+	}
+	public void setRestricaoIdade(int restricaoIdade) {
+		RestricaoIdade = restricaoIdade;
+	}
+	private String Horario, HorarioFim, NomeAtividade;
     private LocalDate Data;
     
 	public int getIdAtividade() {
@@ -13,12 +19,7 @@ public class Atividades {
 	public void setIdAtividade(int idAtividade) {
 		IdAtividade = idAtividade;
 	}
-	public int getRestricao_idade() {
-		return restricao_idade;
-	}
-	public void setRestricao_idade(int restricao_idade) {
-		this.restricao_idade = restricao_idade;
-	}
+	
 	public int getFuncionarioId() {
 		return FuncionarioId;
 	}
