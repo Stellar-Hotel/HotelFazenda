@@ -3,7 +3,7 @@ package modelo;
 public class Funcionarios {
 	private int FuncionarioId, IdUsuario;
 	private String Nome,Sobrenome,Funcao;
-	
+	private Usuario id_usuario;
 	
 	public int getFuncionarioId() {
 		return FuncionarioId;

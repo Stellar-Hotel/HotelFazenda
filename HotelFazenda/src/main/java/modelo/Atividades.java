@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Atividades {
     private int IdAtividade, RestricaoIdade,FuncionarioId;
+    private Funcionarios funcionario_Id;
+    
     public int getRestricaoIdade() {
 		return RestricaoIdade;
 	}
