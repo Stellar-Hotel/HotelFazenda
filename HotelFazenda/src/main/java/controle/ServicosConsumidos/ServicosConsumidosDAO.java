@@ -1,17 +1,31 @@
 package controle.ServicosConsumidos;
+import java.util.ArrayList;
+
 import modelo.ServicosConsumidos;
-public class ServicosConsumidosDAO {
-	public ServicosConsumidosDAO() {
-		
+public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
+	@Override
+	public int inserirServicoConsumido(ServicosConsumidos end) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	public Boolean Inserir(ServicosConsumidos a) {
-		return true;
-		
+	@Override
+	public ArrayList<ServicosConsumidos> ListarServicos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public Boolean Alterar(ServicosConsumidos a) {
-		return true;
+	@Override
+	public boolean atualizarServicoConsumido(ServicosConsumidos end) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public Boolean Excluir(ServicosConsumidos a) {
-		return true;
+	@Override
+	public boolean removerServicoConsumido(ServicosConsumidos end) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public ServicosConsumidos buscarServicoConsumidoPorNome(int nome) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
