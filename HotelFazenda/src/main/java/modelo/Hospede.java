@@ -7,6 +7,7 @@ public class Hospede {
 	private int HospedeId,IdUsuario;
 	private String Nome, Sobrenome, Nacionalidade, Pronome, Email;
 	private LocalDate DataNasc;
+	private Usuario id_usuario;
 	
 	public int getHospedeId() {
 		return HospedeId;

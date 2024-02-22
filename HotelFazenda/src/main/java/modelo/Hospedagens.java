@@ -8,6 +8,7 @@ public class Hospedagens {
 	private LocalDate Checkin, Checkout;
 	Float PrecoTotal;
 	
+	
 
 	private Hospede hospede;
 
