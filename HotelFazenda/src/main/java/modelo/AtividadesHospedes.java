@@ -1,12 +1,18 @@
 package modelo;
  
 public class AtividadesHospedes {
-    private int Id_Atividades_Hospedes;
+    private int IdAtividadesHospedes,IdHospede,IdAtividade;
+
+	public int getIdAtividadesHospedes() {
+		return IdAtividadesHospedes;
+	}
+
+	public void setIdAtividadesHospedes(int idAtividadesHospedes) {
+		IdAtividadesHospedes = idAtividadesHospedes;
+	}
 
 
-    public int getId_Atividades_Hospedes() {
-        return Id_Atividades_Hospedes;
-    }
+   
 }
 
 

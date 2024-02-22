@@ -4,51 +4,56 @@ import java.time.LocalDate;
 
 public class Hospede {
 	
-	private int Hospede_id;
-	private String nome, sobrenome, nacionalidade, pronome, email;
-	private LocalDate data_nasc;
-	public int getHospede_id() {
-		return Hospede_id;
+	private int HospedeId,IdUsuario;
+	private String Nome, Sobrenome, Nacionalidade, Pronome, Email;
+	private LocalDate DataNasc;
+	
+	public int getHospedeId() {
+		return HospedeId;
 	}
-	public void setHospede_id(int hospede_id) {
-		Hospede_id = hospede_id;
+	public void setHospedeId(int hospedeId) {
+		HospedeId = hospedeId;
 	}
+
 	public String getNome() {
-		return nome;
+		return Nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		Nome = nome;
 	}
 	public String getSobrenome() {
-		return sobrenome;
+		return Sobrenome;
 	}
 	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
+		Sobrenome = sobrenome;
 	}
 	public String getNacionalidade() {
-		return nacionalidade;
+		return Nacionalidade;
 	}
 	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
+		Nacionalidade = nacionalidade;
 	}
 	public String getPronome() {
-		return pronome;
+		return Pronome;
 	}
 	public void setPronome(String pronome) {
-		this.pronome = pronome;
+		Pronome = pronome;
 	}
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		Email = email;
 	}
-	public LocalDate getData_nasc() {
-		return data_nasc;
+	public LocalDate getDataNasc() {
+		return DataNasc;
 	}
-	public void setData_nasc(LocalDate data_nasc) {
-		this.data_nasc = data_nasc;
+	public void setDataNasc(LocalDate dataNasc) {
+		DataNasc = dataNasc;
 	}
+	
+	
+	
 	
 
 }
