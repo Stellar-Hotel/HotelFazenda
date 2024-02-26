@@ -53,7 +53,7 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[14.00][10.00][200.00px,grow][117.00][310.00,grow][][-34.00][135.00][]", "[][][][][][][][32.00][25.00][][][][32.00][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[14.00][10.00][200.00px,grow][117.00,fill][117.00,fill][310.00,grow][][-34.00][135.00][]", "[][][][][][][][32.00][25.00][][][][32.00][][][][][][]"));
 		
 		JLabel lblNewLabel = new JLabel("Bem vindo ao");
 		contentPane.add(lblNewLabel, "flowx,cell 2 0");
@@ -67,7 +67,7 @@ public class Login extends JFrame {
 		contentPane.add(lblNewLabel_2, "cell 2 6");
 		
 		textField = new JTextField();
-		contentPane.add(textField, "cell 2 7 6 1,grow");
+		contentPane.add(textField, "cell 2 7 7 1,grow");
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Digite sua Senha");
@@ -76,11 +76,11 @@ public class Login extends JFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		contentPane.add(textField_1, "cell 2 12 6 1,grow");
+		contentPane.add(textField_1, "cell 2 12 7 1,grow");
 		
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.setBackground(new Color(117, 187, 68));
-		contentPane.add(btnNewButton, "cell 3 15 1 2,grow");
+		contentPane.add(btnNewButton, "cell 3 15 2 2,alignx center,growy");
 		
 		JLabel lblNewLabel_6 = new JLabel("Hotel Fazenda");
 		lblNewLabel_6.setForeground(new Color(117, 187, 68));
