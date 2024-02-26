@@ -1,18 +1,32 @@
 package controle.Servicos;
+import java.util.ArrayList;
+
 import modelo.Servicos;
 
-public class ServicosDAO {
-	public ServicosDAO() {
-		
+public class ServicosDAO implements IServicosDAO{
+	@Override
+	public int inserirServico(Servicos end) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	public Boolean Inserir(Servicos a) {
-		return true;
-		
+	@Override
+	public ArrayList<Servicos> ListarServicos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public Boolean Alterar(Servicos a) {
-		return true;
+	@Override
+	public boolean atualizarServico(Servicos end) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public Boolean Excluir(Servicos a) {
-		return true;
+	@Override
+	public boolean removerServico(Servicos end) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Servicos buscarServicoPorNome(int nome) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
