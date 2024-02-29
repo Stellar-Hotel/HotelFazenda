@@ -42,6 +42,8 @@ private static QuartosDAO instancia;
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.conectar();
 		
+		int ChavePrimariaGerada = Integer.MIN_VALUE;
+		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setInt(1, end.getIdQuartos());
@@ -54,6 +56,11 @@ private static QuartosDAO instancia;
 			ps.setBoolean(8, end.getTV());
 			ps.setFloat(9, end.getPrecoDiaria());
 		
+			ResultSet Rs = ps.executeQuery();
+			if(Rs!=null) {
+				ChavePrimariaGerada=Rs.getInt(1);
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

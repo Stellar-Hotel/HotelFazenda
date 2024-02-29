@@ -44,6 +44,8 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.conectar();
 		
+		int ChavePrimariaGerada = Integer.MIN_VALUE;
+		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setString(1, Func.getNome());
@@ -51,6 +53,11 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
 		
+			ResultSet Rs = ps.executeQuery();
+			if(Rs!=null) {
+				ChavePrimariaGerada=Rs.getInt(1);
+			}
+			
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

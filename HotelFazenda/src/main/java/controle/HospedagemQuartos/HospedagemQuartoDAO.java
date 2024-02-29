@@ -41,6 +41,8 @@ private static HospedagemQuartoDAO instancia;
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.conectar();
 		
+		int ChavePrimariaGerada = Integer.MIN_VALUE;
+		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setInt(1, Hosp.getIdHospedagensQuartos());
@@ -48,6 +50,11 @@ private static HospedagemQuartoDAO instancia;
 			ps.setInt(3, Hosp.getHospedagensId());
 			ps.setInt(3, Hosp.getHospedeId());
 		
+			ResultSet Rs = ps.executeQuery();
+			if(Rs!=null) {
+				ChavePrimariaGerada=Rs.getInt(1);
+			}
+			
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
