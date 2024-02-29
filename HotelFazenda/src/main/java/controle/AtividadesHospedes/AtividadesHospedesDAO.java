@@ -28,11 +28,33 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	 * construtor privado (padrão singleton
 	*/
 	private AtividadesHospedesDAO() {}
+	
+	
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
+		String SQL= "INSERT INTO Atividades_Hospedes(Hospede_id,id_atividade) VALUES (?,?)";
+		//Método pra fazer a conexão com o banco
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.conectar();
+		
+		try {
+			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			Ps.setInt(1, A.getIdHospede());
+			Ps.setInt(2, A.getIdAtividade());
+			
+			return Ps.executeUpdate();//Atualiza o banco sem retorno do banco
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
+		}
 		return 0;
 	}
+	
+	
 
 	@Override
 	public ArrayList<AtividadesHospedes> ListarAtividadesHospedes() {
@@ -71,7 +93,10 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
+	
 		
 		//Return da arraylist
 		return AtividadesHospedes;

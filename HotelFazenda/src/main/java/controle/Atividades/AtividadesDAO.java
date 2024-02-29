@@ -1,11 +1,12 @@
 package controle.Atividades;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import controle.Conexao;
 import modelo.Atividades;
@@ -64,7 +65,10 @@ public class AtividadesDAO implements IAtividadesDAO
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
 		}
+	
 		//Return da arraylist
 		return atividades;
 	}
@@ -91,7 +95,27 @@ public class AtividadesDAO implements IAtividadesDAO
 	@Override
 	public int InserirAtividades(Atividades Ativ) {
 		// TODO Auto-generated method stub
-		String SQL= "INSERT INTO Atividades(horario, horario_fim) VALUES (?,?)";
+		String SQL= "INSERT INTO Atividades(horario,horario_fim,funcionario_id,restricao_idade,nome_atividade,data) VALUES (?,?,?,?,?,?)";
+		//Método pra fazer a conexão com o banco
+			Conexao con= Conexao.getConexao();
+			Connection conBD= con.conectar();
+		
+			try {
+				PreparedStatement Ps= conBD.prepareStatement(SQL);
+				Ps.setString(1, Ativ.getHorario());
+				Ps.setString(2, Ativ.getHorarioFim());
+				Ps.setInt(3, Ativ.getFuncionarioId());
+				Ps.setInt(4, Ativ.getRestricaoIdade());
+				Ps.setString(5, Ativ.getNomeAtividade());
+				Ps.setDate(6, Ativ.getData());
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				con.fecharConexao();
+			}
+		
 		return 0;
 	}
 	
