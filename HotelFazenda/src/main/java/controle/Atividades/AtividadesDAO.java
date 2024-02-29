@@ -1,5 +1,6 @@
 package controle.Atividades;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -20,9 +21,20 @@ public class AtividadesDAO implements IAtividadesDAO
 	private AtividadesDAO() {}
 	@Override
 	public ArrayList<Atividades> ListarAtividades() {
+		
+		//ArrayList Que vai ser retornado
+		ArrayList<Atividades> atividades= new ArrayList<Atividades>();
+		
+		//Comando pro MySQL
 		String SQL = "SELECT * FROM Atividades";
+		
+		//Método pra fazer a conexão
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.conectar();
+		
 		// TODO Auto-generated method stub
-		return null;
+		//Return da arraylist
+		return atividades;
 	}
 
 	@Override
