@@ -40,6 +40,26 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public int InserirFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		String SQL = "INSERT INTO Funcionarios (nome, sobrenome, funcao, salario) VALUES (?, ?, ?, ?)";
+		
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, Func.getNome());
+			ps.setString(2, Func.getSobrenome());
+			ps.setString(3, Func.getFuncao());
+			ps.setFloat(4, Func.getSalario());
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		
 		return 0;
 	}
 

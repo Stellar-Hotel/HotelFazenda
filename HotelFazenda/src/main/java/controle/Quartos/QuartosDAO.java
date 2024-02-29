@@ -37,6 +37,30 @@ private static QuartosDAO instancia;
 		// TODO Auto-generated method stub
 		
 		String SQL = "INSERT INTO Quartos (id_Quartos ,max_pessoas, manutencao, tipo_cama, frigobar, ar_condicionado, banheira, tv, preco_quarto_dia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getIdQuartos());
+			ps.setInt(2, end.getMaxPessoas());
+			ps.setString(3, end.getManutencao());
+			ps.setString(4, end.getTipoCama());
+			ps.setBoolean(5, end.getFrigobar());
+			ps.setBoolean(6, end.getArCondicionado());
+			ps.setBoolean(7, end.getBanheira());
+			ps.setBoolean(8, end.getTV());
+			ps.setFloat(9, end.getPrecoDiaria());
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
 		return 0;
 	}
 	@Override

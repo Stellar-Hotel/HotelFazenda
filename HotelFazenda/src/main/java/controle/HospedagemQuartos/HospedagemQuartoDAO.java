@@ -38,6 +38,25 @@ private static HospedagemQuartoDAO instancia;
 	public int InserirHospedagemQuartos(HospedagemQuartos Hosp) {
 		// TODO Auto-generated method stub
 		String SQL = "INSERT INTO HospedagemQuartos (id_Hospedagem_quartos, id_Quartos, Hospedagens_id,Hospede_id) VALUES (?, ?)";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, Hosp.getIdHospedagensQuartos());
+			ps.setInt(2, Hosp.getIdQuartos());
+			ps.setInt(3, Hosp.getHospedagensId());
+			ps.setInt(3, Hosp.getHospedeId());
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		
 		return 0;
 	}
 
