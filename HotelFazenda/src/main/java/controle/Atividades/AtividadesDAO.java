@@ -1,10 +1,15 @@
 package controle.Atividades;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import controle.Conexao;
 import modelo.Atividades;
+import modelo.AtividadesHospedes;
 
 public class AtividadesDAO implements IAtividadesDAO
 
@@ -32,7 +37,34 @@ public class AtividadesDAO implements IAtividadesDAO
 		Conexao con= Conexao.getConexao();
 		Connection conBD= con.conectar();
 		
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement Ps=conBD.prepareStatement(SQL);
+			
+			ResultSet Rs= Ps.executeQuery();
+			while (Rs.next()) {
+				Atividades At=new Atividades();
+				
+				int IdAtividade= Rs.getInt("id_atividade");
+				int RestricaoIdade= Rs.getInt("restricao_idade");
+				String Horario=Rs.getString("horario");
+				String HorarioFim=Rs.getString("horario_fim");
+				int FuncionarioId=Rs.getInt("funcionario_id");
+				String NomeAtividade=Rs.getString("nome_atividade");
+				Date Data=Rs.getDate("data");
+				
+				At.setIdAtividade(IdAtividade);
+				At.setRestricaoIdade(RestricaoIdade);
+				At.setHorario(Horario);
+				At.setHorarioFim(HorarioFim);
+				At.setFuncionarioId(FuncionarioId);
+				At.setNomeAtividade(NomeAtividade);
+				At.setData(Data);
+				atividades.add(At);
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 		//Return da arraylist
 		return atividades;
 	}

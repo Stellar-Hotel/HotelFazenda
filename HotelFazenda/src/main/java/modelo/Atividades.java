@@ -1,9 +1,12 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Atividades {
     private int IdAtividade, RestricaoIdade,FuncionarioId;
+    private String Horario, HorarioFim, NomeAtividade;
+    private Date Data;
     private Funcionarios funcionario_Id;
     
     public int getRestricaoIdade() {
@@ -12,8 +15,7 @@ public class Atividades {
 	public void setRestricaoIdade(int restricaoIdade) {
 		RestricaoIdade = restricaoIdade;
 	}
-	private String Horario, HorarioFim, NomeAtividade;
-    private LocalDate Data;
+	
     
 	public int getIdAtividade() {
 		return IdAtividade;
@@ -46,10 +48,10 @@ public class Atividades {
 	public void setNomeAtividade(String nomeAtividade) {
 		NomeAtividade = nomeAtividade;
 	}
-	public LocalDate getData() {
+	public Date getData() {
 		return Data;
 	}
-	public void setData(LocalDate data) {
+	public void setData(Date data) {
 		Data = data;
 	}
 
