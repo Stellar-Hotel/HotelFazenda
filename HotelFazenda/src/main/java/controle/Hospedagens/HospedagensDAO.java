@@ -1,5 +1,6 @@
 package controle.Hospedagens;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Hospedagens;
-import modelo.Hospede;
 
 public class HospedagensDAO implements IHospedagenDAO {
 
@@ -25,21 +25,45 @@ public class HospedagensDAO implements IHospedagenDAO {
 		return instancia;
 	}
 
-	public Boolean Inserir(Hospedagens a) {
+	public Boolean Inserir(Hospedagens Hg) {
+
 		String SQL = "INSERT INTO Hospedagens (checkin, checkout) VALUES (?, ?)";
+
+		// cria a "ponte de conexao" com o MYSQL
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+
+		int chavePrimariaGerada = Integer.MIN_VALUE;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			ps.setDate(1, Hg.getCheckin());
+			ps.setDate(2, Hg.getCheckout());
+
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
 		return true;
 	}
 
-	public Boolean Alterar(Hospedagens a) {
+	public Boolean Alterar(Hospedagens Hg) {
 		return true;
 	}
 
-	public Boolean Excluir(Hospedagens a) {
+	public Boolean Excluir(Hospedagens Hg) {
 		return true;
 	}
 
 	@Override
-	public int InserirHospedagem(Hospedagens Hosp) {
+	public int InserirHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -71,7 +95,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 				// Pega os valores de cada coluna d registro
 				Date Checkin = rs.getDate("Checkin");
 				Date Checkout = rs.getDate("Chekout");
- 
+
 				Hg.setCheckin(Checkin);
 				Hg.setCheckout(Checkout);
 
@@ -90,13 +114,13 @@ public class HospedagensDAO implements IHospedagenDAO {
 	}
 
 	@Override
-	public boolean AtualizarHospedagem(Hospedagens Hosp) {
+	public boolean AtualizarHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean RemoverHospedagem(Hospedagens Hosp) {
+	public boolean RemoverHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
 		return false;
 	}

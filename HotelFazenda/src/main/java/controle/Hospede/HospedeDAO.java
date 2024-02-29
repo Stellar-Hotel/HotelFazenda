@@ -1,5 +1,6 @@
 package controle.Hospede;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -7,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import java.math.BigInteger;
 import controle.Conexao;
 import modelo.Hospede;
 
@@ -32,10 +32,43 @@ public class HospedeDAO implements IHospedeDAO {
 		return instancia;
 	}
 
-	public int inserirHospede(Hospede end) {
+	public int inserirHospede(Hospede Hd) {
 		// TODO Auto-generated method stub
+
+		// Comando SQL a ser executado
 		String SQL = "INSERT INTO Hospedagens (nome, sobrenome, data_nasc, CPF, Nacionalidade, Pronome, email, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		return 0;
+
+		// cria a "ponte de conexao" com o MYSQL
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+
+		int chavePrimariaGerada = Integer.MIN_VALUE;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, Hd.getNome());
+			ps.setString(2, Hd.getSobrenome());
+			ps.setDate(3, Hd.getDataNasc());
+			ps.setString(4, Hd.getNacionalidade());
+			ps.setString(5, Hd.getEmail());
+			ps.setString(6, Hd.getPronome());
+			ps.setString(7, Hd.getCPF());
+
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// Fecha conexao
+			con.fecharConexao();
+		}
+
+		return chavePrimariaGerada;
 	}
 
 	@Override
@@ -95,13 +128,13 @@ public class HospedeDAO implements IHospedeDAO {
 	}
 
 	@Override
-	public boolean atualizarHospede(Hospede end) {
+	public boolean atualizarHospede(Hospede Hd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removerHospede(Hospede end) {
+	public boolean removerHospede(Hospede Hd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
