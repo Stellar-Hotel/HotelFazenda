@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -99,15 +100,27 @@ public class AtividadesDAO implements IAtividadesDAO
 		//Método pra fazer a conexão com o banco
 			Conexao con= Conexao.getConexao();
 			Connection conBD= con.conectar();
+			
+			
+		int ChavePrimariaGerada= Integer.MIN_VALUE;//variável que vai guardar a chave que vai ser gerada automaticamente, se não for autogerado não precisa disso
+		
 		
 			try {
-				PreparedStatement Ps= conBD.prepareStatement(SQL);
+				PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);//se for um insert já conhcendo a chave primária não adcionar o Statement.RETURN_GENERATED_KEYS
 				Ps.setString(1, Ativ.getHorario());
 				Ps.setString(2, Ativ.getHorarioFim());
 				Ps.setInt(3, Ativ.getFuncionarioId());
 				Ps.setInt(4, Ativ.getRestricaoIdade());
 				Ps.setString(5, Ativ.getNomeAtividade());
 				Ps.setDate(6, Ativ.getData());
+				
+				/*
+				 * se for um insert sem gerar chave primária automaticamente não usar a parte de baixo 
+				 */
+				ResultSet Rs= Ps.executeQuery();
+				if(Rs!=null) {
+					ChavePrimariaGerada= Rs.getInt(1);
+				}
 				
 			} catch (SQLException e) {
 				
@@ -116,7 +129,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				con.fecharConexao();
 			}
 		
-		return 0;
+		return ChavePrimariaGerada;
 	}
 	
 }

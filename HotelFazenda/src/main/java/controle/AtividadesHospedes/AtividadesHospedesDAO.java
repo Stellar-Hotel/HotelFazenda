@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -38,20 +39,28 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		Conexao con= Conexao.getConexao();
 		Connection conBD= con.conectar();
 		
+		int ChavePrimariaGerada= Integer.MIN_VALUE;
+		
 		try {
-			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			Ps.setInt(1, A.getIdHospede());
 			Ps.setInt(2, A.getIdAtividade());
 			
-			return Ps.executeUpdate();//Atualiza o banco sem retorno do banco
-			
+			ResultSet Rs= Ps.executeQuery();
+			if(Rs!=null)
+			{
+				ChavePrimariaGerada=Rs.getInt(1);
+			}
+			/*
+			 * return Ps.executeUpdate();Atualiza o banco sem retorno do banco quando o insert for sem coisa auto gerada
+			*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			con.fecharConexao();
 		}
-		return 0;
+		return ChavePrimariaGerada;
 	}
 	
 	
