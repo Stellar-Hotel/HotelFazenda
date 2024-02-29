@@ -4,6 +4,25 @@ import java.util.ArrayList;
 import modelo.Usuario;
 
 public class UsuariosDAO implements IUsuariosDAO {
+	
+	
+	private static UsuariosDAO instancia; 
+/*
+ * Construtor privado (padrao Singleton)
+ */
+	private UsuariosDAO() {
+	}
+	/*
+	 * Metodo para instanciar(Padrao SIngleton)
+	 */
+	
+	public static UsuariosDAO getInstancia() {
+		if (instancia == null) {
+			instancia = new UsuariosDAO();
+		}
+		return instancia;
+	}
+	
 	@Override
 	public int inserirUsuario(Usuario end) {
 		// TODO Auto-generated method stub
