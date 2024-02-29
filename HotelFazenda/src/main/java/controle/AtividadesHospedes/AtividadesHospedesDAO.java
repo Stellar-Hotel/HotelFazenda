@@ -8,6 +8,9 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 	private static AtividadesHospedesDAO instancia;
 
+	/*Método para instanciar
+	 * 
+	 */
 	public static AtividadesHospedesDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new AtividadesHospedesDAO();
@@ -15,6 +18,9 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 		return instancia;
 	}
+	/*
+	 * construtor privado (padrão singleton
+	*/
 	private AtividadesHospedesDAO() {}
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {

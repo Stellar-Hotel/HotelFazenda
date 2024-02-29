@@ -20,6 +20,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	private AtividadesDAO() {}
 	@Override
 	public ArrayList<Atividades> ListarAtividades() {
+		String SQL = "SELECT * FROM Atividades";
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -27,6 +28,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	@Override
 	public boolean AtualizarAtividades(Atividades Ativ) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -45,6 +47,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	@Override
 	public int InserirAtividades(Atividades Ativ) {
 		// TODO Auto-generated method stub
+		String SQL= "INSERT INTO Atividades(horario, horario_fim) VALUES (?,?)";
 		return 0;
 	}
 	
