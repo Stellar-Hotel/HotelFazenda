@@ -1,11 +1,27 @@
 package controle.ServicosConsumidos;
 import java.util.ArrayList;
 
+import controle.Usuarios.UsuariosDAO;
 import modelo.ServicosConsumidos;
+
 public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
+	
+	private static ServicosConsumidosDAO instancia;
+	
+	private ServicosConsumidosDAO() {
+		
+	}
+	public static ServicosConsumidosDAO getinstancia() {
+		if (instancia == null) {
+			instancia = new ServicosConsumidosDAO();
+		}
+		return instancia;
+	}
+	
 	@Override
 	public int inserirServicoConsumido(ServicosConsumidos end) {
-		// TODO Auto-generated method stub
+	
+		String SQL = "INSERT INTO ServicosConsumidos (Senha, nivel_de_acesso) VALUES(?, ?)";
 		return 0;
 	}
 	@Override

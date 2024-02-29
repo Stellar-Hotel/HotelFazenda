@@ -51,6 +51,10 @@ public class UsuariosDAO implements IUsuariosDAO {
 				
 				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
 				String senha = rs.getString("senha");
+				
+				end.setNivelDeAcesso(nivel_de_acesso);;
+				end.setSenha(senha);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
