@@ -2,12 +2,22 @@ package controle.Atividades;
 
 import java.util.ArrayList;
 
+import controle.Conexao;
 import modelo.Atividades;
 
 public class AtividadesDAO implements IAtividadesDAO
 
 {
+	private static AtividadesDAO instancia;
 
+	public static AtividadesDAO getInstancia() {
+		if (instancia == null) {
+			instancia = new AtividadesDAO();
+		}
+
+		return instancia;
+	}
+	private AtividadesDAO() {}
 	@Override
 	public ArrayList<Atividades> ListarAtividades() {
 		// TODO Auto-generated method stub
