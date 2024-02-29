@@ -1,11 +1,13 @@
 package modelo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Hospedagens {
 	
 	private int Hospedagensid,HospedeId;
-	private LocalDate Checkin, Checkout;
+	private Date Checkin;
+	Date Checkout;
 	Float PrecoTotal;
 	
 	
@@ -33,23 +35,23 @@ public class Hospedagens {
 	}
 
 
-	public LocalDate getCheckin() {
+	public Date getCheckin() {
 		return Checkin;
 	}
 
 
-	public void setCheckin(LocalDate checkin) {
-		Checkin = checkin;
+	public void setCheckin(Date checkin2) {
+		Checkin = checkin2;
 	}
 
 
-	public LocalDate getCheckout() {
+	public Date getCheckout() {
 		return Checkout;
 	}
 
 
-	public void setCheckout(LocalDate checkout) {
-		Checkout = checkout;
+	public void setCheckout(Date checkout2) {
+		Checkout = checkout2;
 	}
 
 
