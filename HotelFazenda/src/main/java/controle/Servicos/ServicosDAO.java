@@ -45,7 +45,7 @@ public class ServicosDAO implements IServicosDAO{
 				Servicos end = new Servicos();
 				
 				Float preco_servico = rs.getFloat("preco_servico");
-				String nome_servico = rs.getString("Senha");
+				String nome_servico = rs.getString("nome_servico");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
