@@ -57,8 +57,8 @@ public class Login extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, "cell 0 0,grow");
-		panel.setLayout(new MigLayout("", "[84px,grow][84px][210.00px][122.00][][119px][143px][115px][113px]", "[14px][81px][41.00][][3px][84.00][25px][31px][64.00][][25px][31px][14px][][][][][31px]"));
+		contentPane.add(panel, "cell 0 0,alignx right,growy");
+		panel.setLayout(new MigLayout("", "[84px][84px][210.00px][122.00][][119px][143px][115px][113px,right]", "[14px][81px][41.00][][3px][84.00][25px][31px][64.00][][25px][31px][14px][][][][][31px]"));
 		
 		JLabel lblNewLabel = new JLabel("Bem vindo ao ");
 		panel.add(lblNewLabel, "flowx,cell 0 0,growx,aligny top");
@@ -96,7 +96,7 @@ public class Login extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Hotel Fazenda");
 		lblNewLabel_1.setForeground(new Color(117, 187, 68));
-		panel.add(lblNewLabel_1, "cell 0 0,growx,aligny top");
+		panel.add(lblNewLabel_1, "cell 0 0,alignx left,aligny top");
 		
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {

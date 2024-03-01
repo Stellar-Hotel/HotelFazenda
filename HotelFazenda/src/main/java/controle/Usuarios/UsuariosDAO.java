@@ -74,15 +74,15 @@ public class UsuariosDAO implements IUsuariosDAO {
 			ResultSet rs = ps.executeQuery(SQL);
 			
 			while (rs.next()) {
-				Usuario end = new Usuario();
+				Usuario Usu = new Usuario();
 				
 				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
 				String senha = rs.getString("senha");
 				String login = rs.getString("login");
 				
-				end.setNivelDeAcesso(nivel_de_acesso);
-				end.setSenha(senha);
-				end.setLogin(login);
+				Usu.setNivelDeAcesso(nivel_de_acesso);
+				Usu.setSenha(senha);
+				Usu.setLogin(login);
 				
 			}
 		} catch (SQLException e) {

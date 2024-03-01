@@ -74,15 +74,15 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				ServicosConsumidos Serv = new ServicosConsumidos();
+				ServicosConsumidos ServC = new ServicosConsumidos();
 				
 				Integer id_hospede = rs.getInt("id_hospede");
 				Integer id_servico = rs.getInt("id_servico");
 				Integer id_hospedagens = rs.getInt("id_hospedagens");
 				
-				Serv.setIdHospede(id_hospede);
-				Serv.setIdServico(id_servico);
-				Serv.setIdHospedagens(id_hospedagens);
+				ServC.setIdHospede(id_hospede);
+				ServC.setIdServico(id_servico);
+				ServC.setIdHospedagens(id_hospedagens);
 				
 				
 				
