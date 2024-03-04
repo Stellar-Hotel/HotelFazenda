@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Conexao { // Connection
 
-	private static final String USERNAME = ".";
-	private static final String SENHA = ".";
-	private static final String BD = ".";
+	private static final String USERNAME = "adm";
+	private static final String SENHA = "BEAGA1881";
+	private static final String BD = "Stellar Hotel Fazenda";
 	private Connection con; // jdbc
 	private static Conexao instancia; // singleton
 
@@ -59,5 +59,10 @@ public class Conexao { // Connection
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public static Conexao getInstancia() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
