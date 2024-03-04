@@ -11,6 +11,7 @@ import controle.Conexao;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
+import modelo.Hospedes;
 public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 	private static AtividadesHospedesDAO instancia;
@@ -43,8 +44,8 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		
 		try {
 			PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-			Ps.setInt(1, A.getIdHospede());
-			Ps.setInt(2, A.getIdAtividade());
+			Ps.setInt(1, A.getHospede().getHospedeId());
+			Ps.setInt(2, A.getAtividade().getIdAtividade());
 			
 			ResultSet Rs= Ps.executeQuery();
 			if(Rs!=null)
@@ -91,11 +92,12 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				int IdHospede= Rs.getInt("Hospede_id");
 				int IdAtividade= Rs.getInt("id_atividade");
 				
+				Hospedes Hd=new Hospedes();
+				Atividades Ativ=new Atividades();
 				
-				
-				At.setIdAtividadesHospedes(IdAtividadesHospedes);
-				At.setIdHospede(IdHospede);
-				At.setIdAtividade(IdAtividade);
+				At.setAtividadesHospedes(IdAtividadesHospedes);
+				At.setHospede(Hd);
+				At.setAtividade(Ativ);
 				
 				AtividadesHospedes.add(At);
 			}

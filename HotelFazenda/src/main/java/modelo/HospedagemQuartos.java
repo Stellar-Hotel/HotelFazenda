@@ -1,34 +1,34 @@
 package modelo;
 
 public class HospedagemQuartos {
-	private int IdHospedagensQuartos,IdQuartos,HospedagensId,HospedeId;
-	private Quartos id_Quartos;
-	private Hospedagens Hospedagens_id;
-	private Hospede Hospede_id;
+	private int IdHospedagensQuartos;
+	private Quartos Quarto;
+	private Hospedagens Hospedagen;
+	private Hospedes Hospede;
 	
 	
-	public Quartos getId_Quartos() {
-		return id_Quartos;
+	public Quartos getQuarto() {
+		return Quarto;
 	}
 
-	public void setId_Quartos(Quartos id_Quartos) {
-		this.id_Quartos = id_Quartos;
+	public void setQuarto(Quartos id_Quartos) {
+		this.Quarto = id_Quartos;
 	}
 
-	public Hospedagens getHospedagens_id() {
-		return Hospedagens_id;
+	public Hospedagens getHospedagem() {
+		return Hospedagen;
 	}
 
-	public void setHospedagens_id(Hospedagens hospedagens_id) {
-		Hospedagens_id = hospedagens_id;
+	public void setHospedagem(Hospedagens hospedagensId) {
+		this.Hospedagen = hospedagensId;
 	}
 
-	public Hospede getHospede_id() {
-		return Hospede_id;
+	public Hospedes getHospede() {
+		return Hospede;
 	}
 
-	public void setHospede_id(Hospede hospede_id) {
-		Hospede_id = hospede_id;
+	public void setHospede(Hospedes hospedeId) {
+		this.Hospede = hospedeId;
 	}
 
 	public int getIdHospedagensQuartos() {
@@ -39,30 +39,6 @@ public class HospedagemQuartos {
 		IdHospedagensQuartos = idHospedagensQuartos;
 	}
 
-	public int getIdQuartos() {
-		return IdQuartos;
-	}
 
-	public void setIdQuartos(int idQuartos) {
-		IdQuartos = idQuartos;
-	}
-
-	public int getHospedagensId() {
-		return HospedagensId;
-	}
-
-	public void setHospedagensId(int hospedagensId) {
-		HospedagensId = hospedagensId;
-	}
-
-	public int getHospedeId() {
-		return HospedeId;
-	}
-
-	public void setHospedeId(int hospedeId) {
-		HospedeId = hospedeId;
-	}
-
-	
 	
 }

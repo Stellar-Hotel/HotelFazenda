@@ -1,7 +1,8 @@
 package modelo;
 
 public class Quartos {
-	private int IdQuartos, MaxPessoas;private String TipoCama, Manutencao;
+	private int IdQuartos, MaxPessoas;
+	private String TipoCama, Manutencao;
 	private Boolean Frigobar, ArCondicionado, Banheira, TV;
 	private Float PrecoDiaria;
 	public int getIdQuartos() {
