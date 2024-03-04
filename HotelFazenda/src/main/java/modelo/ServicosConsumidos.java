@@ -2,10 +2,10 @@ package modelo;
 
 public class ServicosConsumidos {
 	
-	private int IdServicosConsumidos,IdHospede,IdServico,IdHospedagens;
-	private Hospede id_hospede;
-	private Servicos id_servico;
-	private Hospedagens id_hospedagens;
+	private int IdServicosConsumidos;
+	private Hospedes hospede;
+	private Servicos servico;
+	private Hospedagens hospedagem;
 	
 	
 	public int getIdServicosConsumidos() {
@@ -16,52 +16,29 @@ public class ServicosConsumidos {
 		IdServicosConsumidos = idServicosConsumidos;
 	}
 
-	public int getIdHospede() {
-		return IdHospede;
+
+	public Hospedes getHospede() {
+		return hospede;
 	}
 
-	public void setIdHospede(int idHospede) {
-		IdHospede = idHospede;
+	public void setIdHospede(Hospedes IdHospede) {
+		this.hospede = IdHospede;
 	}
 
-	public int getIdServico() {
-		return IdServico;
+	public Servicos getServico() {
+		return servico;
 	}
 
-	public void setIdServico(int idServico) {
-		IdServico = idServico;
+	public void setIdServico(Servicos IdServico) {
+		this.servico = IdServico;
 	}
 
-	public int getIdHospedagens() {
-		return IdHospedagens;
+	public Hospedagens getHospedagem() {
+		return hospedagem;
 	}
 
-	public void setIdHospedagens(int idHospedagens) {
-		IdHospedagens = idHospedagens;
-	}
-
-	public Hospede getId_hospede() {
-		return id_hospede;
-	}
-
-	public void setId_hospede(Hospede id_hospede) {
-		this.id_hospede = id_hospede;
-	}
-
-	public Servicos getId_servico() {
-		return id_servico;
-	}
-
-	public void setId_servico(Servicos id_servico) {
-		this.id_servico = id_servico;
-	}
-
-	public Hospedagens getId_hospedagens() {
-		return id_hospedagens;
-	}
-
-	public void setId_hospedagens(Hospedagens id_hospedagens) {
-		this.id_hospedagens = id_hospedagens;
+	public void setIdHospedagens(Hospedagens IdHospedagens) {
+		this.hospedagem = IdHospedagens;
 	}
 	
 	

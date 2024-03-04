@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import modelo.Usuario;
+import modelo.Usuarios;
 
 public class UsuariosDAO implements IUsuariosDAO {
 	
@@ -31,7 +31,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	
 	
 	@Override
-	public int inserirUsuario(Usuario end) {
+	public int inserirUsuario(Usuarios end) {
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar(); 
@@ -62,9 +62,9 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return chavePrimariaGerada;
 	}
 	@Override
-	public ArrayList<Usuario> ListarUsuarios() {
+	public ArrayList<Usuarios> ListarUsuarios() {
 		
-		ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuarios> Usuarios = new ArrayList<Usuarios>();
 		String SQL = "SELECT * FROM Usuario";
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar(); 
@@ -74,7 +74,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			ResultSet rs = ps.executeQuery(SQL);
 			
 			while (rs.next()) {
-				Usuario end = new Usuario();
+				Usuarios end = new Usuarios();
 				
 				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
 				String senha = rs.getString("senha");
@@ -94,17 +94,17 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return Usuarios;
 	}
 	@Override
-	public boolean atualizarUsuarios(Usuario end) {
+	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public boolean removerUsuario(Usuario end) {
+	public boolean removerUsuario(Usuarios end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public Usuario buscarServicoPorCep(int cep) {
+	public Usuarios buscarServicoPorCep(int cep) {
 		// TODO Auto-generated method stub
 		return null;
 	}

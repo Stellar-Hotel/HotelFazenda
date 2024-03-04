@@ -1,9 +1,9 @@
 package modelo;
 
 public class Funcionarios {
-	private int FuncionarioId, IdUsuario;
+	private int FuncionarioId;
 	private String Nome,Sobrenome,Funcao;
-	private Usuario id_usuario;
+	private Usuarios IdUsuario;
 	
 	public int getFuncionarioId() {
 		return FuncionarioId;
@@ -37,6 +37,12 @@ public class Funcionarios {
 	}
 	public void setSalario(Float salario) {
 		Salario = salario;
+	}
+	public Usuarios getIdUsuario() {
+		return IdUsuario;
+	}
+	public void setIdUsuario(Usuarios idUsuario) {
+		this.IdUsuario = idUsuario;
 	}
 
 }
