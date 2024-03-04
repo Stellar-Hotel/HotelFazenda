@@ -25,7 +25,7 @@ public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtDigiteASenha;
 	private JTextField textField_1;
 
 	/**
@@ -54,7 +54,7 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
  
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		contentPane.setLayout(new MigLayout("", "[1092px]", "[658px]"));
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, "cell 0 0,alignx right,growy");
@@ -75,9 +75,10 @@ public class Login extends JFrame {
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3_1, "cell 0 10 6 1,growx,aligny top");
 		
-		textField = new JTextField();
-		panel.add(textField, "cell 0 7 8 1,grow");
-		textField.setColumns(10);
+		txtDigiteASenha = new JTextField();
+		txtDigiteASenha.setText("Digite a senha");
+		panel.add(txtDigiteASenha, "cell 0 7 8 1,grow");
+		txtDigiteASenha.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
