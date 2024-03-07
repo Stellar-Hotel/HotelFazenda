@@ -35,7 +35,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar(); 
-		String SQL = "INSERT INTO USUARIO (Senha, nivel_de_acesso,login) VALUES(?, ?, ?)";
+		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,login) VALUES(?, ?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
@@ -96,7 +96,33 @@ public class UsuariosDAO implements IUsuariosDAO {
 	@Override
 	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		String SQL = "UPDATE: Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ?, Where IdUsuarios = ?";
+		
+		Conexao con = Conexao.getInstancia();
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			ps.setInt(1, end.getNivelDeAcesso());
+			ps.setString(2, end.getSenha());
+			ps.setString(3, end.getLogin());
+			ps.setInt(4, end.getIdUsuarios());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+			
+		return (retorno == 0 ? false : true);
 	}
 	@Override
 	public boolean removerUsuario(Usuarios end) {
