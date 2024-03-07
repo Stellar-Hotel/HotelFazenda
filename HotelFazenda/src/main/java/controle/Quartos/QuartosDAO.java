@@ -137,8 +137,17 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
         
         try {
             PreparedStatement ps = conBD.prepareStatement(SQL);
+            
             ps.setInt(1, end.getIdQuartos());
             ps.setInt(2, end.getMaxPessoas());
+            ps.setString(3, end.getTipoCama());
+            ps.setString(4, end.getManutencao());
+            ps.setBoolean(5, end.getFrigobar());
+            ps.setBoolean(6, end.getArCondicionado());
+            ps.setBoolean(7, end.getBanheira());
+            ps.setBoolean(8, end.getTV());
+            ps.setFloat(9, end.getPrecoDiaria());
+            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -81,7 +81,7 @@ public class AtividadesDAO implements IAtividadesDAO
 
 
         //Conexâo SQl a ser executada
-        String SQL = "UPDATE atividades SET NomeAtividade = ? WHERE IdAtividade = ?";
+        String SQL = "UPDATE atividades SET NomeAtividade  = ? WHERE IdAtividade = ?";
         
         //abre a conexão e cria a "parte de conexão" com MYSQL
         Conexao con= Conexao.getInstancia();
@@ -92,6 +92,11 @@ public class AtividadesDAO implements IAtividadesDAO
             PreparedStatement ps = conBD.prepareStatement(SQL);
             ps.setString(1, Ativ.getNomeAtividade());
             ps.setInt(2, Ativ.getIdAtividade());
+            ps.setString(3, Ativ.getNomeAtividade());
+            ps.setInt(4, Ativ.getRestricaoIdade());
+            ps.setDate(5, Ativ.getData());
+            ps.setInt(6, Ativ.getFuncionario().getFuncionarioId());
+            
             
             retorno = ps.executeUpdate();
             
