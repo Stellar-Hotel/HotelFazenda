@@ -120,7 +120,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE: Funcionarios SET nome = ?, WHERE FuncionarioId = ?";
+		String SQL = "UPDATE: Funcionarios SET nome = ?, sobrenome = ?, Funcao = ?, salario = ?, WHERE FuncionarioId = ?";
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar();
@@ -131,7 +131,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			
 			ps.setString(1, Func.getNome());
-			ps.setInt(2, Func.getFuncionarioId());
+			ps.setString(2, Func.getSobrenome());
+			ps.setString(3, Func.getFuncao());
+			ps.setFloat(4, Func.getSalario());
+			ps.setInt(5, Func.getFuncionarioId());
 			
 			retorno = ps.executeUpdate();
 			

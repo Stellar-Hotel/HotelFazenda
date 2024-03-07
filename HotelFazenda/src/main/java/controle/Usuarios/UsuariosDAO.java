@@ -97,7 +97,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE: Usuarios SET NivelDeAcesso = ?, Where IdUsuarios = ?";
+		String SQL = "UPDATE: Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ?, Where IdUsuarios = ?";
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar();
@@ -108,7 +108,9 @@ public class UsuariosDAO implements IUsuariosDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			
 			ps.setInt(1, end.getNivelDeAcesso());
-			ps.setInt(2, end.getIdUsuarios());
+			ps.setString(2, end.getSenha());
+			ps.setString(3, end.getLogin());
+			ps.setInt(4, end.getIdUsuarios());
 			
 			retorno = ps.executeUpdate();
 			
