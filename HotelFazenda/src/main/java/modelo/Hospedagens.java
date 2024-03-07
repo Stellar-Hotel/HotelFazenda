@@ -7,8 +7,8 @@ public class Hospedagens {
 
 	private int Hospedagensid;
 	private Date Checkin;
-	Date Checkout;
-	Float PrecoTotal;
+	private Date Checkout;
+	private Float PrecoTotal;
 	private Hospedes IdHospede;
 
 	public int getHospedagensId() {
@@ -41,5 +41,13 @@ public class Hospedagens {
 
 	public Hospedes getIdHospede() {
 		return IdHospede;
+	}
+
+	public Float getPrecoTotal() {
+		return PrecoTotal;
+	}
+
+	public void setPrecoTotal(Float precoTotal) {
+		PrecoTotal = precoTotal;
 	}
 }

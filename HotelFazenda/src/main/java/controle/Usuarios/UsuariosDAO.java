@@ -97,7 +97,8 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE: Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ?, Where IdUsuarios = ?";
+		String SQL = "UPDATE Usuarios SET NivelDeAcesso = ?, Senha = ?,"
+				+ " Login = ? Where IdUsuarios = ?";
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar();
