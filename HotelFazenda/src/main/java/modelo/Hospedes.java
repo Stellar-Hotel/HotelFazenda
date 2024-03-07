@@ -8,7 +8,7 @@ public class Hospedes {
 	private int HospedeId;
 	private String Nome, CPF,  Sobrenome, Nacionalidade, Pronome, Email;
 	private Date DataNasc;
-	private Usuarios IdUsuario;
+	private Usuarios Usuario;
 
 
 	public void setCPF(String cPF) {
@@ -30,11 +30,11 @@ public class Hospedes {
 	public String getSobrenome() {
 		return Sobrenome;
 	}
-	public Usuarios getIdUsuario() {
-		return IdUsuario;
+	public Usuarios getUsuario() {
+		return Usuario;
 	}
-	public void setIdUsuario(Usuarios idUsuario) {
-		this.IdUsuario = idUsuario;
+	public void setUsuario(Usuarios Usuario) {
+		this.Usuario = Usuario;
 	}
 	public String getCPF() {
 		return CPF;

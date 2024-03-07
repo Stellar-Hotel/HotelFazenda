@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import controle.Conexao;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
+import modelo.Funcionarios;
 
 public class AtividadesDAO implements IAtividadesDAO
 
@@ -50,15 +51,16 @@ public class AtividadesDAO implements IAtividadesDAO
 				int RestricaoIdade= Rs.getInt("restricao_idade");
 				String Horario=Rs.getString("horario");
 				String HorarioFim=Rs.getString("horario_fim");
-				int FuncionarioId=Rs.getInt("funcionario_id");
+				Funcionarios Funcionario=new Funcionarios();
 				String NomeAtividade=Rs.getString("nome_atividade");
 				Date Data=Rs.getDate("data");
 				
+				//Tem que preencher os atributos do objeto funcionário
 				At.setIdAtividade(IdAtividade);
 				At.setRestricaoIdade(RestricaoIdade);
 				At.setHorario(Horario);
 				At.setHorarioFim(HorarioFim);
-				At.setFuncionarioId(FuncionarioId);
+				At.setFuncionario(Funcionario);
 				At.setNomeAtividade(NomeAtividade);
 				At.setData(Data);
 				atividades.add(At);
@@ -109,7 +111,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);//se for um insert já conhcendo a chave primária não adcionar o Statement.RETURN_GENERATED_KEYS
 				Ps.setString(1, Ativ.getHorario());
 				Ps.setString(2, Ativ.getHorarioFim());
-				Ps.setInt(3, Ativ.getFuncionarioId());
+				Ps.setInt(3, Ativ.getFuncionario().getFuncionarioId());
 				Ps.setInt(4, Ativ.getRestricaoIdade());
 				Ps.setString(5, Ativ.getNomeAtividade());
 				Ps.setDate(6, Ativ.getData());

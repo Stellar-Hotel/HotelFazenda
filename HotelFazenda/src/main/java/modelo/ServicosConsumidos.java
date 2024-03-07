@@ -21,7 +21,7 @@ public class ServicosConsumidos {
 		return hospede;
 	}
 
-	public void setIdHospede(Hospedes IdHospede) {
+	public void setHospede(Hospedes IdHospede) {
 		this.hospede = IdHospede;
 	}
 
@@ -29,7 +29,7 @@ public class ServicosConsumidos {
 		return servico;
 	}
 
-	public void setIdServico(Servicos IdServico) {
+	public void setServico(Servicos IdServico) {
 		this.servico = IdServico;
 	}
 
@@ -37,7 +37,7 @@ public class ServicosConsumidos {
 		return hospedagem;
 	}
 
-	public void setIdHospedagens(Hospedagens IdHospedagens) {
+	public void setHospedagens(Hospedagens IdHospedagens) {
 		this.hospedagem = IdHospedagens;
 	}
 	

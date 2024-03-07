@@ -6,7 +6,7 @@ public class Atividades {
 	private int IdAtividade, RestricaoIdade;
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
-	private Funcionarios IdFuncionario;
+	private Funcionarios Funcionario;
 
 	public int getRestricaoIdade() {
 		return RestricaoIdade;
@@ -56,11 +56,11 @@ public class Atividades {
 		Data = data;
 	}
 
-	public Funcionarios getIdFuncionario() {
-		return IdFuncionario;
+	public Funcionarios getFuncionario() {
+		return Funcionario;
 	}
 
-	public void setIdFuncionario(Funcionarios idFuncionario) {
-		IdFuncionario = idFuncionario;
+	public void setFuncionario(Funcionarios idFuncionario) {
+		Funcionario = idFuncionario;
 	}
 }

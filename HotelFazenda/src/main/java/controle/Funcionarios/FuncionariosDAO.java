@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import controle.Conexao;
 import controle.Funcionarios.FuncionariosDAO;
 import modelo.Funcionarios;
+import modelo.Usuarios;
 
 public class FuncionariosDAO implements IFuncionariosDAO
 
@@ -52,6 +53,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setString(2, Func.getSobrenome());
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
+			ps.setInt(5, Func.getUsuario().getIdUsuarios());
 		
 			ResultSet Rs = ps.executeQuery();
 			if(Rs!=null) {
@@ -95,10 +97,14 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				String sobrenome = rs.getString("sobrenome");
 				Float salario = rs.getFloat("salario");
 				
+				Usuarios User= new Usuarios();
+				//tem que preencher os atributos desse objeto
+				
 				funcionario.setNome(nome);
 				funcionario.setSobrenome(sobrenome);
 				funcionario.setFuncao(funcao);
 				funcionario.setSalario(salario);
+				funcionario.setUsuario(User);
 				
 			}
 			

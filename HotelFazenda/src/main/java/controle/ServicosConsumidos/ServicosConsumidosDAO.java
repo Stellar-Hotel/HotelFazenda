@@ -80,10 +80,6 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			while (rs.next()) {
 				ServicosConsumidos Serv = new ServicosConsumidos();
 				
-				Integer IHospede = rs.getInt("id_hospede");
-				Integer Id_Servico = rs.getInt("id_servico");
-				Integer id_hospedagens = rs.getInt("id_hospedagens");
-				
 				// Pegar os dados da tabela hospede
 				
 				// Pegar os dados da tabela servicos
@@ -92,6 +88,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				
 				
 				// Criar obj para cada tabela
+				//tem que preencher os atributos desses objetos
 				Hospedes Hospede = new Hospedes();
 				Servicos Servico = new Servicos();
 				Hospedagens Hospedagem = new Hospedagens();
@@ -108,9 +105,9 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				
 				 
 				
-				Serv.setIdHospede(Hospede);
-				Serv.setIdServico(Servico);
-				Serv.setIdHospedagens(Hospedagem);
+				Serv.setHospede(Hospede);
+				Serv.setServico(Servico);
+				Serv.setHospedagens(Hospedagem);
 				
 				
 				

@@ -94,7 +94,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				
 				Hospedes Hd=new Hospedes();
 				Atividades Ativ=new Atividades();
-				
+				//Tem que preencher os atributos dos objetos hd e ativ
 				At.setAtividadesHospedes(IdAtividadesHospedes);
 				At.setHospede(Hd);
 				At.setAtividade(Ativ);

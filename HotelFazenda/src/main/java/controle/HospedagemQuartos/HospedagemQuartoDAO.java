@@ -90,11 +90,9 @@ private static HospedagemQuartoDAO instancia;
 				HospedagemQuartos HospedagemQuartos = new HospedagemQuartos();
 				
 				Integer IdHospedagemQuarto = rs.getInt("id_Hospedagem_quartos");
-				Integer IdQuarto = rs.getInt("id_Quartos");
-				Integer HospedagemId = rs.getInt("Hospedagens_id");
-				Integer HospedeId = rs.getInt("Hospede_id");
+
 				
-				
+				//tem que preencher os atributos desses 3 objetos
 				Quartos Quarto= new Quartos();
 				Hospedagens Hosp=new Hospedagens();
 				Hospedes Hd=new Hospedes();

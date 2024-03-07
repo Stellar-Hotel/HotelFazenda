@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Hospedes;
+import modelo.Usuarios;
 
 public class HospedeDAO implements IHospedeDAO {
 
@@ -54,6 +55,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
 			ps.setString(7, Hd.getCPF());
+			ps.setInt(8, Hd.getUsuario().getIdUsuarios());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
@@ -103,6 +105,10 @@ public class HospedeDAO implements IHospedeDAO {
 				String nacionalidade = rs.getString("Nacionalidade");
 				String pronome = rs.getString("Pronome");
 				String email = rs.getString("Email");
+				
+				Usuarios User=new Usuarios();
+				//Tem que preencher os atributos desse objeto
+				
 
 				Hd.setNome(sobrenome);
 				Hd.setNome(nome);
@@ -111,7 +117,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setEmail(email);
 				Hd.setNacionalidade(nacionalidade);
 				Hd.setPronome(pronome);
-
+				Hd.setUsuario(User);
 				// Adiciona objeto na lista
 				hospede.add(Hd);
 
