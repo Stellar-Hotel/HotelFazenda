@@ -27,6 +27,7 @@ public class ServicosDAO implements IServicosDAO{
 	public int inserirServico(Servicos end) {
 		String SQL = "INSERT INTO Servicos (preco_servico, nome_servico) VALUES(?, ?)";
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	@Override
@@ -72,7 +73,7 @@ public class ServicosDAO implements IServicosDAO{
 	@Override
 	public boolean atualizarServico(Servicos end) {
 		// Comando que vai ser executado no sql
-		String SQL= "UPDATE Servicos SET Preco=? where ServicoId=?";
+		String SQL= "UPDATE Servicos SET Preco=?,NomeServico=? where ServicoId=?";
 		
 		//abre a conexão e cria a "ponte de conexão" com MYsql
 		Conexao con=Conexao.getInstancia();
