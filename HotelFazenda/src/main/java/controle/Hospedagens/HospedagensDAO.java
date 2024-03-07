@@ -116,7 +116,44 @@ public class HospedagensDAO implements IHospedagenDAO {
 	@Override
 	public boolean AtualizarHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		// Comando SQL a ser executado
+		String SQL = "UPDATE Hospedagens Set Checkin = ?, Checkout = ?,"
+				+ " PrecoTotal = ? where HospedensId = ?";
+
+		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
+		Conexao con = Conexao.getInstancia();// Instanciando
+		Connection conBD = con.conectar();// cria a conexao
+
+		int retorno = 0;
+
+		try {
+			// transfere o texto para um objeto
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			// Substitui as interrogações no comando SQL
+			ps.setDate(1, Hg.getCheckin());
+			ps.setDate(2, Hg.getCheckout());
+			ps.setFloat(3, Hg.getPrecoTotal());
+
+			// indica qual qual hospedagem atualizar no comeando where através do id
+			ps.setInt(4, Hg.getHospedagensId());
+
+			// Retorna 1 para certo e 0 para erro.
+			retorno = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			// Captura e mostra eventuais bugs na execução do codigo
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		// if ternário
+		return (retorno == 0 ? false : true);
+
 	}
 
 	@Override
