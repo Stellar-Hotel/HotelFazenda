@@ -74,7 +74,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			ResultSet rs = ps.executeQuery(SQL);
 			
 			while (rs.next()) {
-				Usuario Usu = new Usuario();
+				Usuarios Usu = new Usuarios();
 				
 				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
 				String senha = rs.getString("senha");
