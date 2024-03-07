@@ -5,42 +5,42 @@ import java.time.LocalDate;
 
 public class Hospedagens {
 
-	private int Hospedagensid;
+	private int IdHospedagem;
 	private Date Checkin;
 	private Date Checkout;
 	private Float PrecoTotal;
-	private Hospedes IdHospede;
+	private Hospedes Hospede;
 
 	public int getHospedagensId() {
-		return Hospedagensid;
+		return IdHospedagem;
 	}
 
 	public void setHospedagensId(int hospedagensid) {
-		Hospedagensid = hospedagensid;
+		IdHospedagem = hospedagensid;
 	}
 	public Date getCheckin() {
 		return Checkin;
 	}
 
-	public void setCheckin(Date checkin2) {
-		Checkin = checkin2;
+	public void setCheckin(Date checkin) {
+		Checkin = checkin;
 	}
 
 	public Date getCheckout() {
 		return Checkout;
 	}
 
-	public void setCheckout(Date checkout2) {
-		Checkout = checkout2;
+	public void setCheckout(Date checkout) {
+		Checkout = checkout;
 	}
 	
-	public void setHospedeId(Hospedes HospedesId)
+	public void setHospedeId(Hospedes Hospede)
 	{
-		this.IdHospede= HospedesId;
+		this.Hospede= Hospede;
 	}
 
 	public Hospedes getIdHospede() {
-		return IdHospede;
+		return Hospede;
 	}
 
 	public Float getPrecoTotal() {

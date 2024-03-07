@@ -2,16 +2,16 @@ package modelo;
 
 
 public class Servicos {
-    private int IdServicos;
+    private int IdServico;
     private Float PrecoServico;
     private String NomeServico;
     
     
 	public int getIdServicos() {
-		return IdServicos;
+		return IdServico;
 	}
 	public void setIdServicos(int idServicos) {
-		IdServicos = idServicos;
+		IdServico = idServicos;
 	}
 	public Float getPrecoServico() {
 		return PrecoServico;

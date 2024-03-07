@@ -31,7 +31,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
@@ -48,7 +48,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 
 		return true;
@@ -80,7 +80,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 		// cria a ponte de conecao com o mysql
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -107,7 +107,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 
 		return hospedagens;
@@ -123,7 +123,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getInstancia();// Instanciando
-		Connection conBD = con.conectar();// cria a conexao
+		Connection conBD = con.Conectar();// cria a conexao
 
 		int retorno = 0;
 
@@ -148,7 +148,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			// Captura e mostra eventuais bugs na execução do codigo
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 
 		// if ternário

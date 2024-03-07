@@ -11,24 +11,24 @@ public class HospedagemQuartos {
 		return Quarto;
 	}
 
-	public void setQuarto(Quartos id_Quartos) {
-		this.Quarto = id_Quartos;
+	public void setQuarto(Quartos Quarto) {
+		this.Quarto = Quarto;
 	}
 
 	public Hospedagens getHospedagem() {
 		return Hospedagen;
 	}
 
-	public void setHospedagem(Hospedagens hospedagensId) {
-		this.Hospedagen = hospedagensId;
+	public void setHospedagem(Hospedagens Hospedagen) {
+		this.Hospedagen = Hospedagen;
 	}
 
 	public Hospedes getHospede() {
 		return Hospede;
 	}
 
-	public void setHospede(Hospedes hospedeId) {
-		this.Hospede = hospedeId;
+	public void setHospede(Hospedes Hospede) {
+		this.Hospede = Hospede;
 	}
 
 	public int getIdHospedagensQuartos() {

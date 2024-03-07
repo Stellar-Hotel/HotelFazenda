@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -26,39 +25,38 @@ public class ServicosDAO implements IServicosDAO{
 	}
 	@Override
 	public int inserirServico(Servicos end) {
+		String SQL = "INSERT INTO Servicos (PrecoServico, NomeServico) VALUES(?, ?)";
+		// TODO Auto-generated method stub
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.Conectar();
 		
-		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar(); 
-		String SQL = "INSERT INTO Servicos (preco_servico, nome_servico) VALUES(?, ?)";
-		int chavePrimariaGerada = Integer.MIN_VALUE;	
+		int ChavePrimariaGerada=Integer.MIN_VALUE;
 		
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-			ResultSet rs = ps.executeQuery();
-			ps.setFloat(1, end.getPrecoServico());
-			ps.setString(2,end.getNomeServico());
+			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			Ps.setFloat(1, end.getPrecoServico());
+			Ps.setString(2, end.getNomeServico());
 			
-			if (rs!= null) {
-				chavePrimariaGerada = rs.getInt(1);
+			ResultSet Rs= Ps.executeQuery();
+			if(Rs!=null) {
+				ChavePrimariaGerada=Rs.getInt(1);
 			}
 			
 		} catch (SQLException e) {
-		
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
-
-
-		// TODO Auto-generated method stub
-		return chavePrimariaGerada;
+		
+		return ChavePrimariaGerada;
 	}
 	@Override
 	public ArrayList<Servicos> ListarServicos() {
 		ArrayList<Servicos> Servico = new ArrayList<Servicos>();
 		String SQL = "SELECT * FROM Servicos";
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -77,7 +75,7 @@ public class ServicosDAO implements IServicosDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 
@@ -100,7 +98,7 @@ public class ServicosDAO implements IServicosDAO{
 		
 		//abre a conexão e cria a "ponte de conexão" com MYsql
 		Conexao con=Conexao.getInstancia();
-		Connection conBD=con.conectar();
+		Connection conBD=con.Conectar();
 		
 		boolean retorno=false;
 		
@@ -116,7 +114,7 @@ public class ServicosDAO implements IServicosDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		return retorno;

@@ -1,7 +1,7 @@
 package modelo;
  
 public class AtividadesHospedes {
-    private int IdAtividadesHospedes;
+    private int IdHospedeAtividade;
     private Hospedes Hospede;
     private Atividades Atividade;
     
@@ -23,11 +23,11 @@ public class AtividadesHospedes {
 	}
 
 	public int getAtividadesHospedes() {
-		return IdAtividadesHospedes;
+		return IdHospedeAtividade;
 	}
 	
 	public void setAtividadesHospedes(int idAtividadesHospedes) {
-		IdAtividadesHospedes = idAtividadesHospedes;
+		IdHospedeAtividade = idAtividadesHospedes;
 	}
 
 

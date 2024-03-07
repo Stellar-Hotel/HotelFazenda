@@ -3,17 +3,17 @@ package modelo;
 import java.sql.Date;
 
 public class Atividades {
-	private int IdAtividade, RestricaoIdade;
+	private int IdAtividade, IdadeMinima;
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
 	private Funcionarios Funcionario;
 
 	public int getRestricaoIdade() {
-		return RestricaoIdade;
+		return IdadeMinima;
 	}
 
-	public void setRestricaoIdade(int restricaoIdade) {
-		RestricaoIdade = restricaoIdade;
+	public void setRestricaoIdade(int Idade) {
+		IdadeMinima = Idade;
 	}
 
 	public int getIdAtividade() {

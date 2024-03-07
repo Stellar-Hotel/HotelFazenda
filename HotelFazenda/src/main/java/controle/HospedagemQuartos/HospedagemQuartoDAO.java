@@ -42,7 +42,7 @@ private static HospedagemQuartoDAO instancia;
 		// TODO Auto-generated method stub
 		String SQL = "INSERT INTO HospedagemQuartos (id_Hospedagem_quartos, id_Quartos, Hospedagens_id,Hospede_id) VALUES (?, ?)";
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 		
@@ -63,7 +63,7 @@ private static HospedagemQuartoDAO instancia;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		
@@ -79,7 +79,7 @@ private static HospedagemQuartoDAO instancia;
 		String SQL = "SELECT * FROM HospedagemQuarto";
 		
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			

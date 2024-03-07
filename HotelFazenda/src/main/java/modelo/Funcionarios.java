@@ -1,15 +1,15 @@
 package modelo;
 
 public class Funcionarios {
-	private int FuncionarioId;
+	private int IdFuncionario;
 	private String Nome,Sobrenome,Funcao;
 	private Usuarios Usuario;
 	
 	public int getFuncionarioId() {
-		return FuncionarioId;
+		return IdFuncionario;
 	}
 	public void setFuncionarioId(int funcionarioId) {
-		FuncionarioId = funcionarioId;
+		IdFuncionario = funcionarioId;
 	}
 	private Float Salario;
 	

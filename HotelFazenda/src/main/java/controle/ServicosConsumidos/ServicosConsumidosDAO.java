@@ -36,7 +36,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public int inserirServicoConsumido(ServicosConsumidos end) {
 
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		String SQL = "INSERT INTO ServicosConsumidos (id_hospede, id_servico, id_hospedagens) VALUES(?, ?, ?)";
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
@@ -56,7 +56,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 
 		return chavePrimariaGerada;
@@ -70,7 +70,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 		String SQL = "SELECT hospede.cpf, servicos.id_servico FROM servicos_consumidos "
 				+ "INNER JOIN hospede.id_hospede = servico_consumido.id_hospede";
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -134,7 +134,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 		// abre a conexão e cria a "ponte de conexão" com MYsql
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 
 		boolean retorno = false;
 
@@ -151,7 +151,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 
 		return retorno;

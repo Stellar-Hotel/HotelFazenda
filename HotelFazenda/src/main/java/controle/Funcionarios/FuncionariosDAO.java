@@ -15,7 +15,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 
 {
 	
-	private static FuncionariosDAO instancia;
+	private static FuncionariosDAO Funcionarios;
 	
 	private FuncionariosDAO() {
 	} // construtor privado
@@ -27,11 +27,11 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	 */
 
 	public static FuncionariosDAO getConexao() {
-		if (instancia == null) {
-			instancia = new FuncionariosDAO();
+		if (Funcionarios == null) {
+			Funcionarios = new FuncionariosDAO();
 		}
 
-		return instancia;
+		return Funcionarios;
 	}
 
 	
@@ -40,10 +40,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public int InserirFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Funcionarios (nome, sobrenome, funcao, salario) VALUES (?, ?, ?, ?)";
+		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario) VALUES (?, ?, ?, ?)";
 		
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 		
@@ -65,7 +65,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		
@@ -81,7 +81,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		String SQL = "SELECT * FROM Funcionarios";
 		
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -90,9 +90,9 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			
 			while(rs.next()) {
 				
-				Funcionarios funcionario = new Funcionarios();
+				Funcionarios Funcionario = new Funcionarios();
 				
-				String nome = rs.getString("nome");
+				String Nome = rs.getString("nome");
 				String funcao = rs.getString("funcao");
 				String sobrenome = rs.getString("sobrenome");
 				Float salario = rs.getFloat("salario");
@@ -100,11 +100,11 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Usuarios User= new Usuarios();
 				//tem que preencher os atributos desse objeto
 				
-				funcionario.setNome(nome);
-				funcionario.setSobrenome(sobrenome);
-				funcionario.setFuncao(funcao);
-				funcionario.setSalario(salario);
-				funcionario.setUsuario(User);
+				Funcionario.setNome(Nome);
+				Funcionario.setSobrenome(sobrenome);
+				Funcionario.setFuncao(funcao);
+				Funcionario.setSalario(salario);
+				Funcionario.setUsuario(User);
 				
 			}
 			
@@ -120,10 +120,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE: Funcionarios SET nome = ?, sobrenome = ?, Funcao = ?, salario = ?, WHERE FuncionarioId = ?";
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?, WHERE IdFuncionario = ?";
 		
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		int retorno = 0;
 		
@@ -142,7 +142,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		
