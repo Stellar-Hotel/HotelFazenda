@@ -77,9 +77,15 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
+				ServicosConsumidos ServC = new ServicosConsumidos();
+				
 				ServicosConsumidos Serv = new ServicosConsumidos();
 
 				// Pegar os dados da tabela hospede
+				
+				ServC.setIdHospede(id_hospede);
+				ServC.setIdServico(id_servico);
+				ServC.setIdHospedagens(id_hospedagens);
 
 				// Pegar os dados da tabela servicos
 
