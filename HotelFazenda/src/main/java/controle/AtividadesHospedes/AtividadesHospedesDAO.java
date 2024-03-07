@@ -38,7 +38,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		String SQL= "INSERT INTO Atividades_Hospedes(Hospede_id,id_atividade) VALUES (?,?)";
 		//Método pra fazer a conexão com o banco
 		Conexao con= Conexao.getConexao();
-		Connection conBD= con.conectar();
+		Connection conBD= con.Conectar();
 		
 		int ChavePrimariaGerada= Integer.MIN_VALUE;
 		
@@ -59,7 +59,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		return ChavePrimariaGerada;
 	}
@@ -77,7 +77,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		
 		//Método pra fazer a conexão
 		Conexao con= Conexao.getConexao();
-		Connection conBD= con.conectar();
+		Connection conBD= con.Conectar();
 		
 		//Método pra avisar caso dê algum erro, ele tenta o bloco de código no try e se der erro mostra um erro no método do catch
 		try {
@@ -105,7 +105,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 	
 		

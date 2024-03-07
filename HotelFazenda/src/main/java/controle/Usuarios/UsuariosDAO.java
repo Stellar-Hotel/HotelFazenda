@@ -34,7 +34,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public int inserirUsuario(Usuarios end) {
 		
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar(); 
+		Connection conBD = con.Conectar(); 
 		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,login) VALUES(?, ?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
@@ -55,7 +55,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		
@@ -67,7 +67,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		ArrayList<Usuarios> Usuarios = new ArrayList<Usuarios>();
 		String SQL = "SELECT * FROM Usuario";
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar(); 
+		Connection conBD = con.Conectar(); 
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -88,7 +88,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		return Usuarios;
@@ -101,7 +101,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 				+ " Login = ? Where IdUsuarios = ?";
 		
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		int retorno = 0;
 		
@@ -119,7 +119,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 			

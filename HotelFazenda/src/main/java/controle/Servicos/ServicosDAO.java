@@ -25,8 +25,29 @@ public class ServicosDAO implements IServicosDAO{
 	}
 	@Override
 	public int inserirServico(Servicos end) {
-		String SQL = "INSERT INTO Servicos (preco_servico, nome_servico) VALUES(?, ?)";
+		String SQL = "INSERT INTO Servicos (PrecoServico, NomeServico) VALUES(?, ?)";
 		// TODO Auto-generated method stub
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.Conectar();
+		
+		int ChavePrimariaGerada=Integer.MIN_VALUE;
+		
+		try {
+			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			Ps.setFloat(1, end.getPrecoServico());
+			Ps.setString(2, end.getNomeServico());
+			
+			ResultSet Rs= Ps.executeQuery();
+			if(Rs!=null) {
+				ChavePrimariaGerada=Rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.FecharConexao();
+		}
 		
 		return 0;
 	}
@@ -35,7 +56,7 @@ public class ServicosDAO implements IServicosDAO{
 		ArrayList<Servicos> Servico = new ArrayList<Servicos>();
 		String SQL = "SELECT * FROM Servicos";
 		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
@@ -54,7 +75,7 @@ public class ServicosDAO implements IServicosDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 
@@ -77,7 +98,7 @@ public class ServicosDAO implements IServicosDAO{
 		
 		//abre a conexão e cria a "ponte de conexão" com MYsql
 		Conexao con=Conexao.getInstancia();
-		Connection conBD=con.conectar();
+		Connection conBD=con.Conectar();
 		
 		boolean retorno=false;
 		
@@ -93,7 +114,7 @@ public class ServicosDAO implements IServicosDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		return retorno;

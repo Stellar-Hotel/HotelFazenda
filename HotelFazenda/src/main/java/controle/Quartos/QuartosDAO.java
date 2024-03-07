@@ -40,7 +40,7 @@ private static QuartosDAO instancia;
 		
 
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 		
@@ -65,7 +65,7 @@ private static QuartosDAO instancia;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 		
 		return 0;
@@ -79,7 +79,7 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 		String SQL = "SELECT * FROM Quartos";
 		
 		Conexao con = Conexao.getConexao();
-		Connection conBD = con.conectar();
+		Connection conBD = con.Conectar();
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);

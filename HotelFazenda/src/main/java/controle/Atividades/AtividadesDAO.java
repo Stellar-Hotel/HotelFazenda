@@ -38,7 +38,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		
 		//Método pra fazer a conexão
 		Conexao con= Conexao.getConexao();
-		Connection conBD= con.conectar();
+		Connection conBD= con.Conectar();
 		
 		try {
 			PreparedStatement Ps=conBD.prepareStatement(SQL);
@@ -69,7 +69,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			con.fecharConexao();
+			con.FecharConexao();
 		}
 	
 		//Return da arraylist
@@ -101,7 +101,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		String SQL= "INSERT INTO Atividades(horario,horario_fim,funcionario_id,restricao_idade,nome_atividade,data) VALUES (?,?,?,?,?,?)";
 		//Método pra fazer a conexão com o banco
 			Conexao con= Conexao.getConexao();
-			Connection conBD= con.conectar();
+			Connection conBD= con.Conectar();
 			
 			
 		int ChavePrimariaGerada= Integer.MIN_VALUE;//variável que vai guardar a chave que vai ser gerada automaticamente, se não for autogerado não precisa disso
@@ -128,7 +128,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				
 				e.printStackTrace();
 			} finally {
-				con.fecharConexao();
+				con.FecharConexao();
 			}
 		
 		return ChavePrimariaGerada;

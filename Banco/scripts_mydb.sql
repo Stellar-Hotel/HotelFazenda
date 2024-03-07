@@ -186,7 +186,7 @@ CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
 
 /*Tabela Usuarios*/
 
-insert into Usuarios ( senha, nivel_de_acesso, login)
+insert into Usuarios ( Senha, NivelDeAcesso, Login)
 values ('M@iones3', 0,'MAZDARX7' ),
 ('eido', 0,'Cralos Ícaro' ),
 ('Geromel', 1,'Andrei' ),
@@ -593,34 +593,34 @@ where  IdHospedagem = 10;
 
 /*Update Usuários*/
 update Usuarios
-set senha = '12345',nivel_de_acesso = 1, login='Roncas'
+set Senha = '12345',NivelDeAcesso = 1, Login='Roncas'
 where  IdUsuario = 1;
 update Usuarios
-set senha = '67891',nivel_de_acesso = 0, login='Bernas'
+set Senha = '67891',NivelDeAcesso = 0, Login='Bernas'
 where  IdUsuario = 2;
 update Usuarios
-set senha = '101112',nivel_de_acesso = 1, login='Andras'
+set Senha = '101112',NivelDeAcesso = 1, Login='Andras'
 where  IdUsuario = 3;
 update Usuarios
-set senha = '126890',nivel_de_acesso = 1, login='Luigigigie'
+set Senha = '126890',NivelDeAcesso = 1, Login='Luigigigie'
 where  IdUsuario = 4;
 update Usuarios
-set senha = '61701',nivel_de_acesso = 0, login= 'Muliro'
+set Senha = '61701',NivelDeAcesso = 0, Login= 'Muliro'
 where  IdUsuario = 5;
 update Usuarios
-set senha = '01234',nivel_de_acesso = 1, login='Gagas'
+set Senha = '01234',NivelDeAcesso = 1, Login='Gagas'
 where  IdUsuario = 6;
 update Usuarios
-set senha = '901890',nivel_de_acesso = 1, login='Gustas'
+set Senha = '901890',NivelDeAcesso = 1, Login='Gustas'
 where  IdUsuario = 7;
 update Usuarios
-set senha = '448768',nivel_de_acesso = 1, login='Kakas'
+set Senha = '448768',NivelDeAcesso = 1, Login='Kakas'
 where  IdUsuario = 8;
 update Usuarios
-set senha = '48765',nivel_de_acesso = 1, login='Charlão'
+set Senha = '48765',NivelDeAcesso = 1, Login='Charlão'
 where  IdUsuario = 9;
 update Usuarios
-set senha = '4165',nivel_de_acesso = 1, login='Clóvis'
+set Senha = '4165',NivelDeAcesso = 1, Login='Clóvis'
 where  IdUsuario = 10;
 
 
@@ -746,94 +746,94 @@ where IdAtividade=20;
 
 update HospedagensQuartos
 set IdQuarto=1, IdHospedagem=1, IdHospede=1
-where id_Hospedagem_quartos=1;
+where IdHospedagemQuarto=1;
 
 
 update HospedagensQuartos
 set IdQuarto=2, IdHospedagem=2, IdHospede=2
-where id_Hospedagem_quartos=2;
+where IdHospedagemQuarto=2;
 
 
 update HospedagensQuartos
 set IdQuarto=3, IdHospedagem=3, IdHospede=3
-where id_Hospedagem_quartos=3;
+where IdHospedagemQuarto=3;
 
 
 update HospedagensQuartos
 set IdQuarto=4, IdHospedagem=4, IdHospede=4
-where id_Hospedagem_quartos=4;
+where IdHospedagemQuarto=4;
 
 
 update HospedagensQuartos
 set IdQuarto=5, IdHospedagem=5, IdHospede=5
-where id_Hospedagem_quartos=5;
+where IdHospedagemQuarto=5;
 
 
 update HospedagensQuartos
 set IdQuarto=6, IdHospedagem=6, IdHospede=6
-where id_Hospedagem_quartos=6;
+where IdHospedagemQuarto=6;
 
 
 update HospedagensQuartos
 set IdQuarto=7, IdHospedagem=7, IdHospede=7
-where id_Hospedagem_quartos=7;
+where IdHospedagemQuarto=7;
 
 
 update HospedagensQuartos
 set IdQuarto=8, IdHospedagem=8, IdHospede=8
-where id_Hospedagem_quartos=8;
+where IdHospedagemQuarto=8;
 
 
 update HospedagensQuartos
 set IdQuarto=9, IdHospedagem=9, IdHospede=9
-where id_Hospedagem_quartos=9;
+where IdHospedagemQuarto=9;
 
 
 update HospedagensQuartos
 set IdQuarto=1, IdHospedagem=10, IdHospede=10
-where id_Hospedagem_quartos=10;
+where IdHospedagemQuarto=10;
 
 /*update AtividadesHospedes*/
 
 update AtividadesHospedes
 set IdHospede=1, IdAtividade=1
-where IdHospede_atividade=1;
+where IdHospedeAtividade=1;
 
 update AtividadesHospedes
 set  IdHospede=2, IdAtividade=2
-where IdHospede_atividade=2;
+where IdHospedeAtividade=2;
 
 update AtividadesHospedes
 set  IdHospede=3, IdAtividade=3
-where IdHospede_atividade=3;
+where IdHospedeAtividade=3;
 
 update AtividadesHospedes
 set  IdHospede=4, IdAtividade=4
-where IdHospede_atividade=4;
+where IdHospedeAtividade=4;
 
 update AtividadesHospedes
 set  IdHospede=5, IdAtividade=5
-where IdHospede_atividade=5;
+where IdHospedeAtividade=5;
 
 update AtividadesHospedes
 set  IdHospede=6, IdAtividade=6
-where IdHospede_atividade=6;
+where IdHospedeAtividade=6;
 
 update AtividadesHospedes
 set  IdHospede=7, IdAtividade=7
-where IdHospede_atividade=7;
+where IdHospedeAtividade=7;
 
 update AtividadesHospedes
 set  IdHospede=8, IdAtividade=8
-where IdHospede_atividade=8;
+where IdHospedeAtividade=8;
 
 update AtividadesHospedes
 set  IdHospede=9, IdAtividade=9
-where IdHospede_atividade=9;
+where IdHospedeAtividade=9;
 
 update AtividadesHospedes
 set  IdHospede=10, IdAtividade=10
-where IdHospede_atividade=10;
+where IdHospedeAtividade=10;
 
 
 /*update Hospede*/
@@ -940,19 +940,19 @@ DELETE FROM Quartos Where IdQuarto = 5;
 
 /* Delete AtividadesHospedes */
 
-DELETE FROM AtividadesHospedes Where IdHospede_atividade = 1;
-DELETE FROM AtividadesHospedes Where IdHospede_atividade = 2;
-DELETE FROM AtividadesHospedes Where IdHospede_atividade = 3;
-DELETE FROM AtividadesHospedes Where IdHospede_atividade = 4;
-DELETE FROM AtividadesHospedes Where IdHospede_atividade = 5;
+DELETE FROM AtividadesHospedes Where IdHospedeAtividade = 1;
+DELETE FROM AtividadesHospedes Where IdHospedeAtividade = 2;
+DELETE FROM AtividadesHospedes Where IdHospedeAtividade = 3;
+DELETE FROM AtividadesHospedes Where IdHospedeAtividade = 4;
+DELETE FROM AtividadesHospedes Where IdHospedeAtividade = 5;
 
 /* Delete HospedagensQuartos */
 
-DELETE FROM HospedagensQuartos Where id_Hospedagem_quartos = 1;
-DELETE FROM HospedagensQuartos Where id_Hospedagem_quartos = 2;
-DELETE FROM HospedagensQuartos Where id_Hospedagem_quartos = 3;
-DELETE FROM HospedagensQuartos Where id_Hospedagem_quartos = 4;
-DELETE FROM HospedagensQuartos Where id_Hospedagem_quartos = 5;
+DELETE FROM HospedagensQuartos Where IdHospedagemQuarto = 1;
+DELETE FROM HospedagensQuartos Where IdHospedagemQuarto = 2;
+DELETE FROM HospedagensQuartos Where IdHospedagemQuarto = 3;
+DELETE FROM HospedagensQuartos Where IdHospedagemQuarto = 4;
+DELETE FROM HospedagensQuartos Where IdHospedagemQuarto = 5;
 
 /* Delete Funcionarios */
 

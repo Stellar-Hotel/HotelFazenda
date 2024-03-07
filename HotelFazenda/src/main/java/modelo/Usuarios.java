@@ -2,16 +2,16 @@ package modelo;
 
 public class Usuarios {
 
-	private int IdUsuarios;
+	private int IdUsuario;
 	private String Senha;
 	private int NivelDeAcesso;
 	private String Login;
 	
 	public int getIdUsuarios() {
-		return IdUsuarios;
+		return IdUsuario;
 	}
 	public void setIdUsuarios(int idUsuario) {
-		IdUsuarios = idUsuario;
+		IdUsuario = idUsuario;
 	}
 	public String getSenha() {
 		return Senha;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexao { // Connection
 
 	private static final String USERNAME = "adm";
-	private static final String SENHA = "";
+	private static final String SENHA = "Admin2023";
 	private static final String BD = "Stellar Hotel Fazenda";
 	private Connection con; // jdbc
 	private static Conexao instancia; // singleton
@@ -35,7 +35,7 @@ public class Conexao { // Connection
 	 * @return con
 	 */
 
-	public Connection conectar() {
+	public Connection Conectar() {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost/" + BD + "?serverTimezone=UTC", USERNAME, SENHA);
 		} catch (SQLException e) {
@@ -51,7 +51,7 @@ public class Conexao { // Connection
 	 * @return true ou false; dependendo do resultado
 	 */
 
-	public boolean fecharConexao() {
+	public boolean FecharConexao() {
 		try {
 			con.close();
 			return true;

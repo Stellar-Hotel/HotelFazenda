@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Hospedes {
 	
-	private int HospedeId;
+	private int IdHospede;
 	private String Nome, CPF,  Sobrenome, Nacionalidade, Pronome, Email;
 	private Date DataNasc;
 	private Usuarios Usuario;
@@ -15,10 +15,10 @@ public class Hospedes {
 		CPF = cpf;
 	}
 	public int getHospedeId() {
-		return HospedeId;
+		return IdHospede;
 	}
 	public void setHospedeId(int hospedeId) {
-		HospedeId = hospedeId;
+		IdHospede = hospedeId;
 	}
 
 	public String getNome() {
