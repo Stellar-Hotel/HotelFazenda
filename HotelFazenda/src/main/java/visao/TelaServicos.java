@@ -28,7 +28,9 @@ public class TelaServicos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					TelaServicos frame = new TelaServicos();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);//abre a tela em full screen
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,42 +49,47 @@ public class TelaServicos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[181.00][830.00,grow]", "[47.00,grow][571.00,grow][40.00,grow]"));
+		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]", "[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
 		
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[40px][40px][40px][40px][40px][251.00][98.00,grow]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
 		
 		JLabel lblHome = new JLabel("Home");
+		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Home.jpg")));
-		BarraLateral.add(lblHome, "cell 0 0,grow");
+		BarraLateral.add(lblHome, "cell 0 1,grow");
 		
 		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 1,grow");
+		BarraLateral.add(lblHospede, "cell 0 2,grow");
 		
 		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblAtividades.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Atividades.jpg")));
-		BarraLateral.add(lblAtividades, "cell 0 2,grow");
+		BarraLateral.add(lblAtividades, "cell 0 3,grow");
 		
 		JLabel lblQuartos = new JLabel("Quartos");
+		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblQuartos.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Quartos.jpg")));
-		BarraLateral.add(lblQuartos, "cell 0 3,grow");
+		BarraLateral.add(lblQuartos, "cell 0 4,grow");
 		
 		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblServicos.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Servicos.jpg")));
-		BarraLateral.add(lblServicos, "cell 0 4,grow");
+		BarraLateral.add(lblServicos, "cell 0 5,grow");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 6,grow");
+		BarraLateral.add(panel, "cell 0 7,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Avatar.jpg")));
-		panel.add(lblNewLabel_4, "cell 0 0 1 3");
+		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
 		
 		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -102,33 +109,49 @@ public class TelaServicos extends JFrame {
 		JPanel BarraSuperior = new JPanel();
 		BarraSuperior.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraSuperior, "cell 0 0 2 1,grow");
-		BarraSuperior.setLayout(new MigLayout("", "[63.00px][117.00][219.00][556.00][42.00]", "[14px,grow]"));
+		BarraSuperior.setLayout(new MigLayout("", "[40px:54.00px:40px][150.00][300px:360.00px:300px][grow][40px:40px:40px,right]", "[29.00px]"));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		BarraSuperior.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		BarraSuperior.add(panel_3, "cell 0 0,grow");
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(10, 0, 33, 31);
+		lblNewLabel.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/logo.png")));
+		panel_3.add(lblNewLabel);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(255, 255, 255));
+		BarraSuperior.add(panel_4, "cell 2 0,grow");
+		panel_4.setLayout(new MigLayout("", "[20px][251.00px]", "[21px]"));
 		
 		JLabel lblNewLabel_6 = new JLabel("");
-		BarraSuperior.add(lblNewLabel_6, "flowx,cell 2 0");
+		panel_4.add(lblNewLabel_6, "cell 0 0,alignx left,aligny top");
 		lblNewLabel_6.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/search.png")));
 		
 		txtPesquisa = new JTextField();
-		BarraSuperior.add(txtPesquisa, "cell 2 0,growx");
+		panel_4.add(txtPesquisa, "cell 1 0,growx,aligny top");
 		txtPesquisa.setBackground(new Color(245, 245, 245));
 		txtPesquisa.setText("Search");
 		txtPesquisa.setColumns(10);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		BarraSuperior.add(panel_2, "cell 4 0,grow");
+		
 		JLabel lblNewLabel_8 = new JLabel("");
+		panel_2.add(lblNewLabel_8);
 		lblNewLabel_8.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/SinoNotificacao.jpg")));
-		BarraSuperior.add(lblNewLabel_8, "cell 4 0,alignx center,aligny center");
 		
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[][][]", "[][][][][][][][][322.00]"));
+		Principal.setLayout(new MigLayout("", "[][][fill]", "[][322.00,fill]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/logoGrande.png")));
-		Principal.add(lblNewLabel_1, "cell 0 0 3 9");
+		Principal.add(lblNewLabel_1, "cell 0 0 3 2,grow");
 		
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
