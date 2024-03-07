@@ -1,14 +1,19 @@
 package modelo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
-public class Hospede {
+public class Hospedes {
 	
-	private int HospedeId,IdUsuario;
-	private String Nome, Sobrenome, Nacionalidade, Pronome, Email;
-	private LocalDate DataNasc;
-	private Usuario id_usuario;
-	
+	private int HospedeId;
+	private String Nome, CPF,  Sobrenome, Nacionalidade, Pronome, Email;
+	private Date DataNasc;
+	private Usuarios Usuario;
+
+
+	public void setCPF(String cpf) {
+		CPF = cpf;
+	}
 	public int getHospedeId() {
 		return HospedeId;
 	}
@@ -24,6 +29,15 @@ public class Hospede {
 	}
 	public String getSobrenome() {
 		return Sobrenome;
+	}
+	public Usuarios getUsuario() {
+		return Usuario;
+	}
+	public void setUsuario(Usuarios Usuario) {
+		this.Usuario = Usuario;
+	}
+	public String getCPF() {
+		return CPF;
 	}
 	public void setSobrenome(String sobrenome) {
 		Sobrenome = sobrenome;
@@ -46,12 +60,13 @@ public class Hospede {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public LocalDate getDataNasc() {
+	public Date getDataNasc() {
 		return DataNasc;
 	}
-	public void setDataNasc(LocalDate dataNasc) {
-		DataNasc = dataNasc;
+	public void setDataNasc(Date data_nasc) {
+		DataNasc = data_nasc;
 	}
+
 	
 	
 	
