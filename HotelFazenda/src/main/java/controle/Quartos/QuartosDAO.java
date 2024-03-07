@@ -127,7 +127,7 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 
 
         //Conexâo SQl a ser executada
-        String SQL = "UPDATE Quartos SET MaxPessoas = ? WHERE IdQuartos = ?";
+        String SQL = "UPDATE Quartos SET MaxPessoas = ?, TipoCama = ?, Manutencao = ?, Frigobar = ?, ArCondicionado = ?, Banheira = ?, TV = ?, PrecoDiaria = ? WHERE IdQuartos = ?";
         
         //abre a conexão e cria a "parte de conexão" com MYSQL
         Conexao con= Conexao.getInstancia();
@@ -138,15 +138,16 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
         try {
             PreparedStatement ps = conBD.prepareStatement(SQL);
             
-            ps.setInt(1, end.getIdQuartos());
-            ps.setInt(2, end.getMaxPessoas());
-            ps.setString(3, end.getTipoCama());
-            ps.setString(4, end.getManutencao());
-            ps.setBoolean(5, end.getFrigobar());
-            ps.setBoolean(6, end.getArCondicionado());
-            ps.setBoolean(7, end.getBanheira());
-            ps.setBoolean(8, end.getTV());
-            ps.setFloat(9, end.getPrecoDiaria());
+            ps.setInt(1, end.getMaxPessoas());
+            ps.setString(2, end.getTipoCama());
+            ps.setString(3, end.getManutencao());
+            ps.setBoolean(4, end.getFrigobar());
+            ps.setBoolean(5, end.getArCondicionado());
+            ps.setBoolean(6, end.getBanheira());
+            ps.setBoolean(7, end.getTV());
+            ps.setFloat(8, end.getPrecoDiaria());
+            ps.setInt(9, end.getIdQuartos());
+
             
         } catch (SQLException e) {
             // TODO Auto-generated catch block
