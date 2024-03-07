@@ -78,10 +78,39 @@ public class AtividadesDAO implements IAtividadesDAO
 
 	@Override
 	public boolean AtualizarAtividades(Atividades Ativ) {
-		// TODO Auto-generated method stub
-		
-		return false;
-	}
+
+
+        //Conexâo SQl a ser executada
+        String SQL = "UPDATE atividades SET NomeAtividade = ?,  Horario = ?,  HorarioFim = ?,  Data = ?,  Funcionario = ?,  RestricaoIdade = ?  WHERE IdAtividade = ?";
+        
+        //abre a conexão e cria a "parte de conexão" com MYSQL
+        Conexao con= Conexao.getInstancia();
+        Connection conBD= con.conectar();
+        
+        int retorno = 0;
+        try {
+            PreparedStatement ps = conBD.prepareStatement(SQL);
+            ps.setString(1, Ativ.getNomeAtividade());
+            ps.setString(2, Ativ.getHorario());
+            ps.setDate(3, Ativ.getData());
+            ps.setInt(4, Ativ.getFuncionario().getFuncionarioId());
+            ps.setInt(5, Ativ.getRestricaoIdade());
+            ps.setInt(6, Ativ.getIdAtividade());
+           
+
+            retorno = ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            
+        }
+    
+    return (retorno == 0 ? false :true);
+}
+
+	
 
 	@Override
 	public boolean RemoverAtividades(Atividades Ativ) {

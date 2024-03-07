@@ -123,8 +123,41 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 	}
 	@Override
 	public boolean atualizarQuarto(Quartos end) {
-		// TODO Auto-generated method stub
-		return false;
+
+
+
+        //Conexâo SQl a ser executada
+        String SQL = "UPDATE Quartos SET MaxPessoas = ?, TipoCama = ?, Manutencao = ?, Frigobar = ?, ArCondicionado = ?, Banheira = ?, TV = ?, PrecoDiaria = ? WHERE IdQuartos = ?";
+        
+        //abre a conexão e cria a "parte de conexão" com MYSQL
+        Conexao con= Conexao.getInstancia();
+        Connection conBD= con.conectar();
+        
+        int retorno = 0;
+        
+        try {
+            PreparedStatement ps = conBD.prepareStatement(SQL);
+            
+            ps.setInt(1, end.getMaxPessoas());
+            ps.setString(2, end.getTipoCama());
+            ps.setString(3, end.getManutencao());
+            ps.setBoolean(4, end.getFrigobar());
+            ps.setBoolean(5, end.getArCondicionado());
+            ps.setBoolean(6, end.getBanheira());
+            ps.setBoolean(7, end.getTV());
+            ps.setFloat(8, end.getPrecoDiaria());
+            ps.setInt(9, end.getIdQuartos());
+
+            
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {
+            
+        }
+
+
+        return (retorno == 0 ? false :true);
 	}
 	@Override
 	public boolean removerQuarto(Quartos end) {
