@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import modelo.Hospede;
+import modelo.Hospedes;
+import modelo.Usuarios;
 
 public class HospedeDAO implements IHospedeDAO {
 
@@ -32,7 +33,7 @@ public class HospedeDAO implements IHospedeDAO {
 		return instancia;
 	}
 
-	public int inserirHospede(Hospede Hd) {
+	public int inserirHospede(Hospedes Hd) {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
@@ -54,6 +55,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
 			ps.setString(7, Hd.getCPF());
+			ps.setInt(8, Hd.getUsuario().getIdUsuarios());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
@@ -72,11 +74,11 @@ public class HospedeDAO implements IHospedeDAO {
 	}
 
 	@Override
-	public ArrayList<Hospede> ListarHospedes() {
+	public ArrayList<Hospedes> ListarHospedes() {
 		// TODO Auto-generated method stub
 
 		// Arraylist para armazenar resultado do select
-		ArrayList<Hospede> hospede = new ArrayList<Hospede>();
+		ArrayList<Hospedes> hospede = new ArrayList<Hospedes>();
 
 		// comando sql executado
 		String SQL = "SELECT * FROM Hospedes";
@@ -93,25 +95,29 @@ public class HospedeDAO implements IHospedeDAO {
 			while (rs.next()) {
 
 				// Cria objeto
-				Hospede Hd = new Hospede();
+				Hospedes Hd = new Hospedes();
 
 				// Pega os valores de cada coluna d registro
 				String nome = rs.getString("Nome");
 				String sobrenome = rs.getString("Sobrenome");
-				Date data_nasc = rs.getDate("Data de Nascimento");
+				Date data_nasc = rs.getDate("data_nasc");
 				String cpf = rs.getString("CPF");
 				String nacionalidade = rs.getString("Nacionalidade");
 				String pronome = rs.getString("Pronome");
 				String email = rs.getString("Email");
+				
+				Usuarios User=new Usuarios();
+				//Tem que preencher os atributos desse objeto
+				
 
 				Hd.setNome(sobrenome);
 				Hd.setNome(nome);
 				Hd.setDataNasc(data_nasc);
-				Hd.setCpf(cpf);
+				Hd.setCPF(cpf);
 				Hd.setEmail(email);
 				Hd.setNacionalidade(nacionalidade);
 				Hd.setPronome(pronome);
-
+				Hd.setUsuario(User);
 				// Adiciona objeto na lista
 				hospede.add(Hd);
 
@@ -128,19 +134,19 @@ public class HospedeDAO implements IHospedeDAO {
 	}
 
 	@Override
-	public boolean atualizarHospede(Hospede Hd) {
+	public boolean atualizarHospede(Hospedes Hd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removerHospede(Hospede Hd) {
+	public boolean removerHospede(Hospedes Hd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Hospede buscarHospedePorCep(int cep) {
+	public Hospedes buscarHospedePorCep(int cep) {
 		// TODO Auto-generated method stub
 		return null;
 	}

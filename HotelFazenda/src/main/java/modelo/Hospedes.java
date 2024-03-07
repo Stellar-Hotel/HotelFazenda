@@ -3,16 +3,14 @@ package modelo;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class Hospede {
+public class Hospedes {
 	
-	private int HospedeId,IdUsuario;
+	private int HospedeId;
 	private String Nome, CPF,  Sobrenome, Nacionalidade, Pronome, Email;
 	private Date DataNasc;
-	private Usuario id_usuario;
+	private Usuarios Usuario;
 
-	public String getCPF() {
-		return CPF;
-	}
+
 	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
@@ -31,6 +29,15 @@ public class Hospede {
 	}
 	public String getSobrenome() {
 		return Sobrenome;
+	}
+	public Usuarios getUsuario() {
+		return Usuario;
+	}
+	public void setUsuario(Usuarios Usuario) {
+		this.Usuario = Usuario;
+	}
+	public String getCPF() {
+		return CPF;
 	}
 	public void setSobrenome(String sobrenome) {
 		Sobrenome = sobrenome;
@@ -59,10 +66,7 @@ public class Hospede {
 	public void setDataNasc(Date data_nasc) {
 		DataNasc = data_nasc;
 	}
-	public void setCpf(String cpf) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	
 	

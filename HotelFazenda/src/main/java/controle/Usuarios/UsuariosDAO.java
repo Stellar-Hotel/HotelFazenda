@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import modelo.Usuario;
+import modelo.Usuarios;
 
 public class UsuariosDAO implements IUsuariosDAO {
 	
@@ -31,11 +31,11 @@ public class UsuariosDAO implements IUsuariosDAO {
 	
 	
 	@Override
-	public int inserirUsuario(Usuario end) {
+	public int inserirUsuario(Usuarios end) {
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar(); 
-		String SQL = "INSERT INTO USUARIO (Senha, nivel_de_acesso,login) VALUES(?, ?, ?)";
+		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,login) VALUES(?, ?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
@@ -62,9 +62,9 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return chavePrimariaGerada;
 	}
 	@Override
-	public ArrayList<Usuario> ListarUsuarios() {
+	public ArrayList<Usuarios> ListarUsuarios() {
 		
-		ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
+		ArrayList<Usuarios> Usuarios = new ArrayList<Usuarios>();
 		String SQL = "SELECT * FROM Usuario";
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.conectar(); 
@@ -94,17 +94,43 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return Usuarios;
 	}
 	@Override
-	public boolean atualizarUsuarios(Usuario end) {
+	public boolean atualizarUsuarios(Usuarios end) {
+		// TODO Auto-generated method stub
+		
+		String SQL = "UPDATE: Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ?, Where IdUsuarios = ?";
+		
+		Conexao con = Conexao.getInstancia();
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			ps.setInt(1, end.getNivelDeAcesso());
+			ps.setString(2, end.getSenha());
+			ps.setString(3, end.getLogin());
+			ps.setInt(4, end.getIdUsuarios());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+			
+		return (retorno == 0 ? false : true);
+	}
+	@Override
+	public boolean removerUsuario(Usuarios end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public boolean removerUsuario(Usuario end) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public Usuario buscarServicoPorCep(int cep) {
+	public Usuarios buscarServicoPorCep(int cep) {
 		// TODO Auto-generated method stub
 		return null;
 	}

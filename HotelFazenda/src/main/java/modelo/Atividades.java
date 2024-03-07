@@ -3,10 +3,10 @@ package modelo;
 import java.sql.Date;
 
 public class Atividades {
-	private int IdAtividade, RestricaoIdade, FuncionarioId;
+	private int IdAtividade, RestricaoIdade;
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
-	private Funcionarios funcionario_Id;
+	private Funcionarios Funcionario;
 
 	public int getRestricaoIdade() {
 		return RestricaoIdade;
@@ -22,14 +22,6 @@ public class Atividades {
 
 	public void setIdAtividade(int idAtividade) {
 		IdAtividade = idAtividade;
-	}
-
-	public int getFuncionarioId() {
-		return FuncionarioId;
-	}
-
-	public void setFuncionarioId(int funcionarioId) {
-		FuncionarioId = funcionarioId;
 	}
 
 	public String getHorario() {
@@ -62,5 +54,13 @@ public class Atividades {
 
 	public void setData(Date data) {
 		Data = data;
+	}
+
+	public Funcionarios getFuncionario() {
+		return Funcionario;
+	}
+
+	public void setFuncionario(Funcionarios idFuncionario) {
+		Funcionario = idFuncionario;
 	}
 }

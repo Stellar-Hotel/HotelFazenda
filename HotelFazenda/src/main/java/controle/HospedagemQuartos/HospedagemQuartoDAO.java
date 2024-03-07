@@ -10,6 +10,9 @@ import controle.Conexao;
 import controle.HospedagemQuartos.HospedagemQuartoDAO;
 import modelo.Funcionarios;
 import modelo.HospedagemQuartos;
+import modelo.Hospedagens;
+import modelo.Hospedes;
+import modelo.Quartos;
 
 public class HospedagemQuartoDAO implements IHospedagemQuartosDAO
 {
@@ -46,9 +49,9 @@ private static HospedagemQuartoDAO instancia;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setInt(1, Hosp.getIdHospedagensQuartos());
-			ps.setInt(2, Hosp.getIdQuartos());
-			ps.setInt(3, Hosp.getHospedagensId());
-			ps.setInt(3, Hosp.getHospedeId());
+			ps.setInt(2, Hosp.getQuarto().getIdQuartos());
+			ps.setInt(3, Hosp.getHospedagem().getHospedagensId());
+			ps.setInt(3, Hosp.getHospede().getHospedeId());
 		
 			ResultSet Rs = ps.executeQuery();
 			if(Rs!=null) {
@@ -87,14 +90,17 @@ private static HospedagemQuartoDAO instancia;
 				HospedagemQuartos HospedagemQuartos = new HospedagemQuartos();
 				
 				Integer IdHospedagemQuarto = rs.getInt("id_Hospedagem_quartos");
-				Integer IdQuarto = rs.getInt("id_Quartos");
-				Integer HospedagemId = rs.getInt("Hospedagens_id");
-				Integer HospedeId = rs.getInt("Hospede_id");
+
+				
+				//tem que preencher os atributos desses 3 objetos
+				Quartos Quarto= new Quartos();
+				Hospedagens Hosp=new Hospedagens();
+				Hospedes Hd=new Hospedes();
 				
 				HospedagemQuartos.setIdHospedagensQuartos(IdHospedagemQuarto);
-				HospedagemQuartos.setIdQuartos(IdQuarto);
-				HospedagemQuartos.setHospedagensId(HospedagemId);
-				HospedagemQuartos.setHospedeId(HospedeId);
+				HospedagemQuartos.setQuarto(Quarto);
+				HospedagemQuartos.setHospedagem(Hosp);
+				HospedagemQuartos.setHospede(Hd);
 				
 			}
 			

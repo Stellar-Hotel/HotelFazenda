@@ -2,14 +2,14 @@ package controle.Hospede;
 
 import java.util.ArrayList;
 
-import modelo.Hospede;
+import modelo.Hospedes;
 
 public interface IHospedeDAO {
 
-	public int inserirHospede(Hospede end);
-	public ArrayList<Hospede> ListarHospedes();
-	public boolean atualizarHospede(Hospede end);
-	public boolean removerHospede(Hospede end);
-	public Hospede buscarHospedePorCep(int cep);
+	public int inserirHospede(Hospedes end);
+	public ArrayList<Hospedes> ListarHospedes();
+	public boolean atualizarHospede(Hospedes end);
+	public boolean removerHospede(Hospedes end);
+	public Hospedes buscarHospedePorCep(int cep);
 	
 }
