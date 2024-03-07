@@ -11,8 +11,8 @@ public class Hospedes {
 	private Usuarios Usuario;
 
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String cpf) {
+		CPF = cpf;
 	}
 	public int getHospedeId() {
 		return HospedeId;

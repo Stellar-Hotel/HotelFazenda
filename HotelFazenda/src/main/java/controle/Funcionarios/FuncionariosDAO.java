@@ -119,7 +119,34 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		String SQL = "UPDATE: Funcionarios SET nome = ?, sobrenome = ?, Funcao = ?, salario = ?, WHERE FuncionarioId = ?";
+		
+		Conexao con = Conexao.getInstancia();
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			ps.setString(1, Func.getNome());
+			ps.setString(2, Func.getSobrenome());
+			ps.setString(3, Func.getFuncao());
+			ps.setFloat(4, Func.getSalario());
+			ps.setInt(5, Func.getFuncionarioId());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override

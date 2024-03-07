@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -25,9 +26,32 @@ public class ServicosDAO implements IServicosDAO{
 	}
 	@Override
 	public int inserirServico(Servicos end) {
+		
+		Conexao con = Conexao.getInstancia();
+		Connection conBD = con.conectar(); 
 		String SQL = "INSERT INTO Servicos (preco_servico, nome_servico) VALUES(?, ?)";
+		int chavePrimariaGerada = Integer.MIN_VALUE;	
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = ps.executeQuery();
+			ps.setFloat(1, end.getPrecoServico());
+			ps.setString(2,end.getNomeServico());
+			
+			if (rs!= null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
+		}
+
+
 		// TODO Auto-generated method stub
-		return 0;
+		return chavePrimariaGerada;
 	}
 	@Override
 	public ArrayList<Servicos> ListarServicos() {
@@ -59,10 +83,43 @@ public class ServicosDAO implements IServicosDAO{
 
 		return Servico;
 	}
+	
+	/*
+	 * Tem que possuir a chave primária(ID,CPF,CEP,etc)
+	 * 
+	 * Atualiza um registro já existente no banco de dados
+	 * 
+	 * O objeto passado já deve possuiur os novos valores
+	 * porém deve possuir a mesma chave primária do registro que vai ser alteradio
+	 * 
+	 */
 	@Override
 	public boolean atualizarServico(Servicos end) {
-		// TODO Auto-generated method stub
-		return false;
+		// Comando que vai ser executado no sql
+		String SQL= "UPDATE Servicos SET Preco=?,NomeServico=? where ServicoId=?";
+		
+		//abre a conexão e cria a "ponte de conexão" com MYsql
+		Conexao con=Conexao.getInstancia();
+		Connection conBD=con.conectar();
+		
+		boolean retorno=false;
+		
+		try {
+			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			
+			Ps.setFloat(1,end.getPrecoServico());
+			Ps.setString(2, end.getNomeServico());
+			
+			retorno=(Ps.executeUpdate()==0 ?false : true);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
 	}
 	@Override
 	public boolean removerServico(Servicos end) {
