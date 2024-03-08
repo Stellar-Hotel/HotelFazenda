@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.Usuarios.UsuariosDAO;
+import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
@@ -20,14 +23,15 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtDigiteASenha;
-	private JTextField txtDigiteSuaSenha;
+	private JTextField txtLogin;
+	private JTextField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -50,6 +54,11 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		Usuarios User=new Usuarios();
+		UsuariosDAO DAO=new UsuariosDAO();
+		ArrayList<Usuarios> ListaUser=DAO.ListarUsuarios();
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -80,19 +89,19 @@ public class Login extends JFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 		
-		txtDigiteASenha = new JTextField();
-		txtDigiteASenha.setText("Digite seu usuario\r\n");
-		panel.add(txtDigiteASenha, "cell 0 5 8 1,grow");
-		txtDigiteASenha.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setText("Digite seu usuario\r\n");
+		panel.add(txtLogin, "cell 0 5 8 1,grow");
+		txtLogin.setColumns(10);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Digite sua senha");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 		
-		txtDigiteSuaSenha = new JTextField();
-		txtDigiteSuaSenha.setToolTipText("Digite sua senha");
-		txtDigiteSuaSenha.setColumns(10);
-		panel.add(txtDigiteSuaSenha, "cell 0 8 8 1,grow");
+		txtSenha = new JTextField();
+		txtSenha.setToolTipText("Digite sua senha");
+		txtSenha.setColumns(10);
+		panel.add(txtSenha, "cell 0 8 8 1,grow");
 		
 		JLabel lblNewLabel_1 = new JLabel("Hotel Fazenda");
 		lblNewLabel_1.setForeground(new Color(117, 187, 68));
@@ -101,6 +110,8 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				User.setLogin(txtLogin.getText());
+				User.setSenha(txtSenha.getText());
 			}
 		});
 		

@@ -16,7 +16,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 /*
  * Construtor privado (padrao Singleton)
  */
-	private UsuariosDAO() {
+	public UsuariosDAO() {
 	}
 	/*
 	 * Metodo para instanciar(Padrao SIngleton)

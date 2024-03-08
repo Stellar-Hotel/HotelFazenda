@@ -131,7 +131,7 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
         
         //abre a conexão e cria a "parte de conexão" com MYSQL
         Conexao con= Conexao.getInstancia();
-        Connection conBD= con.conectar();
+        Connection conBD= con.Conectar();
         
         int retorno = 0;
         
