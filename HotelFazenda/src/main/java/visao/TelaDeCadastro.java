@@ -11,10 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controle.Usuarios.UsuariosDAO;
+import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,10 +21,10 @@ public class TelaDeCadastro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField;
-	private JTextField textField_2;
+	private JTextField textNome;
+	private JTextField textSenha;
+	private JTextField textTelefone;
+	private JTextField textUser;
 
 	/**
 	 * Launch the application.
@@ -48,6 +47,9 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
+		Usuarios User=new Usuarios();
+		UsuariosDAO DAO=new UsuariosDAO();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -75,9 +77,9 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_2, "cell 0 4,growx,aligny top");
 		
-		textField_2 = new JTextField();
-		contentPane.add(textField_2, "cell 0 5 9 1,growx");
-		textField_2.setColumns(10);
+		textUser = new JTextField();
+		contentPane.add(textUser, "cell 0 5 9 1,growx");
+		textUser.setColumns(10);
 						
 								JLabel lblNewLabel_3 = new JLabel("Digite seu nome");
 								lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -87,21 +89,21 @@ public class TelaDeCadastro extends JFrame {
 								lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 								contentPane.add(lblNewLabel_4, "cell 4 6,aligny bottom");
 						
-								textField_1 = new JTextField();
-								contentPane.add(textField_1, "cell 0 7 3 1,growx,aligny top");
-								textField_1.setColumns(10);
+								textNome = new JTextField();
+								contentPane.add(textNome, "cell 0 7 3 1,growx,aligny top");
+								textNome.setColumns(10);
 														
-														textField = new JTextField();
-														contentPane.add(textField, "cell 4 7 5 1,growx,aligny top");
-														textField.setColumns(10);
+														textTelefone = new JTextField();
+														contentPane.add(textTelefone, "cell 4 7 5 1,growx,aligny top");
+														textTelefone.setColumns(10);
 														
 																JLabel lblNewLabel_5 = new JLabel("Digite sua senha");
 																lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 																contentPane.add(lblNewLabel_5, "cell 0 8,growx,aligny top");
 														
-																textField_3 = new JTextField();
-																contentPane.add(textField_3, "cell 0 9 9 1,growx,aligny top");
-																textField_3.setColumns(10);
+																textSenha = new JTextField();
+																contentPane.add(textSenha, "cell 0 9 9 1,growx,aligny top");
+																textSenha.setColumns(10);
 																
 																JLabel lblNewLabel_6 = new JLabel("Hotel Fazenda");
 																lblNewLabel_6.setForeground(new Color(117, 187, 68));
@@ -111,6 +113,10 @@ public class TelaDeCadastro extends JFrame {
 																btnNewButton.setBackground(new Color(117, 187, 68));
 																btnNewButton.addActionListener(new ActionListener() {
 																	public void actionPerformed(ActionEvent e) {
+																		User.setSenha(textSenha.getText());
+																		User.setLogin(textUser.getText());
+																		
+																		DAO.inserirUsuario(User);
 																	}
 																});
 																contentPane.add(btnNewButton, "cell 3 11");
