@@ -16,7 +16,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 /*
  * Construtor privado (padrao Singleton)
  */
-	public UsuariosDAO() {
+	private UsuariosDAO() {
 	}
 	/*
 	 * Metodo para instanciar(Padrao SIngleton)
@@ -35,7 +35,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.Conectar(); 
-		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,login) VALUES(?, ?, ?)";
+		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,Login) VALUES(?, ?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
@@ -76,14 +76,15 @@ public class UsuariosDAO implements IUsuariosDAO {
 			while (rs.next()) {
 				Usuarios Usu = new Usuarios();
 				
-				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
-				String senha = rs.getString("senha");
-				String login = rs.getString("login");
+				int Id=rs.getInt("IdUsuario");
+				Integer NivelDeAcesso = rs.getInt("NivelDeAcesso");
+				String Senha = rs.getString("Senha");
+				String Login = rs.getString("Login");
 				
-				Usu.setNivelDeAcesso(nivel_de_acesso);
-				Usu.setSenha(senha);
-				Usu.setLogin(login);
-				
+				Usu.setNivelDeAcesso(NivelDeAcesso);
+				Usu.setSenha(Senha);
+				Usu.setLogin(Login);
+				Usu.setIdUsuarios(Id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +132,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return false;
 	}
 	@Override
-	public Usuarios uscarUsuario(String Login, String Senha) {
+	public Usuarios BuscarUsuario(String Login, String Senha) {
 		// TODO Auto-generated method stub
 		return null;
 	}

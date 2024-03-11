@@ -54,9 +54,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		Usuarios User=new Usuarios();
-		UsuariosDAO DAO=new UsuariosDAO();
-		ArrayList<Usuarios> ListaUser=DAO.ListarUsuarios();
+
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,6 +108,9 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Usuarios User=new Usuarios();
+				UsuariosDAO DAO=UsuariosDAO.getInstancia();
+				
 				User.setLogin(txtLogin.getText());
 				User.setSenha(txtSenha.getText());
 			}

@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -16,6 +17,8 @@ import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -47,8 +50,7 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
-		Usuarios User = new Usuarios();
-		UsuariosDAO DAO = new UsuariosDAO();
+
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -78,6 +80,11 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel_2, "cell 0 4,growx,aligny top");
 
 		textUser = new JTextField();
+		textUser.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		contentPane.add(textUser, "cell 0 5 9 1,growx");
 		textUser.setColumns(10);
 
@@ -113,16 +120,23 @@ public class TelaDeCadastro extends JFrame {
 		btnCadastrar.setBackground(new Color(117, 187, 68));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String Senha=textSenha.getText();
-				User.setSenha(Senha);
-				
 				String Login=textUser.getText();
-				User.setLogin(Login);
+				if((Senha.isEmpty()||(Login.isEmpty())))
+				{
+					JOptionPane.showMessageDialog(null, "Usuário ou senha não inserido");
+				}
+				else {
+					Usuarios User = new Usuarios();
+					UsuariosDAO DAO = UsuariosDAO.getInstancia();
+					User.setSenha(Senha);
+					
+					User.setLogin(Login);
 
-				
-				
-				DAO.inserirUsuario(User);
+					
+					
+					DAO.inserirUsuario(User);
+				}	
 			}
 		});
 		contentPane.add(btnCadastrar, "cell 3 11");
