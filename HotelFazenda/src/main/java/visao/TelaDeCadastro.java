@@ -109,16 +109,22 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_6.setForeground(new Color(117, 187, 68));
 		contentPane.add(lblNewLabel_6, "cell 0 0");
 
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBackground(new Color(117, 187, 68));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBackground(new Color(117, 187, 68));
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User.setSenha(textSenha.getText());
-				User.setLogin(textUser.getText());
+				
+				String Senha=textSenha.getText();
+				User.setSenha(Senha);
+				
+				String Login=textUser.getText();
+				User.setLogin(Login);
 
+				
+				
 				DAO.inserirUsuario(User);
 			}
 		});
-		contentPane.add(btnNewButton, "cell 3 11");
+		contentPane.add(btnCadastrar, "cell 3 11");
 	}
 }

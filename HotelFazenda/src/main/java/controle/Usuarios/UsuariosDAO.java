@@ -131,8 +131,11 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return false;
 	}
 	@Override
-	public Usuarios buscarServicoPorCep(int cep) {
+	public Usuarios uscarUsuario(String Login, String Senha) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+	
 }
