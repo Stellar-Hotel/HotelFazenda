@@ -51,10 +51,16 @@ public class AtividadesDAO implements IAtividadesDAO
 				int RestricaoIdade= Rs.getInt("restricao_idade");
 				String Horario=Rs.getString("horario");
 				String HorarioFim=Rs.getString("horario_fim");
-				Funcionarios Funcionario=new Funcionarios();
+				
 				String NomeAtividade=Rs.getString("nome_atividade");
 				Date Data=Rs.getDate("data");
 				
+				Funcionarios Funcionario = new Funcionarios();
+				
+				Funcionario.setNome(Rs.getString("Nome"));
+				Funcionario.setSobrenome(Rs.getString("Sobrenome"));
+				Funcionario.setFuncao(Rs.getString("Funcao"));
+
 				//Tem que preencher os atributos do objeto funcionário
 				At.setIdAtividade(IdAtividade);
 				At.setRestricaoIdade(RestricaoIdade);
@@ -64,6 +70,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				At.setNomeAtividade(NomeAtividade);
 				At.setData(Data);
 				atividades.add(At);
+				
 			}
 		} 
 		catch (SQLException e) {

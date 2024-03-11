@@ -91,6 +91,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 				// Cria objeto
 				Hospedagens Hg = new Hospedagens();
+				
 
 				// Pega os valores de cada coluna d registro
 				Date Checkin = rs.getDate("Checkin");
