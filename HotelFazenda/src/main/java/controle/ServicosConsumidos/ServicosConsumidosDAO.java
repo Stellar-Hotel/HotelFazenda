@@ -77,7 +77,6 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ServicosConsumidos ServC = new ServicosConsumidos();
 				
 				ServicosConsumidos Serv = new ServicosConsumidos();
 
@@ -100,11 +99,19 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Hospede.setNacionalidade(rs.getString("Nacionalidade"));
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
+				Hospede.setDataNasc(rs.getDate("DataNasc"));
+				
 
 				Serv.setHospede(Hospede);
 				Serv.setServico(Servico);
 				Serv.setHospedagens(Hospedagem);
-
+				
+				Hospedagem.setCheckin(rs.getDate("Checkin"));
+				Hospedagem.setCheckout(rs.getDate("Checkout"));
+				Hospedagem.setPrecoTotal(rs.getFloat("PrecoTotal"));
+				
+				
+				
 			}
 		} catch (SQLException e) {
 

@@ -65,7 +65,7 @@ public class ServicosDAO implements IServicosDAO{
 			while (rs.next()) {
 				
 				Servicos Serv = new Servicos();
-				
+				 
 				Float preco_servico = rs.getFloat("preco_servico");
 				String nome_servico = rs.getString("nome_servico");
 				
