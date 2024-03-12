@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -65,9 +67,26 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel, "flowx,cell 0 0");
 
 		JLabel lblNewLabel_7 = new JLabel("Já possui uma conta?");
+		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			Login chama = new Login();
+			chama.setVisible(true);
+			dispose();
+
+			}
+		});
 		contentPane.add(lblNewLabel_7, "cell 8 0");
 
 		JLabel lblNewLabel_8 = new JLabel("Entrar");
+		lblNewLabel_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login chama = new Login();
+				chama.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel_8.setForeground(new Color(117, 187, 68));
 		contentPane.add(lblNewLabel_8, "cell 8 1,alignx center,aligny top");
 
@@ -95,7 +114,7 @@ public class TelaDeCadastro extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Telefone");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_4, "cell 4 6,aligny bottom");
-
+ 
 		textNome = new JTextField();
 		contentPane.add(textNome, "cell 0 7 3 1,growx,aligny top");
 		textNome.setColumns(10);

@@ -24,20 +24,6 @@ public class TelaServicos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					TelaServicos frame = new TelaServicos();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);//abre a tela em full screen
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
