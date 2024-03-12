@@ -112,6 +112,13 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				User.setLogin(txtLogin.getText());
 				User.setSenha(txtSenha.getText());
+				
+				Usuarios usuarios = new Usuarios();
+				String login = null;
+				usuarios.setLogin(login);
+				String senha = null;
+				usuarios.setSenha(senha);
+				
 			}
 		});
 		

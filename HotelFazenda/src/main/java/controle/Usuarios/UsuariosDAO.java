@@ -65,12 +65,18 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public ArrayList<Usuarios> ListarUsuarios() {
 		
 		ArrayList<Usuarios> Usuarios = new ArrayList<Usuarios>();
-		String SQL = "SELECT * FROM Usuario";
+		String SQL = "SELECT * FROM Usuario WHERE Login = ?, Senha = ?";
 		Conexao con = Conexao.getInstancia();
 		Connection conBD = con.Conectar(); 
 		
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			ps.setString(1, Usuarios.getLogin);
+			ps.setString(2, Usuarios.getSenha());
+			
+			
+			
 			ResultSet rs = ps.executeQuery(SQL);
 			
 			while (rs.next()) {

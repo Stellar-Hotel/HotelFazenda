@@ -10,6 +10,6 @@ public interface IUsuariosDAO {
 	public ArrayList<Usuarios> ListarUsuarios();
 	public boolean atualizarUsuarios(Usuarios end);
 	public boolean removerUsuario(Usuarios end);
-	public Usuarios uscarUsuario(String Login, String Login);
+	public Usuarios uscarUsuario(String Login, String Senha);
 	
 }
