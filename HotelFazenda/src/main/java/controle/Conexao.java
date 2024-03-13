@@ -8,7 +8,7 @@ public class Conexao { // Connection
 
 	private static final String USERNAME = "adm";
 	private static final String SENHA = "Admin2023";
-	private static final String BD = "Stellar Hotel Fazenda";
+	private static final String BD = "Stellar";
 	private Connection con; // jdbc
 	private static Conexao instancia; // singleton
 
