@@ -92,11 +92,31 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				int IdHospede= Rs.getInt("Hospede_id");
 				int IdAtividade= Rs.getInt("id_atividade");
 				
-				Hospedes Hd=new Hospedes();
+				Hospedes Hospede =new Hospedes();
+				//prenche os atributos desse objeto
+				
+				Hospede.setNome(Rs.getString("Nome"));
+				Hospede.setCPF(Rs.getString("CPF"));
+				Hospede.setSobrenome(Rs.getString("Sobrenome"));
+				Hospede.setDataNasc(Rs.getDate("data_nasc"));
+				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
+				Hospede.setPronome(Rs.getString("Pronome"));
+				Hospede.setEmail(Rs.getString("Email"));
+				Hospede.setDataNasc(Rs.getDate("DataNasc"));
+				
 				Atividades Ativ=new Atividades();
+				
+				Ativ.setRestricaoIdade(Rs.getInt("IdadeMinima"));
+				Ativ.setHorario(Rs.getString("Horario"));
+				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
+				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
+				Ativ.setData(Rs.getDate("Data"));
+			
+				
+				
 				//Tem que preencher os atributos dos objetos hd e ativ
 				At.setAtividadesHospedes(IdAtividadesHospedes);
-				At.setHospede(Hd);
+				At.setHospede(Hospede);
 				At.setAtividade(Ativ);
 				
 				AtividadesHospedes.add(At);

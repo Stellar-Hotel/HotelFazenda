@@ -94,13 +94,37 @@ private static HospedagemQuartoDAO instancia;
 				
 				//tem que preencher os atributos desses 3 objetos
 				Quartos Quarto= new Quartos();
+				
+				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setManutencao(rs.getString("Manutenção"));
+				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quarto.setBanheira(rs.getBoolean("Banheira"));
+				Quarto.setTV(rs.getBoolean("TV"));
+				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));  
+				
 				Hospedagens Hosp=new Hospedagens();
-				Hospedes Hd=new Hospedes();
+				
+				Hosp.setCheckin(rs.getDate("Checkin"));
+				Hosp.setCheckout(rs.getDate("Checkout"));
+				Hosp.setPrecoTotal(rs.getFloat("PrecoTotal"));
+				
+				Hospedes Hospede=new Hospedes();
+				
+				Hospede.setNome(rs.getString("Nome"));
+				Hospede.setCPF(rs.getString("CPF"));
+				Hospede.setSobrenome(rs.getString("Sobrenome"));
+				Hospede.setDataNasc(rs.getDate("data_nasc"));
+				Hospede.setNacionalidade(rs.getString("Nacionalidade"));
+				Hospede.setPronome(rs.getString("Pronome"));
+				Hospede.setEmail(rs.getString("Email"));
+				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				
 				HospedagemQuartos.setIdHospedagensQuartos(IdHospedagemQuarto);
 				HospedagemQuartos.setQuarto(Quarto);
 				HospedagemQuartos.setHospedagem(Hosp);
-				HospedagemQuartos.setHospede(Hd);
+				HospedagemQuartos.setHospede(Hospede);
 				
 			}
 			

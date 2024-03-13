@@ -98,8 +98,12 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Float salario = rs.getFloat("salario");
 				
 				Usuarios User= new Usuarios();
-				//tem que preencher os atributos desse objeto
 				
+				User.setSenha(rs.getString("Senha"));
+				User.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				User.setLogin(rs.getString("Login"));
+			
+
 				Funcionario.setNome(Nome);
 				Funcionario.setSobrenome(sobrenome);
 				Funcionario.setFuncao(funcao);

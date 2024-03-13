@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Hospedagens;
+import modelo.Hospedes;
 
 public class HospedagensDAO implements IHospedagenDAO {
 
@@ -91,6 +92,17 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 				// Cria objeto
 				Hospedagens Hg = new Hospedagens();
+				
+				Hospedes Hospede = new Hospedes();
+				
+				Hospede.setNome(rs.getString("Nome"));
+				Hospede.setCPF(rs.getString("CPF"));
+				Hospede.setSobrenome(rs.getString("Sobrenome"));
+				Hospede.setDataNasc(rs.getDate("data_nasc"));
+				Hospede.setNacionalidade(rs.getString("Nacionalidade"));
+				Hospede.setPronome(rs.getString("Pronome"));
+				Hospede.setEmail(rs.getString("Email"));
+				Hospede.setDataNasc(rs.getDate("DataNasc"));
 
 				// Pega os valores de cada coluna d registro
 				Date Checkin = rs.getDate("Checkin");
