@@ -7,7 +7,7 @@ CREATE database IF NOT EXISTS `Stellar` ;
 USE `Stellar` ;
 
 -- -----------------------------------------------------
--- Table  `mydb`.`Usuarios`
+-- Table  `Stellar`.`Usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Usuarios`(
   `IdUsuario` INT NOT NULL AUTO_INCREMENT,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `Usuarios`(
   PRIMARY KEY (`IdUsuario`));
 
 -- -----------------------------------------------------
--- Table `mydb`.`Hospedes`
+-- Table `Stellar`.`Hospedes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Hospedes`(
   `IdHospede` INT NOT NULL AUTO_INCREMENT,
@@ -33,13 +33,13 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
  
   CONSTRAINT `fk_Hospedes_Usuarios1`
     FOREIGN KEY (`IdUsuario`)
-    REFERENCES `mydb`.`Usuarios`(`IdUsuario`)
+    REFERENCES `Stellar`.`Usuarios`(`IdUsuario`)
     )
 ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Servicos`
+-- Table `Stellar`.`Servicos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS  `Servicos` (
   `IdServico` INT NOT NULL AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS  `Servicos` (
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Hospedagens`
+-- Table `Stellar`.`Hospedagens`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Hospedagens` (
   `IdHospedagem` INT NOT NULL AUTO_INCREMENT,
@@ -61,7 +61,7 @@ CREATE TABLE  IF NOT EXISTS `Hospedagens` (
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Quartos`
+-- Table `Stellar`.`Quartos`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
@@ -78,7 +78,7 @@ CREATE TABLE  IF NOT EXISTS `Quartos` (
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Funcionarios`
+-- Table `Stellar`.`Funcionarios`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `IdFuncionario` INT NOT NULL AUTO_INCREMENT,
@@ -90,13 +90,13 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   PRIMARY KEY (`IdFuncionario`, `IdUsuario`),
   CONSTRAINT `fk_Funcionarios_Usuários1`
     FOREIGN KEY (`IdUsuario`)
-    REFERENCES `mydb`.`Usuarios`(`IdUsuario`)
+    REFERENCES `Stellar`.`Usuarios`(`IdUsuario`)
     )
 ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Atividades`
+-- Table `Stellar`.`Atividades`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Atividades` (
   `IdAtividade` INT NOT NULL AUTO_INCREMENT,
@@ -110,13 +110,13 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
 
   CONSTRAINT `fk_Atividades_Funcionarios1`
     FOREIGN KEY (`IdFuncionario`)
-    REFERENCES `mydb`.`Funcionarios` (`IdFuncionario`)
+    REFERENCES `Stellar`.`Funcionarios` (`IdFuncionario`)
    )
 ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ServicosConsumidos`
+-- Table `Stellar`.`ServicosConsumidos`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
   `IdServicoConsumido` INT NOT NULL AUTO_INCREMENT,
@@ -127,21 +127,21 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
 
   CONSTRAINT `fk_Hospedes_has_Servicos_Hospedes1`
     FOREIGN KEY (`IdHospede`)
-    REFERENCES `mydb`.`Hospedes` (`IdHospede`)
+    REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
    ,
   CONSTRAINT `fk_Hospedes_has_Servicos_Servicos1`
     FOREIGN KEY (`IdServico`)
-    REFERENCES `mydb`.`Servicos` (`IdServico`)
+    REFERENCES `Stellar`.`Servicos` (`IdServico`)
     ,
   CONSTRAINT `fk_Hospedes_has_serv`
     FOREIGN KEY (`IdHospedagem`)
-    REFERENCES `mydb`.`Hospedagens` (`IdHospedagem`)
+    REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
     )
 ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`HospedagensQuartos`
+-- Table `Stellar`.`HospedagensQuartos`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `HospedagensQuartos` (
   `IdHospedagemQuarto` INT NOT NULL AUTO_INCREMENT,
@@ -152,21 +152,21 @@ CREATE TABLE  IF NOT EXISTS `HospedagensQuartos` (
 
   CONSTRAINT `fk_Hospedagens_has_Quartos_Quartos1`
     FOREIGN KEY (`IdQuarto`)
-    REFERENCES `mydb`.`Quartos` (`IdQuarto`)
+    REFERENCES `Stellar`.`Quartos` (`IdQuarto`)
    ,
   CONSTRAINT `fk_HospedagensQuartos_Hospedagens1`
     FOREIGN KEY (`IdHospedagem`)
-    REFERENCES `mydb`.`Hospedagens` (`IdHospedagem`)
+    REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
     ,
   CONSTRAINT `fk_HospedagensQuartos_Hospedes1`
     FOREIGN KEY (`IdHospede`)
-    REFERENCES `mydb`.`Hospedes` (`IdHospede`)
+    REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
     )
 ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`AtividadesHospedes`
+-- Table `Stellar`.`AtividadesHospedes`
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
   `IdHospedeAtividade` INT NOT NULL AUTO_INCREMENT,
@@ -176,11 +176,11 @@ CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
 
   CONSTRAINT `fk_Hospedes_has_AtividadesHospedess1`
     FOREIGN KEY (`IdHospede`)
-    REFERENCES `mydb`.`Hospedes` (`IdHospede`)
+    REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
     ,
   CONSTRAINT `fk_Hospedes_has_Atividades_Atividades1`
     FOREIGN KEY (`IdAtividade`)
-    REFERENCES `mydb`.`Atividades` (`IdAtividade`)
+    REFERENCES `Stellar`.`Atividades` (`IdAtividade`)
     )
 ;
 
