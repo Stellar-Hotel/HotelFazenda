@@ -31,38 +31,38 @@ public class UsuariosDAO implements IUsuariosDAO {
 	
 	
 	@Override
-	public int inserirUsuario(Usuarios end) {
+	public void inserirUsuario(Usuarios end) {
 		
 	
 		
-		 Conexao conexao = Conexao.getConexao();
-	        Connection con = conexao.Conectar();
+		 Conexao con = Conexao.getConexao();
+	     Connection conBD = con.Conectar();
 		
 		String SQL = "INSERT INTO USUARIO (Senha, Login) VALUES(?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
-			PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conBD.prepareStatement(SQL);//, //Statement.RETURN_GENERATED_KEYS);
 			
 			
-			ResultSet rs = ps.executeQuery();
+			
 			
 			ps.setString(1, end.getSenha());
 		
 			ps.setString(2, end.getLogin());
-			
-			if (rs!= null) {
-				chavePrimariaGerada = rs.getInt(1);
-			}
+		//	ResultSet rs = ps.executeQuery();
+	//		if (rs!= null) {
+		//		chavePrimariaGerada = rs.getInt(1);
+		//	}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conexao.FecharConexao();
+			con.FecharConexao();
 		}
 		
 		
-		return chavePrimariaGerada;
+		//return chavePrimariaGerada;
 	}
 	@Override
 	public ArrayList<Usuarios> ListarUsuarios() {

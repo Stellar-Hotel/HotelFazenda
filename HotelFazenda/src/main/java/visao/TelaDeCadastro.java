@@ -152,8 +152,6 @@ public class TelaDeCadastro extends JFrame {
 					
 					User.setLogin(Login);
 
-					
-					
 					DAO.inserirUsuario(User);
 				}	
 			}
