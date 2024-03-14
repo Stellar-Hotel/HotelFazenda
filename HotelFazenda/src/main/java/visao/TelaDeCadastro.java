@@ -140,10 +140,10 @@ public class TelaDeCadastro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String Senha = textSenha.getText();
 				String Login = textUser.getText();
-				
+
 				if ((Senha.isEmpty() || (Login.isEmpty()))) {
 					JOptionPane.showMessageDialog(null, "Usuário ou senha não inserido");
-					//chama tela de login
+					// chama tela de login
 				} else {
 					Usuarios User = new Usuarios();
 					UsuariosDAO DAO = UsuariosDAO.getInstancia();
@@ -155,6 +155,10 @@ public class TelaDeCadastro extends JFrame {
 
 					if (id > 0) {
 						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						Login tela = new Login();
+						tela.setVisible(true);
+						dispose();
+
 					}
 				}
 			}

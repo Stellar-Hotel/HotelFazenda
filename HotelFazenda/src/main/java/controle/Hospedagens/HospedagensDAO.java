@@ -171,7 +171,39 @@ public class HospedagensDAO implements IHospedagenDAO {
 	@Override
 	public boolean RemoverHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
-		return false;
+
+		// Comando SQL a ser executado
+		String SQL = "DELETE FROM Hospedagens Where IdHospedagens = ?";
+		
+
+		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
+		Conexao con = Conexao.getInstancia();// Instanciando
+		Connection conBD = con.Conectar();// cria a conexao
+
+		int retorno = 0;
+
+		try {
+			// transfere o texto para um objeto
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			// Substitui a primeira interrogação no comando SQL
+		
+			ps.setInt(1, Hg.getHospedagensId());
+
+			
+			// Retorna 1 para certo e 0 para erro.
+			retorno = ps.executeUpdate(); 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//Captura e mostra eventuais bugs na execução do codigo
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		// if ternário
+		return (retorno == 0 ? false : true); 
 	}
 
 	@Override

@@ -95,7 +95,6 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 		
 		txtLogin = new JTextField();
-		txtLogin.setText("\n");
 		panel.add(txtLogin, "cell 0 5 8 1,grow");
 		txtLogin.setColumns(10);
 		
