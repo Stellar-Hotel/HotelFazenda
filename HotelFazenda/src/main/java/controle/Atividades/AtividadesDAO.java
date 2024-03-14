@@ -120,9 +120,25 @@ public class AtividadesDAO implements IAtividadesDAO
 	
 
 	@Override
-	public boolean RemoverAtividades(Atividades Ativ) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean RemoverAtividades(String Nome) {
+		String SQL = "DELETE FROM enderecos WHERE NomeAtividade = ?";
+
+		Conexao con = Conexao.getConexao(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno = 0;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, Nome);
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		return (retorno==0?false:true);
 	}
 
 	@Override
