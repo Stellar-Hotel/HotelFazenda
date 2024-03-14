@@ -16,7 +16,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 /*
  * Construtor privado (padrao Singleton)
  */
-	public UsuariosDAO() {
+	private UsuariosDAO() {
 	}
 	/*
 	 * Metodo para instanciar(Padrao SIngleton)
@@ -31,26 +31,29 @@ public class UsuariosDAO implements IUsuariosDAO {
 	
 	
 	@Override
-	public int inserirUsuario(Usuarios end) {
+	public void inserirUsuario(Usuarios end) {
 		
-		Conexao con = Conexao.getInstancia();
-		Connection conBD = con.Conectar(); 
-		String SQL = "INSERT INTO USUARIO (Senha, NivelDeAcesso,login) VALUES(?, ?, ?)";
+	
+		
+		 Conexao con = Conexao.getConexao();
+	     Connection conBD = con.Conectar();
+		
+		String SQL = "INSERT INTO USUARIO (Senha, Login) VALUES(?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conBD.prepareStatement(SQL);//, //Statement.RETURN_GENERATED_KEYS);
 			
 			
-			ResultSet rs = ps.executeQuery();
+			
 			
 			ps.setString(1, end.getSenha());
-			ps.setInt(2,end.getNivelDeAcesso());
-			ps.setString(3, end.getLogin());
-			
-			if (rs!= null) {
-				chavePrimariaGerada = rs.getInt(1);
-			}
+		
+			ps.setString(2, end.getLogin());
+		//	ResultSet rs = ps.executeQuery();
+	//		if (rs!= null) {
+		//		chavePrimariaGerada = rs.getInt(1);
+		//	}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +62,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		}
 		
 		
-		return chavePrimariaGerada;
+		//return chavePrimariaGerada;
 	}
 	@Override
 	public ArrayList<Usuarios> ListarUsuarios() {
@@ -82,14 +85,15 @@ public class UsuariosDAO implements IUsuariosDAO {
 			while (rs.next()) {
 				Usuarios Usu = new Usuarios();
 				
-				Integer nivel_de_acesso = rs.getInt("nivel_de_acesso");
-				String senha = rs.getString("senha");
-				String login = rs.getString("login");
+				int Id=rs.getInt("IdUsuario");
+				Integer NivelDeAcesso = rs.getInt("NivelDeAcesso");
+				String Senha = rs.getString("Senha");
+				String Login = rs.getString("Login");
 				
-				Usu.setNivelDeAcesso(nivel_de_acesso);
-				Usu.setSenha(senha);
-				Usu.setLogin(login);
-				
+				Usu.setNivelDeAcesso(NivelDeAcesso);
+				Usu.setSenha(Senha);
+				Usu.setLogin(Login);
+				Usu.setIdUsuarios(Id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +141,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		return false;
 	}
 	@Override
-	public Usuarios uscarUsuario(String Login, String Senha) {
+	public Usuarios BuscarUsuario(String Login, String Senha) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -108,7 +108,13 @@ public class HospedeDAO implements IHospedeDAO {
 				String email = rs.getString("Email");
 
 				Usuarios User = new Usuarios();
-				// Tem que preencher os atributos desse objeto
+				
+				//preenche os atributos desse objeto
+
+				User.setSenha(rs.getString("Senha"));
+				User.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				User.setLogin(rs.getString("Login"));
+				
 
 				Hd.setNome(sobrenome);
 				Hd.setNome(nome);

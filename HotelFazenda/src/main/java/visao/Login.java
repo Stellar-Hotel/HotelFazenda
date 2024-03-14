@@ -25,6 +25,8 @@ import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 
@@ -36,27 +38,13 @@ public class Login extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-//				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
 	public Login() {
-		Usuarios User=new Usuarios();
-		UsuariosDAO DAO=new UsuariosDAO();
-		ArrayList<Usuarios> ListaUser=DAO.ListarUsuarios();
+
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,6 +63,15 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel, "flowx,cell 0 0,growx,aligny top");
 		
 		JLabel lblNewLabel_4 = new JLabel("Não possui uma conta?");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeCadastro chama = new TelaDeCadastro();
+				chama.setVisible(true);
+				dispose();
+				
+			}
+		});
 		panel.add(lblNewLabel_4, "cell 7 0,alignx left,aligny top");
 		
 		JLabel lblNewLabel_2_1_1 = new JLabel("Entrar");
@@ -82,6 +79,14 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_2_1_1, "cell 0 1");
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Inscrever-se");
+		lblNewLabel_4_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeCadastro chama = new TelaDeCadastro();
+				chama.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel_4_1.setForeground(new Color(117, 187, 68));
 		panel.add(lblNewLabel_4_1, "cell 7 1,alignx left,aligny top");
 		
@@ -90,7 +95,8 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 		
 		txtLogin = new JTextField();
-		txtLogin.setText("Digite seu usuario\r\n");
+		txtLogin.setToolTipText("Digite seu usuario");
+		txtLogin.setText("\n");
 		panel.add(txtLogin, "cell 0 5 8 1,grow");
 		txtLogin.setColumns(10);
 		
@@ -110,6 +116,9 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Usuarios User=new Usuarios();
+				UsuariosDAO DAO=UsuariosDAO.getInstancia();
+				
 				User.setLogin(txtLogin.getText());
 				User.setSenha(txtSenha.getText());
 				
