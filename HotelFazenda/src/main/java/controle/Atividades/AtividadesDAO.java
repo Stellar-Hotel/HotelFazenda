@@ -138,7 +138,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		} finally {
 			con.FecharConexao();
 		}
-		return retorno==0?false:true;
+		return (retorno==0?false:true);
 	}
 
 	@Override

@@ -163,7 +163,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		} finally {
 			con.FecharConexao();
 		}
-		return retorno==0?false:true;
+		return (retorno==0?false:true);
 	}
 
 }
