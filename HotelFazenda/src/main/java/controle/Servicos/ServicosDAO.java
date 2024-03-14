@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -33,7 +34,7 @@ public class ServicosDAO implements IServicosDAO{
 		int ChavePrimariaGerada=Integer.MIN_VALUE;
 		
 		try {
-			PreparedStatement Ps= conBD.prepareStatement(SQL);
+			PreparedStatement Ps= conBD.prepareStatement(SQL);//se for um insert já conhcendo a chave primária não adcionar o Statement.RETURN_GENERATED_KEYS
 			Ps.setFloat(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 			
@@ -121,9 +122,29 @@ public class ServicosDAO implements IServicosDAO{
 	}
 	@Override
 	public boolean removerServico(Servicos end) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		
+		String SQL = "Delete from Servicos Where IdServico = ?";
+		//Método pra fazer a conexão com o banco
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.Conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			Ps.setInt(1, end.getIdServicos());
+			retorno = Ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.FecharConexao();
+		}
+
+		
+		return (retorno == 0 ? false : true); 
+ 
+}
 	@Override
 	public Servicos buscarServicoPorNome(int nome) {
 		// TODO Auto-generated method stub
