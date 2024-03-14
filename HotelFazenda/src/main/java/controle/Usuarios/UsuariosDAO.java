@@ -75,9 +75,6 @@ public class UsuariosDAO implements IUsuariosDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			
-			ps.setString(1, Usuarios.getLogin);
-			ps.setString(2, Usuarios.getSenha());
-			
 			
 			
 			ResultSet rs = ps.executeQuery(SQL);
