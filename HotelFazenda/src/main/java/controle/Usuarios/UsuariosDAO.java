@@ -38,7 +38,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		 Conexao con = Conexao.getConexao();
 	     Connection conBD = con.Conectar();
 		
-		String SQL = "INSERT INTO USUARIO (Senha, Login) VALUES(?, ?)";
+		String SQL = "INSERT INTO Usuarios (Senha, Login) VALUES(?, ?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;	
 		try {
