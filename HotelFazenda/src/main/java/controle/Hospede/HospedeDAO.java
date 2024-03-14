@@ -44,6 +44,7 @@ public class HospedeDAO implements IHospedeDAO {
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
+		
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
@@ -197,8 +198,41 @@ public class HospedeDAO implements IHospedeDAO {
 	@Override
 	public boolean removerHospede(Hospedes Hd) {
 		// TODO Auto-generated method stub
-		return false;
+
+		// Comando SQL a ser executado
+		String SQL = "DELETE FROM Hospedes Where IdHospede = ?";
+		
+
+		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
+		Conexao con = Conexao.getInstancia();// Instanciando
+		Connection conBD = con.Conectar();// cria a conexao
+
+		int retorno = 0;
+
+		try {
+			// transfere o texto para um objeto
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			
+			// Substitui a primeira interrogação no comando SQL
+		
+			ps.setInt(1, Hd.getHospedeId());
+
+			
+			// Retorna 1 para certo e 0 para erro.
+			retorno = ps.executeUpdate(); 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//Captura e mostra eventuais bugs na execução do codigo
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		// if ternário
+		return (retorno == 0 ? false : true); 
 	}
+	
 
 	@Override
 	public Hospedes buscarHospedePorCep(int cep) {

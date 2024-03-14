@@ -12,6 +12,8 @@ import controle.Usuarios.UsuariosDAO;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -34,7 +36,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
-	ArrayList<Usuarios> ListarUsuarios;
+	ArrayList<Usuarios> Lista;
 	private JTable table;
 
 	/**
@@ -59,7 +61,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		
-		ListarUsuarios = new ArrayList<Usuarios>();
+		Lista = new ArrayList<Usuarios>();
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,16 +117,24 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				Usuarios usuarios = new Usuarios();
+				
 				String login = txtLogin.getText();
 				String senha = txtSenha.getText();
 				
-				usuarios.setLogin(login);
-				usuarios.setSenha(senha);
 				
 				UsuariosDAO dao = UsuariosDAO.getInstancia();
 				
-				dao.ListarUsuarios();
+				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
+				
+				if(usuarios != null) {
+					JOptionPane.showMessageDialog(null, "Deu certo");
+					TelaServicos c = new TelaServicos();
+					c.setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
+				}
+				
 				
 			}
 		});

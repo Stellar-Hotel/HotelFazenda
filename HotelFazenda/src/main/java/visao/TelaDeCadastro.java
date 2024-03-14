@@ -53,7 +53,6 @@ public class TelaDeCadastro extends JFrame {
 	 */
 	public TelaDeCadastro() {
 
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -70,9 +69,9 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			Login chama = new Login();
-			chama.setVisible(true);
-			dispose();
+				Login chama = new Login();
+				chama.setVisible(true);
+				dispose();
 
 			}
 		});
@@ -114,7 +113,7 @@ public class TelaDeCadastro extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Telefone");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_4, "cell 4 6,aligny bottom");
- 
+
 		textNome = new JTextField();
 		contentPane.add(textNome, "cell 0 7 3 1,growx,aligny top");
 		textNome.setColumns(10);
@@ -139,21 +138,25 @@ public class TelaDeCadastro extends JFrame {
 		btnCadastrar.setBackground(new Color(117, 187, 68));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Senha=textSenha.getText();
-				String Login=textUser.getText();
-				if((Senha.isEmpty()||(Login.isEmpty())))
-				{
+				String Senha = textSenha.getText();
+				String Login = textUser.getText();
+				
+				if ((Senha.isEmpty() || (Login.isEmpty()))) {
 					JOptionPane.showMessageDialog(null, "Usuário ou senha não inserido");
-				}
-				else {
+					//chama tela de login
+				} else {
 					Usuarios User = new Usuarios();
 					UsuariosDAO DAO = UsuariosDAO.getInstancia();
 					User.setSenha(Senha);
-					
+
 					User.setLogin(Login);
 
-					DAO.inserirUsuario(User);
-				}	
+					int id = DAO.inserirUsuario(User);
+
+					if (id > 0) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+					}
+				}
 			}
 		});
 		contentPane.add(btnCadastrar, "cell 3 11");
