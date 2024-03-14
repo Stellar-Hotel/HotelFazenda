@@ -161,8 +161,26 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 	@Override
 	public boolean removerServicoConsumido(ServicosConsumidos end) {
-		// TODO Auto-generated method stub
-		return false;
+		String SQL = "Delete from ServicosConsumidos Where IdServicoConsumido = ?";
+		//Método pra fazer a conexão com o banco
+		Conexao con= Conexao.getConexao();
+		Connection conBD= con.Conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			Ps.setInt(1, end.getIdServicosConsumidos());
+			retorno = Ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.FecharConexao();
+		}
+
+		
+		return (retorno == 0 ? false : true); 
 	}
 
 	@Override
