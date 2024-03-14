@@ -144,5 +144,26 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public boolean RemoverAtividadeHospede(String IdAtividade) {
+		String SQL = "DELETE FROM enderecos WHERE NomeAtividade = ?";
+
+		Conexao con = Conexao.getConexao(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno = 0;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, IdAtividade);
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		return retorno==0?false:true;
+	}
 
 }
