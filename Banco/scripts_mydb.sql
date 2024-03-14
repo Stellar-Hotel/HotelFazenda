@@ -190,7 +190,7 @@ values ('M@iones3','MAZDARX7' ),
 ('eido','Cralos Ícaro' ),
 ('Geromel','Andrei' ),
 ('Bernas','Mico' ),
-('blaze', FelipeNeto' ),
+('blaze', 'FelipeNeto' ),
 ('Azul', 'Smurfette' ),
 ('Gorro', 'PapaSmurf' ),
 ('Azar', 'Desastrado' ),
@@ -265,7 +265,7 @@ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('L;urette', 'Smalridge', 'camareira', 6530.11, 25);
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28);
