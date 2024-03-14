@@ -156,7 +156,26 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public boolean RemoverFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		String SQL = "DELETE FROM Funcioanrios WHERE IdFuncionario = ?";
+		
+		Conexao con = Conexao.getInstancia(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, Func);
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return retorno;
 	}
 
 	@Override

@@ -162,7 +162,27 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 	@Override
 	public boolean removerQuarto(Quartos end) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		String SQL = "DELETE FROM enderecos WHERE cep = ?";
+
+		Conexao con = Conexao.getInstancia(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno = 0;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, end);
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return retorno;
+		
 	}
 	@Override
 	public Quartos buscarQuartoPorNumero(int cep) {
