@@ -1,21 +1,19 @@
 package modelo;
 
 public class ServicosConsumidos {
-	
+
 	private int IdServicoConsumido;
 	private Hospedes Hospede;
 	private Servicos Servico;
 	private Hospedagens Hospedagem;
-	
-	
-	public int getIdServicosConsumidos() {
+
+	public int getIdServicoConsumido() {
 		return IdServicoConsumido;
 	}
 
-	public void setIdServicosConsumidos(int idServicosConsumidos) {
+	public void setIdServicoConsumido(int idServicosConsumidos) {
 		IdServicoConsumido = idServicosConsumidos;
 	}
-
 
 	public Hospedes getHospede() {
 		return Hospede;
@@ -40,9 +38,5 @@ public class ServicosConsumidos {
 	public void setHospedagens(Hospedagens Hospedagem) {
 		this.Hospedagem = Hospedagem;
 	}
-	
-	
-
-
 
 }

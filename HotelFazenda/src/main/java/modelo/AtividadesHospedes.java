@@ -1,11 +1,10 @@
 package modelo;
- 
+
 public class AtividadesHospedes {
-    private int IdHospedeAtividade;
-    private Hospedes Hospede;
-    private Atividades Atividade;
-    
-    
+	private int IdHospedeAtividade;
+	private Hospedes Hospede;
+	private Atividades Atividade;
+
 	public Hospedes getHospede() {
 		return Hospede;
 	}
@@ -22,16 +21,12 @@ public class AtividadesHospedes {
 		Atividade = idAtividade;
 	}
 
-	public int getAtividadesHospedes() {
+	public int getIdHospedeAtividade() {
 		return IdHospedeAtividade;
 	}
-	
-	public void setAtividadesHospedes(int idAtividadesHospedes) {
-		IdHospedeAtividade = idAtividadesHospedes;
+
+	public void setIdHospedeAtividade(int idHospedeAtividade) {
+		IdHospedeAtividade = idHospedeAtividade;
 	}
 
-
-   
 }
-
-

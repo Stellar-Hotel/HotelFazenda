@@ -43,7 +43,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);// ,
 			ps.setString(1, end.getSenha());
 			ps.setString(2, end.getLogin());
-			
+
 			int result = ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível executar o INSERT");
@@ -54,7 +54,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 				}
 
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -88,7 +88,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 				Usu.setNivelDeAcesso(NivelDeAcesso);
 				Usu.setSenha(Senha);
 				Usu.setLogin(Login);
-				Usu.setIdUsuarios(Id);
+				Usu.setIdUsuario(Id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 
 		String SQL = "UPDATE Usuarios SET NivelDeAcesso = ?, Senha = ?," + " Login = ? Where IdUsuarios = ?";
 
-		Conexao con = Conexao.getInstancia();// instanciando
+		Conexao con = Conexao.getConexao();// instanciando
 		Connection conBD = con.Conectar();// cria ponte de conexao
 
 		int retorno = 0;
@@ -116,7 +116,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			ps.setInt(1, end.getNivelDeAcesso());
 			ps.setString(2, end.getSenha());
 			ps.setString(3, end.getLogin());
-			ps.setInt(4, end.getIdUsuarios());
+			ps.setInt(4, end.getIdUsuario());
 
 			retorno = ps.executeUpdate();
 
@@ -138,7 +138,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 
 	@Override
 	public Usuarios BuscarUsuario(String Login, String Senha) {
-		
+
 		Usuarios Usu = null;
 		String SQL = "SELECT * FROM Usuarios WHERE Login = ? AND Senha = ?";
 		Conexao con = Conexao.getConexao();
@@ -158,7 +158,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 				String login = rs.getString("Login");
 				Usu.setSenha(senha);
 				Usu.setLogin(login);
-				Usu.setIdUsuarios(Id);
+				Usu.setIdUsuario(Id);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

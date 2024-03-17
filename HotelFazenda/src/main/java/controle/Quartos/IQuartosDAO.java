@@ -7,9 +7,13 @@ import modelo.Quartos;
 public interface IQuartosDAO {
 
 	public int inserirQuarto(Quartos end);
+
 	public ArrayList<Quartos> ListarQuartos();
+
 	public boolean atualizarQuarto(Quartos end);
+
 	public boolean removerQuarto(Quartos end);
+
 	public Quartos buscarQuartoPorNumero(int numero);
-	
+
 }

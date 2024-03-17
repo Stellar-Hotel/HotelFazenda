@@ -11,13 +11,14 @@ public class Hospedagens {
 	private Float PrecoTotal;
 	private Hospedes Hospede;
 
-	public int getHospedagensId() {
+	public int getIdHospedagem() {
 		return IdHospedagem;
 	}
 
-	public void setHospedagensId(int hospedagensid) {
+	public void setIdHospedagem(int hospedagensid) {
 		IdHospedagem = hospedagensid;
 	}
+
 	public Date getCheckin() {
 		return Checkin;
 	}
@@ -33,13 +34,12 @@ public class Hospedagens {
 	public void setCheckout(Date checkout) {
 		Checkout = checkout;
 	}
-	
-	public void setHospedeId(Hospedes Hospede)
-	{
-		this.Hospede= Hospede;
+
+	public void setHospde(Hospedes Hospede) {
+		this.Hospede = Hospede;
 	}
 
-	public Hospedes getIdHospede() {
+	public Hospedes getHospede() {
 		return Hospede;
 	}
 

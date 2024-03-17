@@ -12,11 +12,13 @@ import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Hospedes;
+
 public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 	private static AtividadesHospedesDAO instancia;
 
-	/*Método para instanciar
+	/*
+	 * Método para instanciar
 	 * 
 	 */
 	public static AtividadesHospedesDAO getInstancia() {
@@ -26,75 +28,75 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 		return instancia;
 	}
+
 	/*
 	 * construtor privado (padrão singleton
-	*/
-	private AtividadesHospedesDAO() {}
-	
-	
+	 */
+	private AtividadesHospedesDAO() {
+	}
+
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
-		String SQL= "INSERT INTO Atividades_Hospedes(Hospede_id,id_atividade) VALUES (?,?)";
-		//Método pra fazer a conexão com o banco
-		Conexao con= Conexao.getConexao();
-		Connection conBD= con.Conectar();
-		
-		int ChavePrimariaGerada= Integer.MIN_VALUE;
-		
+		String SQL = "INSERT INTO Atividades_Hospedes(IdHospede,IdAtividade) VALUES (?,?)";
+		// Método pra fazer a conexão com o banco
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		int ChavePrimariaGerada = Integer.MIN_VALUE;
+
 		try {
-			PreparedStatement Ps= conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-			Ps.setInt(1, A.getHospede().getHospedeId());
+			PreparedStatement Ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			Ps.setInt(1, A.getHospede().getIdHospede());
 			Ps.setInt(2, A.getAtividade().getIdAtividade());
-			
-			ResultSet Rs= Ps.executeQuery();
-			if(Rs!=null)
-			{
-				ChavePrimariaGerada=Rs.getInt(1);
+
+			ResultSet Rs = Ps.executeQuery();
+			if (Rs != null) {
+				ChavePrimariaGerada = Rs.getInt(1);
 			}
 			/*
-			 * return Ps.executeUpdate();Atualiza o banco sem retorno do banco quando o insert for sem coisa auto gerada
-			*/
+			 * return Ps.executeUpdate();Atualiza o banco sem retorno do banco quando o
+			 * insert for sem coisa auto gerada
+			 */
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			con.FecharConexao();
 		}
 		return ChavePrimariaGerada;
 	}
-	
-	
 
 	@Override
 	public ArrayList<AtividadesHospedes> ListarAtividadesHospedes() {
-		
-		//ArrayList Que vai ser retornado
-		ArrayList<AtividadesHospedes> AtividadesHospedes= new ArrayList<AtividadesHospedes>();
-		
-		//Comando pro MySQL
+
+		// ArrayList Que vai ser retornado
+		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
+
+		// Comando pro MySQL
 		String SQL = "SELECT * FROM Atividades";
-		
-		//Método pra fazer a conexão
-		Conexao con= Conexao.getConexao();
-		Connection conBD= con.Conectar();
-		
-		//Método pra avisar caso dê algum erro, ele tenta o bloco de código no try e se der erro mostra um erro no método do catch
+
+		// Método pra fazer a conexão
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		// Método pra avisar caso dê algum erro, ele tenta o bloco de código no try e se
+		// der erro mostra um erro no método do catch
 		try {
-			PreparedStatement Ps=conBD.prepareStatement(SQL);
-			
-			ResultSet Rs= Ps.executeQuery();
-			
+			PreparedStatement Ps = conBD.prepareStatement(SQL);
+
+			ResultSet Rs = Ps.executeQuery();
+
 			while (Rs.next()) {
-				AtividadesHospedes At=new AtividadesHospedes();
-				
-				int IdAtividadesHospedes= Rs.getInt("id_hospede_atividade");
-				int IdHospede= Rs.getInt("Hospede_id");
-				int IdAtividade= Rs.getInt("id_atividade");
-				
-				Hospedes Hospede =new Hospedes();
-				//prenche os atributos desse objeto
-				
+				AtividadesHospedes At = new AtividadesHospedes();
+
+				int IdAtividadesHospedes = Rs.getInt("IdHospedeAtividade");
+				int IdHospede = Rs.getInt("IdHospede");
+				int IdAtividade = Rs.getInt("IdAtividade");
+
+				Hospedes Hospede = new Hospedes();
+				// prenche os atributos desse objeto
+
 				Hospede.setNome(Rs.getString("Nome"));
 				Hospede.setCPF(Rs.getString("CPF"));
 				Hospede.setSobrenome(Rs.getString("Sobrenome"));
@@ -103,33 +105,29 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Hospede.setPronome(Rs.getString("Pronome"));
 				Hospede.setEmail(Rs.getString("Email"));
 				Hospede.setDataNasc(Rs.getDate("DataNasc"));
-				
-				Atividades Ativ=new Atividades();
-				
-				Ativ.setRestricaoIdade(Rs.getInt("IdadeMinima"));
+
+				Atividades Ativ = new Atividades();
+
+				Ativ.setIdadeMinima(Rs.getInt("IdadeMinima"));
 				Ativ.setHorario(Rs.getString("Horario"));
 				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
 				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
 				Ativ.setData(Rs.getDate("Data"));
-			
-				
-				
-				//Tem que preencher os atributos dos objetos hd e ativ
-				At.setAtividadesHospedes(IdAtividadesHospedes);
+
+				// Tem que preencher os atributos dos objetos hd e ativ
+				At.setIdHospedeAtividade(IdAtividadesHospedes);
 				At.setHospede(Hospede);
 				At.setAtividade(Ativ);
-				
+
 				AtividadesHospedes.add(At);
 			}
-		} 
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			con.FecharConexao();
 		}
-	
-		
-		//Return da arraylist
+
+		// Return da arraylist
 		return AtividadesHospedes;
 	}
 
@@ -144,9 +142,10 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public boolean RemoverAtividadeHospede(String IdAtividade) {
-		String SQL = "DELETE FROM enderecos WHERE NomeAtividade = ?";
+		String SQL = "DELETE FROM AtividadesHospedes WHERE NomeAtividade = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -163,7 +162,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		} finally {
 			con.FecharConexao();
 		}
-		return (retorno==0?false:true);
+		return (retorno == 0 ? false : true);
 	}
 
 }
