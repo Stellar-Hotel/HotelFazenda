@@ -53,7 +53,6 @@ public class AtividadesDAO implements IAtividadesDAO
 				int RestricaoIdade = Rs.getInt("IdadeMinima");
 				String Horario = Rs.getString("Horario");
 				String HorarioFim = Rs.getString("HorarioFim");
-
 				String NomeAtividade = Rs.getString("NomeAtividade");
 				Date Data = Rs.getDate("Data");
 
@@ -62,6 +61,11 @@ public class AtividadesDAO implements IAtividadesDAO
 				Funcionario.setNome(Rs.getString("Nome"));
 				Funcionario.setSobrenome(Rs.getString("Sobrenome"));
 				Funcionario.setFuncao(Rs.getString("Funcao"));
+				Funcionario.setIdFuncionario(Rs.getInt("IdFuncionario"));
+				Funcionario.setSalario(Rs.getFloat("Slario"));
+				
+				
+				Funcionario.setUsuario(null);
 
 				// Tem que preencher os atributos do objeto funcionário
 				At.setIdAtividade(IdAtividade);
@@ -71,6 +75,8 @@ public class AtividadesDAO implements IAtividadesDAO
 				At.setFuncionario(Funcionario);
 				At.setNomeAtividade(NomeAtividade);
 				At.setData(Data);
+				
+				
 				atividades.add(At);
 
 			}
@@ -88,7 +94,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	public boolean AtualizarAtividades(Atividades Ativ) {
 
 		// Conexâo SQl a ser executada
-		String SQL = "UPDATE Atividades SET NomeAtividade = ?,  Horario = ?,  HorarioFim = ?,  Data = ?,  Funcionario = ?,  IdadeMinima = ?  WHERE IdAtividade = ?";
+		String SQL = "UPDATE Atividades SET NomeAtividade = ?,  Horario = ?,  HorarioFim = ?,  Data = ?,  IdFuncionario = ?,  IdadeMinima = ?  WHERE IdAtividade = ?";
 
 		// abre a conexão e cria a "parte de conexão" com MYSQL
 		Conexao con = Conexao.getConexao();

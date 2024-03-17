@@ -91,6 +91,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				String Funcao = rs.getString("Funcao");
 				String Sobrenome = rs.getString("Sobrenome");
 				Float Salario = rs.getFloat("Salario");
+				int IdFuncionario=rs.getInt("IdFuncionario");
 
 				Usuarios User = new Usuarios();
 
@@ -102,8 +103,11 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Funcionario.setSobrenome(Sobrenome);
 				Funcionario.setFuncao(Funcao);
 				Funcionario.setSalario(Salario);
+				Funcionario.setIdFuncionario(IdFuncionario);
 				Funcionario.setUsuario(User);
-
+				
+				
+				Funcionarios.add(Funcionario);
 			}
 
 		} catch (SQLException e) {
@@ -111,7 +115,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			e.printStackTrace();
 		}
 
-		return null;
+		return Funcionarios;
 	}
 
 	@Override

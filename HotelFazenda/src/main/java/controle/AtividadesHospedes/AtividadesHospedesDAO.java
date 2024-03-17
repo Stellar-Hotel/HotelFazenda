@@ -105,6 +105,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Hospede.setPronome(Rs.getString("Pronome"));
 				Hospede.setEmail(Rs.getString("Email"));
 				Hospede.setDataNasc(Rs.getDate("DataNasc"));
+				Hospede.setIdHospede(Rs.getInt("IdHospede"));
 
 				Atividades Ativ = new Atividades();
 
@@ -113,6 +114,10 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
 				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
 				Ativ.setData(Rs.getDate("Data"));
+				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
+				
+				
+				Ativ.setFuncionario(null);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
 				At.setIdHospedeAtividade(IdAtividadesHospedes);

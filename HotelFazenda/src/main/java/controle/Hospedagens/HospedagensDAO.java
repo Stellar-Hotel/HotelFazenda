@@ -107,11 +107,13 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 
 				// Pega os valores de cada coluna d registro
-				Date Checkin = rs.getDate("Checkin");
-				Date Checkout = rs.getDate("Chekout");
 
-				Hg.setCheckin(Checkin);
-				Hg.setCheckout(Checkout);
+
+				Hg.setCheckin(rs.getDate("Checkin"));
+				Hg.setCheckout(rs.getDate("Chekout"));
+				Hg.setIdHospedagem(rs.getInt("IdHospedagem"));
+				Hg.setPrecoTotal(rs.getFloat("PrecoTotal"));
+				Hg.setHospde(Hospede);
 
 				// Adiciona objeto na lista
 				hospedagens.add(Hg);
