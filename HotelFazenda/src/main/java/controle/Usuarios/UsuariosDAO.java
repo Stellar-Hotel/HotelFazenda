@@ -89,6 +89,9 @@ public class UsuariosDAO implements IUsuariosDAO {
 				Usu.setSenha(Senha);
 				Usu.setLogin(Login);
 				Usu.setIdUsuario(Id);
+				
+				Usuarios.add(Usu);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

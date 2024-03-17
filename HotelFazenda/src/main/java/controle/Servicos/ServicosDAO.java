@@ -72,8 +72,8 @@ public class ServicosDAO implements IServicosDAO {
 				Servicos Serv = new Servicos();
 
 				int IdServico = rs.getInt("IdServico");
-				Float PrecoServico = rs.getFloat("preco_servico");
-				String NomeServico = rs.getString("nome_servico");
+				Float PrecoServico = rs.getFloat("PrecoServico");
+				String NomeServico = rs.getString("NomeServico");
 
 				Serv.setIdServico(IdServico);
 				Serv.setPrecoServico(PrecoServico);

@@ -74,7 +74,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM Atividades";
+		String SQL = "SELECT * FROM AtividadesHospedes";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -90,10 +90,6 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 			while (Rs.next()) {
 				AtividadesHospedes At = new AtividadesHospedes();
 
-				int IdAtividadesHospedes = Rs.getInt("IdHospedeAtividade");
-				int IdHospede = Rs.getInt("IdHospede");
-				int IdAtividade = Rs.getInt("IdAtividade");
-
 				Hospedes Hospede = new Hospedes();
 				// prenche os atributos desse objeto
 
@@ -105,6 +101,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Hospede.setPronome(Rs.getString("Pronome"));
 				Hospede.setEmail(Rs.getString("Email"));
 				Hospede.setDataNasc(Rs.getDate("DataNasc"));
+				Hospede.setIdHospede(Rs.getInt("IdHospede"));
 
 				Atividades Ativ = new Atividades();
 
@@ -113,9 +110,13 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
 				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
 				Ativ.setData(Rs.getDate("Data"));
+				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
+				
+				
+				Ativ.setFuncionario(null);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
-				At.setIdHospedeAtividade(IdAtividadesHospedes);
+				At.setIdHospedeAtividade(Rs.getInt("IdHospedeAtividade"));
 				At.setHospede(Hospede);
 				At.setAtividade(Ativ);
 

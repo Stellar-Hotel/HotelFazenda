@@ -122,7 +122,10 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
+				
+				//Atribui o objeto estranjeiro no que vai ser colocado na lista
 				Hd.setUsuario(User);
+				
 				// Adiciona objeto na lista
 				hospede.add(Hd);
 

@@ -70,9 +70,9 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 	public ArrayList<HospedagemQuartos> ListarHospedagemQuartos() {
 		// TODO Auto-generated method stub
 
-		ArrayList<HospedagemQuartos> HospedagemQuarto = new ArrayList<HospedagemQuartos>();
+		ArrayList<HospedagemQuartos> Lista = new ArrayList<HospedagemQuartos>();
 
-		String SQL = "SELECT * FROM HospedagemQuarto";
+		String SQL = "SELECT * FROM HospedagensQuartos";
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -98,12 +98,18 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				
 
 				Hospedagens Hosp = new Hospedagens();
 
 				Hosp.setCheckin(rs.getDate("Checkin"));
 				Hosp.setCheckout(rs.getDate("Checkout"));
 				Hosp.setPrecoTotal(rs.getFloat("PrecoTotal"));
+				Hosp.setIdHospedagem(rs.getInt("IdHospedagem"));
+				
+				
+				Hosp.setHospde(null);
 
 				Hospedes Hospede = new Hospedes();
 
@@ -115,12 +121,16 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
+				
+				
+				Hospede.setUsuario(null);
 
 				HospedagemQuartos.setIdHospedagemQuarto(IdHospedagemQuarto);
 				HospedagemQuartos.setQuarto(Quarto);
 				HospedagemQuartos.setHospedagem(Hosp);
 				HospedagemQuartos.setHospede(Hospede);
-
+				
+				Lista.add(HospedagemQuartos);
 			}
 
 		} catch (SQLException e) {
@@ -128,7 +138,7 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 			e.printStackTrace();
 		}
 
-		return null;
+		return Lista;
 	}
 
 	@Override

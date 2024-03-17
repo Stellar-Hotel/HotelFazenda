@@ -88,29 +88,19 @@ public class QuartosDAO implements IQuartosDAO {
 
 			while (rs.next()) {
 
-				Quartos quartos = new Quartos();
+				Quartos Quarto = new Quartos();
+				
+				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quarto.setManutencao(rs.getString("Manutencao"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quarto.setBanheira(rs.getBoolean("Banheira"));
+				Quarto.setTV(rs.getBoolean("TV"));
+				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 
-				Integer IdQuartos = rs.getInt("IdQuarto");
-				Integer MaxPessoas = rs.getInt("MaxPessoas");
-				String Manutencao = rs.getString("Manutencao");
-				String TipoCama = rs.getString("TipoCama");
-				Boolean Frigobar = rs.getBoolean("Frigobar");
-				Boolean ArCondicionado = rs.getBoolean("ArCondicionado");
-				Boolean Banheira = rs.getBoolean("Banheira");
-				Boolean TV = rs.getBoolean("TV");
-				Float PrecoDiaria = rs.getFloat("PrecoDiaria");
-
-				quartos.setIdQuarto(IdQuartos);
-				quartos.setMaxPessoas(MaxPessoas);
-				quartos.setManutencao(Manutencao);
-				quartos.setTipoCama(TipoCama);
-				quartos.setFrigobar(Frigobar);
-				quartos.setArCondicionado(ArCondicionado);
-				quartos.setBanheira(Banheira);
-				quartos.setTV(TV);
-				quartos.setPrecoDiaria(PrecoDiaria);
-
-				Quartos.add(quartos);
+				Quartos.add(Quarto);
 			}
 
 		} catch (SQLException e) {
@@ -118,7 +108,7 @@ public class QuartosDAO implements IQuartosDAO {
 			e.printStackTrace();
 		}
 
-		return null;
+		return Quartos;
 
 	}
 
