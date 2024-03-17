@@ -6,8 +6,12 @@ import modelo.AtividadesHospedes;
 
 public interface IAtividadesHospedesDAO {
 	public int InserirAtividadesHospedes(AtividadesHospedes A);
+
 	public ArrayList<AtividadesHospedes> ListarAtividadesHospedes();
+
 	public boolean AtualizarAtividadesHospedes(AtividadesHospedes A);
+
 	public AtividadesHospedes BuscarAtividadesHospedesPorNome(String Nome);
+
 	public boolean RemoverAtividadeHospede(String IdAtividade);
 }

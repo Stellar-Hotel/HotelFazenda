@@ -28,7 +28,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 	public Boolean Inserir(Hospedagens Hg) {
 
-		String SQL = "INSERT INTO Hospedagens (checkin, checkout) VALUES (?, ?)";
+		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,PrecoTotal,IdHospede) VALUES (?, ?,?,?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -40,6 +40,8 @@ public class HospedagensDAO implements IHospedagenDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setDate(1, Hg.getCheckin());
 			ps.setDate(2, Hg.getCheckout());
+			ps.setFloat(3, Hg.getPrecoTotal());
+			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
@@ -92,13 +94,13 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 				// Cria objeto
 				Hospedagens Hg = new Hospedagens();
-				
+
 				Hospedes Hospede = new Hospedes();
-				
+
 				Hospede.setNome(rs.getString("Nome"));
 				Hospede.setCPF(rs.getString("CPF"));
 				Hospede.setSobrenome(rs.getString("Sobrenome"));
-				Hospede.setDataNasc(rs.getDate("data_nasc"));
+				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setNacionalidade(rs.getString("Nacionalidade"));
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
@@ -128,13 +130,12 @@ public class HospedagensDAO implements IHospedagenDAO {
 	@Override
 	public boolean AtualizarHospedagem(Hospedagens Hg) {
 		// TODO Auto-generated method stub
-		
+
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedagens Set Checkin = ?, Checkout = ?,"
-				+ " PrecoTotal = ? where HospedensId = ?";
+		String SQL = "UPDATE Hospedagens Set Checkin = ?, Checkout = ?, PrecoTotal = ?, IdHospede=? where HospedensId = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
-		Conexao con = Conexao.getInstancia();// Instanciando
+		Conexao con = Conexao.getConexao();// Instanciando
 		Connection conBD = con.Conectar();// cria a conexao
 
 		int retorno = 0;
@@ -147,16 +148,17 @@ public class HospedagensDAO implements IHospedagenDAO {
 			ps.setDate(1, Hg.getCheckin());
 			ps.setDate(2, Hg.getCheckout());
 			ps.setFloat(3, Hg.getPrecoTotal());
+			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			// indica qual qual hospedagem atualizar no comeando where através do id
-			ps.setInt(4, Hg.getHospedagensId());
+			ps.setInt(4, Hg.getIdHospedagem());
 
 			// Retorna 1 para certo e 0 para erro.
 			retorno = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+
 			// Captura e mostra eventuais bugs na execução do codigo
 			e.printStackTrace();
 		} finally {
@@ -173,11 +175,10 @@ public class HospedagensDAO implements IHospedagenDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "DELETE FROM Hospedagens Where IdHospedagens = ?";
-		
+		String SQL = "DELETE FROM Hospedagens Where IdHospedagen = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
-		Conexao con = Conexao.getInstancia();// Instanciando
+		Conexao con = Conexao.getConexao();// Instanciando
 		Connection conBD = con.Conectar();// cria a conexao
 
 		int retorno = 0;
@@ -185,25 +186,24 @@ public class HospedagensDAO implements IHospedagenDAO {
 		try {
 			// transfere o texto para um objeto
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			
-			// Substitui a primeira interrogação no comando SQL
-		
-			ps.setInt(1, Hg.getHospedagensId());
 
-			
+			// Substitui a primeira interrogação no comando SQL
+
+			ps.setInt(1, Hg.getIdHospedagem());
+
 			// Retorna 1 para certo e 0 para erro.
-			retorno = ps.executeUpdate(); 
+			retorno = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//Captura e mostra eventuais bugs na execução do codigo
+			// Captura e mostra eventuais bugs na execução do codigo
 			e.printStackTrace();
 		} finally {
 			con.FecharConexao();
 		}
 
 		// if ternário
-		return (retorno == 0 ? false : true); 
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override

@@ -37,14 +37,13 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (nome, sobrenome, data_nasc, CPF, Nacionalidade,"
-				+ " Pronome, email, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,"
+				+ " Pronome, Email, IdUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
-		
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
@@ -57,7 +56,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
 			ps.setString(7, Hd.getCPF());
-			ps.setInt(8, Hd.getUsuario().getIdUsuarios());
+			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
@@ -100,30 +99,29 @@ public class HospedeDAO implements IHospedeDAO {
 				Hospedes Hd = new Hospedes();
 
 				// Pega os valores de cada coluna d registro
-				String nome = rs.getString("Nome");
-				String sobrenome = rs.getString("Sobrenome");
-				Date data_nasc = rs.getDate("data_nasc");
-				String cpf = rs.getString("CPF");
-				String nacionalidade = rs.getString("Nacionalidade");
-				String pronome = rs.getString("Pronome");
-				String email = rs.getString("Email");
+				String Nome = rs.getString("Nome");
+				String Sobrenome = rs.getString("Sobrenome");
+				Date DataNasc = rs.getDate("DataNasc");
+				String CPF = rs.getString("CPF");
+				String Nacionalidade = rs.getString("Nacionalidade");
+				String Pronome = rs.getString("Pronome");
+				String Email = rs.getString("Email");
 
 				Usuarios User = new Usuarios();
-				
-				//preenche os atributos desse objeto
+
+				// preenche os atributos desse objeto
 
 				User.setSenha(rs.getString("Senha"));
 				User.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				User.setLogin(rs.getString("Login"));
-				
 
-				Hd.setNome(sobrenome);
-				Hd.setNome(nome);
-				Hd.setDataNasc(data_nasc);
-				Hd.setCPF(cpf);
-				Hd.setEmail(email);
-				Hd.setNacionalidade(nacionalidade);
-				Hd.setPronome(pronome);
+				Hd.setNome(Sobrenome);
+				Hd.setNome(Nome);
+				Hd.setDataNasc(DataNasc);
+				Hd.setCPF(CPF);
+				Hd.setEmail(Email);
+				Hd.setNacionalidade(Nacionalidade);
+				Hd.setPronome(Pronome);
 				Hd.setUsuario(User);
 				// Adiciona objeto na lista
 				hospede.add(Hd);
@@ -142,9 +140,9 @@ public class HospedeDAO implements IHospedeDAO {
 
 	/*
 	 * Tem q possuir a chave primária (ID, CPF, CEP, etc.) Atualiza um registro
-	 * existente no banco de dados O objeto passado como parâmetro já deve possuir os
-	 * NOVOS valeres porém deve possuir a chave primária do registro que se deseja
-	 * atualizar.
+	 * existente no banco de dados O objeto passado como parâmetro já deve possuir
+	 * os NOVOS valeres porém deve possuir a chave primária do registro que se
+	 * deseja atualizar.
 	 */
 
 	@Override
@@ -152,12 +150,10 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set nome = ?, cpf = ?, sobrenome = ?, email = ?, "
-				+ "nacionalidade = ?, pronome = ?  where HospedeId = ?";
-		
+		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsario = ?  where HospedeId = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
-		Conexao con = Conexao.getInstancia();// Instanciando
+		Conexao con = Conexao.getConexao();// Instanciando
 		Connection conBD = con.Conectar();// cria a conexao
 
 		int retorno = 0;
@@ -165,34 +161,31 @@ public class HospedeDAO implements IHospedeDAO {
 		try {
 			// transfere o texto para um objeto
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			
+
 			// Substitui a primeira interrogação no comando SQL
 			ps.setString(1, Hd.getNome());
-			
 			ps.setString(2, Hd.getCPF());
-			
 			ps.setString(3, Hd.getSobrenome());
 			ps.setString(4, Hd.getEmail());
 			ps.setString(5, Hd.getNacionalidade());
 			ps.setString(6, Hd.getPronome());
 			ps.setDate(7, Hd.getDataNasc());
+			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 			// Substitui a segunda interrogação no comando SQL
-			ps.setInt(8, Hd.getHospedeId());
 
-			
 			// Retorna 1 para certo e 0 para erro.
-			retorno = ps.executeUpdate(); 
+			retorno = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//Captura e mostra eventuais bugs na execução do codigo
+			// Captura e mostra eventuais bugs na execução do codigo
 			e.printStackTrace();
 		} finally {
 			con.FecharConexao();
 		}
 
 		// if ternário
-		return (retorno == 0 ? false : true); 
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override
@@ -201,10 +194,9 @@ public class HospedeDAO implements IHospedeDAO {
 
 		// Comando SQL a ser executado
 		String SQL = "DELETE FROM Hospedes Where IdHospede = ?";
-		
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
-		Conexao con = Conexao.getInstancia();// Instanciando
+		Conexao con = Conexao.getConexao();// Instanciando
 		Connection conBD = con.Conectar();// cria a conexao
 
 		int retorno = 0;
@@ -212,27 +204,25 @@ public class HospedeDAO implements IHospedeDAO {
 		try {
 			// transfere o texto para um objeto
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			
-			// Substitui a primeira interrogação no comando SQL
-		
-			ps.setInt(1, Hd.getHospedeId());
 
-			
+			// Substitui a primeira interrogação no comando SQL
+
+			ps.setInt(1, Hd.getIdHospede());
+
 			// Retorna 1 para certo e 0 para erro.
-			retorno = ps.executeUpdate(); 
+			retorno = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//Captura e mostra eventuais bugs na execução do codigo
+			// Captura e mostra eventuais bugs na execução do codigo
 			e.printStackTrace();
 		} finally {
 			con.FecharConexao();
 		}
 
 		// if ternário
-		return (retorno == 0 ? false : true); 
+		return (retorno == 0 ? false : true);
 	}
-	
 
 	@Override
 	public Hospedes buscarHospedePorCep(int cep) {
