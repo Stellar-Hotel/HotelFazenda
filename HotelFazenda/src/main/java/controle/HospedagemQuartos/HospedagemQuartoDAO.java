@@ -72,7 +72,7 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 
 		ArrayList<HospedagemQuartos> Lista = new ArrayList<HospedagemQuartos>();
 
-		String SQL = "SELECT * FROM HospedagemQuarto";
+		String SQL = "SELECT * FROM HospedagensQuartos";
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -99,6 +99,7 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				
 
 				Hospedagens Hosp = new Hospedagens();
 

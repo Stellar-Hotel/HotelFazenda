@@ -66,7 +66,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	@Override
 	public ArrayList<ServicosConsumidos> ListarServicos() {
 
-		ArrayList<ServicosConsumidos> Servicoconsumido = new ArrayList<ServicosConsumidos>();
+		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
 		String SQL = "SELECT * FROM servicos_consumidos INNER JOIN hospede.id_hospede = servico_consumido.id_hospede";
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -116,14 +116,14 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Serv.setServico(Servico);
 				Serv.setHospedagens(Hospedagem);
 
-				Servicoconsumido.add(Serv);
+				Lista.add(Serv);
 
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		return null;
+		return Lista;
 	}
 
 	/*

@@ -76,7 +76,6 @@ public class AtividadesDAO implements IAtividadesDAO
 				At.setNomeAtividade(NomeAtividade);
 				At.setData(Data);
 				
-				
 				atividades.add(At);
 
 			}
