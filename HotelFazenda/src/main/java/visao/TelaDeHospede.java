@@ -29,7 +29,7 @@ public class TelaDeHospede extends JFrame {
 			public void run() {
 				try {
 
-					Molde frame = new Molde();
+					TelaDeHospede frame = new TelaDeHospede();
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -61,27 +61,27 @@ public class TelaDeHospede extends JFrame {
 		JLabel lblHome = new JLabel("Home");
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHome.setBackground(new Color(0, 204, 0));
-		lblHome.setIcon(new ImageIcon(Molde.class.getResource("/visao/Home.jpg")));
+		lblHome.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Home.jpg")));
 		BarraLateral.add(lblHome, "cell 0 1,grow");
 
 		JLabel lblHospede = new JLabel("Hospede");
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHospede.setIcon(new ImageIcon(Molde.class.getResource("/visao/Hospede.jpg")));
+		lblHospede.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Hospede.jpg")));
 		BarraLateral.add(lblHospede, "cell 0 2,grow");
 
 		JLabel lblAtividades = new JLabel("Atividades");
 		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblAtividades.setIcon(new ImageIcon(Molde.class.getResource("/visao/Atividades.jpg")));
+		lblAtividades.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Atividades.jpg")));
 		BarraLateral.add(lblAtividades, "cell 0 3,grow");
 
 		JLabel lblQuartos = new JLabel("Quartos");
 		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblQuartos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Quartos.jpg")));
+		lblQuartos.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Quartos.jpg")));
 		BarraLateral.add(lblQuartos, "cell 0 4,grow");
 
 		JLabel lblServicos = new JLabel("Serviços");
 		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblServicos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Servicos.jpg")));
+		lblServicos.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Servicos.jpg")));
 		BarraLateral.add(lblServicos, "cell 0 5,grow");
 
 		JPanel panel = new JPanel();
@@ -90,7 +90,7 @@ public class TelaDeHospede extends JFrame {
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(Molde.class.getResource("/visao/Avatar.jpg")));
+		lblNewLabel_4.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Avatar.jpg")));
 		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
 
 		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
@@ -105,7 +105,7 @@ public class TelaDeHospede extends JFrame {
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
-		lblNewLabel_5.setIcon(new ImageIcon(Molde.class.getResource("/visao/Sair.png")));
+		lblNewLabel_5.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Sair.png")));
 		panel.add(lblNewLabel_5, "cell 0 3 2 1,alignx center,aligny top");
 
 		JPanel BarraSuperior = new JPanel();
@@ -121,7 +121,7 @@ public class TelaDeHospede extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(10, 0, 33, 31);
-		lblNewLabel.setIcon(new ImageIcon(Molde.class.getResource("/visao/logo.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/logo.png")));
 		panel_3.add(lblNewLabel);
 
 		JPanel panel_4 = new JPanel();
@@ -131,7 +131,7 @@ public class TelaDeHospede extends JFrame {
 
 		JLabel lblNewLabel_6 = new JLabel("");
 		panel_4.add(lblNewLabel_6, "cell 0 0,alignx left,aligny top");
-		lblNewLabel_6.setIcon(new ImageIcon(Molde.class.getResource("/visao/search.png")));
+		lblNewLabel_6.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/search.png")));
 
 		txtPesquisa = new JTextField();
 		panel_4.add(txtPesquisa, "cell 1 0,growx,aligny top");
@@ -145,12 +145,43 @@ public class TelaDeHospede extends JFrame {
 
 		JLabel lblNewLabel_8 = new JLabel("");
 		panel_2.add(lblNewLabel_8);
-		lblNewLabel_8.setIcon(new ImageIcon(Molde.class.getResource("/visao/SinoNotificacao.jpg")));
+		lblNewLabel_8.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/SinoNotificacao.jpg")));
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[][][fill]", "[][322.00,fill]"));
+		Principal.setLayout(new MigLayout("", "[][40.00][][68.00,fill][][57.00][][55.00][][122.00][][43.00][][53.00][][59.00][][]", "[][][47.00,fill]"));
+		
+		JLabel lblNewLabel_1 = new JLabel("Hospede");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		Principal.add(lblNewLabel_1, "cell 0 0");
+		
+		JLabel lblNewLabel_7 = new JLabel("Nome");
+		Principal.add(lblNewLabel_7, "cell 1 2");
+		
+		JLabel lblNewLabel_9 = new JLabel("Sobrenome");
+		Principal.add(lblNewLabel_9, "cell 3 2");
+		
+		JLabel lblNewLabel_10 = new JLabel("CPF");
+		Principal.add(lblNewLabel_10, "cell 5 2");
+		
+		JLabel lblNewLabel_11 = new JLabel("Quarto");
+		Principal.add(lblNewLabel_11, "cell 7 2");
+		
+		JLabel lblNewLabel_12 = new JLabel("Número da Reserva");
+		Principal.add(lblNewLabel_12, "cell 9 2");
+		
+		JLabel lblNewLabel_13 = new JLabel("Email");
+		Principal.add(lblNewLabel_13, "cell 11 2");
+		
+		JLabel lblNewLabel_14 = new JLabel("Gastos");
+		Principal.add(lblNewLabel_14, "cell 13 2");
+		
+		JLabel lblNewLabel_15 = new JLabel("Check in");
+		Principal.add(lblNewLabel_15, "cell 15 2");
+		
+		JLabel lblNewLabel_16 = new JLabel("Check out");
+		Principal.add(lblNewLabel_16, "cell 17 2");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -165,18 +196,18 @@ public class TelaDeHospede extends JFrame {
 
 		JLabel lblInstagram = new JLabel("");
 		panel_1.add(lblInstagram, "cell 0 0");
-		lblInstagram.setIcon(new ImageIcon(Molde.class.getResource("/visao/instagram.png")));
+		lblInstagram.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/instagram.png")));
 
 		JLabel lblFacebook = new JLabel("");
 		panel_1.add(lblFacebook, "cell 1 0");
-		lblFacebook.setIcon(new ImageIcon(Molde.class.getResource("/visao/Facebook.jpg")));
+		lblFacebook.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Facebook.jpg")));
 
 		JLabel lblWhatsapp = new JLabel("");
 		panel_1.add(lblWhatsapp, "cell 2 0");
-		lblWhatsapp.setIcon(new ImageIcon(Molde.class.getResource("/visao/Whatsapp.jpg")));
+		lblWhatsapp.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/Whatsapp.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
 		panel_1.add(lblTwitter, "cell 3 0");
-		lblTwitter.setIcon(new ImageIcon(Molde.class.getResource("/visao/twitter.jpg")));
+		lblTwitter.setIcon(new ImageIcon(TelaDeHospede.class.getResource("/visao/twitter.jpg")));
 	}
 }
