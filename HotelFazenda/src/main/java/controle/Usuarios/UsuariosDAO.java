@@ -139,13 +139,13 @@ public class UsuariosDAO implements IUsuariosDAO {
 		
 		String SQL = "DELETE FROM enderecos WHERE cep = ?";
 
-		Conexao con = Conexao.getInstancia(); // instanciando
+		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
 
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, end.getIdUsuarios());
+			ps.setInt(1, end.getIdUsuario());
 
 			retorno = ps.executeUpdate();
 

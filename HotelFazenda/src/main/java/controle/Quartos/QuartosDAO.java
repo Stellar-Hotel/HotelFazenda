@@ -153,13 +153,13 @@ public class QuartosDAO implements IQuartosDAO {
 		
 		String SQL = "DELETE FROM enderecos WHERE cep = ?";
 
-		Conexao con = Conexao.getInstancia(); // instanciando
+		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
 
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, end.getIdQuartos());
+			ps.setInt(1, end.getIdQuarto());
 
 			retorno = ps.executeUpdate();
 
