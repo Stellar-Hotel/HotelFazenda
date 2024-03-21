@@ -171,7 +171,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			ps.setString(1, Login);
 			ps.setString(2, Senha);
 
-			ResultSet rs = ps.executeQuery(SQL);
+			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
 				Usu = new Usuarios();
