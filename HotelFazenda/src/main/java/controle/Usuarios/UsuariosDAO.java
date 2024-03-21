@@ -144,7 +144,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setString(1, end);
+			ps.setInt(1, end.getIdUsuarios());
 
 			retorno = ps.executeUpdate();
 
@@ -154,7 +154,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 			con.FecharConexao();
 		}
 
-		return retorno;
+		return (retorno == 0 ? false : true);
 	}
 	@Override
 	public Usuarios BuscarUsuario(String Login, String Senha) {

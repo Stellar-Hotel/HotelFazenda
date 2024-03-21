@@ -171,7 +171,7 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setString(1, end);
+			ps.setInt(1, end.getIdQuartos());
 
 			retorno = ps.executeUpdate();
 
@@ -181,7 +181,7 @@ ArrayList<Quartos> Funcionarios = new ArrayList<Quartos>();
 			con.FecharConexao();
 		}
 
-		return retorno;
+		return (retorno == 0 ? false : true);
 		
 	}
 	@Override

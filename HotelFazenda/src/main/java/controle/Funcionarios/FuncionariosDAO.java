@@ -165,7 +165,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		int retorno;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, Func);
+			ps.setInt(1, Func.getFuncionarioId());
 
 			retorno = ps.executeUpdate();
 
@@ -175,7 +175,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			con.FecharConexao();
 		}
 
-		return retorno;
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override
