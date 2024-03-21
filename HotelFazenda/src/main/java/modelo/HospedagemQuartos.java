@@ -1,12 +1,11 @@
- package modelo;
+package modelo;
 
 public class HospedagemQuartos {
-	private int IdHospedagensQuartos;
+	private int IdHospedagemQuarto;
 	private Quartos Quarto;
 	private Hospedagens Hospedagen;
 	private Hospedes Hospede;
-	
-	
+
 	public Quartos getQuarto() {
 		return Quarto;
 	}
@@ -31,14 +30,12 @@ public class HospedagemQuartos {
 		this.Hospede = Hospede;
 	}
 
-	public int getIdHospedagensQuartos() {
-		return IdHospedagensQuartos;
+	public int getIdHospedagemQuarto() {
+		return IdHospedagemQuarto;
 	}
 
-	public void setIdHospedagensQuartos(int idHospedagensQuartos) {
-		IdHospedagensQuartos = idHospedagensQuartos;
+	public void setIdHospedagemQuarto(int idHospedagensQuartos) {
+		IdHospedagemQuarto = idHospedagensQuartos;
 	}
 
-
-	
 }

@@ -12,7 +12,6 @@ USE `Stellar` ;
 CREATE TABLE IF NOT EXISTS `Usuarios`(
   `IdUsuario` INT NOT NULL AUTO_INCREMENT,
   `Senha` VARCHAR(45) NOT NULL,
-  `NivelDeAcesso` INT NOT NULL,
   `Login` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IdUsuario`));
 
@@ -186,55 +185,55 @@ CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
 
 /*Tabela Usuarios*/
 
-insert into Usuarios ( Senha, NivelDeAcesso, Login)
-values ('M@iones3', 0,'MAZDARX7' ),
-('eido', 0,'Cralos Ícaro' ),
-('Geromel', 1,'Andrei' ),
-('Bernas', 0,'Mico' ),
-('blaze', 1,'FelipeNeto' ),
-('Azul', 1,'Smurfette' ),
-('Gorro', 1,'PapaSmurf' ),
-('Azar', 0,'Desastrado' ),
-('Bobo', 1,'Joca' ),
-('Forte', 0,'Robusto' ),
-('Ruiva', 1,'Sassette' ),
-('Burro', 1,'Gênio' ),
-('Feliz', 0,'Ranzinza' ),
-('Horrível', 1,'Habilidoso' ),
-('Bonitão', 0,'Vaidoso' ),
-('Véio', 0,'VovôSmurf' ),
-('Bonzinho', 1,'DevilSmurf' ),
-('Bom', 0,'Tuffy' ),
-('Rastreio', 1,'Caçador' ),
-('Véia', 1,'VovóSmurf' ),
-('AgroBoy', 1,'Fazendeiro' ),
-('Pedreiro', 1,'TimberSmurf' ),
-('BadBoy', 0,'AngelSmurf' ),
-('Woolly', 1,'WoolySmurf' ),
-('Andras', 0,'fgyuvu' ),
-('João', 0,'Monark' ),
-('Mau', 1,'Ele' ),
-('Pinas', 0,'Gustas' ),
-('Erik', 1,'Roncas' ),
-('Roxo', 1,'William' ),
-('SpringTrap', 1,'Afton' ),
-('Azu', 0,'Marill' ),
-('Kan', 1,'Gaskan' ),
-('Drago', 0,'Nite' ),
-('Stara', 1,'Ptor' ),
-('Burro', 1,'Dragão' ),
-('Ogro', 0,'Shrek' ),
-('Princesa', 1,'Fiona' ),
-('Rei', 0,'Leônidas' ),
-('MelhorCidade', 0,'Esparta' ),
-('Filósofo', 1,'Aristóteles' ),
-('Inteligente', 0,'Newtown' ),
-('Balela', 1,'Zero' ),
-('Cowboy', 1,'JohnMarston' ),
-('RDR2', 1,'ArthurMorgan' ),
-('Mago', 1,'DavyJones' ),
-('Carrara', 0,'Augustinho' ),
-('Only', 1,'Beiçola' );
+insert into Usuarios ( Senha, Login)
+values ('M@iones3','MAZDARX7' ),
+('eido','Cralos Ícaro' ),
+('Geromel','Andrei' ),
+('Bernas','Mico' ),
+('blaze', 'FelipeNeto' ),
+('Azul', 'Smurfette' ),
+('Gorro', 'PapaSmurf' ),
+('Azar', 'Desastrado' ),
+('Bobo','Joca' ),
+('Forte','Robusto' ),
+('Ruiva', 'Sassette' ),
+('Burro', 'Gênio' ),
+('Feliz', 'Ranzinza' ),
+('Horrível', 'Habilidoso' ),
+('Bonitão', 'Vaidoso' ),
+('Véio', 'VovôSmurf' ),
+('Bonzinho', 'DevilSmurf' ),
+('Bom', 'Tuffy' ),
+('Rastreio', 'Caçador' ),
+('Véia', 'VovóSmurf' ),
+('AgroBoy', 'Fazendeiro' ),
+('Pedreiro', 'TimberSmurf' ),
+('BadBoy', 'AngelSmurf' ),
+('Woolly', 'WoolySmurf' ),
+('Andras', 'fgyuvu' ),
+('João', 'Monark' ),
+('Mau', 'Ele' ),
+('Pinas', 'Gustas' ),
+('Erik', 'Roncas' ),
+('Roxo', 'William' ),
+('SpringTrap', 'Afton' ),
+('Azu', 'Marill' ),
+('Kan', 'Gaskan' ),
+('Drago', 'Nite' ),
+('Stara', 'Ptor' ),
+('Burro', 'Dragão' ),
+('Ogro', 'Shrek' ),
+('Princesa', 'Fiona' ),
+('Rei', 'Leônidas' ),
+('MelhorCidade', 'Esparta' ),
+('Filósofo', 'Aristóteles' ),
+('Inteligente', 'Newtown' ),
+('Balela', 'Zero' ),
+('Cowboy', 'JohnMarston' ),
+('RDR2', 'ArthurMorgan' ),
+('Mago', 'DavyJones' ),
+('Carrara', 'Augustinho' ),
+('Only', 'Beiçola' );
  
  
 
@@ -266,7 +265,7 @@ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('L;urette', 'Smalridge', 'camareira', 6530.11, 25);
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27);
 insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuario) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28);
@@ -593,34 +592,34 @@ where  IdHospedagem = 10;
 
 /*Update Usuários*/
 update Usuarios
-set Senha = '12345',NivelDeAcesso = 1, Login='Roncas'
+set Senha = '12345', Login='Roncas'
 where  IdUsuario = 1;
 update Usuarios
-set Senha = '67891',NivelDeAcesso = 0, Login='Bernas'
+set Senha = '67891', Login='Bernas'
 where  IdUsuario = 2;
 update Usuarios
-set Senha = '101112',NivelDeAcesso = 1, Login='Andras'
+set Senha = '101112', Login='Andras'
 where  IdUsuario = 3;
 update Usuarios
-set Senha = '126890',NivelDeAcesso = 1, Login='Luigigigie'
+set Senha = '126890', Login='Luigigigie'
 where  IdUsuario = 4;
 update Usuarios
-set Senha = '61701',NivelDeAcesso = 0, Login= 'Muliro'
+set Senha = '61701', Login= 'Muliro'
 where  IdUsuario = 5;
 update Usuarios
-set Senha = '01234',NivelDeAcesso = 1, Login='Gagas'
+set Senha = '01234', Login='Gagas'
 where  IdUsuario = 6;
 update Usuarios
-set Senha = '901890',NivelDeAcesso = 1, Login='Gustas'
+set Senha = '901890', Login='Gustas'
 where  IdUsuario = 7;
 update Usuarios
-set Senha = '448768',NivelDeAcesso = 1, Login='Kakas'
+set Senha = '448768', Login='Kakas'
 where  IdUsuario = 8;
 update Usuarios
-set Senha = '48765',NivelDeAcesso = 1, Login='Charlão'
+set Senha = '48765', Login='Charlão'
 where  IdUsuario = 9;
 update Usuarios
-set Senha = '4165',NivelDeAcesso = 1, Login='Clóvis'
+set Senha = '4165', Login='Clóvis'
 where  IdUsuario = 10;
 
 

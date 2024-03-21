@@ -8,11 +8,11 @@ public class Atividades {
 	private Date Data;
 	private Funcionarios Funcionario;
 
-	public int getRestricaoIdade() {
+	public int getIdadeMinima() {
 		return IdadeMinima;
 	}
 
-	public void setRestricaoIdade(int Idade) {
+	public void setIdadeMinima(int Idade) {
 		IdadeMinima = Idade;
 	}
 
