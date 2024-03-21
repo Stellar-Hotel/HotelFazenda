@@ -136,7 +136,26 @@ public class UsuariosDAO implements IUsuariosDAO {
 	@Override
 	public boolean removerUsuario(Usuarios end) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		String SQL = "DELETE FROM enderecos WHERE cep = ?";
+
+		Conexao con = Conexao.getConexao(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno = 0;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getIdUsuario());
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override
