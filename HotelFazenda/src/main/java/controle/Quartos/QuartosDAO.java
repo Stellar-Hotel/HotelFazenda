@@ -55,9 +55,17 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(8, end.getTV());
 			ps.setFloat(9, end.getPrecoDiaria());
 
-			ResultSet Rs = ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result=ps.executeUpdate();
+			if(result==0)
+			{
+				throw new SQLException("Não foi possível inserir o quarto!");
+			}
+			else {
+				ResultSet Rs=ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					ChavePrimariaGerada=Rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {
@@ -67,7 +75,7 @@ public class QuartosDAO implements IQuartosDAO {
 			con.FecharConexao();
 		}
 
-		return 0;
+		return ChavePrimariaGerada;
 	}
 
 	@Override
@@ -136,6 +144,8 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(7, end.getTV());
 			ps.setFloat(8, end.getPrecoDiaria());
 			ps.setInt(9, end.getIdQuarto());
+			
+			retorno= ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -151,7 +161,7 @@ public class QuartosDAO implements IQuartosDAO {
 	public boolean removerQuarto(Quartos end) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "DELETE FROM enderecos WHERE cep = ?";
+		String SQL = "DELETE FROM Quartos WHERE IdQuarto = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"

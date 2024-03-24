@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import controle.HospedagemQuartos.HospedagemQuartoDAO;
-import modelo.Funcionarios;
 import modelo.HospedagemQuartos;
 import modelo.Hospedagens;
 import modelo.Hospedes;
@@ -46,14 +45,20 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, Hosp.getIdHospedagemQuarto());
-			ps.setInt(2, Hosp.getQuarto().getIdQuarto());
-			ps.setInt(3, Hosp.getHospedagem().getIdHospedagem());
+			ps.setInt(1, Hosp.getQuarto().getIdQuarto());
+			ps.setInt(2, Hosp.getHospedagem().getIdHospedagem());
 			ps.setInt(3, Hosp.getHospede().getIdHospede());
 
-			ResultSet Rs = ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result = ps.executeUpdate();
+			if (result == 0) {
+				throw new SQLException("Não foi possível inserir na tabela!");
+			}
+			else {
+				ResultSet Rs=ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					ChavePrimariaGerada=Rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {
@@ -144,13 +149,54 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 	@Override
 	public boolean AtualizarHospedagemQuartos(HospedagemQuartos Hosp) {
 		// TODO Auto-generated method stub
-		return false;
+		String SQL = "UPDATE HospedagensQuartos SET IdQuarto = ?, IdHospedagem = ?, IdHospede = ? Where IdHospedagemQuarto = ?";
+
+		Conexao con = Conexao.getConexao();// instanciando
+		Connection conBD = con.Conectar();// cria ponte de conexao
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			ps.setInt(1, Hosp.getQuarto().getIdQuarto());
+			ps.setInt(2, Hosp.getHospedagem().getIdHospedagem());
+			ps.setInt(3, Hosp.getHospede().getIdHospede());
+			ps.setInt(4, Hosp.getIdHospedagemQuarto());
+			retorno = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override
 	public boolean RemoverHospedagemQuartos(HospedagemQuartos Hosp) {
 		// TODO Auto-generated method stub
-		return false;
+		String SQL = "DELETE FROM HospedagensQuartos WHERE IdHospede=?";
+
+		Conexao con = Conexao.getConexao(); // instanciando
+		Connection conBD = con.Conectar(); // cria "ponte"
+
+		int retorno = 0;
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, Hosp.getHospede().getIdHospede());
+
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return (retorno == 0 ? false : true);
 	}
 
 	@Override

@@ -25,9 +25,9 @@ public class HospedagensDAO implements IHospedagenDAO {
 		}
 		return instancia;
 	}
-
-	public Boolean Inserir(Hospedagens Hg) {
-
+	
+	@Override
+	public int InserirHospedagem(Hospedagens Hg) {
 		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,PrecoTotal,IdHospede) VALUES (?, ?,?,?)";
 
 		// cria a "ponte de conexao" com o MYSQL
@@ -43,9 +43,16 @@ public class HospedagensDAO implements IHospedagenDAO {
 			ps.setFloat(3, Hg.getPrecoTotal());
 			ps.setInt(4, Hg.getHospede().getIdHospede());
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				chavePrimariaGerada = rs.getInt(1);
+			int result = ps.executeUpdate();
+			if (result==0) {
+				throw new SQLException("Não foi possível inserir a hospedagem!");
+			}
+			else {
+				ResultSet Rs=ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					chavePrimariaGerada=Rs.getInt(1);
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -54,21 +61,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			con.FecharConexao();
 		}
 
-		return true;
-	}
-
-	public Boolean Alterar(Hospedagens Hg) {
-		return true;
-	}
-
-	public Boolean Excluir(Hospedagens Hg) {
-		return true;
-	}
-
-	@Override
-	public int InserirHospedagem(Hospedagens Hg) {
-		// TODO Auto-generated method stub
-		return 0;
+		return chavePrimariaGerada;
 	}
 
 	@Override

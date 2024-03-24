@@ -37,8 +37,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,"
-				+ " Pronome, Email, IdUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,Pronome, Email, IdUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -106,6 +105,7 @@ public class HospedeDAO implements IHospedeDAO {
 				String Nacionalidade = rs.getString("Nacionalidade");
 				String Pronome = rs.getString("Pronome");
 				String Email = rs.getString("Email");
+				int Id=rs.getInt("IdHosped");
 
 				Usuarios User = new Usuarios();
 
@@ -122,7 +122,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
-				
+				Hd.setIdHospede(Id);
 				//Atribui o objeto estranjeiro no que vai ser colocado na lista
 				Hd.setUsuario(User);
 				
@@ -153,7 +153,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsario = ?  where HospedeId = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsario = ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -175,7 +175,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setDate(7, Hd.getDataNasc());
 			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 			// Substitui a segunda interrogação no comando SQL
-
+			ps.setInt(9, Hd.getIdHospede());
 			// Retorna 1 para certo e 0 para erro.
 			retorno = ps.executeUpdate();
 

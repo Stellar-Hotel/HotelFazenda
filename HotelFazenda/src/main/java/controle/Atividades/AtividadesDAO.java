@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Atividades;
-import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
 
 public class AtividadesDAO implements IAtividadesDAO
@@ -177,9 +176,16 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * se for um insert sem gerar chave primária automaticamente não usar a parte de
 			 * baixo
 			 */
-			ResultSet Rs = Ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result = Ps.executeUpdate();
+			if (result == 0) {
+				throw new SQLException("Não foi possível inserir a atividade!");
+			}
+			else {
+				ResultSet rs= Ps.getGeneratedKeys();
+				if(rs.next())
+				{
+					ChavePrimariaGerada=rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Statement;
 
 import controle.Conexao;
 import controle.Funcionarios.FuncionariosDAO;
@@ -48,18 +49,24 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 		
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL);
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, Func.getNome());
 			ps.setString(2, Func.getSobrenome());
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
 			ps.setInt(5, Func.getUsuario().getIdUsuario());
 		
-			ResultSet Rs = ps.executeQuery();
-			if(Rs!=null) {
-				ChavePrimariaGerada=Rs.getInt(1);
+			int result = ps.executeUpdate();
+			if(result==0) {
+				throw new SQLException("Não foi possível inserir o funcionário na respectiva tabela!");
 			}
-			
+			else {
+				ResultSet Rs=ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					ChavePrimariaGerada=Rs.getInt(1);
+				}
+			}
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +76,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		}
 		
 		
-		return 0;
+		return ChavePrimariaGerada;
 	}
 
 	@Override
@@ -117,7 +124,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			e.printStackTrace();
 		}
 		
-		return null;
+		return Funcionarios;
 	}
 
 	@Override

@@ -41,9 +41,17 @@ public class ServicosDAO implements IServicosDAO {
 			Ps.setFloat(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 
-			ResultSet Rs = Ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result =Ps.executeUpdate();
+			if(result==0)
+			{
+				throw new SQLException("Não foi possível cadastrar o serviço!");
+			}
+			else {
+				ResultSet Rs=Ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					ChavePrimariaGerada=Rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {
@@ -115,6 +123,7 @@ public class ServicosDAO implements IServicosDAO {
 
 			Ps.setFloat(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
+			Ps.setInt(3, end.getIdServico());
 
 			retorno = (Ps.executeUpdate() == 0 ? false : true);
 
