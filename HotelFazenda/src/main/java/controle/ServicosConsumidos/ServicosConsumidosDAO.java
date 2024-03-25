@@ -72,7 +72,9 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ArrayList<ServicosConsumidos> ListarServicos() {
 
 		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
-		String SQL = "SELECT * FROM servicos_consumidos INNER JOIN hospede.id_hospede = servico_consumido.id_hospede";
+		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN hospedes.IdHospede = ServicosConsumidos.IdHospede"
+					+" inner join servicos.IdServico=ServicosConsumidos.IdServico"
+					+" inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagem";
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
