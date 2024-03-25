@@ -55,16 +55,13 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(8, end.getTV());
 			ps.setFloat(9, end.getPrecoDiaria());
 
-			int result=ps.executeUpdate();
-			if(result==0)
-			{
+			int result = ps.executeUpdate();
+			if (result == 0) {
 				throw new SQLException("Não foi possível inserir o quarto!");
-			}
-			else {
-				ResultSet Rs=ps.getGeneratedKeys();
-				if(Rs.next())
-				{
-					ChavePrimariaGerada=Rs.getInt(1);
+			} else {
+				ResultSet Rs = ps.getGeneratedKeys();
+				if (Rs.next()) {
+					ChavePrimariaGerada = Rs.getInt(1);
 				}
 			}
 
@@ -97,7 +94,7 @@ public class QuartosDAO implements IQuartosDAO {
 			while (rs.next()) {
 
 				Quartos Quarto = new Quartos();
-				
+
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
@@ -144,8 +141,8 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(7, end.getTV());
 			ps.setFloat(8, end.getPrecoDiaria());
 			ps.setInt(9, end.getIdQuarto());
-			
-			retorno= ps.executeUpdate();
+
+			retorno = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -160,7 +157,7 @@ public class QuartosDAO implements IQuartosDAO {
 	@Override
 	public boolean removerQuarto(Quartos end) {
 		// TODO Auto-generated method stub
-		
+
 		String SQL = "DELETE FROM Quartos WHERE IdQuarto = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
@@ -180,12 +177,45 @@ public class QuartosDAO implements IQuartosDAO {
 		}
 
 		return (retorno == 0 ? false : true);
-		
+
 	}
 
 	@Override
-	public Quartos buscarQuartoPorNumero(int cep) {
+	public Quartos buscarQuartoPorNumero(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Quartos Quar = null;
+		String SQL = "Select * from Quartos where IdQuarto = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Quar = new Quartos();
+
+				Quar.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quar.setBanheira(rs.getBoolean("Banheira"));
+				Quar.setFrigobar(rs.getBoolean("Frigobar"));
+				Quar.setManutencao(rs.getString("Manutencao"));
+				Quar.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quar.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quar.setTipoCama(rs.getString("TipoCama"));
+				Quar.setTV(rs.getBoolean("TV"));
+				Quar.setIdQuarto(id);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return Quar;
 	}
 }

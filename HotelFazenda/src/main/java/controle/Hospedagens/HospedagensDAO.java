@@ -25,7 +25,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 		}
 		return instancia;
 	}
-	
+
 	@Override
 	public int InserirHospedagem(Hospedagens Hg) {
 		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,PrecoTotal,IdHospede) VALUES (?, ?,?,?)";
@@ -44,14 +44,12 @@ public class HospedagensDAO implements IHospedagenDAO {
 			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			int result = ps.executeUpdate();
-			if (result==0) {
+			if (result == 0) {
 				throw new SQLException("Não foi possível inserir a hospedagem!");
-			}
-			else {
-				ResultSet Rs=ps.getGeneratedKeys();
-				if(Rs.next())
-				{
-					chavePrimariaGerada=Rs.getInt(1);
+			} else {
+				ResultSet Rs = ps.getGeneratedKeys();
+				if (Rs.next()) {
+					chavePrimariaGerada = Rs.getInt(1);
 				}
 			}
 		} catch (SQLException e) {
@@ -101,7 +99,6 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 				// Pega os valores de cada coluna d registro
 
-
 				Hg.setCheckin(rs.getDate("Checkin"));
 				Hg.setCheckout(rs.getDate("Chekout"));
 				Hg.setIdHospedagem(rs.getInt("IdHospedagem"));
@@ -146,7 +143,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			// indica qual qual hospedagem atualizar no comeando where através do id
-			ps.setInt(4, Hg.getIdHospedagem());
+			ps.setInt(5, Hg.getIdHospedagem());
 
 			// Retorna 1 para certo e 0 para erro.
 			retorno = ps.executeUpdate();
@@ -204,6 +201,35 @@ public class HospedagensDAO implements IHospedagenDAO {
 	@Override
 	public Hospedagens BuscarHospedagemId(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		Hospedagens Hosp = null;
+		String SQL = "Seçect * from Hospedagens where IdHospedagem = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			ps.setInt(1, Id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Hosp = new Hospedagens();
+
+				Hosp.setCheckin(rs.getDate("Checkin"));
+				Hosp.setCheckout(rs.getDate("Checkout"));
+				Hosp.setIdHospedagem(Id);
+				Hosp.setPrecoTotal(rs.getFloat("PrecoTotal"));
+
+				Hosp.setHospde(null);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return Hosp;
 	}
 }

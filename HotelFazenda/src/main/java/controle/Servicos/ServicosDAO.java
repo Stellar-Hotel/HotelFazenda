@@ -41,16 +41,13 @@ public class ServicosDAO implements IServicosDAO {
 			Ps.setFloat(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 
-			int result =Ps.executeUpdate();
-			if(result==0)
-			{
+			int result = Ps.executeUpdate();
+			if (result == 0) {
 				throw new SQLException("Não foi possível cadastrar o serviço!");
-			}
-			else {
-				ResultSet Rs=Ps.getGeneratedKeys();
-				if(Rs.next())
-				{
-					ChavePrimariaGerada=Rs.getInt(1);
+			} else {
+				ResultSet Rs = Ps.getGeneratedKeys();
+				if (Rs.next()) {
+					ChavePrimariaGerada = Rs.getInt(1);
 				}
 			}
 
@@ -163,8 +160,35 @@ public class ServicosDAO implements IServicosDAO {
 	}
 
 	@Override
-	public Servicos buscarServicoPorNome(int nome) {
+	public Servicos buscarServicoPorNome(String nome) {
 		// TODO Auto-generated method stub
-		return null;
+		Servicos Serv = null;
+		String sql = "Select * from Servicos where NomeServico = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(sql);
+
+			ps.setString(1, nome);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Serv = new Servicos();
+
+				Serv.setIdServico(rs.getInt("IdServico"));
+				Serv.setNomeServico(nome);
+				Serv.setPrecoServico(rs.getFloat("PrecoServico"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return Serv;
 	}
 }

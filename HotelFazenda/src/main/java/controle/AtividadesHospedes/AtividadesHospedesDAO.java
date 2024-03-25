@@ -168,9 +168,32 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	}
 
 	@Override
-	public AtividadesHospedes BuscarAtividadesHospedesPorNome(String Nome) {
+	public AtividadesHospedes BuscarAtividadesHospedesPorIdHospede(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		AtividadesHospedes AtivHosp=null;
+		String SQL="Select * from AtividadesHospedes where IdHospede = ?";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			ps.setInt(1, Id);
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next()) 
+			{
+				AtivHosp=new AtividadesHospedes();
+				AtivHosp.setIdHospedeAtividade(rs.getInt("IdAtividadeHospede"));
+				AtivHosp.setHospede(null);
+				AtivHosp.setAtividade(null);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.FecharConexao();
+		}
+		return AtivHosp;
 	}
 
 	@Override

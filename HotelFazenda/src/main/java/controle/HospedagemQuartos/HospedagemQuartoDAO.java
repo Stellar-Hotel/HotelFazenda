@@ -52,12 +52,10 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 			int result = ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível inserir na tabela!");
-			}
-			else {
-				ResultSet Rs=ps.getGeneratedKeys();
-				if(Rs.next())
-				{
-					ChavePrimariaGerada=Rs.getInt(1);
+			} else {
+				ResultSet Rs = ps.getGeneratedKeys();
+				if (Rs.next()) {
+					ChavePrimariaGerada = Rs.getInt(1);
 				}
 			}
 
@@ -104,7 +102,6 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
-				
 
 				Hospedagens Hosp = new Hospedagens();
 
@@ -112,8 +109,7 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Hosp.setCheckout(rs.getDate("Checkout"));
 				Hosp.setPrecoTotal(rs.getFloat("PrecoTotal"));
 				Hosp.setIdHospedagem(rs.getInt("IdHospedagem"));
-				
-				
+
 				Hosp.setHospde(null);
 
 				Hospedes Hospede = new Hospedes();
@@ -126,15 +122,14 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
-				
-				
+
 				Hospede.setUsuario(null);
 
 				HospedagemQuartos.setIdHospedagemQuarto(IdHospedagemQuarto);
 				HospedagemQuartos.setQuarto(Quarto);
 				HospedagemQuartos.setHospedagem(Hosp);
 				HospedagemQuartos.setHospede(Hospede);
-				
+
 				Lista.add(HospedagemQuartos);
 			}
 
@@ -202,7 +197,36 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 	@Override
 	public HospedagemQuartos BuscarHospedagemQuartosPorNumero(int Num) {
 		// TODO Auto-generated method stub
-		return null;
+		HospedagemQuartos HospQuar = null;
+		String SQL = "Select * from HospedagensQuartos where IdQuarto = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			ps.setInt(1, Num);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				HospQuar = new HospedagemQuartos();
+
+				HospQuar.setIdHospedagemQuarto(rs.getInt("IdHospedagemQuarto"));
+
+				HospQuar.setHospede(null);
+				HospQuar.setHospedagem(null);
+				HospQuar.setQuarto(null);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return HospQuar;
 	}
 
 }

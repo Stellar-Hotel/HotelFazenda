@@ -186,9 +186,39 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	}
 
 	@Override
-	public Funcionarios BuscarFuncionarioPorNome(String Nome) {
+	public Funcionarios BuscarFuncionarioPorId(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		Funcionarios Func=null;
+		String SQL="Select * from Funcionarios where IdFuncionario=?";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setInt(1, Id);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Func=new Funcionarios();
+				
+				Func.setFuncao(rs.getString("Funcao"));
+				Func.setIdFuncionario(Id);
+				Func.setNome(rs.getString("Nome"));
+				Func.setSalario(rs.getFloat("Salario"));
+				Func.setSobrenome(rs.getString("Sobrenome"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Func;
 	}
 	
 

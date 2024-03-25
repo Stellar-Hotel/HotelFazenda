@@ -228,8 +228,43 @@ public class HospedeDAO implements IHospedeDAO {
 	}
 
 	@Override
-	public Hospedes buscarHospedePorCep(int cep) {
+	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
-		return null;
+		Hospedes Hosp=null;
+		String SQL="Select * from Hospedes where CPF = ?";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setString(1, CPF);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Hosp=new Hospedes();
+				
+				Hosp.setCPF(CPF);
+				Hosp.setDataNasc(rs.getDate("DataNasc"));
+				Hosp.setEmail(rs.getString("Email"));
+				Hosp.setIdHospede(rs.getInt("IdHospede"));
+				Hosp.setNacionalidade(rs.getString("Nacionalidade"));
+				Hosp.setNome(rs.getString("Nome"));
+				Hosp.setPronome(rs.getString("Pronome"));
+				Hosp.setSobrenome(rs.getString("Sobrenome"));
+				
+				Hosp.setUsuario(null);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Hosp;
 	}
 }

@@ -43,26 +43,21 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 		try {
 
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-			
 
 			ps.setInt(1, end.getHospede().getIdHospede());
 			ps.setInt(2, end.getServico().getIdServico());
 			ps.setInt(3, end.getHospedagem().getIdHospedagem());
 
-			int result=ps.executeUpdate();
-			if(result==0)
-			{
+			int result = ps.executeUpdate();
+			if (result == 0) {
 				throw new SQLException("Não foi possível inserir no banco!");
-			}
-			else
-			{
-				ResultSet Rs=ps.getGeneratedKeys();
-				if(Rs.next())
-				{
-					chavePrimariaGerada=Rs.getInt(1);
+			} else {
+				ResultSet Rs = ps.getGeneratedKeys();
+				if (Rs.next()) {
+					chavePrimariaGerada = Rs.getInt(1);
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -162,7 +157,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 			Ps.setInt(1, end.getHospede().getIdHospede());
 			Ps.setInt(2, end.getServico().getIdServico());
 			Ps.setInt(3, end.getHospedagem().getIdHospedagem());
-			
+
 			Ps.setInt(4, end.getIdServicoConsumido());
 
 			retorno = (Ps.executeUpdate() == 0 ? false : true);
@@ -201,8 +196,35 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	}
 
 	@Override
-	public ServicosConsumidos buscarServicoConsumidoPorNome(int nome) {
+	public ServicosConsumidos buscarServicoConsumidoPorId(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		ServicosConsumidos ServCon = null;
+		String sql = "Select * from ServicosConsumidos where IdServicoConsumido = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(sql);
+
+			ps.setInt(1, Id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				ServCon = new ServicosConsumidos();
+
+				ServCon.setIdServicoConsumido(Id);
+				ServCon.setHospedagens(null);
+				ServCon.setHospede(null);
+				ServCon.setServico(null);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return ServCon;
 	}
 }
