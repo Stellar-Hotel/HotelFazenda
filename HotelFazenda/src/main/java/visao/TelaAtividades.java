@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import modelo.Atividades;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -17,7 +20,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaAtividades extends JFrame {
 
@@ -25,6 +32,7 @@ public class TelaAtividades extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
+	private ArrayList<Atividades> ListaAtividades;
 
 	/**
 	 * Launch the application.
@@ -48,6 +56,8 @@ public class TelaAtividades extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAtividades() {
+		ListaAtividades = new ArrayList<Atividades>();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -155,12 +165,13 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[172px][30.00px][:524.00px:524.00px][121px]", "[][:50px:50px][][][][:50px:50px]"));
-		
+		Principal.setLayout(
+				new MigLayout("", "[172px,grow][30.00px][524.00px,grow][121px]", "[][:-1.00px:50px][][][][][]"));
+
 		JLabel lblNewLabel_1 = new JLabel("Atividades");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		Principal.add(lblNewLabel_1, "cell 0 0,alignx left,aligny top");
-		
+
 		JButton btnNewButton = new JButton("Inscrever-se\r\n");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,10 +180,35 @@ public class TelaAtividades extends JFrame {
 		btnNewButton.setBackground(new Color(117, 187, 68));
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		Principal.add(btnNewButton, "cell 3 0,alignx right,aligny top");
+
+		JScrollPane spTable = new JScrollPane();
+		Principal.add(spTable, "cell 0 5 4 2,grow");
 		
 		table = new JTable();
-		table.setEnabled(false);
-		Principal.add(table, "cell 0 3 4 3,grow");
+		spTable.setViewportView(table);
+		
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
+				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
+		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				spTable.setVisible(true);
+				table.setVisible(true);
+			}
+		});
+		Principal.add(lblNewLabel_7, "cell 0 2");
+
+
+		JLabel lblNewLabel_9 = new JLabel("Inscritos");
+		lblNewLabel_9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				spTable.setVisible(false);
+				table.setVisible(false);
+			}
+		});
+		Principal.add(lblNewLabel_9, "cell 1 2");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -201,4 +237,19 @@ public class TelaAtividades extends JFrame {
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
 	}
+	// protected void atualizarJTable() {
+	// DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new
+	// String[] { "IdAtividade", "IdadeMinima", "Horario", "HorarioFim",
+	// "NomeAtividade", "Data","IDFuncionario"});
+
+	// EnderecoDAO endDAO = EnderecoDAO.getInstancia();
+	// listaEnderecos = endDAO.listarEnderecos();
+
+	// for (int i = 0; i < listaEnderecos.size(); i++) {
+	// Endereco p = listaEnderecos.get(i);
+	// modelo.addRow(new Object[] { p.getCep(), p.getRua() });
+	// }
+
+	// table.setModel(modelo);
+	// }
 }
