@@ -14,6 +14,6 @@ public interface IServicosDAO {
 
 	public boolean removerServico(Servicos end);
 
-	public Servicos buscarServicoPorNome(int nome);
+	public Servicos buscarServicoPorNome(String nome);
 
 }

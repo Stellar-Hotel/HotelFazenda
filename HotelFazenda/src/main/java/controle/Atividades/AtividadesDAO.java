@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Atividades;
-import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
 
 public class AtividadesDAO implements IAtividadesDAO
@@ -144,9 +143,41 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public Atividades BuscarAtividadesPorLocal(String Local) {
+	public Atividades BuscarAtividadePeloNome(String Local) {
 		// TODO Auto-generated method stub
-		return null;
+		Atividades Ativ=null;
+		String SQL="SELECT * FROM Atividades Where Local=?";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			ps.setString(1, Local);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Ativ=new Atividades();
+				
+				Ativ.setData(rs.getDate("Data"));
+				Ativ.setHorario(rs.getString("Horario"));
+				Ativ.setHorarioFim(rs.getString("IdadeMinima"));
+				Ativ.setIdadeMinima(rs.getInt("IdadeMinima"));
+				Ativ.setIdAtividade(rs.getInt("IdAtividade"));
+				Ativ.setNomeAtividade(rs.getString("NomeAtividade"));
+				//Perguntar como faz isso aqui
+				Ativ.setFuncionario(null);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		
+		return Ativ;
 	}
 
 	@Override
@@ -177,9 +208,16 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * se for um insert sem gerar chave primária automaticamente não usar a parte de
 			 * baixo
 			 */
-			ResultSet Rs = Ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result = Ps.executeUpdate();
+			if (result == 0) {
+				throw new SQLException("Não foi possível inserir a atividade!");
+			}
+			else {
+				ResultSet rs= Ps.getGeneratedKeys();
+				if(rs.next())
+				{
+					ChavePrimariaGerada=rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {

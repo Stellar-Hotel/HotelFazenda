@@ -14,6 +14,6 @@ public interface IHospedeDAO {
 
 	public boolean removerHospede(Hospedes end);
 
-	public Hospedes buscarHospedePorCep(int cep);
+	public Hospedes buscarHospedePorCPF(String CPF);
 
 }
