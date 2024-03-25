@@ -5,14 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.Servicos.ServicosDAO;
+import controle.ServicosConsumidos.ServicosConsumidosDAO;
+import modelo.Servicos;
+import modelo.ServicosConsumidos;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaServicos extends JFrame {
 
@@ -170,6 +178,7 @@ public class TelaServicos extends JFrame {
 		Principal.add(panel_5, "cell 3 1,growx,aligny center");
 
 		JLabel lblNewLabel_7 = new JLabel("Carrinho");
+	
 		panel_5.add(lblNewLabel_7);
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 24));
@@ -208,8 +217,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:40,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
-		panel_8_2.add(chckbxNewCheckBox_1, "cell 0 0,alignx center");
+		JCheckBox checkAlmoco = new JCheckBox("");
+		panel_8_2.add(checkAlmoco, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_21 = new JLabel("Almoço");
 		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -232,9 +241,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_25.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_2.add(lblNewLabel_25, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_26 = new JLabel("0");
-		lblNewLabel_26.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_2.add(lblNewLabel_26, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantAlmoco = new JLabel("0");
+		lblQuantAlmoco.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_2.add(lblQuantAlmoco, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_27 = new JLabel("");
 		lblNewLabel_27.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -247,16 +256,16 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:50][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_8 = new JCheckBox("");
-		panel_8_8.add(chckbxNewCheckBox_8, "cell 0 0,alignx center");
+		JCheckBox checkMassagem = new JCheckBox("");
+		panel_8_8.add(checkMassagem, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_70 = new JLabel("Massagem");
 		lblNewLabel_70.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		panel_8_8.add(lblNewLabel_70, "cell 1 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_71 = new JLabel("R$ 80,00");
-		lblNewLabel_71.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_8.add(lblNewLabel_71, "cell 3 0,alignx left,aligny center");
+		JLabel lblPrecoMassagem = new JLabel("R$ 80,00");
+		lblPrecoMassagem.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_8.add(lblPrecoMassagem, "cell 3 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_72 = new JLabel("Lazer");
 		lblNewLabel_72.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -271,9 +280,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_74.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_8.add(lblNewLabel_74, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_75 = new JLabel("0");
-		lblNewLabel_75.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_8.add(lblNewLabel_75, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantMassagem = new JLabel("0");
+		lblQuantMassagem.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_8.add(lblQuantMassagem, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_76 = new JLabel("");
 		lblNewLabel_76.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -286,8 +295,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		panel_8_1.add(chckbxNewCheckBox, "cell 0 0,alignx center");
+		JCheckBox checkFrigobar = new JCheckBox("");
+		panel_8_1.add(checkFrigobar, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_14 = new JLabel("Frigobar");
 		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -310,16 +319,16 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_18.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_1.add(lblNewLabel_18, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_19 = new JLabel("0");
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_1.add(lblNewLabel_19, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantFrigobar = new JLabel("0");
+		lblQuantFrigobar.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_1.add(lblQuantFrigobar, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_20 = new JLabel("");
 		lblNewLabel_20.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_20.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_1.add(lblNewLabel_20, "cell 9 0,alignx left,aligny center");
 		lblNewLabel_18.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblQuantFrigobar.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_20.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 
@@ -329,8 +338,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("");
-		panel_8_4.add(chckbxNewCheckBox_4, "cell 0 0,alignx center");
+		JCheckBox checkSauna = new JCheckBox("");
+		panel_8_4.add(checkSauna, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_38 = new JLabel("Sauna");
 		lblNewLabel_38.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -353,9 +362,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_42.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_4.add(lblNewLabel_42, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_43 = new JLabel("0");
-		lblNewLabel_43.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_4.add(lblNewLabel_43, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantSauna = new JLabel("0");
+		lblQuantSauna.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_4.add(lblQuantSauna, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_44 = new JLabel("");
 		lblNewLabel_44.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -368,8 +377,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("");
-		panel_8_3.add(chckbxNewCheckBox_3, "cell 0 0,alignx center");
+		JCheckBox checkShow = new JCheckBox("");
+		panel_8_3.add(checkShow, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_30 = new JLabel("Show");
 		lblNewLabel_30.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -392,9 +401,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_34.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_3.add(lblNewLabel_34, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_35 = new JLabel("0");
-		lblNewLabel_35.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_3.add(lblNewLabel_35, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantShow = new JLabel("0");
+		lblQuantShow.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_3.add(lblQuantShow, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_36 = new JLabel("");
 		lblNewLabel_36.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -407,8 +416,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("");
-		panel_8_7.add(chckbxNewCheckBox_7, "cell 0 0,alignx center");
+		JCheckBox CheckAluguel = new JCheckBox("");
+		panel_8_7.add(CheckAluguel, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_62 = new JLabel("Aluguel de bicicletas");
 		lblNewLabel_62.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -431,9 +440,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_66.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_7.add(lblNewLabel_66, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_67 = new JLabel("0");
-		lblNewLabel_67.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_7.add(lblNewLabel_67, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantAluguel = new JLabel("0");
+		lblQuantAluguel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_7.add(lblQuantAluguel, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_68 = new JLabel("");
 		lblNewLabel_68.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -446,8 +455,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_9 = new JCheckBox("");
-		panel_8_9.add(chckbxNewCheckBox_9, "cell 0 0,alignx center");
+		JCheckBox checkPasseio = new JCheckBox("");
+		panel_8_9.add(checkPasseio, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_78 = new JLabel("Passeio Turistico");
 		lblNewLabel_78.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -470,9 +479,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_82.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_9.add(lblNewLabel_82, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_83 = new JLabel("0");
-		lblNewLabel_83.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_9.add(lblNewLabel_83, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantPasseio = new JLabel("0");
+		lblQuantPasseio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_9.add(lblQuantPasseio, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_84 = new JLabel("");
 		lblNewLabel_84.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -485,8 +494,8 @@ public class TelaServicos extends JFrame {
 				"[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][30:n][186.00,grow,left]",
 				"[14px]"));
 
-		JCheckBox chckbxNewCheckBox_10 = new JCheckBox("");
-		panel_8_10.add(chckbxNewCheckBox_10, "cell 0 0,alignx center");
+		JCheckBox checkTirolesa = new JCheckBox("");
+		panel_8_10.add(checkTirolesa, "cell 0 0,alignx center");
 
 		JLabel lblNewLabel_86 = new JLabel("Tirolesa");
 		lblNewLabel_86.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -509,9 +518,9 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_90.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_10.add(lblNewLabel_90, "flowx,cell 9 0,alignx left,aligny center");
 
-		JLabel lblNewLabel_91 = new JLabel("0");
-		lblNewLabel_91.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		panel_8_10.add(lblNewLabel_91, "cell 9 0,alignx left,aligny center");
+		JLabel lblQuantTirolesa = new JLabel("0");
+		lblQuantTirolesa.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_8_10.add(lblQuantTirolesa, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_92 = new JLabel("");
 		lblNewLabel_92.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -544,5 +553,36 @@ public class TelaServicos extends JFrame {
 		JLabel lblTwitter = new JLabel("");
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/twitter.jpg")));
+		
+		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//double total=0.00;
+				
+				//uma forma de inserir o servico em servicos consumidos para puxar dps no carrinho 
+				if(checkAlmoco.isSelected()) { 
+				//	Integer Quantidade = Integer.parseInt(lblQuantMassagem.getText());
+					//Double Preco = Double.parseDouble(lblPrecoMassagem.getText());
+					//total+= Quantidade*Preco;	
+					ServicosConsumidos serv = new ServicosConsumidos();
+					ServicosConsumidosDAO dao = new ServicosConsumidosDAO();
+					serv.getHospede().setIdHospede(1);
+					serv.getHospedagem().setIdHospedagem(2);
+					serv.getServico().setIdServico(3);
+					
+					int valid = dao.inserirServicoConsumido(serv);
+					if(valid == 0) {
+						JOptionPane.showInternalMessageDialog(null, "Itens Inseridos!");
+						
+					}else {
+						JOptionPane.showInternalMessageDialog(null, "Erro!");
+					}
+					
+					
+					
+				}
+				
+			}
+		});
 	}
 }
