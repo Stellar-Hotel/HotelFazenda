@@ -246,6 +246,12 @@ public class TelaServicos extends JFrame {
 		panel_8_2.add(lblQuantAlmoco, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_27 = new JLabel("");
+		lblNewLabel_27.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantAlmoco);
+			}
+		});
 		lblNewLabel_27.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_27.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_2.add(lblNewLabel_27, "cell 9 0,alignx left,aligny center");
@@ -285,6 +291,7 @@ public class TelaServicos extends JFrame {
 		panel_8_8.add(lblQuantMassagem, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_76 = new JLabel("");
+	
 		lblNewLabel_76.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_76.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_8.add(lblNewLabel_76, "cell 9 0,alignx left,aligny center");
@@ -324,6 +331,12 @@ public class TelaServicos extends JFrame {
 		panel_8_1.add(lblQuantFrigobar, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_20 = new JLabel("");
+		lblNewLabel_20.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantFrigobar);
+			}
+		});
 		lblNewLabel_20.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_20.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_1.add(lblNewLabel_20, "cell 9 0,alignx left,aligny center");
@@ -367,6 +380,12 @@ public class TelaServicos extends JFrame {
 		panel_8_4.add(lblQuantSauna, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_44 = new JLabel("");
+		lblNewLabel_44.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantSauna);
+			}
+		});
 		lblNewLabel_44.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_44.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_4.add(lblNewLabel_44, "cell 9 0,alignx left,aligny center");
@@ -406,6 +425,12 @@ public class TelaServicos extends JFrame {
 		panel_8_3.add(lblQuantShow, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_36 = new JLabel("");
+		lblNewLabel_36.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantShow);
+			}
+		});
 		lblNewLabel_36.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_36.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_3.add(lblNewLabel_36, "cell 9 0,alignx left,aligny center");
@@ -445,6 +470,12 @@ public class TelaServicos extends JFrame {
 		panel_8_7.add(lblQuantAluguel, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_68 = new JLabel("");
+		lblNewLabel_68.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantAluguel);
+			}
+		});
 		lblNewLabel_68.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_68.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_7.add(lblNewLabel_68, "cell 9 0,alignx left,aligny center");
@@ -484,6 +515,12 @@ public class TelaServicos extends JFrame {
 		panel_8_9.add(lblQuantPasseio, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_84 = new JLabel("");
+		lblNewLabel_84.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantPasseio);
+			}
+		});
 		lblNewLabel_84.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_84.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_9.add(lblNewLabel_84, "cell 9 0,alignx left,aligny center");
@@ -523,6 +560,12 @@ public class TelaServicos extends JFrame {
 		panel_8_10.add(lblQuantTirolesa, "cell 9 0,alignx left,aligny center");
 
 		JLabel lblNewLabel_92 = new JLabel("");
+		lblNewLabel_92.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adicionarQuant(lblQuantTirolesa);
+			}
+		});
 		lblNewLabel_92.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_92.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_10.add(lblNewLabel_92, "cell 9 0,alignx left,aligny center");
@@ -554,11 +597,20 @@ public class TelaServicos extends JFrame {
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/twitter.jpg")));
 		
+		lblNewLabel_76.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			adicionarQuant(lblQuantMassagem);
+			}
+		});
+		
+		
+		
 		lblNewLabel_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//double total=0.00;
-				
+				/*
 				//uma forma de inserir o servico em servicos consumidos para puxar dps no carrinho 
 				if(checkAlmoco.isSelected()) { 
 				//	Integer Quantidade = Integer.parseInt(lblQuantMassagem.getText());
@@ -580,9 +632,14 @@ public class TelaServicos extends JFrame {
 					
 					
 					
-				}
+				}*/
 				
 			}
 		});
+	}
+	public void adicionarQuant(JLabel label) {
+	    String texto = label.getText();
+	    int valor = Integer.parseInt(texto);
+	    label.setText(String.valueOf(valor + 1));
 	}
 }
