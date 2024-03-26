@@ -177,7 +177,7 @@ public class TelaServicos extends JFrame {
 		panel_5.setBackground(new Color(117, 187, 68));
 		Principal.add(panel_5, "cell 3 1,growx,aligny center");
 
-		JLabel lblNewLabel_7 = new JLabel("Carrinho");
+		JLabel lblNewLabel_7 = new JLabel("");
 	
 		panel_5.add(lblNewLabel_7);
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));
@@ -259,9 +259,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_8 = new JPanel();
 		Principal.add(panel_8_8, "cell 1 5 4 1,grow");
-		panel_8_8.setLayout(new MigLayout("",
-				"[30:30:30,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:50][110:24,grow,fill][30:n][186.00,grow,left]",
-				"[14px]"));
+		panel_8_8.setLayout(new MigLayout("", "[30:30:30,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:50][110:24,grow,fill][30:n][90.00,left][grow][fill]", "[14px,grow]"));
 
 		JCheckBox checkMassagem = new JCheckBox("");
 		panel_8_8.add(checkMassagem, "cell 0 0,alignx center");
@@ -297,6 +295,16 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_76.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_76.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Add_square_light.png")));
 		panel_8_8.add(lblNewLabel_76, "cell 9 0,alignx left,aligny center");
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(117, 187, 68));
+		panel_8_8.add(panel_6, "cell 11 0,alignx center,aligny center");
+		panel_6.setLayout(new MigLayout("", "[59px]", "[20px]"));
+		
+		JLabel lblNewLabel_19 = new JLabel("Adicionar");
+		lblNewLabel_19.setForeground(new Color(255, 255, 255));
+		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		panel_6.add(lblNewLabel_19, "cell 0 0,alignx center,aligny center");
 
 		JPanel panel_8_1 = new JPanel();
 		Principal.add(panel_8_1, "cell 1 7 4 1,grow");
