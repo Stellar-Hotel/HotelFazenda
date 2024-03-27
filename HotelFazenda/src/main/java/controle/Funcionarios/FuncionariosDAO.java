@@ -225,7 +225,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
 		ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
-		String SQL="Select * from Funcionarios where Nome=?";
+		String SQL="Select * from Funcionarios where Nome=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -238,13 +238,20 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			
 			if(rs.next())
 			{
+				Usuarios Usu=new Usuarios();
 				Func=new Funcionarios();
+				
+				Usu.setIdUsuario(rs.getInt("idUsuario"));
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+//				Usu.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				
 				Func.setFuncao(rs.getString("Funcao"));
 				Func.setIdFuncionario(rs.getInt("IdFuncionario"));
 				Func.setNome(Nome);
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
 				
 				Lista.add(Func);
 			}
