@@ -221,6 +221,43 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		return Func;
 	}
 	
+	public ArrayList<Funcionarios> BuscarFuncionarioPorNome(String Nome) {
+		// TODO Auto-generated method stub
+		Funcionarios Func=null;
+		ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
+		String SQL="Select * from Funcionarios where Nome=?";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setString(1, Nome);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Func=new Funcionarios();
+				
+				Func.setFuncao(rs.getString("Funcao"));
+				Func.setIdFuncionario(rs.getInt("IdFuncionario"));
+				Func.setNome(Nome);
+				Func.setSalario(rs.getFloat("Salario"));
+				Func.setSobrenome(rs.getString("Sobrenome"));
+				
+				Lista.add(Func);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Lista;
+	}
+	
 
 	
 }
