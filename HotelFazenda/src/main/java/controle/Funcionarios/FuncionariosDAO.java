@@ -189,7 +189,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public Funcionarios BuscarFuncionarioPorId(int Id) {
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
-		String SQL="Select * from Funcionarios where IdFuncionario=?";
+		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -203,12 +203,19 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			if(rs.next())
 			{
 				Func=new Funcionarios();
+				Usuarios Usu=new Usuarios();
+				
+				Usu.setIdUsuario(rs.getInt("IdUsuario"));	
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+				
 				
 				Func.setFuncao(rs.getString("Funcao"));
 				Func.setIdFuncionario(Id);
 				Func.setNome(rs.getString("Nome"));
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
 				
 			}
 		} catch (SQLException e) {

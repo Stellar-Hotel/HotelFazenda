@@ -29,6 +29,8 @@ import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 
@@ -88,6 +90,14 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_2_1_1, "cell 0 1");
 
 		JLabel lblNewLabel_4_1 = new JLabel("Inscrever-se");
+		lblNewLabel_4_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeCadastro tela=new TelaDeCadastro();
+				tela.setVisible(true);
+				dispose();
+				}
+		});
 		lblNewLabel_4_1.setForeground(new Color(117, 187, 68));
 		panel.add(lblNewLabel_4_1, "cell 7 1,alignx left,aligny top");
 
