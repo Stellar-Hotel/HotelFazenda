@@ -22,6 +22,7 @@ import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
 
 public class TelaServicos extends JFrame {
 
@@ -159,7 +160,7 @@ public class TelaServicos extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,growx,aligny center");
-		Principal.setLayout(new MigLayout("", "[17.00][165.00][461.00,grow][155.00][][]", "[30:30:30,top][63.00][14.00][56.00][center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][]"));
+		Principal.setLayout(new MigLayout("", "[17.00][165.00][461.00,grow][186.00,center][][]", "[30:30:30,top][63.00,center][14.00][56.00][center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][50,grow,center][]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Serviços");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 36));
@@ -180,11 +181,11 @@ public class TelaServicos extends JFrame {
 		JLabel lblNewLabel_19 = new JLabel("Ir para o Carrinho");
 		panel_5.add(lblNewLabel_19);
 		lblNewLabel_19.setForeground(new Color(255, 255, 255));
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
 		JPanel panel_8 = new JPanel();
 		Principal.add(panel_8, "cell 1 4 4 1,growx,aligny center");
-		panel_8.setLayout(new MigLayout("", "[80:40:40,grow][27px,grow,fill][27px,grow][20px,grow,fill][24px,grow,fill][56px,grow,fill]", "[14px]"));
+		panel_8.setLayout(new MigLayout("", "[10:20,grow,left][27px,grow,fill][27px,grow][20px,grow,fill][24px,grow,fill][25,grow,fill]", "[14px]"));
 
 		JLabel lblNewLabel_9 = new JLabel("Nome");
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 16));
@@ -249,7 +250,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_8 = new JPanel();
 		Principal.add(panel_8_8, "cell 1 5 4 1,grow");
-		panel_8_8.setLayout(new MigLayout("", "[50:n,grow,fill][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:50][110:24,grow,fill][50:n][128.00,grow,left]", "[14px,grow]"));
+		panel_8_8.setLayout(new MigLayout("", "[50:n,grow,left][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186,grow,left]", "[14px,grow]"));
 
 		JLabel lblNewLabel_70 = new JLabel("Massagem");
 		lblNewLabel_70.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -287,7 +288,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_1 = new JPanel();
 		Principal.add(panel_8_1, "cell 1 7 4 1,grow");
-		panel_8_1.setLayout(new MigLayout("", "[30:30:30,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_1.setLayout(new MigLayout("", "[50:n,grow][100px:27,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_14 = new JLabel("Frigobar");
 		lblNewLabel_14.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -332,7 +333,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_4 = new JPanel();
 		Principal.add(panel_8_4, "cell 1 8 4 1,grow");
-		panel_8_4.setLayout(new MigLayout("", "[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_4.setLayout(new MigLayout("", "[50:n,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_38 = new JLabel("Sauna");
 		lblNewLabel_38.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -373,7 +374,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_3 = new JPanel();
 		Principal.add(panel_8_3, "cell 1 9 4 1,grow");
-		panel_8_3.setLayout(new MigLayout("", "[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_3.setLayout(new MigLayout("", "[50:n,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_30 = new JLabel("Show");
 		lblNewLabel_30.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -414,7 +415,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_7 = new JPanel();
 		Principal.add(panel_8_7, "cell 1 10 4 1,grow");
-		panel_8_7.setLayout(new MigLayout("", "[30:30:30,grow][100:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_7.setLayout(new MigLayout("", "[50:n,grow][100:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_62 = new JLabel("Aluguel de bicicletas");
 		lblNewLabel_62.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -455,7 +456,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_9 = new JPanel();
 		Principal.add(panel_8_9, "cell 1 11 4 1,grow");
-		panel_8_9.setLayout(new MigLayout("", "[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_9.setLayout(new MigLayout("", "[50:n,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_78 = new JLabel("Passeio Turistico");
 		lblNewLabel_78.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -496,7 +497,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8_10 = new JPanel();
 		Principal.add(panel_8_10, "cell 1 12 4 1,grow");
-		panel_8_10.setLayout(new MigLayout("", "[30:30:30,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
+		panel_8_10.setLayout(new MigLayout("", "[50:n,grow][100px:30,grow,fill][40:10][60:27,grow][80:40][70:20,grow,fill][50:n][110:24,grow,fill][50:n][186.00,grow,left]", "[14px]"));
 
 		JLabel lblNewLabel_86 = new JLabel("Tirolesa");
 		lblNewLabel_86.setFont(new Font("Dialog", Font.PLAIN, 16));
