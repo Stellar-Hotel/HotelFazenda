@@ -59,8 +59,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[65px,grow][4px][405px][][93px][28px,grow][33px][115px,grow][97px]",
-				"[14px][94px][20px][27px][20px][:20px:30px,grow][20px,grow][grow][23px][][][grow][]"));
+		contentPane.setLayout(new MigLayout("", "[65px,grow][4px][302.00px][80.00][][90.00][19.00][93px][28px,grow][33px][115px,grow][97px]", "[14px][94px][20px][27px][20px][:20px:30px,grow][20px,grow][grow][23px][][][grow][]"));
 
 		JLabel lblNewLabel = new JLabel("Bem-Vindo ao");
 		contentPane.add(lblNewLabel, "flowx,cell 0 0");
@@ -75,7 +74,7 @@ public class TelaDeCadastro extends JFrame {
 
 			}
 		});
-		contentPane.add(lblNewLabel_7, "cell 8 0");
+		contentPane.add(lblNewLabel_7, "cell 11 0");
 
 		JLabel lblNewLabel_8 = new JLabel("Entrar");
 		lblNewLabel_8.addMouseListener(new MouseAdapter() {
@@ -87,7 +86,7 @@ public class TelaDeCadastro extends JFrame {
 			}
 		});
 		lblNewLabel_8.setForeground(new Color(117, 187, 68));
-		contentPane.add(lblNewLabel_8, "cell 8 1,alignx center,aligny top");
+		contentPane.add(lblNewLabel_8, "cell 11 1,alignx center,aligny top");
 
 		JLabel lblNewLabel_1 = new JLabel("Inscrever-se");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 55));
@@ -103,23 +102,23 @@ public class TelaDeCadastro extends JFrame {
 			public void focusLost(FocusEvent e) {
 			}
 		});
-		contentPane.add(textUser, "cell 0 5 9 1,growx");
+		contentPane.add(textUser, "cell 0 5 12 1,growx");
 		textUser.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Digite seu nome");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_3, "cell 0 6,growx,aligny bottom");
-
-		JLabel lblNewLabel_4 = new JLabel("Telefone");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(lblNewLabel_4, "cell 4 6,aligny bottom");
+		
+				JLabel lblNewLabel_4 = new JLabel("Telefone");
+				lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				contentPane.add(lblNewLabel_4, "cell 5 6,aligny bottom");
 
 		textNome = new JTextField();
-		contentPane.add(textNome, "cell 0 7 3 1,growx,aligny top");
+		contentPane.add(textNome, "cell 0 7 4 1,growx,aligny top");
 		textNome.setColumns(10);
 
 		textTelefone = new JTextField();
-		contentPane.add(textTelefone, "cell 4 7 5 1,growx,aligny top");
+		contentPane.add(textTelefone, "cell 5 7 7 1,growx,aligny top");
 		textTelefone.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Digite sua senha");
@@ -127,42 +126,42 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel_5, "cell 0 8,growx,aligny top");
 
 		textSenha = new JTextField();
-		contentPane.add(textSenha, "cell 0 9 9 1,growx,aligny top");
+		contentPane.add(textSenha, "cell 0 9 12 1,growx,aligny top");
 		textSenha.setColumns(10);
 
 		JLabel lblNewLabel_6 = new JLabel("Hotel Fazenda");
 		lblNewLabel_6.setForeground(new Color(117, 187, 68));
 		contentPane.add(lblNewLabel_6, "cell 0 0");
+								
+										JButton btnCadastrar = new JButton("Cadastrar");
+										btnCadastrar.setBackground(new Color(117, 187, 68));
+										btnCadastrar.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+												String Senha = textSenha.getText();
+												String Login = textUser.getText();
 
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBackground(new Color(117, 187, 68));
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String Senha = textSenha.getText();
-				String Login = textUser.getText();
+												if ((Senha.isEmpty() || (Login.isEmpty()))) {
+													JOptionPane.showMessageDialog(null, "Usuário ou senha não inserido");
+													// chama tela de login
+												} else {
+													Usuarios User = new Usuarios();
+													UsuariosDAO DAO = UsuariosDAO.getInstancia();
+													User.setSenha(Senha);
 
-				if ((Senha.isEmpty() || (Login.isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "Usuário ou senha não inserido");
-					// chama tela de login
-				} else {
-					Usuarios User = new Usuarios();
-					UsuariosDAO DAO = UsuariosDAO.getInstancia();
-					User.setSenha(Senha);
+													User.setLogin(Login);
 
-					User.setLogin(Login);
+													int id = DAO.inserirUsuario(User);
 
-					int id = DAO.inserirUsuario(User);
+													if (id > 0) {
+														JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+														Login tela = new Login();
+														tela.setVisible(true);
+														dispose();
 
-					if (id > 0) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-						Login tela = new Login();
-						tela.setVisible(true);
-						dispose();
-
-					}
-				}
-			}
-		});
-		contentPane.add(btnCadastrar, "cell 3 11");
+													}
+												}
+											}
+										});
+										contentPane.add(btnCadastrar, "cell 4 11,alignx center");
 	}
 }
