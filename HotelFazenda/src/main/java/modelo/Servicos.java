@@ -1,7 +1,7 @@
 package modelo;
 
 public class Servicos {
-	private int IdServico;
+	private int IdServico,Quantidade;
 	private Float PrecoServico;
 	private String NomeServico;
 
@@ -27,6 +27,14 @@ public class Servicos {
 
 	public void setNomeServico(String nomeServico) {
 		NomeServico = nomeServico;
+	}
+
+	public int getQuantidade() {
+		return Quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		Quantidade = quantidade;
 	}
 
 }
