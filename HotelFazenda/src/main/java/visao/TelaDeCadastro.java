@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controle.Arredondar.RoundedBorder;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
@@ -59,7 +60,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[65px,grow][4px][302.00px][80.00][][90.00][19.00][93px][28px,grow][33px][115px,grow][97px]", "[14px][94px][20px][27px][20px][:20px:30px,grow][20px,grow][grow][23px][][][grow][]"));
+		contentPane.setLayout(new MigLayout("", "[65px,grow][4px][302.00px][96.00][69.00][100.00][19.00][93px][28px,grow][33px][115px,grow][97px]", "[14px][94px][20px][27px][20px][:20px:30px,grow][20px,grow][grow][23px][][][grow][]"));
 
 		JLabel lblNewLabel = new JLabel("Bem-Vindo ao");
 		contentPane.add(lblNewLabel, "flowx,cell 0 0");
@@ -97,6 +98,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel_2, "cell 0 4,growx,aligny top");
 
 		textUser = new JTextField();
+		textUser.setBorder(new RoundedBorder(Color.black, 10));
 		textUser.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -114,10 +116,12 @@ public class TelaDeCadastro extends JFrame {
 				contentPane.add(lblNewLabel_4, "cell 5 6,aligny bottom");
 
 		textNome = new JTextField();
+		textNome.setBorder(new RoundedBorder(Color.black, 10));
 		contentPane.add(textNome, "cell 0 7 4 1,growx,aligny top");
 		textNome.setColumns(10);
 
 		textTelefone = new JTextField();
+		textTelefone.setBorder(new RoundedBorder(Color.black, 10));
 		contentPane.add(textTelefone, "cell 5 7 7 1,growx,aligny top");
 		textTelefone.setColumns(10);
 
@@ -126,6 +130,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel_5, "cell 0 8,growx,aligny top");
 
 		textSenha = new JTextField();
+		textSenha.setBorder(new RoundedBorder(Color.black, 10));
 		contentPane.add(textSenha, "cell 0 9 12 1,growx,aligny top");
 		textSenha.setColumns(10);
 
@@ -134,6 +139,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(lblNewLabel_6, "cell 0 0");
 								
 										JButton btnCadastrar = new JButton("Cadastrar");
+										btnCadastrar.setBorder(new RoundedBorder(Color.black, 10));
 										btnCadastrar.setBackground(new Color(117, 187, 68));
 										btnCadastrar.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent e) {
