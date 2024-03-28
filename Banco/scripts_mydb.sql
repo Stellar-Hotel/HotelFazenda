@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
   `Nome` VARCHAR(45) NOT NULL,
   `Sobrenome` VARCHAR(45) NOT NULL,
   `DataNasc` DATE NOT NULL,
-  `CPF` VARCHAR(45) NOT NULL,
+  `CPF` VARCHAR(45) NULL,
   `Nacionalidade` VARCHAR(45) NOT NULL,
   `Pronome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS  `Servicos` (
   `IdServico` INT NOT NULL AUTO_INCREMENT,
   `PrecoServico` FLOAT NOT NULL,
   `NomeServico` VARCHAR(45) NOT NULL,
+  `Quantidade` INT NOT NULL,
   PRIMARY KEY (`IdServico`))
 ;
 
