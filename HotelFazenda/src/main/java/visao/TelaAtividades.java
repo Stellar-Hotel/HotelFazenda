@@ -1,30 +1,27 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Atividades;
 import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class TelaAtividades extends JFrame {
 
@@ -32,6 +29,7 @@ public class TelaAtividades extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
+	private JTable table2;
 	private ArrayList<Atividades> ListaAtividades;
 
 	/**
@@ -165,8 +163,8 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(
-				new MigLayout("", "[172px,grow][30.00px][524.00px,grow][121px]", "[][:-1.00px:50px][][][][][]"));
+		Principal.setLayout(new MigLayout("", "[172px,grow][30.00px][524.00px,grow][121px]",
+				"[][:29.00px:50px][][42.00][:20.00px:10px,grow][29.00][][]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Atividades");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
@@ -182,13 +180,17 @@ public class TelaAtividades extends JFrame {
 		Principal.add(btnNewButton, "cell 3 0,alignx right,aligny top");
 
 		JScrollPane spTable = new JScrollPane();
-		Principal.add(spTable, "cell 0 5 4 2,grow");
+		Principal.add(spTable, "cell 0 6 4 2,grow");
 		
+		JScrollPane spTable2 = new JScrollPane();
+
+
 		table = new JTable();
 		spTable.setViewportView(table);
-		
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+
+		table2 = new JTable();
+		spTable.setViewportView(table2); // adiciona no outro scrollpane
+
 		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
 		lblNewLabel_7.addMouseListener(new MouseAdapter() {
 			@Override
@@ -197,8 +199,8 @@ public class TelaAtividades extends JFrame {
 				table.setVisible(true);
 			}
 		});
-		Principal.add(lblNewLabel_7, "cell 0 2");
 
+		Principal.add(lblNewLabel_7, "cell 0 1");
 
 		JLabel lblNewLabel_9 = new JLabel("Inscritos");
 		lblNewLabel_9.addMouseListener(new MouseAdapter() {
@@ -206,9 +208,17 @@ public class TelaAtividades extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				spTable.setVisible(false);
 				table.setVisible(false);
+				
+				spTable.setVisible(true);
+				table2.setVisible(true);
 			}
 		});
-		Principal.add(lblNewLabel_9, "cell 1 2");
+		Principal.add(lblNewLabel_9, "cell 1 1");
+
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
+				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+		
+		table2.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",  }));
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
