@@ -198,7 +198,7 @@ public class HospedagemQuartoDAO implements IHospedagemQuartosDAO {
 	public HospedagemQuartos BuscarHospedagemQuartosPorNumero(int Num) {
 		// TODO Auto-generated method stub
 		HospedagemQuartos HospQuar = null;
-		String SQL = "Select * from HospedagensQuartos where IdQuarto = ?";
+		String SQL = "Select * from HospedagensQuartos where IdHospede = ?";
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
