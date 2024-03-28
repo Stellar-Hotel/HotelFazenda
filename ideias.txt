@@ -1,4 +1,0 @@
-insert e select nas Atividades e AtividadesHospedes
-updates em servicos e servicosCinsumidos
-deletes de atividades e atividadesHospedes
-Fiz todos os buscar
