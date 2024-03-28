@@ -21,6 +21,7 @@ import javax.swing.JSeparator;
 import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class TelaServicos extends JFrame {
 
@@ -55,6 +56,16 @@ public class TelaServicos extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		ArrayList<Servicos> lista=new ArrayList<Servicos>();
+		Servicos Massagem=new Servicos();
+		//preencher os atributos dos objetos, Id não vai mais precisar
+		Servicos Frigobar=new Servicos();
+		Servicos Sauna=new Servicos();
+		Servicos Show=new Servicos();
+		Servicos AluguelBike=new Servicos();
+		Servicos Passeio=new Servicos();
+		Servicos Tirolesa=new Servicos();
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]",
