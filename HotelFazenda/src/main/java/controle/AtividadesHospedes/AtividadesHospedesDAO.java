@@ -12,6 +12,7 @@ import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Hospedes;
+import modelo.Usuarios;
 
 public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
@@ -168,10 +169,13 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	}
 
 	@Override
-	public AtividadesHospedes BuscarAtividadesHospedesPorIdHospede(int Id) {
+	public ArrayList<AtividadesHospedes> BuscarAtividadesHospedesPorIdHospede(int Id) {
 		// TODO Auto-generated method stub
 		AtividadesHospedes AtivHosp=null;
-		String SQL="Select * from AtividadesHospedes where IdHospede = ?";
+		ArrayList<AtividadesHospedes> Lista=new ArrayList<AtividadesHospedes>();
+		String SQL="Select * from AtividadesHospedes where IdHospede = ? inner join Atividades.IdAtividade=AtividadesHospedes.IdAtividade"+
+					" inner join Hospedes.IdHospede=AtividadesHospedes.IdHospede inner join Usuarios.IdUsuario=Hospede.IdUsuario "+
+					" inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario inner join Usuarios.IdUsuario=Funcionario.IdUsuario";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -182,10 +186,18 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 			
 			if(rs.next()) 
 			{
+				Usuarios Usu=new Usuarios();
+				Hospedes Hosp=new Hospedes();
+				
+				Atividades Ativ=new Atividades();
+				
+				Ativ.setData(rs.getDate("Data"));
 				AtivHosp=new AtividadesHospedes();
 				AtivHosp.setIdHospedeAtividade(rs.getInt("IdAtividadeHospede"));
 				AtivHosp.setHospede(null);
 				AtivHosp.setAtividade(null);
+				
+				Lista.add(AtivHosp);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -193,7 +205,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		}finally {
 			con.FecharConexao();
 		}
-		return AtivHosp;
+		return Lista;
 	}
 
 	@Override

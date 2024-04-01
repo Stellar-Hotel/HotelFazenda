@@ -189,7 +189,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public Funcionarios BuscarFuncionarioPorId(int Id) {
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
-		String SQL="Select * from Funcionarios where IdFuncionario=?";
+		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -203,12 +203,19 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			if(rs.next())
 			{
 				Func=new Funcionarios();
+				Usuarios Usu=new Usuarios();
+				
+				Usu.setIdUsuario(rs.getInt("IdUsuario"));	
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+				
 				
 				Func.setFuncao(rs.getString("Funcao"));
 				Func.setIdFuncionario(Id);
 				Func.setNome(rs.getString("Nome"));
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
 				
 			}
 		} catch (SQLException e) {
@@ -219,6 +226,50 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		}
 		
 		return Func;
+	}
+	
+	public ArrayList<Funcionarios> BuscarFuncionarioPorNome(String Nome) {
+		// TODO Auto-generated method stub
+		Funcionarios Func=null;
+		ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
+		String SQL="Select * from Funcionarios where Nome=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setString(1, Nome);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Usuarios Usu=new Usuarios();
+				Func=new Funcionarios();
+				
+				Usu.setIdUsuario(rs.getInt("idUsuario"));
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+//				Usu.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				
+				Func.setFuncao(rs.getString("Funcao"));
+				Func.setIdFuncionario(rs.getInt("IdFuncionario"));
+				Func.setNome(Nome);
+				Func.setSalario(rs.getFloat("Salario"));
+				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
+				
+				Lista.add(Func);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Lista;
 	}
 	
 
