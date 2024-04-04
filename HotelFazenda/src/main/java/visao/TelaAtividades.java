@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JSeparator;
 
 public class TelaAtividades extends JFrame {
 
@@ -174,7 +175,7 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[172px,grow][30.00px][524.00px,grow][121px]", "[][][:29.00px:50px][][42.00][:20.00px:10px,grow][29.00][][]"));
+		Principal.setLayout(new MigLayout("", "[:122.00px:122.00px][92.00][][grow][24.00][524.00px,grow][121px]", "[][][:29.00px:50px][][42.00][:20.00px:10px,grow][29.00][][]"));
 
 		JButton btnNewButton = new JButton("Inscrever-se\r\n");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -183,47 +184,65 @@ public class TelaAtividades extends JFrame {
 		});
 		btnNewButton.setBackground(new Color(117, 187, 68));
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		Principal.add(btnNewButton, "cell 3 0,alignx right,aligny top");
+		Principal.add(btnNewButton, "cell 6 0,alignx right,aligny top");
 		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
-				Principal.add(lblNewLabel_1, "cell 0 1,alignx left,aligny top");
+				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
+				
+				JScrollPane spTable = new JScrollPane();
+				Principal.add(spTable, "cell 0 7 7 2,grow");
+				
+				JPanel panel_6 = new JPanel();
+				panel_6.setBackground(new Color(255, 255, 255));
+				panel_6.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
 
-		JScrollPane spTable = new JScrollPane();
-		Principal.add(spTable, "cell 0 7 4 2,grow");
+		                spTable.setViewportView(new JTable(model2));
+		                atualizarJTable();
+					}
+				});
+				Principal.add(panel_6, "flowy,cell 2 2");
+				
+						JLabel lblNewLabel_9 = new JLabel("Inscritos");
+						panel_6.add(lblNewLabel_9);
+
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(192, 192, 192));
+		separator.setBackground(new Color(192, 192, 192));
+		Principal.add(separator, "cell 0 4,grow");
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.LIGHT_GRAY);
+		separator_1.setBackground(Color.LIGHT_GRAY);
+		Principal.add(separator_1, "cell 2 4,growx,aligny top");
+
+	
 
 
 		
 
 		table = new JTable(model1);
 		spTable.setViewportView(table);
-
-
-
-		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
-		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		panel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
                 spTable.setViewportView(table);
                 atualizarJTable();
-
 			}
 		});
-
-		Principal.add(lblNewLabel_7, "cell 0 2");
-
-		JLabel lblNewLabel_9 = new JLabel("Inscritos");
-		lblNewLabel_9.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-                spTable.setViewportView(new JTable(model2));
-                atualizarJTable();
-
-			}
-		});
-		Principal.add(lblNewLabel_9, "cell 1 2");
+		Principal.add(panel_5, "flowx,cell 0 2");
+		
+		
+		
+				JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
+				panel_5.add(lblNewLabel_7);
 
 		
 
