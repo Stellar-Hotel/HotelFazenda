@@ -196,7 +196,7 @@ public class TelaServicos extends JFrame {
 
 		JPanel panel_8 = new JPanel();
 		Principal.add(panel_8, "cell 1 4 4 1,growx,aligny center");
-		panel_8.setLayout(new MigLayout("", "[10:20,grow,left][27px,grow,fill][27px,grow][20px,grow,fill][24px,grow,fill][25,grow,fill]", "[14px]"));
+		panel_8.setLayout(new MigLayout("", "[10:20,grow,left][27px,grow,fill][27px,grow][20px,grow,fill][24px,grow,fill][25,grow,fill][grow]", "[14px]"));
 
 		JLabel lblNewLabel_9 = new JLabel("Nome");
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 16));
