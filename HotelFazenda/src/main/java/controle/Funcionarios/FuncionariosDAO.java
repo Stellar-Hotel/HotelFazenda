@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Statement;
 
 import controle.Conexao;
 import controle.Funcionarios.FuncionariosDAO;
@@ -48,18 +49,24 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 		
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL);
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, Func.getNome());
 			ps.setString(2, Func.getSobrenome());
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
 			ps.setInt(5, Func.getUsuario().getIdUsuario());
 		
-			ResultSet Rs = ps.executeQuery();
-			if(Rs!=null) {
-				ChavePrimariaGerada=Rs.getInt(1);
+			int result = ps.executeUpdate();
+			if(result==0) {
+				throw new SQLException("Não foi possível inserir o funcionário na respectiva tabela!");
 			}
-			
+			else {
+				ResultSet Rs=ps.getGeneratedKeys();
+				if(Rs.next())
+				{
+					ChavePrimariaGerada=Rs.getInt(1);
+				}
+			}
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +76,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		}
 		
 		
-		return 0;
+		return ChavePrimariaGerada;
 	}
 
 	@Override
@@ -117,7 +124,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			e.printStackTrace();
 		}
 		
-		return null;
+		return Funcionarios;
 	}
 
 	@Override
@@ -179,9 +186,90 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	}
 
 	@Override
-	public Funcionarios BuscarFuncionarioPorNome(String Nome) {
+	public Funcionarios BuscarFuncionarioPorId(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		Funcionarios Func=null;
+		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setInt(1, Id);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Func=new Funcionarios();
+				Usuarios Usu=new Usuarios();
+				
+				Usu.setIdUsuario(rs.getInt("IdUsuario"));	
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+				
+				
+				Func.setFuncao(rs.getString("Funcao"));
+				Func.setIdFuncionario(Id);
+				Func.setNome(rs.getString("Nome"));
+				Func.setSalario(rs.getFloat("Salario"));
+				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Func;
+	}
+	
+	public ArrayList<Funcionarios> BuscarFuncionarioPorNome(String Nome) {
+		// TODO Auto-generated method stub
+		Funcionarios Func=null;
+		ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
+		String SQL="Select * from Funcionarios where Nome=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setString(1, Nome);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				Usuarios Usu=new Usuarios();
+				Func=new Funcionarios();
+				
+				Usu.setIdUsuario(rs.getInt("idUsuario"));
+				Usu.setLogin(rs.getString("Login"));
+				Usu.setSenha(rs.getString("Senha"));
+//				Usu.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				
+				Func.setFuncao(rs.getString("Funcao"));
+				Func.setIdFuncionario(rs.getInt("IdFuncionario"));
+				Func.setNome(Nome);
+				Func.setSalario(rs.getFloat("Salario"));
+				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setUsuario(Usu);
+				
+				Lista.add(Func);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		return Lista;
 	}
 	
 

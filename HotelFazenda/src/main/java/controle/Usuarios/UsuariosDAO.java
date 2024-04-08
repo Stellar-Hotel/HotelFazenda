@@ -75,7 +75,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 
-			ResultSet rs = ps.executeQuery(SQL);
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Usuarios Usu = new Usuarios();
@@ -106,7 +106,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
 
-		String SQL = "UPDATE Usuarios SET NivelDeAcesso = ?, Senha = ?," + " Login = ? Where IdUsuarios = ?";
+		String SQL = "UPDATE Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ? Where IdUsuarios = ?";
 
 		Conexao con = Conexao.getConexao();// instanciando
 		Connection conBD = con.Conectar();// cria ponte de conexao
@@ -134,10 +134,10 @@ public class UsuariosDAO implements IUsuariosDAO {
 	}
 
 	@Override
-	public boolean removerUsuario(Usuarios end) {
+	public boolean removerUsuario(Usuarios User) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "DELETE FROM enderecos WHERE cep = ?";
+		String SQL = "DELETE FROM Usuarios WHERE Login=?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -145,7 +145,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, end.getIdUsuario());
+			ps.setString(1, User.getLogin());
 
 			retorno = ps.executeUpdate();
 

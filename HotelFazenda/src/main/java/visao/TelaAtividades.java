@@ -37,6 +37,12 @@ public class TelaAtividades extends JFrame {
 	
 	private ArrayList<Atividades> ListaAtividades;
 	private ArrayList<Atividades> ListaAtividadesinscritas;
+	private JTextField textIdade;
+	private JTextField textHorario;
+	private JTextField textNomeatividade;
+	private JTextField TextHorarioFim;
+	private JTextField textData;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -74,8 +80,7 @@ public class TelaAtividades extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]",
-				"[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
+		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]", "[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
 
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -175,7 +180,7 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:122.00px:122.00px][92.00][][grow][24.00][524.00px,grow][121px]", "[][][:29.00px:50px][][42.00][:20.00px:10px,grow][29.00][][]"));
+		Principal.setLayout(new MigLayout("", "[:122.00px:122.00px,grow][][92.00][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
 
 		JButton btnNewButton = new JButton("Inscrever-se\r\n");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -184,14 +189,11 @@ public class TelaAtividades extends JFrame {
 		});
 		btnNewButton.setBackground(new Color(117, 187, 68));
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		Principal.add(btnNewButton, "cell 6 0,alignx right,aligny top");
+		Principal.add(btnNewButton, "cell 8 0,alignx right,aligny top");
 		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
-				
-				JScrollPane spTable = new JScrollPane();
-				Principal.add(spTable, "cell 0 7 7 2,grow");
 				
 				JPanel panel_6 = new JPanel();
 				panel_6.setBackground(new Color(255, 255, 255));
@@ -203,29 +205,29 @@ public class TelaAtividades extends JFrame {
 		                atualizarJTable();
 					}
 				});
-				Principal.add(panel_6, "flowy,cell 2 2");
+				Principal.add(panel_6, "flowy,cell 1 2");
 				
 						JLabel lblNewLabel_9 = new JLabel("Inscritos");
 						panel_6.add(lblNewLabel_9);
+								
+								JSeparator separator_1 = new JSeparator();
+								separator_1.setForeground(Color.LIGHT_GRAY);
+								separator_1.setBackground(Color.LIGHT_GRAY);
+								Principal.add(separator_1, "cell 1 6,growx,aligny top");
+						
+								
+								JSeparator separator = new JSeparator();
+								separator.setForeground(new Color(192, 192, 192));
+								separator.setBackground(new Color(192, 192, 192));
+								Principal.add(separator, "cell 0 6,growx,aligny top");
+				
+				
+				JScrollPane spTable = new JScrollPane();
+				Principal.add(spTable, "cell 4 14 5 4,grow");
+				
+						table = new JTable(model1);
+						spTable.setViewportView(table);
 
-		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(192, 192, 192));
-		separator.setBackground(new Color(192, 192, 192));
-		Principal.add(separator, "cell 0 4,grow");
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setForeground(Color.LIGHT_GRAY);
-		separator_1.setBackground(Color.LIGHT_GRAY);
-		Principal.add(separator_1, "cell 2 4,growx,aligny top");
-
-	
-
-
-		
-
-		table = new JTable(model1);
-		spTable.setViewportView(table);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(255, 255, 255));
@@ -243,8 +245,64 @@ public class TelaAtividades extends JFrame {
 		
 				JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
 				panel_5.add(lblNewLabel_7);
+								
+								JPanel panel_7 = new JPanel();
+								Principal.add(panel_7, "cell 0 14 3 3,grow");
+								panel_7.setLayout(new MigLayout("", "[102px][10px][][86px,grow]", "[14px][20px,grow][20px,grow][20px,grow][20px,grow][20px,grow]"));
+								
+								JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
+								panel_7.add(lblNewLabel_10, "cell 0 0 4 1,alignx center,aligny top");
+								
+								JLabel lblNewLabel_11 = new JLabel("Idade minima");
+								panel_7.add(lblNewLabel_11, "cell 0 1,alignx left,aligny center");
+								
+								textIdade = new JTextField();
+								panel_7.add(textIdade, "cell 2 1 2 1,growx,aligny center");
+								textIdade.setColumns(10);
+								
+								JLabel lblNewLabel_12 = new JLabel("Horario");
+								panel_7.add(lblNewLabel_12, "cell 0 2,alignx left,aligny center");
+								
+								textHorario = new JTextField();
+								panel_7.add(textHorario, "cell 2 2 2 1,growx,aligny center");
+								textHorario.setColumns(10);
+								
+								JLabel lblNewLabel_11_1 = new JLabel("HorarioFim");
+								panel_7.add(lblNewLabel_11_1, "cell 0 3,alignx left,aligny center");
+								
+								TextHorarioFim = new JTextField();
+								TextHorarioFim.setColumns(10);
+								panel_7.add(TextHorarioFim, "cell 2 3 2 1,growx,aligny center");
+								
+								JLabel lblNewLabel_12_1 = new JLabel("Nome Atividade");
+								panel_7.add(lblNewLabel_12_1, "cell 0 4,growx,aligny center");
+								
+								textNomeatividade = new JTextField();
+								textNomeatividade.setColumns(10);
+								panel_7.add(textNomeatividade, "cell 2 4 2 1,growx,aligny center");
+								
+								JLabel lblNewLabel_12_1_1 = new JLabel("Data");
+								panel_7.add(lblNewLabel_12_1_1, "cell 0 5,growx,aligny center");
+								
+								textData = new JTextField();
+								textData.setColumns(10);
+								panel_7.add(textData, "cell 2 5 2 1,growx,aligny center");
+								
+								JPanel panel_8 = new JPanel();
+								Principal.add(panel_8, "cell 0 17 3 1,grow");
+								panel_8.setLayout(new MigLayout("", "[106px][10px][132px,grow]", "[14px][20px][]"));
+								
+								JLabel lblNewLabel_10_1 = new JLabel("Cadastrar Hospede");
+								panel_8.add(lblNewLabel_10_1, "cell 0 0 3 1,alignx center,aligny top");
+								
+								JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
+								panel_8.add(lblNewLabel_11_2, "cell 0 2,alignx center,aligny center");
+								
+								textField = new JTextField();
+								textField.setColumns(10);
+								panel_8.add(textField, "cell 2 2,growx,aligny center");
+								
 
-		
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));

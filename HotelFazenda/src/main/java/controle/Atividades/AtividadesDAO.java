@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Atividades;
-import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
+import modelo.Usuarios;
 
 public class AtividadesDAO implements IAtividadesDAO
 
@@ -144,9 +144,59 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public Atividades BuscarAtividadesPorLocal(String Local) {
+	public ArrayList<Atividades> BuscarAtividadePeloNome(String Local) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Atividades> lista=new ArrayList<Atividades>();
+		Atividades Ativ=null;
+		String SQL="SELECT * FROM Atividades Where Nome=? inner join Funcionarios.idFuncionario=atividades.IdFuncionario"
+				+" inner join Usuarios.IdUsuario=Funcionarios.IdUsario";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			ps.setString(1, Local);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next())
+			{
+				Ativ=new Atividades();
+				Funcionarios f = new Funcionarios();
+				Usuarios usu=new Usuarios();
+				//preenchendo o usuario pra botar no funcionario
+				usu.setIdUsuario(rs.getInt("IdUsuario"));
+				usu.setLogin(rs.getString("Login"));
+				usu.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				usu.setSenha(rs.getString("Senha"));
+				//preenchendo o objeto funcionário para colocar na atividade
+				f.setFuncao(rs.getString("Funcao"));
+				f.setIdFuncionario(rs.getInt("IdFuncionario"));
+				f.setNome(rs.getString("Nome"));
+				f.setSobrenome(rs.getString("Sobrenome"));
+				f.setSalario(rs.getFloat("Salario"));
+				f.setUsuario(usu);
+				//preenchendo a atividade
+				Ativ.setData(rs.getDate("Data"));
+				Ativ.setHorario(rs.getString("Horario"));
+				Ativ.setHorarioFim(rs.getString("IdadeMinima"));
+				Ativ.setIdadeMinima(rs.getInt("IdadeMinima"));
+				Ativ.setIdAtividade(rs.getInt("IdAtividade"));
+				Ativ.setNomeAtividade(rs.getString("NomeAtividade"));
+				//Perguntar como faz isso aqui
+				Ativ.setFuncionario(f);
+				
+				lista.add(Ativ);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		
+		
+		return lista;
 	}
 
 	@Override
@@ -177,9 +227,16 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * se for um insert sem gerar chave primária automaticamente não usar a parte de
 			 * baixo
 			 */
-			ResultSet Rs = Ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result = Ps.executeUpdate();
+			if (result == 0) {
+				throw new SQLException("Não foi possível inserir a atividade!");
+			}
+			else {
+				ResultSet rs= Ps.getGeneratedKeys();
+				if(rs.next())
+				{
+					ChavePrimariaGerada=rs.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {

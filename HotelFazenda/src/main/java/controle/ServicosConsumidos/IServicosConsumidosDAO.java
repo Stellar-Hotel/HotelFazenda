@@ -14,6 +14,6 @@ public interface IServicosConsumidosDAO {
 
 	public boolean removerServicoConsumido(ServicosConsumidos end);
 
-	public ServicosConsumidos buscarServicoConsumidoPorNome(int nome);
+	public ServicosConsumidos buscarServicoConsumidoPorId(int Id);
 
 }

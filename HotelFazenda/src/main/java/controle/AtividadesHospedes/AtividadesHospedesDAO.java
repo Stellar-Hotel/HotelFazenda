@@ -12,6 +12,7 @@ import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Hospedes;
+import modelo.Usuarios;
 
 public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
@@ -38,7 +39,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Atividades_Hospedes(IdHospede,IdAtividade) VALUES (?,?)";
+		String SQL = "INSERT INTO AtividadesHospedes(IdHospede,IdAtividade) VALUES (?,?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -50,10 +51,17 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 			Ps.setInt(1, A.getHospede().getIdHospede());
 			Ps.setInt(2, A.getAtividade().getIdAtividade());
 
-			ResultSet Rs = Ps.executeQuery();
-			if (Rs != null) {
-				ChavePrimariaGerada = Rs.getInt(1);
+			int result = Ps.executeUpdate();
+			if (result ==0) {
+				throw new SQLException("Não foi possível inserir na tabela Ativides Hospedes!");
 			}
+			else {
+				ResultSet rs=Ps.getGeneratedKeys();
+				if(rs.next())
+				{
+					ChavePrimariaGerada=rs.getInt(1);
+				}
+			}				
 			/*
 			 * return Ps.executeUpdate();Atualiza o banco sem retorno do banco quando o
 			 * insert for sem coisa auto gerada
@@ -133,15 +141,71 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	}
 
 	@Override
-	public boolean AtualizarAtividadesHospedes(AtividadesHospedes A) {
+	public boolean AtualizarAtividadesHospedes(AtividadesHospedes AtivHosp) {
 		// TODO Auto-generated method stub
-		return false;
+		String SQL = "UPDATE AtividadesHospedes SET IdHospede = ?, IdAtividade = ? WHERE IdHospedeAtividade = ?";
+		
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		int Retorno=0;
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			
+			ps.setInt(1,AtivHosp.getHospede().getIdHospede() );
+			ps.setInt(2, AtivHosp.getAtividade().getIdAtividade());
+			
+			ps.setInt(3, AtivHosp.getIdHospedeAtividade());
+			
+			Retorno=ps.executeUpdate();
+			
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		return (Retorno==0?false:true);
 	}
 
 	@Override
-	public AtividadesHospedes BuscarAtividadesHospedesPorNome(String Nome) {
+	public ArrayList<AtividadesHospedes> BuscarAtividadesHospedesPorIdHospede(int Id) {
 		// TODO Auto-generated method stub
-		return null;
+		AtividadesHospedes AtivHosp=null;
+		ArrayList<AtividadesHospedes> Lista=new ArrayList<AtividadesHospedes>();
+		String SQL="Select * from AtividadesHospedes where IdHospede = ? inner join Atividades.IdAtividade=AtividadesHospedes.IdAtividade"+
+					" inner join Hospedes.IdHospede=AtividadesHospedes.IdHospede inner join Usuarios.IdUsuario=Hospede.IdUsuario "+
+					" inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario inner join Usuarios.IdUsuario=Funcionario.IdUsuario";
+		Conexao con=Conexao.getConexao();
+		Connection conBD=con.Conectar();
+		
+		try {
+			PreparedStatement ps=conBD.prepareStatement(SQL);
+			ps.setInt(1, Id);
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next()) 
+			{
+				Usuarios Usu=new Usuarios();
+				Hospedes Hosp=new Hospedes();
+				
+				Atividades Ativ=new Atividades();
+				
+				Ativ.setData(rs.getDate("Data"));
+				AtivHosp=new AtividadesHospedes();
+				AtivHosp.setIdHospedeAtividade(rs.getInt("IdAtividadeHospede"));
+				AtivHosp.setHospede(null);
+				AtivHosp.setAtividade(null);
+				
+				Lista.add(AtivHosp);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			con.FecharConexao();
+		}
+		return Lista;
 	}
 
 	@Override
