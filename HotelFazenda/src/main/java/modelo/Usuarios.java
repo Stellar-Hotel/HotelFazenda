@@ -6,6 +6,7 @@ public class Usuarios {
 	private String Senha;
 	private int NivelDeAcesso;
 	private String Login;
+	private Boolean Tipo;
 
 	public int getIdUsuario() {
 		return IdUsuario;
@@ -37,6 +38,14 @@ public class Usuarios {
 
 	public void setLogin(String login) {
 		Login = login;
+	}
+
+	public Boolean getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(Boolean tipo) {
+		Tipo = tipo;
 	}
 
 }

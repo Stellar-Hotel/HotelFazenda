@@ -1,8 +1,8 @@
 package modelo;
 
 public class Servicos {
-	private int IdServico;
-	private Float PrecoServico;
+	private int IdServico, Quantidade;
+	private Float PrecoServico,PrecoTotal;
 	private String NomeServico;
 
 	public int getIdServico() {
@@ -27,6 +27,22 @@ public class Servicos {
 
 	public void setNomeServico(String nomeServico) {
 		NomeServico = nomeServico;
+	}
+
+	public int getQuantidade() {
+		return Quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		Quantidade = quantidade;
+	}
+
+	public Float getPrecoTotal() {
+		return PrecoTotal;
+	}
+
+	public void setPrecoTotal(Float precoTotal) {
+		PrecoTotal = precoTotal;
 	}
 
 }

@@ -6,12 +6,12 @@ import java.time.LocalDate;
 public class Hospedes {
 
 	private int IdHospede;
-	private String Nome, CPF, Sobrenome, Nacionalidade, Pronome, Email;
+	private String Nome, Documento, Sobrenome, Nacionalidade, Pronome, Email;
 	private Date DataNasc;
 	private Usuarios Usuario;
 
-	public void setCPF(String cpf) {
-		CPF = cpf;
+	public void setCPF(String documento) {
+		Documento = documento;
 	}
 
 	public int getIdHospede() {
@@ -43,7 +43,7 @@ public class Hospedes {
 	}
 
 	public String getCPF() {
-		return CPF;
+		return Documento;
 	}
 
 	public void setSobrenome(String sobrenome) {
@@ -78,8 +78,8 @@ public class Hospedes {
 		return DataNasc;
 	}
 
-	public void setDataNasc(Date data_nasc) {
-		DataNasc = data_nasc;
+	public void setDataNasc(Date datanasc) {
+		DataNasc = datanasc;
 	}
 
 }

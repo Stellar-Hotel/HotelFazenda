@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS `Usuarios`(
   `IdUsuario` INT NOT NULL AUTO_INCREMENT,
   `Senha` VARCHAR(45) NOT NULL,
   `Login` VARCHAR(45) NOT NULL,
+  --pensar num nome novo pra essa coluna aqui, ela vai servir para diferenciar se o usuario é hospede ou funcionario
+  'Tipo' TINYINT NOT NULL,
   PRIMARY KEY (`IdUsuario`));
 
 -- -----------------------------------------------------
@@ -23,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
   `Nome` VARCHAR(45) NOT NULL,
   `Sobrenome` VARCHAR(45) NOT NULL,
   `DataNasc` DATE NOT NULL,
-  `CPF` VARCHAR(45) NULL,
+  `Documento` VARCHAR(45) NOT NULL,
   `Nacionalidade` VARCHAR(45) NOT NULL,
   `Pronome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
@@ -56,9 +58,42 @@ CREATE TABLE  IF NOT EXISTS `Hospedagens` (
   `IdHospedagem` INT NOT NULL AUTO_INCREMENT,
   `Checkin` DATE NOT NULL,
   `Checkout` DATE NOT NULL,
-  PRIMARY KEY (`IdHospedagem`))
-;
+  'IdQuarto' INT NOT NULL,
+  'IdHospede' INT NOT NULL,  
+  PRIMARY KEY (`IdHospedagem`),  
+  CONSTRAINT 'fk_Hospedagens_has_Quartos_Quartos1'
+    FOREIGN KEY ('IdQuarto')
+    REFERENCES 'Stellar'.'Quartos' ('IdQuarto')
+    ,
 
+  CONSTRAINT 'fk_Hospedagens_Hospedes1'
+    FOREIGN KEY ('IdHospede')
+    REFERENCES 'Stellar'.'Hospedes' ('IdHospede')
+  )
+;
+-- -----------------------------------------------------
+-- Table `Stellar`.`HospedagensQuartos`
+-- -----------------------------------------------------
+--CREATE TABLE  IF NOT EXISTS `HospedagensQuartos` (
+--  `IdHospedagemQuarto` INT NOT NULL AUTO_INCREMENT,
+--  `IdQuarto` INT NOT NULL,
+--  `IdHospedagem` INT NOT NULL,
+--  `IdHospede` INT NOT NULL,
+--  PRIMARY KEY (`IdHospedagemQuarto`, `IdQuarto`, `IdHospedagem`, `IdHospede`),
+--
+--  CONSTRAINT `fk_Hospedagens_has_Quartos_Quartos1`
+--    FOREIGN KEY (`IdQuarto`)
+--    REFERENCES `Stellar`.`Quartos` (`IdQuarto`)
+--   ,
+--  CONSTRAINT `fk_HospedagensQuartos_Hospedagens1`
+--    FOREIGN KEY (`IdHospedagem`)
+--    REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
+--    ,
+--  CONSTRAINT `fk_HospedagensQuartos_Hospedes1`
+--    FOREIGN KEY (`IdHospede`)
+    --REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
+  --  )
+--;
 
 -- -----------------------------------------------------
 -- Table `Stellar`.`Quartos`
@@ -67,6 +102,7 @@ CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
+  'TipoQuarto' VARCHAR(45) NOT NULL,
   `TipoCama` VARCHAR(45) NOT NULL,
   `Frigobar` TINYINT NOT NULL,
   `ArCondicionado` TINYINT NOT NULL,
@@ -87,6 +123,8 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `Funcao` VARCHAR(45) NOT NULL,
   `Salario` FLOAT NOT NULL,
   `IdUsuario` INT NOT NULL,
+  'CPF' VARCHAR(45) NOT NULL,
+  'NivelDeAcesso' INT NOT NULL,
   PRIMARY KEY (`IdFuncionario`, `IdUsuario`),
   CONSTRAINT `fk_Funcionarios_Usuários1`
     FOREIGN KEY (`IdUsuario`)
@@ -106,6 +144,7 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
   `IdadeMinima` INT NOT NULL,
   `NomeAtividade` VARCHAR(45) NOT NULL,
   `Data` DATE NOT NULL,
+  'Capacidade' INT NOT NULL,
   PRIMARY KEY (`IdAtividade`, `IdFuncionario`),
 
   CONSTRAINT `fk_Atividades_Funcionarios1`
@@ -138,32 +177,6 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
     REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
     )
 ;
-
-
--- -----------------------------------------------------
--- Table `Stellar`.`HospedagensQuartos`
--- -----------------------------------------------------
-CREATE TABLE  IF NOT EXISTS `HospedagensQuartos` (
-  `IdHospedagemQuarto` INT NOT NULL AUTO_INCREMENT,
-  `IdQuarto` INT NOT NULL,
-  `IdHospedagem` INT NOT NULL,
-  `IdHospede` INT NOT NULL,
-  PRIMARY KEY (`IdHospedagemQuarto`, `IdQuarto`, `IdHospedagem`, `IdHospede`),
-
-  CONSTRAINT `fk_Hospedagens_has_Quartos_Quartos1`
-    FOREIGN KEY (`IdQuarto`)
-    REFERENCES `Stellar`.`Quartos` (`IdQuarto`)
-   ,
-  CONSTRAINT `fk_HospedagensQuartos_Hospedagens1`
-    FOREIGN KEY (`IdHospedagem`)
-    REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
-    ,
-  CONSTRAINT `fk_HospedagensQuartos_Hospedes1`
-    FOREIGN KEY (`IdHospede`)
-    REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
-    )
-;
-
 
 -- -----------------------------------------------------
 -- Table `Stellar`.`AtividadesHospedes`
@@ -239,26 +252,26 @@ values ('M@iones3','MAZDARX7' ),
  
 
 /*Tabela Hóspedes*/
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru',1);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Elisa', 'Volette', '1984-11-06', '751.425.013-76', 'Peru', 'Female', 'evolette1@stanford.edu',2);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Maxwell', 'Haycraft', '1977-02-16', '316.149.686-40', 'Brazil', 'Male', 'mhaycraft2@wikispaces.com',3);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Gussy', 'Fries', '2003-10-16', '395.415.201-14', 'China', 'Female', 'gfries3@stumbleupon.com',4);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Duff', 'Mungham', '2023-09-21', '805.097.764-25', 'Philippines', 'Male', 'dmungham4@histats.com',5);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Kristo', 'Honnan', '2019-02-21', '636.015.493-06', 'Mongolia', 'Male', 'khonnan5@ovh.net',6);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Teodoor', 'Skeels', '2008-05-23', '421.381.619-25', 'Sweden', 'Male', 'tskeels6@themeforest.net',7);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Malachi', 'Barnewille', '1999-04-14', '427.559.825-55', 'France', 'Male', 'mbarnewille7@newyorker.com',8);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Wallis', 'Bree', '1990-12-15', '636.068.749-13', 'Norway', 'Female', 'wbree8@instagram.com',9);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Marius', 'Bratton', '1994-10-31', '298.583.262-13', 'Brazil', 'Male', 'mbratton9@mashable.com',10);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Obadiah', 'Aylesbury', '2017-04-14', '129.346.434-18', 'China', 'Male', 'oaylesburya@europa.eu',11);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Wright', 'Alkin', '1980-09-19', '949.735.668-02', 'Yemen', 'Male', 'walkinb@surveymonkey.com',12);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Rikki', 'Youson', '1994-06-10', '833.407.132-18', 'Thailand', 'Male', 'ryousonc@vk.com',13);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Benedicto', 'Hodgin', '1970-12-16', '198.397.145-67', 'Iran', 'Male', 'bhodgind@photobucket.com',14);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Lennie', 'Lembrick', '1975-06-23', '882.476.072-06', 'Pakistan', 'Male', 'llembricke@un.org',15);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Eachelle', 'Gonoude', '1998-09-26', '685.862.163-47', 'China', 'Female', 'egonoudef@is.gd',16);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Freddie', 'Millott', '2012-06-22', '363.678.979-99', 'Greece', 'Female', 'fmillottg@xing.com',17);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Had', 'Babar', '2015-08-13', '269.188.281-56', 'Russia', 'Male', 'hbabarh@addtoany.com',18);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Amanda', 'Harbach', '1979-10-08', '700.716.283-32', 'United States', 'Female', 'aharbachi@google.fr',19);
-insert into Hospedes (Nome, Sobrenome, DataNasc, CPF, Nacionalidade, Pronome, Email,IdUsuario) values ('Lurlene', 'Crampsy', '1966-01-08', '480.398.712-27', 'Bosnia and Herzegovina', 'Female', 'lcrampsyj@tiny.cc',20);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru',1);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Elisa', 'Volette', '1984-11-06', '751.425.013-76', 'Peru', 'Female', 'evolette1@stanford.edu',2);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Maxwell', 'Haycraft', '1977-02-16', '316.149.686-40', 'Brazil', 'Male', 'mhaycraft2@wikispaces.com',3);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Gussy', 'Fries', '2003-10-16', '395.415.201-14', 'China', 'Female', 'gfries3@stumbleupon.com',4);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Duff', 'Mungham', '2023-09-21', '805.097.764-25', 'Philippines', 'Male', 'dmungham4@histats.com',5);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Kristo', 'Honnan', '2019-02-21', '636.015.493-06', 'Mongolia', 'Male', 'khonnan5@ovh.net',6);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Teodoor', 'Skeels', '2008-05-23', '421.381.619-25', 'Sweden', 'Male', 'tskeels6@themeforest.net',7);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Malachi', 'Barnewille', '1999-04-14', '427.559.825-55', 'France', 'Male', 'mbarnewille7@newyorker.com',8);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Wallis', 'Bree', '1990-12-15', '636.068.749-13', 'Norway', 'Female', 'wbree8@instagram.com',9);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Marius', 'Bratton', '1994-10-31', '298.583.262-13', 'Brazil', 'Male', 'mbratton9@mashable.com',10);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Obadiah', 'Aylesbury', '2017-04-14', '129.346.434-18', 'China', 'Male', 'oaylesburya@europa.eu',11);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Wright', 'Alkin', '1980-09-19', '949.735.668-02', 'Yemen', 'Male', 'walkinb@surveymonkey.com',12);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Rikki', 'Youson', '1994-06-10', '833.407.132-18', 'Thailand', 'Male', 'ryousonc@vk.com',13);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Benedicto', 'Hodgin', '1970-12-16', '198.397.145-67', 'Iran', 'Male', 'bhodgind@photobucket.com',14);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Lennie', 'Lembrick', '1975-06-23', '882.476.072-06', 'Pakistan', 'Male', 'llembricke@un.org',15);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Eachelle', 'Gonoude', '1998-09-26', '685.862.163-47', 'China', 'Female', 'egonoudef@is.gd',16);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Freddie', 'Millott', '2012-06-22', '363.678.979-99', 'Greece', 'Female', 'fmillottg@xing.com',17);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Had', 'Babar', '2015-08-13', '269.188.281-56', 'Russia', 'Male', 'hbabarh@addtoany.com',18);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Amanda', 'Harbach', '1979-10-08', '700.716.283-32', 'United States', 'Female', 'aharbachi@google.fr',19);
+insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuario) values ('Lurlene', 'Crampsy', '1966-01-08', '480.398.712-27', 'Bosnia and Herzegovina', 'Female', 'lcrampsyj@tiny.cc',20);
 
 /*Tabela funcionarios*/
 
@@ -839,7 +852,7 @@ where IdHospedeAtividade=10;
 /*update Hospede*/
 
 Update Hospedes
-set Nome = 'Jorge', Sobrenome = 'Oliveira', DataNasc = '2000-03-03', CPF = '111.222.333-44', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'jorge013@gmail.com', IdUsuario = 1
+set Nome = 'Jorge', Sobrenome = 'Oliveira', DataNasc = '2000-03-03', Documento = '111.222.333-44', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'jorge013@gmail.com', IdUsuario = 1
 where  IdHospede = 1;
 
 Update Hospedes
@@ -847,7 +860,7 @@ set Nome = 'João', Sobrenome = 'Souza', DataNasc = '2001-02-07', Nacionalidade 
 where  IdHospede = 2;
 
 Update Hospedes
-set Nome = 'Maria', Sobrenome = 'Rocha', DataNasc = '2002-11-11', CPF = '111.222.333-41', Nacionalidade = 'Brasileiro', Pronome = 'Ela/dela', Email = 'maria222@gmail.com', IdUsuario = 3
+set Nome = 'Maria', Sobrenome = 'Rocha', DataNasc = '2002-11-11', Documento = '111.222.333-41', Nacionalidade = 'Brasileiro', Pronome = 'Ela/dela', Email = 'maria222@gmail.com', IdUsuario = 3
 where  IdHospede = 3;
 
 Update Hospedes
@@ -855,27 +868,27 @@ set Nome = 'Andrei', Sobrenome = 'Amaral', DataNasc = '2003-09-17', Nacionalidad
 where  IdHospede = 4;
 
 Update Hospedes
-set Nome = 'Gustavo', Sobrenome = 'Luiz', DataNasc = '2004-12-22', CPF = '111.222.333-45', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'gusta942@gmail.com', IdUsuario = 5
+set Nome = 'Gustavo', Sobrenome = 'Luiz', DataNasc = '2004-12-22', Documento = '111.222.333-45', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'gusta942@gmail.com', IdUsuario = 5
 where  IdHospede = 5;
 
 Update Hospedes
-set Nome = 'Bernardo', Sobrenome = 'Oliveira', DataNasc = '2001-01-26', CPF = '111.222.333-46', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'be.d0aa@gmail.com', IdUsuario = 6
+set Nome = 'Bernardo', Sobrenome = 'Oliveira', DataNasc = '2001-01-26', Documento = '111.222.333-46', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'be.d0aa@gmail.com', IdUsuario = 6
 where  IdHospede = 6;
 
 Update Hospedes
-set Nome = 'Erik', Sobrenome = 'Roncaglio', DataNasc = '2005-06-30', CPF = '111.222.333-47', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'erik.r01@gmail.com', IdUsuario = 7
+set Nome = 'Erik', Sobrenome = 'Roncaglio', DataNasc = '2005-06-30', Documento = '111.222.333-47', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'erik.r01@gmail.com', IdUsuario = 7
 where  IdHospede = 7;
 
 Update Hospedes
-set Nome = 'Gabriel', Sobrenome = 'Mohr', DataNasc = '2003-04-15', CPF = '111.222.333-48', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'gab328n@gmail.com', IdUsuario = 8
+set Nome = 'Gabriel', Sobrenome = 'Mohr', DataNasc = '2003-04-15', Documento = '111.222.333-48', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'gab328n@gmail.com', IdUsuario = 8
 where  IdHospede = 8;
 
 Update Hospedes
-set Nome = 'Luigi', Sobrenome = 'Scharam', DataNasc = '2002-07-02', CPF = '111.222.333-49', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'luigi23@gmail.com', IdUsuario = 9
+set Nome = 'Luigi', Sobrenome = 'Scharam', DataNasc = '2002-07-02', Documento = '111.222.333-49', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'luigi23@gmail.com', IdUsuario = 9
 where  IdHospede = 9;
 
 Update Hospedes
-set Nome = 'Muliro', Sobrenome = 'Silveira', DataNasc = '2004-10-18', CPF = '111.222.333-50', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'mulibro248@gmail.com', IdUsuario = 10
+set Nome = 'Muliro', Sobrenome = 'Silveira', DataNasc = '2004-10-18', Documento = '111.222.333-50', Nacionalidade = 'Brasileiro', Pronome = 'Ele/dele', Email = 'mulibro248@gmail.com', IdUsuario = 10
 where  IdHospede = 10;
 
 /* Deletes */
