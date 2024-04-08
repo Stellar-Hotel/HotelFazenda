@@ -2,8 +2,16 @@ package modelo;
 
 public class Servicos {
 	private int IdServico,Quantidade;
-	private Float PrecoServico;
+	private double PrecoServico;
 	private String NomeServico;
+
+	public Servicos(String NomeServico, double PrecoServico) {
+		// TODO Auto-generated constructor stub
+
+		this.NomeServico = NomeServico;
+		this.PrecoServico = PrecoServico;
+	
+	}
 
 	public int getIdServico() {
 		return IdServico;
@@ -13,7 +21,7 @@ public class Servicos {
 		IdServico = idServicos;
 	}
 
-	public Float getPrecoServico() {
+	public double getPrecoServico() {
 		return PrecoServico;
 	}
 
