@@ -15,6 +15,10 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JEditorPane;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
 
 public class TelaDeAcomodacoes extends JFrame {
 
@@ -150,7 +154,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[100px:215.00px,grow][150px:171.00px,grow][180.00,grow]", "[44px][14px][14px][-1.00][237.00,grow][230.00,grow]"));
+		Principal.setLayout(new MigLayout("", "[][242.00px:n,grow][557.00]", "[44px][14px][14px][-1.00][237.00][230.00,grow]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Acomodações");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
@@ -164,16 +168,18 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		Principal.add(panel_8, "cell 0 4,grow");
-		panel_8.setLayout(new MigLayout("", "[208px,grow]", "[14.00px,grow][-11.00px][8.00][][][][][][][]"));
+		panel_8.setLayout(new MigLayout("", "[388.00px:n:420px]", "[14.00px,grow][-11.00px][8.00][][][][][][][]"));
 		
 		JPanel panel_11 = new JPanel();
 		
-		panel_8.add(panel_11, "cell 0 0 1 8,grow");
-		panel_11.setLayout(null);
+		panel_8.add(panel_11, "cell 0 0 1 8,alignx left,growy");
+		panel_11.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblQuartoSimples = new JLabel("");
-		lblQuartoSimples.setBounds(0, 0, 281, 164);
+		lblQuartoSimples.setHorizontalAlignment(SwingConstants.LEFT);
 		lblQuartoSimples.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoSimples.jpg")));
+		
+		
 		panel_11.add(lblQuartoSimples);
 		
 		JLabel lblNewLabel_16 = new JLabel("Apartamento Standard");
@@ -185,13 +191,16 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JPanel panel_9 = new JPanel();
 		Principal.add(panel_9, "cell 1 4,grow");
-		panel_9.setLayout(new MigLayout("", "[213px,grow]", "[25px,grow][14px][][][][][][][]"));
+		panel_9.setLayout(new MigLayout("", "[356.00px:n,grow]", "[25px,grow][14px][][][][][][][]"));
 		
 		JPanel panel_12 = new JPanel();
 		panel_9.add(panel_12, "cell 0 0 1 7,grow");
+		panel_12.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_13 = new JLabel("New label");
-		panel_12.add(lblNewLabel_13);
+		JLabel lblQuartoMediano = new JLabel("");
+		lblQuartoMediano.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoMedio.jpg")));
+		
+		panel_12.add(lblQuartoMediano);
 		
 		JLabel lblNewLabel_17 = new JLabel("Apartamento Master");
 		lblNewLabel_17.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -202,13 +211,16 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JPanel panel_10 = new JPanel();
 		Principal.add(panel_10, "cell 2 4,grow");
-		panel_10.setLayout(new MigLayout("", "[222px,grow]", "[25px,grow][14px][][][][][][][]"));
+		panel_10.setLayout(new MigLayout("", "[497.00px:n,grow,right]", "[25px,grow][14px][][][][][][][]"));
 		
 		JPanel panel_13 = new JPanel();
 		panel_10.add(panel_13, "cell 0 0 1 7,grow");
+		panel_13.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_15 = new JLabel("New label");
-		panel_13.add(lblNewLabel_15);
+		JLabel lblQuartoBom = new JLabel("");
+		lblQuartoBom.setHorizontalAlignment(SwingConstants.LEFT);
+		lblQuartoBom.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoBom.jpg")));
+		panel_13.add(lblQuartoBom);
 		
 		JLabel lblNewLabel_18 = new JLabel("Apartamento Deluxe");
 		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 20));
