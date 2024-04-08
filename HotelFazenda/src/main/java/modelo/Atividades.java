@@ -7,7 +7,7 @@ public class Atividades {
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
 	private Funcionarios Funcionario;
-
+//adicionar numero de vagas
 	public int getIdadeMinima() {
 		return IdadeMinima;
 	}

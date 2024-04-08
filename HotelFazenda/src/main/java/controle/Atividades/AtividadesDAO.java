@@ -36,7 +36,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		ArrayList<Atividades> atividades = new ArrayList<Atividades>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM Atividades";
+		String SQL = "SELECT * FROM Atividades inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
