@@ -22,7 +22,7 @@ public class RoundedBorder extends AbstractBorder {
         super.paintBorder(c, g, x, y, width, height); // Chama o método paintBorder da superclasse
         g.setColor(borderColor); // Define a cor da borda
      
-        g.drawRoundRect(x, y, width - 10, height - 10, radius, radius);    // Desenha um retângulo arredondado com as dimensões e raio especificados
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);    // Desenha um retângulo arredondado com as dimensões e raio especificados
     }
 
     // Método para obter as margens da borda
