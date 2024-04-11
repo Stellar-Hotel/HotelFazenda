@@ -112,7 +112,6 @@ public class HospedeDAO implements IHospedeDAO {
 				// preenche os atributos desse objeto
 
 				User.setSenha(rs.getString("Senha"));
-				User.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				User.setLogin(rs.getString("Login"));
 
 				Hd.setNome(Sobrenome);

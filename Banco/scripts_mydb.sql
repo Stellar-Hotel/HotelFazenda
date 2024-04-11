@@ -13,8 +13,6 @@ CREATE TABLE IF NOT EXISTS `Usuarios`(
   `IdUsuario` INT NOT NULL AUTO_INCREMENT,
   `Senha` VARCHAR(45) NOT NULL,
   `Login` VARCHAR(45) NOT NULL,
-  --pensar num nome novo pra essa coluna aqui, ela vai servir para diferenciar se o usuario é hospede ou funcionario
-  'Tipo' TINYINT NOT NULL,
   PRIMARY KEY (`IdUsuario`));
 
 -- -----------------------------------------------------
@@ -58,19 +56,18 @@ CREATE TABLE  IF NOT EXISTS `Hospedagens` (
   `IdHospedagem` INT NOT NULL AUTO_INCREMENT,
   `Checkin` DATE NOT NULL,
   `Checkout` DATE NOT NULL,
-  'IdQuarto' INT NOT NULL,
-  'IdHospede' INT NOT NULL,  
+  `IdQuarto` INT NOT NULL,
+  `IdHospede` INT NOT NULL,  
   PRIMARY KEY (`IdHospedagem`),  
-  CONSTRAINT 'fk_Hospedagens_has_Quartos_Quartos1'
-    FOREIGN KEY ('IdQuarto')
-    REFERENCES 'Stellar'.'Quartos' ('IdQuarto')
+  CONSTRAINT `fk_Hospedagens_has_Quartos_Quartos1`
+    FOREIGN KEY (`IdQuarto`)
+    REFERENCES `Stellar`.`Quartos` (`IdQuarto`)
     ,
 
-  CONSTRAINT 'fk_Hospedagens_Hospedes1'
-    FOREIGN KEY ('IdHospede')
-    REFERENCES 'Stellar'.'Hospedes' ('IdHospede')
-  )
-;
+  CONSTRAINT `fk_Hospedagens_Hospedes1`
+    FOREIGN KEY (`IdHospede`)
+    REFERENCES `Stellar`.`Hospedes` (`IdHospede`)
+  );
 -- -----------------------------------------------------
 -- Table `Stellar`.`HospedagensQuartos`
 -- -----------------------------------------------------
@@ -102,7 +99,7 @@ CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
-  'TipoQuarto' VARCHAR(45) NOT NULL,
+  `TipoQuarto` VARCHAR(45) NOT NULL,
   `TipoCama` VARCHAR(45) NOT NULL,
   `Frigobar` TINYINT NOT NULL,
   `ArCondicionado` TINYINT NOT NULL,
@@ -123,8 +120,8 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `Funcao` VARCHAR(45) NOT NULL,
   `Salario` FLOAT NOT NULL,
   `IdUsuario` INT NOT NULL,
-  'CPF' VARCHAR(45) NOT NULL,
-  'NivelDeAcesso' INT NOT NULL,
+  `CPF` VARCHAR(45) NOT NULL,
+  `NivelDeAcesso` INT NOT NULL,
   PRIMARY KEY (`IdFuncionario`, `IdUsuario`),
   CONSTRAINT `fk_Funcionarios_Usuários1`
     FOREIGN KEY (`IdUsuario`)
@@ -144,7 +141,7 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
   `IdadeMinima` INT NOT NULL,
   `NomeAtividade` VARCHAR(45) NOT NULL,
   `Data` DATE NOT NULL,
-  'Capacidade' INT NOT NULL,
+  `Capacidade` INT NOT NULL,
   PRIMARY KEY (`IdAtividade`, `IdFuncionario`),
 
   CONSTRAINT `fk_Atividades_Funcionarios1`

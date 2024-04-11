@@ -167,7 +167,6 @@ public class AtividadesDAO implements IAtividadesDAO
 				//preenchendo o usuario pra botar no funcionario
 				usu.setIdUsuario(rs.getInt("IdUsuario"));
 				usu.setLogin(rs.getString("Login"));
-				usu.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				usu.setSenha(rs.getString("Senha"));
 				//preenchendo o objeto funcionário para colocar na atividade
 				f.setFuncao(rs.getString("Funcao"));

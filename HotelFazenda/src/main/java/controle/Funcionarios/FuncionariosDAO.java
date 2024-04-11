@@ -107,7 +107,6 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Usuarios User= new Usuarios();
 				
 				User.setSenha(rs.getString("Senha"));
-				User.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				User.setLogin(rs.getString("Login"));
 			
 
