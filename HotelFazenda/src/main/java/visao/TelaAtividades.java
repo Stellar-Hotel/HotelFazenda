@@ -191,6 +191,14 @@ public class TelaAtividades extends JFrame {
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		Principal.add(btnNewButton, "cell 8 0,alignx right,aligny top");
 		
+		
+		JScrollPane spTable = new JScrollPane();
+		Principal.add(spTable, "cell 4 14 5 4,grow");
+		
+				table = new JTable(model1);
+				spTable.setViewportView(table);
+
+		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
@@ -202,7 +210,7 @@ public class TelaAtividades extends JFrame {
 					public void mouseClicked(MouseEvent e) {
 
 		                spTable.setViewportView(new JTable(model2));
-		                atualizarJTable();
+		             //   atualizarJTable();
 					}
 				});
 				Principal.add(panel_6, "flowy,cell 1 2");
@@ -221,12 +229,6 @@ public class TelaAtividades extends JFrame {
 								separator.setBackground(new Color(192, 192, 192));
 								Principal.add(separator, "cell 0 6,growx,aligny top");
 				
-				
-				JScrollPane spTable = new JScrollPane();
-				Principal.add(spTable, "cell 4 14 5 4,grow");
-				
-						table = new JTable(model1);
-						spTable.setViewportView(table);
 
 		
 		JPanel panel_5 = new JPanel();
@@ -236,7 +238,7 @@ public class TelaAtividades extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
                 spTable.setViewportView(table);
-                atualizarJTable();
+               // atualizarJTable();
 			}
 		});
 		Principal.add(panel_5, "flowx,cell 0 2");
