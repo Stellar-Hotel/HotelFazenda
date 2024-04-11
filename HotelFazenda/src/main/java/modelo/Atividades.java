@@ -3,17 +3,19 @@ package modelo;
 import java.sql.Date;
 
 public class Atividades {
-	private int IdAtividade, IdadeMinima;
+	private int IdAtividade;
+	private Integer IdadeMinima;
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
 	private Funcionarios Funcionario;
 //adicionar numero de vagas
-	public int getIdadeMinima() {
+	
+	public Integer getIdadeMinima() {
 		return IdadeMinima;
 	}
 
-	public void setIdadeMinima(int Idade) {
-		IdadeMinima = Idade;
+	public void setIdadeMinima(Integer idadeMinima) {
+		IdadeMinima = idadeMinima;
 	}
 
 	public int getIdAtividade() {

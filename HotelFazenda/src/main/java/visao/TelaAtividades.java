@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,10 +39,9 @@ public class TelaAtividades extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
-    private DefaultTableModel model1;
-    private DefaultTableModel model2;
+	private DefaultTableModel model1;
+	private DefaultTableModel model2;
 
-	
 	private ArrayList<Atividades> ListaAtividades;
 	private ArrayList<Atividades> ListaAtividadesinscritas;
 	private JTextField textIdade;
@@ -296,6 +296,37 @@ public class TelaAtividades extends JFrame {
 
 								btnNewButton.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
+										 
+									
+									
+									if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty())) {
+										JOptionPane.showMessageDialog(null, "ERRO");
+									}else {  
+										
+										Integer Idade = Integer.valueOf(textIdade.getText());
+										String Horario = textHorario.getText();
+										String HorarioFim = TextHorarioFim.getText();
+										String NomeAtividade= textNomeatividade.getText();
+										Date  Data = textData.getText();
+										Atividades ativ = new Atividades();
+										
+										ativ.setIdadeMinima(Idade);
+										ativ.setHorario(Horario);
+										ativ.setHorarioFim(HorarioFim);
+										ativ.setNomeAtividade(NomeAtividade);
+										ativ.setData(Data);
+										
+										AtividadesDAO DAO = AtividadesDAO.getInstancia();
+										int id = DAO.InserirAtividades(ativ);
+										
+										if(id>0) {
+											JOptionPane.showMessageDialog(null, "Cadastro Efetuado com sucesso");
+											atualizarJTable();
+										}
+										
+									}
+
+									
 										
 										
 									}
@@ -359,19 +390,20 @@ public class TelaAtividades extends JFrame {
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
 	}
+
 	protected void atualizarJTable() {
-	DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new
-	String[] { "IdAtividade", "IdadeMinima", "Horario", "HorarioFim",
-	 "NomeAtividade", "Data","IDFuncionario"});
+		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
+				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "IDFuncionario" });
 
-	 AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
-	 ListaAtividades = AtivDAO.ListarAtividades();
+		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
+		ListaAtividades = AtivDAO.ListarAtividades();
 
-	 for (int i = 0; i < ListaAtividades.size(); i++) {
-	 Atividades p = ListaAtividades.get(i);
-	 modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(),p.getHorarioFim(),p.getNomeAtividade(),p.getData(), p.getFuncionario() });
-	}
+		for (int i = 0; i < ListaAtividades.size(); i++) {
+			Atividades p = ListaAtividades.get(i);
+			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
+					p.getNomeAtividade(), p.getData(), p.getFuncionario() });
+		}
 
-	table.setModel(modelo1);
+		table.setModel(modelo1);
 	}
 }
