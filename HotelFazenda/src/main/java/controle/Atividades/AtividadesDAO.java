@@ -202,7 +202,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	@Override
 	public int InserirAtividades(Atividades Ativ) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Atividades(Horario,HorarioFim,IdFuncionario,IdadeMinima,NomeAtividade,Data) VALUES (?,?,?,?,?,?)";
+		String SQL = "INSERT INTO Atividades(Horario, HorarioFim, IdFuncionario, IdadeMinima, NomeAtividade, Data) VALUES (?, ?, ?, ?, ?, ?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();

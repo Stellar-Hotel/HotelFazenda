@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -303,18 +306,29 @@ public class TelaAtividades extends JFrame {
 										JOptionPane.showMessageDialog(null, "ERRO");
 									}else {  
 										
-										Integer Idade = Integer.valueOf(textIdade.getText());
-										String Horario = textHorario.getText();
-										String HorarioFim = TextHorarioFim.getText();
-										String NomeAtividade= textNomeatividade.getText();
-										Date  Data = textData.getText();
-										Atividades ativ = new Atividades();
-										
-										ativ.setIdadeMinima(Idade);
-										ativ.setHorario(Horario);
-										ativ.setHorarioFim(HorarioFim);
-										ativ.setNomeAtividade(NomeAtividade);
-										ativ.setData(Data);
+											Integer Idade = Integer.valueOf(textIdade.getText());
+						                    String Horario = textHorario.getText();
+						                    String HorarioFim = TextHorarioFim.getText();
+						                    String NomeAtividade = textNomeatividade.getText();
+
+
+						                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+						                    Date data = null;
+
+						                    try {
+						                        data = new Date ( dateFormat.parse(textData.getText()).getTime());
+						                    } catch (ParseException e1) {
+						                        e1.printStackTrace();
+						                    }
+						                    Atividades ativ = new Atividades();
+
+						                    ativ.setIdadeMinima(Idade);
+						                    ativ.setHorario(Horario);
+						                    ativ.setHorarioFim(HorarioFim);
+						                    ativ.setNomeAtividade(NomeAtividade);
+						                    ativ.setData(data);
+
 										
 										AtividadesDAO DAO = AtividadesDAO.getInstancia();
 										int id = DAO.InserirAtividades(ativ);
@@ -393,7 +407,7 @@ public class TelaAtividades extends JFrame {
 
 	protected void atualizarJTable() {
 		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
-				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "IDFuncionario" });
+				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data"});
 
 		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
 		ListaAtividades = AtivDAO.ListarAtividades();
@@ -401,7 +415,7 @@ public class TelaAtividades extends JFrame {
 		for (int i = 0; i < ListaAtividades.size(); i++) {
 			Atividades p = ListaAtividades.get(i);
 			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
-					p.getNomeAtividade(), p.getData(), p.getFuncionario() });
+					p.getNomeAtividade(), p.getData()});
 		}
 
 		table.setModel(modelo1);
