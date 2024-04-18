@@ -36,7 +36,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		ArrayList<Atividades> atividades = new ArrayList<Atividades>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM Atividades inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario";
+		String SQL = "SELECT * FROM Atividades inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionario";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -62,7 +62,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				Funcionario.setSobrenome(Rs.getString("Sobrenome"));
 				Funcionario.setFuncao(Rs.getString("Funcao"));
 				Funcionario.setIdFuncionario(Rs.getInt("IdFuncionario"));
-				Funcionario.setSalario(Rs.getFloat("Slario"));
+				Funcionario.setSalario(Rs.getFloat("Salario"));
 				
 				
 				Funcionario.setUsuario(null);
@@ -227,6 +227,9 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * se for um insert sem gerar chave primária automaticamente não usar a parte de
 			 * baixo
 			 */
+			
+			System.out.println(Ps);
+			
 			int result = Ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível inserir a atividade!");

@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
+import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
@@ -310,7 +311,10 @@ public class TelaAtividades extends JFrame {
 						                    String Horario = textHorario.getText();
 						                    String HorarioFim = TextHorarioFim.getText();
 						                    String NomeAtividade = textNomeatividade.getText();
-
+						                    
+						                   
+						                    
+						                    
 
 						                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -323,11 +327,15 @@ public class TelaAtividades extends JFrame {
 						                    }
 						                    Atividades ativ = new Atividades();
 
+						                    						                    
 						                    ativ.setIdadeMinima(Idade);
 						                    ativ.setHorario(Horario);
 						                    ativ.setHorarioFim(HorarioFim);
 						                    ativ.setNomeAtividade(NomeAtividade);
 						                    ativ.setData(data);
+						                    Funcionarios Func=new Funcionarios();
+						                    Func.setIdFuncionario(2);
+						                    ativ.setFuncionario(Func);
 
 										
 										AtividadesDAO DAO = AtividadesDAO.getInstancia();
@@ -339,10 +347,7 @@ public class TelaAtividades extends JFrame {
 										}
 										
 									}
-
-									
-										
-										
+																													
 									}
 								});
 								btnNewButton.setForeground(new Color(255, 255, 255));
@@ -403,6 +408,9 @@ public class TelaAtividades extends JFrame {
 		JLabel lblTwitter = new JLabel("");
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
+		
+		atualizarJTable();
+		
 	}
 
 	protected void atualizarJTable() {
