@@ -38,7 +38,7 @@ public class ServicosDAO implements IServicosDAO {
 		try {
 			PreparedStatement Ps = conBD.prepareStatement(SQL);// se for um insert já conhcendo a chave primária não
 																// adcionar o Statement.RETURN_GENERATED_KEYS
-			Ps.setFloat(1, end.getPrecoServico());
+			Ps.setDouble(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 
 			int result = Ps.executeUpdate();
