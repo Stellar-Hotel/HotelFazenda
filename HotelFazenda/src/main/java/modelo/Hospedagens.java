@@ -10,15 +10,7 @@ public class Hospedagens {
 	private Date Checkout;
 	private Hospedes Hospede;
 	private Quartos Quarto;
-	private Float PrecoTotal;
 
-	public Float getPrecoTotal() {
-		return PrecoTotal;
-	}
-
-	public void setPrecoTotal(Float precoTotal) {
-		PrecoTotal = precoTotal;
-	}
 
 	public int getIdHospedagem() {
 		return IdHospedagem;

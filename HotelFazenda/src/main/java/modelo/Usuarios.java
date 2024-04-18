@@ -5,8 +5,8 @@ public class Usuarios {
 	private int IdUsuario;
 	private String Senha;
 	private String Login;
-//	private Boolean Tipo;
-
+	private Boolean Tipo;
+	
 	public int getIdUsuario() {
 		return IdUsuario;
 	}
@@ -31,12 +31,12 @@ public class Usuarios {
 		Login = login;
 	}
 
-//	public Boolean getTipo() {
-//		return Tipo;
-//	}
-//
-//	public void setTipo(Boolean tipo) {
-//		Tipo = tipo;
-//	}
+	public Boolean getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(Boolean tipo) {
+		Tipo = tipo;
+	}
 
 }

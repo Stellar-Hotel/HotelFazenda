@@ -11,6 +11,7 @@ import controle.Conexao;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
+import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Usuarios;
 
@@ -82,7 +83,8 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM AtividadesHospedes";
+		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividade"
+				+ "inner join Funcionarios on ";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -97,31 +99,35 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 			while (Rs.next()) {
 				AtividadesHospedes At = new AtividadesHospedes();
+				
+				Funcionarios Func=new Funcionarios();
+				
+				Func.setIdFuncionario(Rs.getInt("IdFuncionario"));
 
 				Hospedes Hospede = new Hospedes();
 				// prenche os atributos desse objeto
 
-				Hospede.setNome(Rs.getString("Nome"));
-				Hospede.setCPF(Rs.getString("CPF"));
-				Hospede.setSobrenome(Rs.getString("Sobrenome"));
-				Hospede.setDataNasc(Rs.getDate("data_nasc"));
-				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
-				Hospede.setPronome(Rs.getString("Pronome"));
-				Hospede.setEmail(Rs.getString("Email"));
-				Hospede.setDataNasc(Rs.getDate("DataNasc"));
+//				Hospede.setNome(Rs.getString("Nome"));
+//				Hospede.setDocumento(Rs.getString("CPF"));
+//				Hospede.setSobrenome(Rs.getString("Sobrenome"));
+//				Hospede.setDataNasc(Rs.getDate("data_nasc"));
+//				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
+//				Hospede.setPronome(Rs.getString("Pronome"));
+//				Hospede.setEmail(Rs.getString("Email"));
+//				Hospede.setDataNasc(Rs.getDate("DataNasc"));
 				Hospede.setIdHospede(Rs.getInt("IdHospede"));
 
 				Atividades Ativ = new Atividades();
 
-				Ativ.setIdadeMinima(Rs.getInt("IdadeMinima"));
-				Ativ.setHorario(Rs.getString("Horario"));
-				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
-				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
-				Ativ.setData(Rs.getDate("Data"));
+//				Ativ.setIdadeMinima(Rs.getInt("IdadeMinima"));
+//				Ativ.setHorario(Rs.getString("Horario"));
+//				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
+//				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
+//				Ativ.setData(Rs.getDate("Data"));
 				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
 				
 				
-				Ativ.setFuncionario(null);
+				Ativ.setFuncionario(Func);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
 				At.setIdHospedeAtividade(Rs.getInt("IdHospedeAtividade"));

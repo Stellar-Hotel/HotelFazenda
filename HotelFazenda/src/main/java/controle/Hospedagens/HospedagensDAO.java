@@ -89,7 +89,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospedes Hospede = new Hospedes();
 
 				Hospede.setNome(rs.getString("Nome"));
-				Hospede.setCPF(rs.getString("CPF"));
+				Hospede.setDocumento(rs.getString("CPF"));
 				Hospede.setSobrenome(rs.getString("Sobrenome"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setNacionalidade(rs.getString("Nacionalidade"));

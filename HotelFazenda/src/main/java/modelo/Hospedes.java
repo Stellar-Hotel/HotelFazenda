@@ -10,8 +10,12 @@ public class Hospedes {
 	private Date DataNasc;
 	private Usuarios Usuario;
 
-	public void setCPF(String documento) {
+	public void setDocumento(String documento) {
 		Documento = documento;
+	}
+
+	public String getDocumento() {
+		return Documento;
 	}
 
 	public int getIdHospede() {
@@ -40,10 +44,6 @@ public class Hospedes {
 
 	public void setUsuario(Usuarios Usuario) {
 		this.Usuario = Usuario;
-	}
-
-	public String getCPF() {
-		return Documento;
 	}
 
 	public void setSobrenome(String sobrenome) {

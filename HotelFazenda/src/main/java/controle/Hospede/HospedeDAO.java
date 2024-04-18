@@ -54,7 +54,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(4, Hd.getNacionalidade());
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
-			ps.setString(7, Hd.getCPF());
+			ps.setString(7, Hd.getDocumento());
 			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 
 			ResultSet rs = ps.executeQuery();
@@ -117,7 +117,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setNome(Sobrenome);
 				Hd.setNome(Nome);
 				Hd.setDataNasc(DataNasc);
-				Hd.setCPF(CPF);
+				Hd.setDocumento(CPF);
 				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
@@ -166,7 +166,7 @@ public class HospedeDAO implements IHospedeDAO {
 
 			// Substitui a primeira interrogação no comando SQL
 			ps.setString(1, Hd.getNome());
-			ps.setString(2, Hd.getCPF());
+			ps.setString(2, Hd.getDocumento());
 			ps.setString(3, Hd.getSobrenome());
 			ps.setString(4, Hd.getEmail());
 			ps.setString(5, Hd.getNacionalidade());
@@ -245,7 +245,7 @@ public class HospedeDAO implements IHospedeDAO {
 			{
 				Hosp=new Hospedes();
 				
-				Hosp.setCPF(CPF);
+				Hosp.setDocumento(CPF);
 				Hosp.setDataNasc(rs.getDate("DataNasc"));
 				Hosp.setEmail(rs.getString("Email"));
 				Hosp.setIdHospede(rs.getInt("IdHospede"));

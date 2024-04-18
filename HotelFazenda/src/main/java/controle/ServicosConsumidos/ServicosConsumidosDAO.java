@@ -107,7 +107,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Hospedagem.setPrecoTotal(rs.getFloat("PrecoTotal"));
 				Hospedagem.setIdHospedagem(rs.getInt("IdHospedagem"));
 
-				Hospede.setCPF(rs.getString("CPF"));
+				Hospede.setDocumento(rs.getString("CPF"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setIdHospede(rs.getInt("IdHospede"));
