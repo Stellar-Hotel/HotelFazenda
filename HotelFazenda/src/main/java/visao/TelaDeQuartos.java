@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class TelaDeQuartos extends JFrame {
 
+	
 	private ArrayList<Quartos> ListaQuartos;
 	private DefaultTableModel model1;
 	private static final long serialVersionUID = 1L;
@@ -170,11 +171,12 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 		
-		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 0 1,grow");
+		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Nome do Quarto" ,"Máximo de Pessoas", "Manutencao", "Tipo da Cama", "Frigobar", "Ar-Condicionado", "Banheira", "TV", "Preco da Diaria"});
+
+	    table = new JTable(model1);
 		
-		table = new JTable(model1);
-		scrollPane.setColumnHeaderView(table);
+	    JScrollPane scrollPane1 = new JScrollPane(table);
+	    Principal.add(scrollPane1, "cell 0 1,grow");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
