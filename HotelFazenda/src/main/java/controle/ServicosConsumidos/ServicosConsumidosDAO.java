@@ -25,7 +25,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 	}
 
-	public static ServicosConsumidosDAO getinstancia() {
+	public static ServicosConsumidosDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new ServicosConsumidosDAO();
 		}
