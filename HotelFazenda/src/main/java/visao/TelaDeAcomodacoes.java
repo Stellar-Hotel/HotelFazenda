@@ -18,6 +18,8 @@ import javax.swing.JEditorPane;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class TelaDeAcomodacoes extends JFrame {
@@ -171,6 +173,16 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_8.setLayout(new MigLayout("", "[640px]", "[422px][25px][14px]"));
 		
 		JPanel panel_11 = new JPanel();
+		panel_11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+			telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			telaDeQuartos.setVisible(true);
+			telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
+			}
+		});
 		
 		panel_8.add(panel_11, "cell 0 0,grow");
 		panel_11.setLayout(null);
@@ -195,6 +207,16 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_9.setLayout(new MigLayout("", "[641px]", "[422px][25px][14px]"));
 		
 		JPanel panel_12 = new JPanel();
+		panel_12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaDeQuartos.setVisible(true);
+				telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				}
+		});
 		panel_9.add(panel_12, "cell 0 0,grow");
 		panel_12.setLayout(null);
 		
@@ -216,6 +238,16 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_10.setLayout(new MigLayout("", "[641px]", "[422px][25px][14px]"));
 		
 		JPanel panel_13 = new JPanel();
+		panel_13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaDeQuartos.setVisible(true);
+				telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				}
+		});
 		panel_10.add(panel_13, "cell 0 0,grow");
 		panel_13.setLayout(null);
 		

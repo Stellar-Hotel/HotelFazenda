@@ -55,8 +55,7 @@ public class TelaDeQuartos extends JFrame {
 	public TelaDeQuartos() {
 		
 		ListaQuartos = new ArrayList<Quartos>();
-		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
