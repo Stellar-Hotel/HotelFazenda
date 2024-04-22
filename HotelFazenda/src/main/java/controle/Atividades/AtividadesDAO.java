@@ -104,10 +104,11 @@ public class AtividadesDAO implements IAtividadesDAO
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setString(1, Ativ.getNomeAtividade());
 			ps.setString(2, Ativ.getHorario());
-			ps.setDate(3, Ativ.getData());
-			ps.setInt(4, Ativ.getFuncionario().getIdFuncionario());
-			ps.setInt(5, Ativ.getIdadeMinima());
-			ps.setInt(6, Ativ.getIdAtividade());
+			ps.setString(3, Ativ.getHorarioFim());
+			ps.setDate(4, Ativ.getData());
+			ps.setInt(5, Ativ.getFuncionario().getIdFuncionario());
+			ps.setInt(6, Ativ.getIdadeMinima());
+			ps.setInt(7, Ativ.getIdAtividade());
 
 			retorno = ps.executeUpdate();
 
@@ -228,7 +229,7 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * baixo
 			 */
 			
-			System.out.println(Ps);
+	
 			
 			int result = Ps.executeUpdate();
 			if (result == 0) {

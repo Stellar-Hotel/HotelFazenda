@@ -295,10 +295,10 @@ public class TelaAtividades extends JFrame {
 								//				btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
 
 
-								JButton btnNewButton = new JButton("Cadastrar");
-								btnNewButton.setBorder(new RoundedBorder(Color.BLACK, 8));
+								JButton btnCadastrar = new JButton("Cadastrar");
+								btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
 
-								btnNewButton.addActionListener(new ActionListener() {
+								btnCadastrar.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
 										 
 									
@@ -350,9 +350,9 @@ public class TelaAtividades extends JFrame {
 																													
 									}
 								});
-								btnNewButton.setForeground(new Color(255, 255, 255));
-								btnNewButton.setBackground(new Color(117, 187, 68));
-								panel_7.add(btnNewButton, "cell 2 6");
+								btnCadastrar.setForeground(new Color(255, 255, 255));
+								btnCadastrar.setBackground(new Color(117, 187, 68));
+								panel_7.add(btnCadastrar, "flowx,cell 2 6");
 								
 								JSeparator separator_2 = new JSeparator();
 								separator_2.setForeground(Color.LIGHT_GRAY);
@@ -379,6 +379,74 @@ public class TelaAtividades extends JFrame {
 								btnNewButton_1.setForeground(new Color(255, 255, 255));
 								btnNewButton_1.setBackground(new Color(117, 187, 68));
 								panel_7.add(btnNewButton_1, "cell 2 10");
+								
+								JButton btnAlterar = new JButton("Alterar");
+								btnAlterar.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										
+
+										if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty())) {
+											JOptionPane.showMessageDialog(null, "ERRO");
+										}
+										else {  
+											
+												Integer Idade = Integer.valueOf(textIdade.getText());
+							                    String Horario = textHorario.getText();
+							                    String HorarioFim = TextHorarioFim.getText();
+							                    String NomeAtividade = textNomeatividade.getText();
+							                    
+							                   
+							                    
+							                    
+
+							                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+							                    Date data = null;
+
+							                    try {
+							                        data = new Date ( dateFormat.parse(textData.getText()).getTime());
+							                    } catch (ParseException e1) {
+							                        e1.printStackTrace();
+							                    }
+							                    Atividades ativ = new Atividades();
+
+							                    						                    
+							                    ativ.setIdadeMinima(Idade);
+							                    ativ.setHorario(Horario);
+							                    ativ.setHorarioFim(HorarioFim);
+							                    ativ.setNomeAtividade(NomeAtividade);
+							                    ativ.setData(data);
+							                    Funcionarios Func=new Funcionarios();
+							                    Func.setIdFuncionario(2);
+							                    ativ.setFuncionario(Func);
+							                    
+							                    AtividadesDAO DAO = AtividadesDAO.getInstancia();
+							                    DAO.AtualizarAtividades(ativ);
+							                    
+							                    int linha = table.getSelectedRow();
+							                    
+							                    if(linha <0) {
+							                    	JOptionPane.showMessageDialog(null, "selecione uma linha");
+							                    }else if(linha >= 0) {
+							                    	DefaultTableModel model1 = (DefaultTableModel) table.getModel();
+							                    	model1.setValueAt(Idade, linha, 0);
+							                    	model1.setValueAt(Horario, linha, 1);
+							                    	model1.setValueAt(HorarioFim, linha, 2);
+							                    	model1.setValueAt(HorarioFim, linha, 3);
+							                    	model1.setValueAt(NomeAtividade, linha, 4);
+							                    	model1.setValueAt(data, linha, 5);
+							                
+							                    }
+							                    
+							                    	
+							                    							                    
+									}
+									}
+								});
+								panel_7.add(btnAlterar, "cell 2 6");
+								
+								JButton btnExcluir = new JButton("Excluir");
+								panel_7.add(btnExcluir, "cell 2 6");
 								
 
 
