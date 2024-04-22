@@ -37,7 +37,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,Pronome, Email, IdUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,Pronome, Email, IdUsuarioHospede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -54,7 +54,7 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(4, Hd.getNacionalidade());
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
-			ps.setString(7, Hd.getCPF());
+			ps.setString(7, Hd.getDocumento());
 			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 
 			ResultSet rs = ps.executeQuery();
@@ -81,7 +81,7 @@ public class HospedeDAO implements IHospedeDAO {
 		ArrayList<Hospedes> hospede = new ArrayList<Hospedes>();
 
 		// comando sql executado
-		String SQL = "SELECT * FROM Hospedes";
+		String SQL = "SELECT * FROM Hospedes";// tem que fazer o inner join e os objetos
 
 		// cria a "ponte de conexao" com o mysql
 		Conexao con = Conexao.getConexao();
@@ -105,7 +105,7 @@ public class HospedeDAO implements IHospedeDAO {
 				String Nacionalidade = rs.getString("Nacionalidade");
 				String Pronome = rs.getString("Pronome");
 				String Email = rs.getString("Email");
-				int Id=rs.getInt("IdHosped");
+				int Id=rs.getInt("IdHospede");
 
 				Usuarios User = new Usuarios();
 
@@ -117,7 +117,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setNome(Sobrenome);
 				Hd.setNome(Nome);
 				Hd.setDataNasc(DataNasc);
-				Hd.setCPF(CPF);
+				Hd.setDocumento(CPF);
 				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
@@ -152,7 +152,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsario = ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsuarioHospede = ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -166,7 +166,7 @@ public class HospedeDAO implements IHospedeDAO {
 
 			// Substitui a primeira interrogação no comando SQL
 			ps.setString(1, Hd.getNome());
-			ps.setString(2, Hd.getCPF());
+			ps.setString(2, Hd.getDocumento());
 			ps.setString(3, Hd.getSobrenome());
 			ps.setString(4, Hd.getEmail());
 			ps.setString(5, Hd.getNacionalidade());
@@ -230,7 +230,7 @@ public class HospedeDAO implements IHospedeDAO {
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where CPF = ?";
+		String SQL="Select * from Hospedes where CPF = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -244,8 +244,15 @@ public class HospedeDAO implements IHospedeDAO {
 			if(rs.next())
 			{
 				Hosp=new Hospedes();
+				Usuarios User=new Usuarios();
 				
-				Hosp.setCPF(CPF);
+				User.setIdUsuario(rs.getInt("IdUsuario"));
+				User.setLogin(rs.getString("Login"));
+				User.setSenha(rs.getString("Senha"));
+				User.setTipo(rs.getBoolean("Tipo"));
+				
+				
+				Hosp.setDocumento(CPF);
 				Hosp.setDataNasc(rs.getDate("DataNasc"));
 				Hosp.setEmail(rs.getString("Email"));
 				Hosp.setIdHospede(rs.getInt("IdHospede"));
@@ -254,7 +261,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hosp.setPronome(rs.getString("Pronome"));
 				Hosp.setSobrenome(rs.getString("Sobrenome"));
 				
-				Hosp.setUsuario(null);
+				Hosp.setUsuario(User);
 			}
 			
 		} catch (SQLException e) {

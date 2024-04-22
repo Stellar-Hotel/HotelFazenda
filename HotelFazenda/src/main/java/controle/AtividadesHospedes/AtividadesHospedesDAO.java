@@ -11,6 +11,7 @@ import controle.Conexao;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
+import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Usuarios;
 
@@ -39,7 +40,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO AtividadesHospedes(IdHospede,IdAtividade) VALUES (?,?)";
+		String SQL = "INSERT INTO AtividadesHospedes(IdHospedeAtividades,IdAtividadeAtividades) VALUES (?,?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -82,7 +83,11 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM AtividadesHospedes";
+		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
+				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividades=Funcionarios.IdFuncionario"
+				+ " inner join Usuarios on Funcionarios.IdUsuarioFuncionario=Usuarios.IdUsuario"
+				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede";
+		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -97,12 +102,16 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 			while (Rs.next()) {
 				AtividadesHospedes At = new AtividadesHospedes();
+				
+				Funcionarios Func=new Funcionarios();
+				
+				Func.setIdFuncionario(Rs.getInt("IdFuncionario"));
 
 				Hospedes Hospede = new Hospedes();
 				// prenche os atributos desse objeto
 
 				Hospede.setNome(Rs.getString("Nome"));
-				Hospede.setCPF(Rs.getString("CPF"));
+				Hospede.setDocumento(Rs.getString("CPF"));
 				Hospede.setSobrenome(Rs.getString("Sobrenome"));
 				Hospede.setDataNasc(Rs.getDate("data_nasc"));
 				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
@@ -121,7 +130,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
 				
 				
-				Ativ.setFuncionario(null);
+				Ativ.setFuncionario(Func);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
 				At.setIdHospedeAtividade(Rs.getInt("IdHospedeAtividade"));

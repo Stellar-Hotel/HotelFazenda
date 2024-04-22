@@ -14,8 +14,10 @@ import controle.Servicos.ServicosDAO;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Hospedagens;
 import modelo.Hospedes;
+import modelo.Quartos;
 import modelo.Servicos;
 import modelo.ServicosConsumidos;
+import modelo.Usuarios;
 
 public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
@@ -37,7 +39,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
-		String SQL = "INSERT INTO ServicosConsumidos (IdHospede, IdServico, IdHospedagem) VALUES(?, ?, ?)";
+		String SQL = "INSERT INTO ServicosConsumidos (IdHospedeServicos, IdServicoServicos, IdHospedagemServicos) VALUES(?, ?, ?)";
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
@@ -72,9 +74,9 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ArrayList<ServicosConsumidos> ListarServicos() {
 
 		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
-		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN hospedes.IdHospede = ServicosConsumidos.IdHospede"
-					+" inner join servicos.IdServico=ServicosConsumidos.IdServico"
-					+" inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagem";
+		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos"
+					+" inner join servicos.IdServico=ServicosConsumidos.IdServicoServicos"
+					+" inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagemServicos";//tem que checar esse inner join dps
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
@@ -94,8 +96,13 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				// Criar obj para cada tabela
 				// tem que preencher os atributos desses objetos
 				Hospedes Hospede = new Hospedes();
-				Servicos Servico = new Servicos();
+				
+				//tem que arrumar isso aqui, não sei como faria, acho que criando um construtor novo
+				String nada="sim";
+				Servicos Servico = new Servicos(nada,0.1);
 				Hospedagens Hospedagem = new Hospedagens();
+				Quartos Quarto=new Quartos();
+				Usuarios User=new Usuarios();
 
 				// Setar os valores nos objetos
 				Servico.setIdServico(rs.getInt("IdServico"));
@@ -104,10 +111,9 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 				Hospedagem.setCheckin(rs.getDate("Checkin"));
 				Hospedagem.setCheckout(rs.getDate("Checkout"));
-				Hospedagem.setPrecoTotal(rs.getFloat("PrecoTotal"));
 				Hospedagem.setIdHospedagem(rs.getInt("IdHospedagem"));
 
-				Hospede.setCPF(rs.getString("CPF"));
+				Hospede.setDocumento(rs.getString("CPF"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setIdHospede(rs.getInt("IdHospede"));
@@ -116,8 +122,8 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setSobrenome(rs.getString("Sobreneome"));
 
-				Hospedagem.setHospde(null);
-				Hospede.setUsuario(null);
+				Hospedagem.setHospde(Hospede);
+				Hospede.setUsuario(User);
 
 				Serv.setHospede(Hospede);
 				Serv.setServico(Servico);
@@ -145,7 +151,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	@Override
 	public boolean atualizarServicoConsumido(ServicosConsumidos end) {
 		// Comando que vai ser executado no sql
-		String SQL = "UPDATE ServicosConsumidos SET IdServico=?, IdHospede=?, IdHospedagem=? where IdServicosConsumidos=?";
+		String SQL = "UPDATE ServicosConsumidos SET IdServicoServicos=?, IdHospedeServicos=?, IdHospedagemServicos=? where IdServicosConsumidos=?";
 
 		// abre a conexão e cria a "ponte de conexão" com MYsql
 		Conexao con = Conexao.getConexao();
@@ -201,7 +207,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ServicosConsumidos buscarServicoConsumidoPorId(int Id) {
 		// TODO Auto-generated method stub
 		ServicosConsumidos ServCon = null;
-		String sql = "Select * from ServicosConsumidos where IdServicoConsumido = ?";
+		String sql = "Select * from ServicosConsumidos where IdServicoConsumido = ?";// tem que fazer o inner join aqui se for usar
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
