@@ -40,7 +40,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO AtividadesHospedes(IdHospede,IdAtividade) VALUES (?,?)";
+		String SQL = "INSERT INTO AtividadesHospedes(IdHospedeAtividades,IdAtividadeAtividades) VALUES (?,?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -83,8 +83,11 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividade"
-				+ "inner join Funcionarios on ";
+		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
+				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividades=Funcionarios.IdFuncionario"
+				+ " inner join Usuarios on Funcionarios.IdUsuarioFuncionario=Usuarios.IdUsuario"
+				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede";
+		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -107,23 +110,23 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Hospedes Hospede = new Hospedes();
 				// prenche os atributos desse objeto
 
-//				Hospede.setNome(Rs.getString("Nome"));
-//				Hospede.setDocumento(Rs.getString("CPF"));
-//				Hospede.setSobrenome(Rs.getString("Sobrenome"));
-//				Hospede.setDataNasc(Rs.getDate("data_nasc"));
-//				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
-//				Hospede.setPronome(Rs.getString("Pronome"));
-//				Hospede.setEmail(Rs.getString("Email"));
-//				Hospede.setDataNasc(Rs.getDate("DataNasc"));
+				Hospede.setNome(Rs.getString("Nome"));
+				Hospede.setDocumento(Rs.getString("CPF"));
+				Hospede.setSobrenome(Rs.getString("Sobrenome"));
+				Hospede.setDataNasc(Rs.getDate("data_nasc"));
+				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
+				Hospede.setPronome(Rs.getString("Pronome"));
+				Hospede.setEmail(Rs.getString("Email"));
+				Hospede.setDataNasc(Rs.getDate("DataNasc"));
 				Hospede.setIdHospede(Rs.getInt("IdHospede"));
 
 				Atividades Ativ = new Atividades();
 
-//				Ativ.setIdadeMinima(Rs.getInt("IdadeMinima"));
-//				Ativ.setHorario(Rs.getString("Horario"));
-//				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
-//				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
-//				Ativ.setData(Rs.getDate("Data"));
+				Ativ.setIdadeMinima(Rs.getInt("IdadeMinima"));
+				Ativ.setHorario(Rs.getString("Horario"));
+				Ativ.setHorarioFim(Rs.getString("HorarioFim"));
+				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
+				Ativ.setData(Rs.getDate("Data"));
 				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
 				
 				

@@ -36,12 +36,12 @@ public class AtividadesDAO implements IAtividadesDAO
 		ArrayList<Atividades> atividades = new ArrayList<Atividades>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT Atividades.*, AtividadesHospedes.*, Funcionarios.*, Usuarios.Nome as nome_usuario  FROM Atividades"
-				+ " inner join AtividadesHospedes on AtividadesHospedes.IdAtividade=Atividades.IdAtividade" 
-				+ " inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionario "
-				+ " inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuario"
-				+ " inner join Hospedes on AtividadesHospedes.IdHospede=Hospede.IdHospede"
-				+ " inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuario";
+		String SQL = "SELECT Atividades.*, AtividadesHospedes.*, Funcionarios.*, Hospedes.*, Usuarios.*  FROM Atividades"
+				+ " inner join AtividadesHospedes on AtividadesHospedes.IdAtividadeAtividades = Atividades.IdAtividade" 
+				+ " inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionarioAtividade "
+				+ " inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario"
+				+ " inner join Hospedes on AtividadesHospedes.IdHospedeAtividades=Hospede.IdHospede"
+				+ " inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();

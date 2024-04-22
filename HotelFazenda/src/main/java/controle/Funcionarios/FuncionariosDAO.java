@@ -108,6 +108,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				
 				User.setSenha(rs.getString("Senha"));
 				User.setLogin(rs.getString("Login"));
+				User.setIdUsuario(rs.getInt("IdUsuarioFuncionario"));
 			
 
 				Funcionario.setNome(Nome);
@@ -130,7 +131,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?, WHERE IdFuncionario = ?";
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?, WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -188,7 +189,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public Funcionarios BuscarFuncionarioPorId(int Id) {
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
-		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
+		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";//inner join aqui também
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -231,7 +232,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
 		ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
-		String SQL="Select * from Funcionarios where Nome=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";
+		String SQL="Select * from Funcionarios where Nome=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";//inner join aqui tbm
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import controle.Conexao;
 import modelo.Hospedagens;
 import modelo.Hospedes;
+import modelo.Quartos;
+import modelo.Usuarios;
 
 public class HospedagensDAO implements IHospedagenDAO {
 
@@ -28,7 +30,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 	@Override
 	public int InserirHospedagem(Hospedagens Hg) {
-		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,PrecoTotal,IdHospede) VALUES (?, ?,?,?)";
+		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,IdQuartoHospedagens,IdHospedeHospedagens) VALUES (?, ?,?,?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -40,7 +42,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setDate(1, Hg.getCheckin());
 			ps.setDate(2, Hg.getCheckout());
-			ps.setFloat(3, Hg.getPrecoTotal());
+			ps.setInt(3, Hg.getQuarto().getIdQuarto());
 			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			int result = ps.executeUpdate();
@@ -70,7 +72,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 		ArrayList<Hospedagens> hospedagens = new ArrayList<Hospedagens>();
 
 		// comando sql executado
-		String SQL = "SELECT * FROM Hospedagens";
+		String SQL = "SELECT * FROM Hospedagens"; //tem que colocar o inner join aqui
 
 		// cria a ponte de conecao com o mysql
 		Conexao con = Conexao.getConexao();
@@ -87,6 +89,10 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospedagens Hg = new Hospedagens();
 
 				Hospedes Hospede = new Hospedes();
+				
+				Quartos Quarto=new Quartos();
+				
+				Usuarios Usuario=new Usuarios();
 
 				Hospede.setNome(rs.getString("Nome"));
 				Hospede.setDocumento(rs.getString("CPF"));
@@ -96,14 +102,18 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
+				
+				Hospede.setUsuario(Usuario);
+				
+				//Tem que setar os atributos dos bagulho estrangeiro ainda
 
 				// Pega os valores de cada coluna d registro
 
 				Hg.setCheckin(rs.getDate("Checkin"));
 				Hg.setCheckout(rs.getDate("Chekout"));
 				Hg.setIdHospedagem(rs.getInt("IdHospedagem"));
-				Hg.setPrecoTotal(rs.getFloat("PrecoTotal"));
 				Hg.setHospde(Hospede);
+				Hg.setQuarto(Quarto);
 
 				// Adiciona objeto na lista
 				hospedagens.add(Hg);
@@ -124,7 +134,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedagens Set Checkin = ?, Checkout = ?, PrecoTotal = ?, IdHospede=? where HospedensId = ?";
+		String SQL = "UPDATE Hospedagens Set Checkin = ?, Checkout = ?, IdQuartoHospedagens = ?, IdHospedeHospedagens=? where HospedensId = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -139,7 +149,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 			// Substitui as interrogações no comando SQL
 			ps.setDate(1, Hg.getCheckin());
 			ps.setDate(2, Hg.getCheckout());
-			ps.setFloat(3, Hg.getPrecoTotal());
+			ps.setInt(3, Hg.getQuarto().getIdQuarto());
 			ps.setInt(4, Hg.getHospede().getIdHospede());
 
 			// indica qual qual hospedagem atualizar no comeando where através do id
@@ -202,7 +212,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 	public Hospedagens BuscarHospedagemId(int Id) {
 		// TODO Auto-generated method stub
 		Hospedagens Hosp = null;
-		String SQL = "Seçect * from Hospedagens where IdHospedagem = ?";
+		String SQL = "Select * from Hospedagens where IdHospedagem = ?"; //tem que arrumar o inner join aqui também
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
@@ -219,7 +229,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hosp.setCheckin(rs.getDate("Checkin"));
 				Hosp.setCheckout(rs.getDate("Checkout"));
 				Hosp.setIdHospedagem(Id);
-				Hosp.setPrecoTotal(rs.getFloat("PrecoTotal"));
+				
 
 				Hosp.setHospde(null);
 			}
