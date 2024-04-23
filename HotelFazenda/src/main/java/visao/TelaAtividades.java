@@ -429,9 +429,9 @@ public class TelaAtividades extends JFrame {
 							                    	JOptionPane.showMessageDialog(null, "selecione uma linha");
 							                    }else if(linha >= 0) {
 							                    	DefaultTableModel model1 = (DefaultTableModel) table.getModel();
-							                    	model1.setValueAt(Idade, linha, 0);
-							                    	model1.setValueAt(Horario, linha, 1);
-							                    	model1.setValueAt(HorarioFim, linha, 2);
+							                    	//model1.setValueAt(Idade, linha, 0);
+							                    	model1.setValueAt(Idade, linha, 1);
+							                    	model1.setValueAt(Horario, linha, 2);
 							                    	model1.setValueAt(HorarioFim, linha, 3);
 							                    	model1.setValueAt(NomeAtividade, linha, 4);
 							                    	model1.setValueAt(data, linha, 5);
