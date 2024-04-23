@@ -11,7 +11,7 @@ public interface IAtividadesDAO {
 
 	public boolean AtualizarAtividades(Atividades Ativ);
 
-	public boolean RemoverAtividades(String Nome);
+	public boolean RemoverAtividades(int Nome);
 
 	public ArrayList<Atividades> BuscarAtividadePeloNome(String Local);
 }

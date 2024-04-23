@@ -123,8 +123,8 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public boolean RemoverAtividades(String Nome) {
-		String SQL = "DELETE FROM enderecos WHERE NomeAtividade = ?";
+	public boolean RemoverAtividades(int Nome) {
+		String SQL = "DELETE FROM Atividades WHERE NomeAtividade = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -132,7 +132,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setString(1, Nome);
+			ps.setInt(1, Nome);
 
 			retorno = ps.executeUpdate();
 

@@ -446,6 +446,17 @@ public class TelaAtividades extends JFrame {
 								panel_7.add(btnAlterar, "cell 2 6");
 								
 								JButton btnExcluir = new JButton("Excluir");
+								btnExcluir.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										
+										 AtividadesDAO DAO = AtividadesDAO.getInstancia();										 										
+										int linha = table.getSelectedRow();
+										DAO.RemoverAtividades(linha);
+										atualizarJTable();
+										
+
+									}
+								});
 								panel_7.add(btnExcluir, "cell 2 6");
 								
 
