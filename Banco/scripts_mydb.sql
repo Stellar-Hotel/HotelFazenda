@@ -120,7 +120,7 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `Funcao` VARCHAR(45) NOT NULL,
   `Salario` FLOAT NOT NULL,
   `IdUsuarioFuncionario` INT NOT NULL,
-  `CPF` VARCHAR(45),
+  `CPF` VARCHAR(45) NOT NULL,
   `NivelDeAcesso` INT NOT NULL,
   PRIMARY KEY (`IdFuncionario`,`IdUsuarioFuncionario`),
   CONSTRAINT `fk_Funcionarios_Usuarios1`
@@ -142,7 +142,7 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
   `NomeAtividade` VARCHAR(45) NOT NULL,
   `Data` DATE NOT NULL,
   `Capacidade` INT NOT NULL,
-  PRIMARY KEY (`IdAtividade`, `IdFuncionario`),
+  PRIMARY KEY (`IdAtividade`, `IdFuncionarioAtividade`),
 
   CONSTRAINT `fk_Atividades_Funcionarios1`
     FOREIGN KEY (`IdFuncionarioAtividade`)
@@ -159,7 +159,7 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
   `IdHospedeServicos` INT NOT NULL,
   `IdServicoServicos` INT NOT NULL,
   `IdHospedagemServicos` INT NOT NULL,
-  PRIMARY KEY (`IdServicoConsumido`, `IdHospede`, `IdServico`, `IdHospedagem`),
+  PRIMARY KEY (`IdServicoConsumido`, `IdHospedeServicos`, `IdServicoServicos`, `IdHospedagemServicos`),
 
   CONSTRAINT `fk_Hospedes_has_Servicos_Hospedes1`
     FOREIGN KEY (`IdHospedeServicos`)
@@ -182,7 +182,7 @@ CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
   `IdAtividadesHospedes` INT NOT NULL AUTO_INCREMENT,
   `IdHospedeAtividades` INT NOT NULL,
   `IdAtividadeAtividades` INT NOT NULL,
-  PRIMARY KEY (`IdAtividadesHospedes`, `IdHospede`, `IdAtividade`),
+  PRIMARY KEY (`IdAtividadesHospedes`, `IdHospedeAtividades`, `IdAtividadeAtividades`),
 
   CONSTRAINT `fk_Hospedes_has_AtividadesHospedess1`
     FOREIGN KEY (`IdHospedeAtividades`)
@@ -272,26 +272,26 @@ insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Prono
 
 /*Tabela funcionarios*/
 
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Gerry', 'Delucia', 'Camareiro', 9526.14, 21,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Suzi', 'Rickarsey', 'Jardineira Specialist IV', 4905.58, 29,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Jonell', 'Devine', 'Garçom', 2276.33, 30,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Mae', 'McNess', 'Garçom', 9164.21, 31,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Moishe', 'McCrea', 'Secretário', 6212.93, 32,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Winny', 'Butterworth', 'Secretário', 2643.54, 33,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Wynn', 'MacAllester', 'Gerente', 9734.61, 34,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Charmaine', 'Chilcott', 'camareira', 3291.06, 35,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Hortense', 'Dwyr', 'Diarista', 7856.25, 36,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Chadwick', 'Ewen', 'Faxineiro', 7086.47, 37,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Tally', 'Liffe', 'Diarista', 5948.04, 38,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Letisha', 'Huggon', 'Diarista', 9692.93, 39,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Mose', 'Jozwicki', 'Diarista', 2530.39, 40,0);
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gerry', 'Delucia', 'Camareiro', 9526.14, 21,0,'00000000001');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22,0,'00000000002');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23,0,'00000000003');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24,0,'00000000004');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25,0,'00000000005');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0,'00000000006');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0,'00000000007');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0,'00000000008');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Suzi', 'Rickarsey', 'Jardineira Specialist IV', 4905.58, 29,0,'00000000009');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Jonell', 'Devine', 'Garçom', 2276.33, 30,0,'00000000010');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Mae', 'McNess', 'Garçom', 9164.21, 31,0,'00000000011');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Moishe', 'McCrea', 'Secretário', 6212.93, 32,0,'00000000012');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Winny', 'Butterworth', 'Secretário', 2643.54, 33,0,'00000000013');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Wynn', 'MacAllester', 'Gerente', 9734.61, 34,0,'00000000014');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Charmaine', 'Chilcott', 'camareira', 3291.06, 35,0,'00000000015');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Hortense', 'Dwyr', 'Diarista', 7856.25, 36,0,'00000000016');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Chadwick', 'Ewen', 'Faxineiro', 7086.47, 37,0,'00000000017');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Tally', 'Liffe', 'Diarista', 5948.04, 38,0,'00000000018');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Letisha', 'Huggon', 'Diarista', 9692.93, 39,0,'00000000019');
+insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Mose', 'Jozwicki', 'Diarista', 2530.39, 40,0,'00000000020');
 
 /*Tabela Quartos*/
 
@@ -388,27 +388,27 @@ insert into Servicos (PrecoServico, NomeServico, Quantidade) values (275.8, 'Aul
 
 /*Tabela AtividadesHospedes*/
 
-insert into AtividadesHospedes(IdHospedeAtividades, IdAtividadesHospedes)
-values (1,1),
-(2,2),
-(3,3),
-(4,4),
-(5,5),
-(6,6),
-(7,7),
-(8,8),
-(9,9),
-(10,10),
-(11,11),
-(12,12),
-(13,13),
-(14,14),
-(15,15),
-(16,16),
-(17,17),
-(18,18),
-(19,19),
-(20,20);
+insert into AtividadesHospedes(IdHospedeAtividades, IdAtividadesHospedes,IdAtividadeAtividades)
+values (1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10),
+(11,11,11),
+(12,12,12),
+(13,13,13),
+(14,14,14),
+(15,15,15),
+(16,16,16),
+(17,17,17),
+(18,18,18),
+(19,19,19),
+(20,20,20);
 
 
 /*Tabela serviços consumidos*/
