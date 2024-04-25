@@ -37,7 +37,7 @@ public class AtividadesDAO implements IAtividadesDAO
 		ArrayList<Atividades> atividades = new ArrayList<Atividades>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM Atividades inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionario";
+		String SQL = "SELECT * FROM Atividades inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionarioAtividade";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -124,7 +124,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public boolean RemoverAtividades(int IdAtividade) {
+	public boolean RemoverAtividades(Atividades Atividade) {
 		String SQL = "DELETE FROM Atividades WHERE IdAtividade = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
@@ -133,14 +133,9 @@ public class AtividadesDAO implements IAtividadesDAO
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, IdAtividade);
+			ps.setInt(1, Atividade.getIdAtividade());
 
 			retorno = ps.executeUpdate();		
-		}catch (SQLIntegrityConstraintViolationException e) {
-	        System.err.println("Não é possível excluir a atividade: violação de integridade referencial.");
-
-			return false;
-			
 		}catch (Exception e) {
 		e.printStackTrace();
 			
