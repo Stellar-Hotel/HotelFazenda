@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -123,8 +124,8 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public boolean RemoverAtividades(int Nome) {
-		String SQL = "DELETE FROM Atividades WHERE NomeAtividade = ?";
+	public boolean RemoverAtividades(int IdAtividade) {
+		String SQL = "DELETE FROM Atividades WHERE IdAtividade = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -132,12 +133,17 @@ public class AtividadesDAO implements IAtividadesDAO
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, Nome);
+			ps.setInt(1, IdAtividade);
 
-			retorno = ps.executeUpdate();
+			retorno = ps.executeUpdate();		
+		}catch (SQLIntegrityConstraintViolationException e) {
+	        System.err.println("Não é possível excluir a atividade: violação de integridade referencial.");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
+			
+		}catch (Exception e) {
+		e.printStackTrace();
+			
 		} finally {
 			con.FecharConexao();
 		}

@@ -451,7 +451,13 @@ public class TelaAtividades extends JFrame {
 										
 										 AtividadesDAO DAO = AtividadesDAO.getInstancia();										 										
 										int linha = table.getSelectedRow();
-										DAO.RemoverAtividades(linha);
+										boolean res = DAO.RemoverAtividades(linha);
+//										if(res == false) {
+//											JOptionPane.showMessageDialog(null, "nao é possivel excluir");
+//										}
+//										else if(res == true) {
+//											JOptionPane.showMessageDialog(null, "Deu certo");
+//										}
 										atualizarJTable();
 										
 
