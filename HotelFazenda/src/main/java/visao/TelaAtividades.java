@@ -193,6 +193,14 @@ public class TelaAtividades extends JFrame {
 		contentPane.add(Principal, "cell 1 1,grow");
 		Principal.setLayout(new MigLayout("", "[:122.00px:122.00px,grow][][92.00][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
 		
+		
+		JScrollPane spTable = new JScrollPane();
+		Principal.add(spTable, "cell 4 14 5 4,grow");
+		
+				table = new JTable(model1);
+				spTable.setViewportView(table);
+
+		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
@@ -210,7 +218,7 @@ public class TelaAtividades extends JFrame {
 					public void mouseClicked(MouseEvent e) {
 
 		                spTable.setViewportView(new JTable(model2));
-		                atualizarJTable();
+		             //   atualizarJTable();
 					}
 				});
 				Principal.add(panel_6, "flowy,cell 1 2");
@@ -240,7 +248,7 @@ public class TelaAtividades extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
                 spTable.setViewportView(table);
-                atualizarJTable();
+               // atualizarJTable();
 			}
 		});
 		Principal.add(panel_5, "flowx,cell 0 2");

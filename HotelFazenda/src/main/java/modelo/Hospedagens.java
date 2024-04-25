@@ -8,8 +8,9 @@ public class Hospedagens {
 	private int IdHospedagem;
 	private Date Checkin;
 	private Date Checkout;
-	private Float PrecoTotal;
 	private Hospedes Hospede;
+	private Quartos Quarto;
+
 
 	public int getIdHospedagem() {
 		return IdHospedagem;
@@ -43,11 +44,12 @@ public class Hospedagens {
 		return Hospede;
 	}
 
-	public Float getPrecoTotal() {
-		return PrecoTotal;
+	public Quartos getQuarto() {
+		return Quarto;
 	}
 
-	public void setPrecoTotal(Float precoTotal) {
-		PrecoTotal = precoTotal;
+	public void setQuarto(Quartos quarto) {
+		Quarto = quarto;
 	}
+
 }

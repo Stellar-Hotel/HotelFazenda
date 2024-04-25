@@ -140,14 +140,14 @@ public class Login extends JFrame {
 						Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
 
 						if (usuarios != null) {
-							JOptionPane.showMessageDialog(null, "Deu certo");
+							JOptionPane.showMessageDialog(null, "Usuário encontrado!");
 							TelaServicos c = new TelaServicos();
 							c.setVisible(true);
 							dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
                     txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
-
+                    txtSenha.setBorder(new RoundedBorder(Color.RED,10));
 						}
 
 					}

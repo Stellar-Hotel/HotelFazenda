@@ -13,5 +13,5 @@ public interface IFuncionariosDAO {
 
 	public boolean RemoverFuncionario(Funcionarios Func);
 
-	public Funcionarios BuscarFuncionarioPorId(int Id);
+	public Funcionarios BuscarFuncionarioPorCPF(String CPF);
 }

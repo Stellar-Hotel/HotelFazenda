@@ -1,10 +1,11 @@
 package modelo;
 
 public class Funcionarios {
-	private int IdFuncionario;
-	private String Nome, Sobrenome, Funcao;
+	private int IdFuncionario, NivelDeAcesso;
+	private String Nome, Sobrenome, Funcao, CPF;
 	private Usuarios Usuario;
-
+	private Float Salario;
+	
 	public int getIdFuncionario() {
 		return IdFuncionario;
 	}
@@ -12,8 +13,6 @@ public class Funcionarios {
 	public void setIdFuncionario(int funcionarioId) {
 		IdFuncionario = funcionarioId;
 	}
-
-	private Float Salario;
 
 	public String getNome() {
 		return Nome;
@@ -53,6 +52,22 @@ public class Funcionarios {
 
 	public void setUsuario(Usuarios idUsuario) {
 		this.Usuario = idUsuario;
+	}
+
+	public String getCPF() {
+		return CPF;
+	}
+
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public int getNivelDeAcesso() {
+		return NivelDeAcesso;
+	}
+
+	public void setNivelDeAcesso(int nivelDeAcesso) {
+		NivelDeAcesso = nivelDeAcesso;
 	}
 
 }
