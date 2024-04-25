@@ -382,6 +382,9 @@ public class TelaAtividades extends JFrame {
 								panel_7.add(btnNewButton_1, "cell 2 10");
 								
 								JButton btnAlterar = new JButton("Alterar");
+								btnAlterar.setForeground(new Color(255, 255, 255));
+								btnAlterar.setBackground(new Color(117, 187, 68));
+								btnAlterar.setBorder(new RoundedBorder(Color.black, 8));
 								btnAlterar.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
 										
@@ -444,9 +447,12 @@ public class TelaAtividades extends JFrame {
 									}
 									}
 								});
-								panel_7.add(btnAlterar, "cell 2 6");
+								panel_7.add(btnAlterar, "cell 2 6,growx");
 								
 								JButton btnExcluir = new JButton("Excluir");
+								btnExcluir.setForeground(new Color(255, 255, 255));
+								btnExcluir.setBackground(new Color(117, 187, 68));
+								btnExcluir.setBorder(new RoundedBorder(Color.black, 8));
 								btnExcluir.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
 										
@@ -460,7 +466,7 @@ public class TelaAtividades extends JFrame {
 
 									}
 								});
-								panel_7.add(btnExcluir, "cell 2 6");
+								panel_7.add(btnExcluir, "cell 2 6,growx");
 								
 
 
