@@ -190,6 +190,17 @@ public class TelaServicos extends JFrame {
 		panel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+//				
+//				ServicosConsumidosDAO dao = ServicosConsumidosDAO.getInstancia();
+//				ServicosConsumidos serv = new ServicosConsumidos();
+				
+//				serv.getHospede()
+				
+//				dao.inserirServicoConsumido(serv);
+				
+				
+				
+				
 				Carrinho c = new Carrinho(lista);
 				c.setVisible(true);
 				dispose();
@@ -338,12 +349,8 @@ public class TelaServicos extends JFrame {
 				
 				lista.add(Massagem);
 				
-//				ServicosConsumidosDAO dao = ServicosConsumidosDAO.getInstancia();
-//				ServicosConsumidos serv = new ServicosConsumidos();
 				
-//				serv.getHospede()
-				
-//				dao.inserirServicoConsumido(serv);
+//				
 				
 			}
 		});
