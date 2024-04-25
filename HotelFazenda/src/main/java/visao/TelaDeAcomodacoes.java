@@ -156,7 +156,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[432.00px:n][210.00px:n,grow][50px:n]", "[44px][14px][14px][-1.00][392.00px][97.00,grow]"));
+		Principal.setLayout(new MigLayout("", "[420.00px:n][177.00px:n,grow][50px:n]", "[44px][14px][14px][-1.00][392.00px][97.00,grow]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Acomodações");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
@@ -199,7 +199,8 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_8.add(lblNewLabel_16, "cell 0 1,alignx left,aligny top");
 		
-		JLabel lblNewLabel_10 = new JLabel("New label");
+		JLabel lblNewLabel_10 = new JLabel("2-4 hóspedes · TV · ar-condicionado · 2 cama solteiro · 1 camas casal · 1 banheiro");
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel_8.add(lblNewLabel_10, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_9 = new JPanel();
@@ -221,7 +222,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_12.setLayout(null);
 		
 		JLabel lblQuartoMediano = new JLabel("");
-		lblQuartoMediano.setBounds(7, 7, 627, 408);
+		lblQuartoMediano.setBounds(7, 7, 571, 408);
 		lblQuartoMediano.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoMedio.jpg")));
 		
 		panel_12.add(lblQuartoMediano);
@@ -230,7 +231,8 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_17.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_9.add(lblNewLabel_17, "cell 0 1,alignx left,aligny top");
 		
-		JLabel lblNewLabel_12 = new JLabel("New label");
+		JLabel lblNewLabel_12 = new JLabel("2-6 hóspedes · TV · Frigobar · ar-condicionado · 2 cama solteiro · 2 camas casal · 2 banheiros");
+		lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel_9.add(lblNewLabel_12, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_10 = new JPanel();
@@ -261,7 +263,8 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_10.add(lblNewLabel_18, "cell 0 1,growx,aligny top");
 		
-		JLabel lblNewLabel_14 = new JLabel("New label");
+		JLabel lblNewLabel_14 = new JLabel("4-8 hóspedes · Banheira · TV · Frigobar · ar-condicionado · 4 camas solteiro · 2 camas casal · 3 banheiros");
+		lblNewLabel_14.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel_10.add(lblNewLabel_14, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_7 = new JPanel();

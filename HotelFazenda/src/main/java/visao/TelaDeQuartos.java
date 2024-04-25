@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class TelaDeQuartos extends JFrame {
 
@@ -30,6 +32,8 @@ public class TelaDeQuartos extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -164,18 +168,70 @@ public class TelaDeQuartos extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[grow][][fill]", "[][322.00,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[201.00,grow][100px:74.00:150px,grow][:500.00:550px,grow]", "[][322.00,grow,fill]"));
+		
+		JPanel panel_5 = new JPanel();
+		Principal.add(panel_5, "cell 0 1,grow");
+		panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][grow]"));
+		
+		JPanel panel_6 = new JPanel();
+		panel_5.add(panel_6, "cell 0 0,grow");
+		panel_6.setLayout(new MigLayout("", "[74.00,grow][grow]", "[][][][][][grow][][][][][][]"));
+		
+		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_6.add(lblNewLabel_7, "cell 0 0");
+		
+		JLabel lblNewLabel_9 = new JLabel("Hóspede");
+		panel_6.add(lblNewLabel_9, "cell 0 2,alignx left");
+		
+		textField = new JTextField();
+		panel_6.add(textField, "cell 1 2,growx");
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_10 = new JLabel("Data");
+		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
+		
+		textField_1 = new JTextField();
+		panel_6.add(textField_1, "cell 1 3,growx");
+		textField_1.setColumns(10);
+		
+		JPanel panel_8 = new JPanel();
+		panel_6.add(panel_8, "cell 0 4 1 4,grow");
+		
+		JComboBox comboBox = new JComboBox();
+		panel_6.add(comboBox, "cell 0 10,grow");
+		
+		JButton btnNewButton = new JButton("Efetuar reserva");
+		panel_6.add(btnNewButton, "cell 0 11");
+		
+		JPanel panel_7 = new JPanel();
+		panel_5.add(panel_7, "cell 0 1,grow");
+		panel_7.setLayout(new MigLayout("", "[][][grow]", "[][]"));
+		
+		JLabel lblNewLabel_11 = new JLabel("Manutenção");
+		panel_7.add(lblNewLabel_11, "cell 0 0");
+		
+		JComboBox comboBox_1 = new JComboBox();
+		panel_7.add(comboBox_1, "cell 2 0,growx");
+		
+		JLabel lblNewLabel_12 = new JLabel("Reposição");
+		panel_7.add(lblNewLabel_12, "cell 0 1");
+		
+		JComboBox comboBox_2 = new JComboBox();
+		panel_7.add(comboBox_2, "cell 2 1,growx");
 		
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 		
-		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Nome do Quarto" ,"Máximo de Pessoas", "Manutencao", "Tipo da Cama", "Frigobar", "Ar-Condicionado", "Banheira", "TV", "Preco da Diaria"});
-
-	    table = new JTable(model1);
-		
+		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Nome do Quarto" , "Manutencao",  "Preco da Diaria"});
+	    
+	    	    table = new JTable(model1);
+	    	    
 	    JScrollPane scrollPane1 = new JScrollPane(table);
-	    Principal.add(scrollPane1, "cell 0 1,grow");
+	    Principal.add(scrollPane1, "cell 2 1,grow");
+		
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
