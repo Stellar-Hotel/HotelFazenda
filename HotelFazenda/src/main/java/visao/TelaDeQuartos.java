@@ -34,6 +34,7 @@ public class TelaDeQuartos extends JFrame {
 	private JTable table;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -176,7 +177,7 @@ public class TelaDeQuartos extends JFrame {
 		
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0,grow");
-		panel_6.setLayout(new MigLayout("", "[74.00,grow][grow]", "[][][][][][grow][][][][][][]"));
+		panel_6.setLayout(new MigLayout("", "[][100px:74.00,grow][grow]", "[][][][][][grow][][][][][][]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -186,28 +187,31 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx left");
 		
 		textField = new JTextField();
-		panel_6.add(textField, "cell 1 2,growx");
+		panel_6.add(textField, "cell 1 2 2 1,growx");
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Data");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
 		
 		textField_1 = new JTextField();
-		panel_6.add(textField_1, "cell 1 3,growx");
+		panel_6.add(textField_1, "cell 1 3 2 1,grow");
 		textField_1.setColumns(10);
 		
 		JPanel panel_8 = new JPanel();
-		panel_6.add(panel_8, "cell 0 4 1 4,grow");
+		panel_6.add(panel_8, "cell 0 4 3 4,grow");
+		
+		JLabel lblNewLabel_13 = new JLabel("Forma de pagamento");
+		panel_6.add(lblNewLabel_13, "cell 0 10,alignx left");
 		
 		JComboBox comboBox = new JComboBox();
-		panel_6.add(comboBox, "cell 0 10,grow");
+		panel_6.add(comboBox, "cell 1 10 2 1,grow");
 		
 		JButton btnNewButton = new JButton("Efetuar reserva");
-		panel_6.add(btnNewButton, "cell 0 11");
+		panel_6.add(btnNewButton, "cell 1 11,alignx right");
 		
 		JPanel panel_7 = new JPanel();
 		panel_5.add(panel_7, "cell 0 1,grow");
-		panel_7.setLayout(new MigLayout("", "[][][grow]", "[][]"));
+		panel_7.setLayout(new MigLayout("", "[][][grow]", "[][][][][][grow]"));
 		
 		JLabel lblNewLabel_11 = new JLabel("Manutenção");
 		panel_7.add(lblNewLabel_11, "cell 0 0");
@@ -220,6 +224,13 @@ public class TelaDeQuartos extends JFrame {
 		
 		JComboBox comboBox_2 = new JComboBox();
 		panel_7.add(comboBox_2, "cell 2 1,growx");
+		
+		JLabel lblNewLabel_14 = new JLabel("Observações");
+		panel_7.add(lblNewLabel_14, "cell 0 3");
+		
+		textField_2 = new JTextField();
+		panel_7.add(textField_2, "cell 2 3 1 3,grow");
+		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
