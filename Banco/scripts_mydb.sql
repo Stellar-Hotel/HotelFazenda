@@ -1,5 +1,3 @@
--- MySQL Workbench Forward Engineering
-
 DROP DATABASE IF EXISTS `Stellar`;
 
 CREATE database IF NOT EXISTS `Stellar` ;
@@ -29,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
   `Pronome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
   `IdUsuarioHospede` INT NOT NULL,
-  PRIMARY KEY (`IdHospede`, `IdUsuario`),
+  PRIMARY KEY (`IdHospede`, `IdUsuarioHospede`),
  
   CONSTRAINT `fk_Hospedes_Usuarios1`
     FOREIGN KEY (`IdUsuarioHospede`)
@@ -124,8 +122,8 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `IdUsuarioFuncionario` INT NOT NULL,
   `CPF` VARCHAR(45),
   `NivelDeAcesso` INT NOT NULL,
-  PRIMARY KEY (`IdFuncionario`, `IdUsuario`),
-  CONSTRAINT `fk_Funcionarios_Usuários1`
+  PRIMARY KEY (`IdFuncionario`,`IdUsuarioFuncionario`),
+  CONSTRAINT `fk_Funcionarios_Usuarios1`
     FOREIGN KEY (`IdUsuarioFuncionario`)
     REFERENCES `Stellar`.`Usuarios`(`IdUsuario`)
     )
