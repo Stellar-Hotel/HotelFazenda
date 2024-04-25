@@ -142,7 +142,7 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
   `NomeAtividade` VARCHAR(45) NOT NULL,
   `Data` DATE NOT NULL,
   `Capacidade` INT NOT NULL,
-  PRIMARY KEY (`IdAtividade`, `IdFuncionario`),
+  PRIMARY KEY (`IdAtividade`, `IdFuncionarioAtividade`),
 
   CONSTRAINT `fk_Atividades_Funcionarios1`
     FOREIGN KEY (`IdFuncionarioAtividade`)
@@ -159,7 +159,7 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
   `IdHospedeServicos` INT NOT NULL,
   `IdServicoServicos` INT NOT NULL,
   `IdHospedagemServicos` INT NOT NULL,
-  PRIMARY KEY (`IdServicoConsumido`, `IdHospede`, `IdServico`, `IdHospedagem`),
+  PRIMARY KEY (`IdServicoConsumido`, `IdHospedeServicos`, `IdServicoServicos`, `IdHospedagemServicos`),
 
   CONSTRAINT `fk_Hospedes_has_Servicos_Hospedes1`
     FOREIGN KEY (`IdHospedeServicos`)
@@ -182,7 +182,7 @@ CREATE TABLE  IF NOT EXISTS `AtividadesHospedes` (
   `IdAtividadesHospedes` INT NOT NULL AUTO_INCREMENT,
   `IdHospedeAtividades` INT NOT NULL,
   `IdAtividadeAtividades` INT NOT NULL,
-  PRIMARY KEY (`IdAtividadesHospedes`, `IdHospede`, `IdAtividade`),
+  PRIMARY KEY (`IdAtividadesHospedes`, `IdHospedeAtividades`, `IdAtividadeAtividades`),
 
   CONSTRAINT `fk_Hospedes_has_AtividadesHospedess1`
     FOREIGN KEY (`IdHospedeAtividades`)
