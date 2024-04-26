@@ -65,6 +65,7 @@ CREATE TABLE  IF NOT EXISTS `Hospedagens` (
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
+  `TipoQuarto` INT,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
   `TipoCama` VARCHAR(45) NOT NULL,

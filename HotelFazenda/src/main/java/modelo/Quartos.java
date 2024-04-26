@@ -2,7 +2,7 @@ package modelo;
 
 public class Quartos {
 	private int IdQuarto, MaxPessoas;
-	private String TipoCama, Manutencao;
+	private String TipoCama, Manutencao, NomeQuarto;
 	private Boolean Frigobar, ArCondicionado, Banheira, TV;
 	private Float PrecoDiaria;
 
@@ -76,6 +76,14 @@ public class Quartos {
 
 	public void setPrecoDiaria(Float precoDiaria) {
 		PrecoDiaria = precoDiaria;
+	}
+
+	public String getNomeQuarto() {
+		return NomeQuarto;
+	}
+
+	public void setNomeQuarto(String nomeQuarto) {
+		NomeQuarto = nomeQuarto;
 	}
 
 }

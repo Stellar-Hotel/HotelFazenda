@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.Quartos.QuartosDAO;
 import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
@@ -53,6 +54,22 @@ public class TelaDeQuartos extends JFrame {
 			}
 		});
 	}
+	
+	protected void atualizarJTable() {
+		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},new String[] {"Nome do Quarto" , "Manutencao",  "Preco da Diaria"}));
+
+		 QuartosDAO QuartoDAO=QuartosDAO.getConexao();
+		 Object Lista = QuartoDAO.ListarQuartos();
+
+		 for (int i = 0; i < ListaQuartos.size(); i++) {
+
+		 Quartos p = ListaQuartos.get(i);
+		 model1.addRow(new Object[] { p.getNomeQuarto(),p.getManutencao(),p.getPrecoDiaria()});
+		}
+		 System.out.println(ListaQuartos.size());
+
+		table.setModel(model1);
+		}
 
 	/**
 	 * Create the frame.
@@ -241,6 +258,7 @@ public class TelaDeQuartos extends JFrame {
 	    	    table = new JTable(model1);
 	    	    
 	    JScrollPane scrollPane1 = new JScrollPane(table);
+	    atualizarJTable();
 	    Principal.add(scrollPane1, "cell 2 1,grow");
 		
 
