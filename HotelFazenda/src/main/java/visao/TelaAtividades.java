@@ -54,6 +54,7 @@ public class TelaAtividades extends JFrame {
 	private JTextField TextHorarioFim;
 	private JTextField textData;
 	private JTextField textField;
+	private JTextField textCapacidade;
 
 	/**
 	 * Launch the application.
@@ -82,9 +83,9 @@ public class TelaAtividades extends JFrame {
 		ListaAtividadesinscritas = new ArrayList<Atividades>();
 
 		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade" }));
 
-		model2 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade" }));
+		model2 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "Funcionario", "NomeAtividade"}));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -253,7 +254,7 @@ public class TelaAtividades extends JFrame {
 								
 								JPanel panel_7 = new JPanel();
 								Principal.add(panel_7, "cell 0 14 3 4,grow");
-								panel_7.setLayout(new MigLayout("", "[102px][10px][][][86px,grow]", "[14px,grow][20px,grow][20px,grow][20px,grow][20px,grow][20px,grow][grow][][grow][grow][grow]"));
+								panel_7.setLayout(new MigLayout("", "[102px][10px][grow][][86px,grow]", "[14px,grow][20px,grow][20px,grow][20px,grow][20px,grow][20px,grow][][grow][][grow][grow][grow]"));
 								
 								JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
 								panel_7.add(lblNewLabel_10, "cell 0 0 5 1,alignx center,aligny top");
@@ -304,14 +305,15 @@ public class TelaAtividades extends JFrame {
 										 
 									
 									
-									if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty())) {
-										JOptionPane.showMessageDialog(null, "ERRO");
+									if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
+										JOptionPane.showMessageDialog(null, "Textos vazios insira algo para adicionar!");
 									}else {  
 										
 											Integer Idade = Integer.valueOf(textIdade.getText());
 						                    String Horario = textHorario.getText();
 						                    String HorarioFim = TextHorarioFim.getText();
 						                    String NomeAtividade = textNomeatividade.getText();
+						                    int Capacidade = Integer.valueOf(textCapacidade.getText());
 						                    
 						                   
 						                    
@@ -326,6 +328,9 @@ public class TelaAtividades extends JFrame {
 						                    } catch (ParseException e1) {
 						                        e1.printStackTrace();
 						                    }
+						                    
+						                    
+						                    
 						                    Atividades ativ = new Atividades();
 
 						                    						                    
@@ -334,6 +339,7 @@ public class TelaAtividades extends JFrame {
 						                    ativ.setHorarioFim(HorarioFim);
 						                    ativ.setNomeAtividade(NomeAtividade);
 						                    ativ.setData(data);
+						                    ativ.setCapacidade(Capacidade);
 						                    Funcionarios Func=new Funcionarios();
 						                    Func.setIdFuncionario(2);
 						                    ativ.setFuncionario(Func);
@@ -351,23 +357,30 @@ public class TelaAtividades extends JFrame {
 																													
 									}
 								});
+								
+								JLabel lblNewLabel_12_1_1_1 = new JLabel("Capacidade");
+								panel_7.add(lblNewLabel_12_1_1_1, "cell 0 6");
+								
+								textCapacidade = new JTextField();
+								textCapacidade.setColumns(10);
+								panel_7.add(textCapacidade, "cell 2 6 3 1,growx");
 								btnCadastrar.setForeground(new Color(255, 255, 255));
 								btnCadastrar.setBackground(new Color(117, 187, 68));
-								panel_7.add(btnCadastrar, "flowx,cell 2 6");
+								panel_7.add(btnCadastrar, "flowx,cell 2 7");
 								
 								JSeparator separator_2 = new JSeparator();
 								separator_2.setForeground(Color.LIGHT_GRAY);
 								separator_2.setBackground(Color.LIGHT_GRAY);
-								panel_7.add(separator_2, "cell 0 7 5 1,growx");
+								panel_7.add(separator_2, "cell 0 8 5 1,growx");
 								
 								JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
-								panel_7.add(lblNewLabel_10_1_1, "cell 2 8");
+								panel_7.add(lblNewLabel_10_1_1, "cell 2 9");
 								
 								JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
-								panel_7.add(lblNewLabel_11_2, "cell 0 9");
+								panel_7.add(lblNewLabel_11_2, "cell 0 10");
 								
 								textField = new JTextField();
-								panel_7.add(textField, "cell 2 9 3 1,growx,aligny center");
+								panel_7.add(textField, "cell 2 10 3 1,growx,aligny center");
 								
 								textField.setColumns(10);
 								
@@ -379,7 +392,7 @@ public class TelaAtividades extends JFrame {
 								});
 								btnNewButton_1.setForeground(new Color(255, 255, 255));
 								btnNewButton_1.setBackground(new Color(117, 187, 68));
-								panel_7.add(btnNewButton_1, "cell 2 10");
+								panel_7.add(btnNewButton_1, "cell 2 11");
 								
 								JButton btnAlterar = new JButton("Alterar");
 								btnAlterar.setForeground(new Color(255, 255, 255));
@@ -389,7 +402,7 @@ public class TelaAtividades extends JFrame {
 									public void actionPerformed(ActionEvent e) {
 										
 
-										if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty())) {
+										if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()) )) {
 											JOptionPane.showMessageDialog(null, "ERRO");
 										}
 										else {  
@@ -398,6 +411,7 @@ public class TelaAtividades extends JFrame {
 							                    String Horario = textHorario.getText();
 							                    String HorarioFim = TextHorarioFim.getText();
 							                    String NomeAtividade = textNomeatividade.getText();
+							                    int Capacidade = Integer.valueOf(textCapacidade.getText());
 							                    
 							                   
 							                    
@@ -420,6 +434,7 @@ public class TelaAtividades extends JFrame {
 							                    ativ.setHorarioFim(HorarioFim);
 							                    ativ.setNomeAtividade(NomeAtividade);
 							                    ativ.setData(data);
+							                    ativ.setCapacidade(Capacidade);
 							                    Funcionarios Func=new Funcionarios();
 							                    Func.setIdFuncionario(2);
 							                    ativ.setFuncionario(Func);
@@ -439,6 +454,7 @@ public class TelaAtividades extends JFrame {
 							                    	model1.setValueAt(HorarioFim, linha, 3);
 							                    	model1.setValueAt(NomeAtividade, linha, 4);
 							                    	model1.setValueAt(data, linha, 5);
+							                    	model1.setValueAt(Capacidade, linha, 6);
 							                
 							                    }
 							                    
@@ -447,7 +463,7 @@ public class TelaAtividades extends JFrame {
 									}
 									}
 								});
-								panel_7.add(btnAlterar, "cell 2 6,growx");
+								panel_7.add(btnAlterar, "cell 2 7,growx");
 								
 								JButton btnExcluir = new JButton("Excluir");
 								btnExcluir.setForeground(new Color(255, 255, 255));
@@ -466,7 +482,7 @@ public class TelaAtividades extends JFrame {
 
 									}
 								});
-								panel_7.add(btnExcluir, "cell 2 6,growx");
+								panel_7.add(btnExcluir, "cell 2 7,growx");
 								
 
 
@@ -503,7 +519,7 @@ public class TelaAtividades extends JFrame {
 
 	protected void atualizarJTable() {
 		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
-				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data"});
+				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade"});
 
 		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
 		ListaAtividades = AtivDAO.ListarAtividades();
@@ -511,7 +527,7 @@ public class TelaAtividades extends JFrame {
 		for (int i = 0; i < ListaAtividades.size(); i++) {
 			Atividades p = ListaAtividades.get(i);
 			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
-					p.getNomeAtividade(), p.getData()});
+					p.getNomeAtividade(), p.getData(), p.getCapacidade()});
 		}
 
 		table.setModel(modelo1);

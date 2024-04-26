@@ -113,7 +113,7 @@ public class AtividadesDAO implements IAtividadesDAO
 			ps.setDate(4, Ativ.getData());
 			ps.setInt(5, Ativ.getFuncionario().getIdFuncionario());
 			ps.setInt(6, Ativ.getIdadeMinima());
-			ps.setInt(8, Ativ.getCapacidade());
+			ps.setInt(7, Ativ.getCapacidade());
 			ps.setInt(8, Ativ.getIdAtividade());
 
 			retorno = ps.executeUpdate();
