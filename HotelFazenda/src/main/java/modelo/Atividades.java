@@ -12,8 +12,8 @@ public class Atividades {
 		return IdadeMinima;
 	}
 
-	public void setIdadeMinima(int Idade) {
-		IdadeMinima = Idade;
+	public void setIdadeMinima(Integer idadeMinima) {
+		IdadeMinima = idadeMinima;
 	}
 
 	public int getIdAtividade() {

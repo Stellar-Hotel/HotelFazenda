@@ -36,13 +36,14 @@ public class UsuariosDAO implements IUsuariosDAO {
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
-		String SQL = "INSERT INTO Usuarios (Senha, Login) VALUES(?, ?)";
+		String SQL = "INSERT INTO Usuarios (Senha, Login,Tipo) VALUES(?, ?,?)";
 
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);// ,
 			ps.setString(1, end.getSenha());
 			ps.setString(2, end.getLogin());
+			ps.setBoolean(3, end.getTipo());
 
 			int result = ps.executeUpdate();
 			if (result == 0) {

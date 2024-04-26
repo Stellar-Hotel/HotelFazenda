@@ -7,12 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,10 +24,18 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
+import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
+import javax.swing.border.LineBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
 
 public class TelaAtividades extends JFrame {
 
@@ -31,10 +43,9 @@ public class TelaAtividades extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
-    private DefaultTableModel model1;
-    private DefaultTableModel model2;
+	private DefaultTableModel model1;
+	private DefaultTableModel model2;
 
-	
 	private ArrayList<Atividades> ListaAtividades;
 	private ArrayList<Atividades> ListaAtividadesinscritas;
 	private JTextField textIdade;
@@ -43,6 +54,7 @@ public class TelaAtividades extends JFrame {
 	private JTextField TextHorarioFim;
 	private JTextField textData;
 	private JTextField textField;
+	private JTextField textCapacidade;
 
 	/**
 	 * Launch the application.
@@ -57,7 +69,8 @@ public class TelaAtividades extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				} 
+				
 			}
 		});
 	}
@@ -70,9 +83,9 @@ public class TelaAtividades extends JFrame {
 		ListaAtividadesinscritas = new ArrayList<Atividades>();
 
 		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario" }));
+				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade" }));
 
-		model2 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade" }));
+		model2 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "Funcionario", "NomeAtividade"}));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -181,27 +194,16 @@ public class TelaAtividades extends JFrame {
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
 		Principal.setLayout(new MigLayout("", "[:122.00px:122.00px,grow][][92.00][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
-
-		JButton btnNewButton = new JButton("Inscrever-se\r\n");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBackground(new Color(117, 187, 68));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		Principal.add(btnNewButton, "cell 8 0,alignx right,aligny top");
-		
-		
-		JScrollPane spTable = new JScrollPane();
-		Principal.add(spTable, "cell 4 14 5 4,grow");
-		
-				table = new JTable(model1);
-				spTable.setViewportView(table);
-
 		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
+				
+				JScrollPane spTable = new JScrollPane();
+				Principal.add(spTable, "cell 4 14 5 4,grow");
+				
+						table = new JTable(model1);
+						spTable.setViewportView(table);
 				
 				JPanel panel_6 = new JPanel();
 				panel_6.setBackground(new Color(255, 255, 255));
@@ -210,7 +212,7 @@ public class TelaAtividades extends JFrame {
 					public void mouseClicked(MouseEvent e) {
 
 		                spTable.setViewportView(new JTable(model2));
-		             //   atualizarJTable();
+		                atualizarJTable();
 					}
 				});
 				Principal.add(panel_6, "flowy,cell 1 2");
@@ -229,6 +231,8 @@ public class TelaAtividades extends JFrame {
 								separator.setBackground(new Color(192, 192, 192));
 								Principal.add(separator, "cell 0 6,growx,aligny top");
 				
+				
+
 
 		
 		JPanel panel_5 = new JPanel();
@@ -238,7 +242,7 @@ public class TelaAtividades extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
                 spTable.setViewportView(table);
-               // atualizarJTable();
+                atualizarJTable();
 			}
 		});
 		Principal.add(panel_5, "flowx,cell 0 2");
@@ -249,24 +253,24 @@ public class TelaAtividades extends JFrame {
 				panel_5.add(lblNewLabel_7);
 								
 								JPanel panel_7 = new JPanel();
-								Principal.add(panel_7, "cell 0 14 3 3,grow");
-								panel_7.setLayout(new MigLayout("", "[102px][10px][][86px,grow]", "[14px][20px,grow][20px,grow][20px,grow][20px,grow][20px,grow]"));
+								Principal.add(panel_7, "cell 0 14 3 4,grow");
+								panel_7.setLayout(new MigLayout("", "[102px][10px][grow][][86px,grow]", "[14px,grow][20px,grow][20px,grow][20px,grow][20px,grow][20px,grow][][grow][][grow][grow][grow]"));
 								
 								JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
-								panel_7.add(lblNewLabel_10, "cell 0 0 4 1,alignx center,aligny top");
+								panel_7.add(lblNewLabel_10, "cell 0 0 5 1,alignx center,aligny top");
 								
 								JLabel lblNewLabel_11 = new JLabel("Idade minima");
 								panel_7.add(lblNewLabel_11, "cell 0 1,alignx left,aligny center");
 								
 								textIdade = new JTextField();
-								panel_7.add(textIdade, "cell 2 1 2 1,growx,aligny center");
+								panel_7.add(textIdade, "cell 2 1 3 1,growx,aligny center");
 								textIdade.setColumns(10);
 								
 								JLabel lblNewLabel_12 = new JLabel("Horario");
 								panel_7.add(lblNewLabel_12, "cell 0 2,alignx left,aligny center");
 								
 								textHorario = new JTextField();
-								panel_7.add(textHorario, "cell 2 2 2 1,growx,aligny center");
+								panel_7.add(textHorario, "cell 2 2 3 1,growx,aligny center");
 								textHorario.setColumns(10);
 								
 								JLabel lblNewLabel_11_1 = new JLabel("HorarioFim");
@@ -274,35 +278,211 @@ public class TelaAtividades extends JFrame {
 								
 								TextHorarioFim = new JTextField();
 								TextHorarioFim.setColumns(10);
-								panel_7.add(TextHorarioFim, "cell 2 3 2 1,growx,aligny center");
+								panel_7.add(TextHorarioFim, "cell 2 3 3 1,growx,aligny center");
 								
 								JLabel lblNewLabel_12_1 = new JLabel("Nome Atividade");
 								panel_7.add(lblNewLabel_12_1, "cell 0 4,growx,aligny center");
 								
 								textNomeatividade = new JTextField();
 								textNomeatividade.setColumns(10);
-								panel_7.add(textNomeatividade, "cell 2 4 2 1,growx,aligny center");
+								panel_7.add(textNomeatividade, "cell 2 4 3 1,growx,aligny center");
 								
 								JLabel lblNewLabel_12_1_1 = new JLabel("Data");
 								panel_7.add(lblNewLabel_12_1_1, "cell 0 5,growx,aligny center");
 								
 								textData = new JTextField();
 								textData.setColumns(10);
-								panel_7.add(textData, "cell 2 5 2 1,growx,aligny center");
+								panel_7.add(textData, "cell 2 5 3 1,growx,aligny center");
 								
-								JPanel panel_8 = new JPanel();
-								Principal.add(panel_8, "cell 0 17 3 1,grow");
-								panel_8.setLayout(new MigLayout("", "[106px][10px][132px,grow]", "[14px][20px][]"));
+								//				btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
+
+
+								JButton btnCadastrar = new JButton("Cadastrar");
+								btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
+
+								btnCadastrar.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										 
+									
+									
+									if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
+										JOptionPane.showMessageDialog(null, "Textos vazios insira algo para adicionar!");
+									}else {  
+										
+											Integer Idade = Integer.valueOf(textIdade.getText());
+						                    String Horario = textHorario.getText();
+						                    String HorarioFim = TextHorarioFim.getText();
+						                    String NomeAtividade = textNomeatividade.getText();
+						                    int Capacidade = Integer.valueOf(textCapacidade.getText());
+						                    
+						                   
+						                    
+						                    
+
+						                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+						                    Date data = null;
+
+						                    try {
+						                        data = new Date ( dateFormat.parse(textData.getText()).getTime());
+						                    } catch (ParseException e1) {
+						                        e1.printStackTrace();
+						                    }
+						                    
+						                    
+						                    
+						                    Atividades ativ = new Atividades();
+
+						                    						                    
+						                    ativ.setIdadeMinima(Idade);
+						                    ativ.setHorario(Horario);
+						                    ativ.setHorarioFim(HorarioFim);
+						                    ativ.setNomeAtividade(NomeAtividade);
+						                    ativ.setData(data);
+						                    ativ.setCapacidade(Capacidade);
+						                    Funcionarios Func=new Funcionarios();
+						                    Func.setIdFuncionario(2);
+						                    ativ.setFuncionario(Func);
+
+										
+										AtividadesDAO DAO = AtividadesDAO.getInstancia();
+										int id = DAO.InserirAtividades(ativ);
+										
+										if(id>0) {
+											JOptionPane.showMessageDialog(null, "Cadastro Efetuado com sucesso");
+											atualizarJTable();
+										}
+										
+									}
+																													
+									}
+								});
 								
-								JLabel lblNewLabel_10_1 = new JLabel("Cadastrar Hospede");
-								panel_8.add(lblNewLabel_10_1, "cell 0 0 3 1,alignx center,aligny top");
+								JLabel lblNewLabel_12_1_1_1 = new JLabel("Capacidade");
+								panel_7.add(lblNewLabel_12_1_1_1, "cell 0 6");
+								
+								textCapacidade = new JTextField();
+								textCapacidade.setColumns(10);
+								panel_7.add(textCapacidade, "cell 2 6 3 1,growx");
+								btnCadastrar.setForeground(new Color(255, 255, 255));
+								btnCadastrar.setBackground(new Color(117, 187, 68));
+								panel_7.add(btnCadastrar, "flowx,cell 2 7");
+								
+								JSeparator separator_2 = new JSeparator();
+								separator_2.setForeground(Color.LIGHT_GRAY);
+								separator_2.setBackground(Color.LIGHT_GRAY);
+								panel_7.add(separator_2, "cell 0 8 5 1,growx");
+								
+								JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
+								panel_7.add(lblNewLabel_10_1_1, "cell 2 9");
 								
 								JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
-								panel_8.add(lblNewLabel_11_2, "cell 0 2,alignx center,aligny center");
+								panel_7.add(lblNewLabel_11_2, "cell 0 10");
 								
 								textField = new JTextField();
+								panel_7.add(textField, "cell 2 10 3 1,growx,aligny center");
+								
 								textField.setColumns(10);
-								panel_8.add(textField, "cell 2 2,growx,aligny center");
+								
+								JButton btnNewButton_1 = new JButton("Cadastrar");
+								btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
+								btnNewButton_1.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+									}
+								});
+								btnNewButton_1.setForeground(new Color(255, 255, 255));
+								btnNewButton_1.setBackground(new Color(117, 187, 68));
+								panel_7.add(btnNewButton_1, "cell 2 11");
+								
+								JButton btnAlterar = new JButton("Alterar");
+								btnAlterar.setForeground(new Color(255, 255, 255));
+								btnAlterar.setBackground(new Color(117, 187, 68));
+								btnAlterar.setBorder(new RoundedBorder(Color.black, 8));
+								btnAlterar.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										
+
+										if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()) )) {
+											JOptionPane.showMessageDialog(null, "ERRO");
+										}
+										else {  
+											
+												Integer Idade = Integer.valueOf(textIdade.getText());
+							                    String Horario = textHorario.getText();
+							                    String HorarioFim = TextHorarioFim.getText();
+							                    String NomeAtividade = textNomeatividade.getText();
+							                    int Capacidade = Integer.valueOf(textCapacidade.getText());
+							                    
+							                   
+							                    
+							                    
+
+							                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+							                    Date data = null;
+
+							                    try {
+							                        data = new Date ( dateFormat.parse(textData.getText()).getTime());
+							                    } catch (ParseException e1) {
+							                        e1.printStackTrace();
+							                    }
+							                    Atividades ativ = new Atividades();
+
+							                    						                    
+							                    ativ.setIdadeMinima(Idade);
+							                    ativ.setHorario(Horario);
+							                    ativ.setHorarioFim(HorarioFim);
+							                    ativ.setNomeAtividade(NomeAtividade);
+							                    ativ.setData(data);
+							                    ativ.setCapacidade(Capacidade);
+							                    Funcionarios Func=new Funcionarios();
+							                    Func.setIdFuncionario(2);
+							                    ativ.setFuncionario(Func);
+							                    
+							                    AtividadesDAO DAO = AtividadesDAO.getInstancia();
+							                    DAO.AtualizarAtividades(ativ);
+							                    
+							                    int linha = table.getSelectedRow();
+							                    
+							                    if(linha <0) {
+							                    	JOptionPane.showMessageDialog(null, "selecione uma linha");
+							                    }else if(linha >= 0) {
+							                    	DefaultTableModel model1 = (DefaultTableModel) table.getModel();
+							                    	//model1.setValueAt(Idade, linha, 0);
+							                    	model1.setValueAt(Idade, linha, 1);
+							                    	model1.setValueAt(Horario, linha, 2);
+							                    	model1.setValueAt(HorarioFim, linha, 3);
+							                    	model1.setValueAt(NomeAtividade, linha, 4);
+							                    	model1.setValueAt(data, linha, 5);
+							                    	model1.setValueAt(Capacidade, linha, 6);
+							                
+							                    }
+							                    
+							                    	
+							                    							                    
+									}
+									}
+								});
+								panel_7.add(btnAlterar, "cell 2 7,growx");
+								
+								JButton btnExcluir = new JButton("Excluir");
+								btnExcluir.setForeground(new Color(255, 255, 255));
+								btnExcluir.setBackground(new Color(117, 187, 68));
+								btnExcluir.setBorder(new RoundedBorder(Color.black, 8));
+								btnExcluir.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										
+										 AtividadesDAO DAO = AtividadesDAO.getInstancia();										 										
+										int linha = table.getSelectedRow();
+										Atividades ativ = new Atividades();
+										ativ=ListaAtividades.get(linha);
+										DAO.RemoverAtividades(ativ);
+										atualizarJTable();
+										
+
+									}
+								});
+								panel_7.add(btnExcluir, "cell 2 7,growx");
 								
 
 
@@ -332,20 +512,24 @@ public class TelaAtividades extends JFrame {
 		JLabel lblTwitter = new JLabel("");
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
+		
+		atualizarJTable();
+		
 	}
+
 	protected void atualizarJTable() {
-	DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new
-	String[] { "IdAtividade", "IdadeMinima", "Horario", "HorarioFim",
-	 "NomeAtividade", "Data","IDFuncionario"});
+		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
+				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade"});
 
-	 AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
-	 ListaAtividades = AtivDAO.ListarAtividades();
+		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
+		ListaAtividades = AtivDAO.ListarAtividades();
 
-	 for (int i = 0; i < ListaAtividades.size(); i++) {
-	 Atividades p = ListaAtividades.get(i);
-	 modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(),p.getHorarioFim(),p.getNomeAtividade(),p.getData(), p.getFuncionario() });
-	}
+		for (int i = 0; i < ListaAtividades.size(); i++) {
+			Atividades p = ListaAtividades.get(i);
+			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
+					p.getNomeAtividade(), p.getData(), p.getCapacidade()});
+		}
 
-	table.setModel(modelo1);
-	}
+		table.setModel(modelo1);
+	} 
 }

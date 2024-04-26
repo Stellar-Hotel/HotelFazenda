@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -36,12 +37,9 @@ public class AtividadesDAO implements IAtividadesDAO
 		ArrayList<Atividades> atividades = new ArrayList<Atividades>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT Atividades.*, AtividadesHospedes.*, Funcionarios.*, Hospedes.*, Usuarios.*  FROM Atividades"
-				+ " inner join AtividadesHospedes on AtividadesHospedes.IdAtividadeAtividades = Atividades.IdAtividade" 
+		String SQL = "SELECT Atividades.*, Funcionarios.*, Usuarios.*  FROM Atividades"
 				+ " inner join Funcionarios on Funcionarios.IdFuncionario=Atividades.IdFuncionarioAtividade "
-				+ " inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario"
-				+ " inner join Hospedes on AtividadesHospedes.IdHospedeAtividades=Hospede.IdHospede"
-				+ " inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
+				+ " inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario";
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -68,7 +66,7 @@ public class AtividadesDAO implements IAtividadesDAO
 				Funcionario.setSobrenome(Rs.getString("Sobrenome"));
 				Funcionario.setFuncao(Rs.getString("Funcao"));
 				Funcionario.setIdFuncionario(Rs.getInt("IdFuncionario"));
-				Funcionario.setSalario(Rs.getFloat("Slario"));
+				Funcionario.setSalario(Rs.getFloat("Salario"));
 				
 				
 				Funcionario.setUsuario(null);
@@ -115,7 +113,7 @@ public class AtividadesDAO implements IAtividadesDAO
 			ps.setDate(4, Ativ.getData());
 			ps.setInt(5, Ativ.getFuncionario().getIdFuncionario());
 			ps.setInt(6, Ativ.getIdadeMinima());
-			ps.setInt(8, Ativ.getCapacidade());
+			ps.setInt(7, Ativ.getCapacidade());
 			ps.setInt(8, Ativ.getIdAtividade());
 
 			retorno = ps.executeUpdate();
@@ -131,8 +129,8 @@ public class AtividadesDAO implements IAtividadesDAO
 	}
 
 	@Override
-	public boolean RemoverAtividades(String Nome) {
-		String SQL = "DELETE FROM enderecos WHERE NomeAtividade = ?";
+	public boolean RemoverAtividades(Atividades Atividade) {
+		String SQL = "DELETE FROM Atividades WHERE IdAtividade = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -140,12 +138,12 @@ public class AtividadesDAO implements IAtividadesDAO
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setString(1, Nome);
+			ps.setInt(1, Atividade.getIdAtividade());
 
-			retorno = ps.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			retorno = ps.executeUpdate();		
+		}catch (Exception e) {
+		e.printStackTrace();
+			
 		} finally {
 			con.FecharConexao();
 		}
@@ -211,7 +209,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	@Override
 	public int InserirAtividades(Atividades Ativ) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Atividades(Horario,HorarioFim,IdFuncionario,IdadeMinima,NomeAtividade,Data,Capacidade) VALUES (?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO Atividades(Horario,HorarioFim,IdFuncionarioAtividade,IdadeMinima,NomeAtividade,Data,Capacidade) VALUES (?,?,?,?,?,?,?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -236,6 +234,9 @@ public class AtividadesDAO implements IAtividadesDAO
 			 * se for um insert sem gerar chave primária automaticamente não usar a parte de
 			 * baixo
 			 */
+			
+	
+			
 			int result = Ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível inserir a atividade!");

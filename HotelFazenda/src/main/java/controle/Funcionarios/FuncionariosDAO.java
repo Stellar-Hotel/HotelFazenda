@@ -41,7 +41,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public int InserirFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario) VALUES (?, ?, ?, ?)";
+		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario,IdUsuarioFuncionario,CPF,NivelDeAcesso) VALUES (?,?,?, ?, ?, ?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -55,6 +55,8 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
 			ps.setInt(5, Func.getUsuario().getIdUsuario());
+			ps.setString(6, Func.getCPF());
+			ps.setInt(7, Func.getNivelDeAcesso());
 		
 			int result = ps.executeUpdate();
 			if(result==0) {
@@ -85,7 +87,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		
 		ArrayList<Funcionarios> Funcionarios = new ArrayList<Funcionarios>();
 		
-		String SQL = "SELECT * FROM Funcionarios";
+		String SQL = "SELECT * FROM Funcionarios inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -103,6 +105,9 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				String funcao = rs.getString("funcao");
 				String sobrenome = rs.getString("sobrenome");
 				Float salario = rs.getFloat("salario");
+				String CPF=rs.getString("CPF");
+				int nivel=rs.getInt("NivelDeAcesso");
+				int IdFunc=rs.getInt("IdFuncionario");
 				
 				Usuarios User= new Usuarios();
 				
@@ -116,6 +121,11 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Funcionario.setFuncao(funcao);
 				Funcionario.setSalario(salario);
 				Funcionario.setUsuario(User);
+				Funcionario.setCPF(CPF);
+				Funcionario.setNivelDeAcesso(nivel);
+				Funcionario.setIdFuncionario(IdFunc);
+				
+				Funcionarios.add(Funcionario);
 				
 			}
 			
@@ -164,7 +174,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean RemoverFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "DELETE FROM Funcioanrios WHERE IdFuncionario = ?";
+		String SQL = "DELETE FROM Funcionarios WHERE IdFuncionario = ?";
 		
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -186,17 +196,17 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	}
 
 	@Override
-	public Funcionarios BuscarFuncionarioPorId(int Id) {
+	public Funcionarios BuscarFuncionarioPorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
-		String SQL="Select * from Funcionarios where IdFuncionario=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuario";//inner join aqui também
+		String SQL="Select * from Funcionarios where CPF=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario";//inner join aqui também
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
 		try {
 			PreparedStatement ps=conBD.prepareStatement(SQL);
 			
-			ps.setInt(1, Id);
+			ps.setString(1, CPF);
 			
 			ResultSet rs=ps.executeQuery();
 			
@@ -208,13 +218,16 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Usu.setIdUsuario(rs.getInt("IdUsuario"));	
 				Usu.setLogin(rs.getString("Login"));
 				Usu.setSenha(rs.getString("Senha"));
+				Usu.setTipo(rs.getBoolean("Tipo"));
 				
 				
 				Func.setFuncao(rs.getString("Funcao"));
-				Func.setIdFuncionario(Id);
+				Func.setIdFuncionario(rs.getInt("IdFuncionario"));
 				Func.setNome(rs.getString("Nome"));
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setCPF(CPF);
+				Func.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				Func.setUsuario(Usu);
 				
 			}
