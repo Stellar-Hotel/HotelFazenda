@@ -111,7 +111,7 @@ public class AdminFuncionarios extends JFrame {
 		BarraLateral.add(lblServicos, "cell 0 4,grow");
 		
 		JLabel lblFuncionrios = new JLabel("Funcionários");
-		lblFuncionrios.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\resources\\Elementos\\funcionarios.png"));
+		lblFuncionrios.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
 		lblFuncionrios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionrios, "cell 0 6");
 
@@ -221,47 +221,6 @@ public class AdminFuncionarios extends JFrame {
 		textSalario.setText("salario");
 		Principal.add(textSalario, "cell 6 4 3 1,growx");
 		textSalario.setColumns(10);
-		
-		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
-		btnDeletarSelecionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
-				Funcionarios func=new Funcionarios();
-				
-				int linha = table.getSelectedRow();
-				func = Lista.get(linha);
-				
-				DAO.RemoverFuncionario(func);
-				
-				atualizarJTable();
-				
-			}
-		});
-		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
-		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 1 5 5 1,alignx center");
-		
-		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
-		btnAtualizarSelecionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
-				Funcionarios func=new Funcionarios();
-				
-				int linha = table.getSelectedRow();
-				func = Lista.get(linha);
-				func.setCPF(textCPF.getText());
-				func.setFuncao(textFuncao.getText());
-				func.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
-				func.setNome(textNome.getText());
-				func.setSobrenome(textSobrenome.getText());
-				func.setSalario(Float.valueOf(textSalario.getText()));
-				
-				
-				DAO.AtualizarFuncionarios(func);
-				
-				atualizarJTable();
-			}
-		});
 		JButton btnCadastrarNovo = new JButton("Cadastrar Novo");
 		btnCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -297,10 +256,51 @@ public class AdminFuncionarios extends JFrame {
 		});
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 6 5 3 1,alignx left");
+		Principal.add(btnCadastrarNovo, "cell 2 5 2 1,alignx left");
+		
+		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
+		btnAtualizarSelecionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
+				Funcionarios func=new Funcionarios();
+				
+				int linha = table.getSelectedRow();
+				func = Lista.get(linha);
+				func.setCPF(textCPF.getText());
+				func.setFuncao(textFuncao.getText());
+				func.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
+				func.setNome(textNome.getText());
+				func.setSobrenome(textSobrenome.getText());
+				func.setSalario(Float.valueOf(textSalario.getText()));
+				
+				
+				DAO.AtualizarFuncionarios(func);
+				
+				atualizarJTable();
+			}
+		});
 		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnAtualizarSelecionado, "cell 3 6 4 1,alignx center");
+		Principal.add(btnAtualizarSelecionado, "cell 4 5,alignx center");
+		
+		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
+		btnDeletarSelecionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
+				Funcionarios func=new Funcionarios();
+				
+				int linha = table.getSelectedRow();
+				func = Lista.get(linha);
+				
+				DAO.RemoverFuncionario(func);
+				
+				atualizarJTable();
+				
+			}
+		});
+		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
+		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
+		Principal.add(btnDeletarSelecionado, "cell 3 6 2 1,alignx center");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -338,7 +338,7 @@ public class AdminFuncionarios extends JFrame {
 		 for (int i = 0; i < Lista.size(); i++) {
 
 		 Funcionarios p = Lista.get(i);
-		 modelo1.addRow(new Object[] { p.getNome(),p.getSobrenome(),p.getFuncao(),p.getCPF() });
+		 modelo1.addRow(new Object[] { p.getNome(),p.getSobrenome(),p.getFuncao(),p.getCPF(),"R$ "+p.getSalario() });
 		}
 		 System.out.println(Lista.size());
 
