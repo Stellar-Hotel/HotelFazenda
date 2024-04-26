@@ -14,6 +14,6 @@ public interface IQuartosDAO {
 
 	public boolean removerQuarto(Quartos end);
 
-	public Quartos buscarQuartoPorNumero(int numero);
+	public ArrayList<Quartos> buscarQuartoPorNumero(int numero);
 
 }

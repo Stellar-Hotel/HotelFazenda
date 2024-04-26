@@ -56,21 +56,21 @@ public class TelaDeQuartos extends JFrame {
 	}
 	
 	protected void atualizarJTable() {
-		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},new String[] {"Nome do Quarto" , "Manutencao",  "Preco da Diaria"}));
+		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
+				new String[] {"Manutencao", "Preco da Diaria" }));
 
-		 QuartosDAO QuartoDAO=QuartosDAO.getConexao();
-		 Object Lista = QuartoDAO.ListarQuartos();
+		QuartosDAO QuartoDAO = QuartosDAO.getConexao();
+		ArrayList<Quartos> Lista = QuartoDAO.ListarQuartos();
 
-		 for (int i = 0; i < ListaQuartos.size(); i++) {
+		for (int i = 0; i < Lista.size(); i++) {
 
-		 Quartos p = ListaQuartos.get(i);
-		 model1.addRow(new Object[] { p.getNomeQuarto(),p.getManutencao(),p.getPrecoDiaria()});
+			Quartos p = Lista.get(i);
+			model1.addRow(new Object[] { p.getNomeQuarto(), p.getManutencao(), p.getPrecoDiaria() });
 		}
-		 System.out.println(ListaQuartos.size());
+		System.out.println(ListaQuartos.size());
 
 		table.setModel(model1);
-		}
-
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -253,7 +253,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 		
-		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Nome do Quarto" , "Manutencao",  "Preco da Diaria"});
+		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Manutencao",  "Preco da Diaria"});
 	    
 	    	    table = new JTable(model1);
 	    	    
