@@ -142,7 +142,7 @@ CREATE TABLE  IF NOT EXISTS `Atividades` (
   `NomeAtividade` VARCHAR(45) NOT NULL,
   `Data` DATE NOT NULL,
   `Capacidade` INT NOT NULL,
-  PRIMARY KEY (`IdAtividade`, `IdFuncionarioAtividade`),
+  PRIMARY KEY (`IdAtividade`,),
 
   CONSTRAINT `fk_Atividades_Funcionarios1`
     FOREIGN KEY (`IdFuncionarioAtividade`)

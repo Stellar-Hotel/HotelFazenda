@@ -141,7 +141,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?, WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -155,7 +155,9 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setString(2, Func.getSobrenome());
 			ps.setString(3, Func.getFuncao());
 			ps.setFloat(4, Func.getSalario());
-			ps.setInt(5, Func.getIdFuncionario());
+			ps.setString(5, Func.getCPF());
+			ps.setInt(6, Func.getNivelDeAcesso());
+			ps.setInt(7, Func.getIdFuncionario());
 			
 			retorno = ps.executeUpdate();
 			
