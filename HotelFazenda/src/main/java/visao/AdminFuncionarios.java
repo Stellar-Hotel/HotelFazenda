@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -111,7 +112,7 @@ public class AdminFuncionarios extends JFrame {
 		BarraLateral.add(lblServicos, "cell 0 4,grow");
 		
 		JLabel lblFuncionrios = new JLabel("Funcionários");
-		lblFuncionrios.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\resources\\Elementos\\funcionarios.png"));
+		lblFuncionrios.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
 		lblFuncionrios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionrios, "cell 0 6");
 
@@ -181,15 +182,52 @@ public class AdminFuncionarios extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[][][fill][][][][][grow][][][][][][right][]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[30px][30px][30px][30px][30px][30px][30px][grow][30px][30px,grow][30px][30px][30px][30px][30px,grow][30px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		
+		textNome = new JTextField();
+		textNome.setBorder(new RoundedBorder(Color.black, 10));
+		textNome.setText("nome");
+		textNome.setToolTipText("");
+		Principal.add(textNome, "cell 0 1 9 1,growx");
+		textNome.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 12 1 3 11,alignx center,growy");
+		Principal.add(scrollPane, "cell 9 1 7 11,alignx center,growy");
 		
-		model1=(new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF"}));
+		model1=(new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF","Salario"}));
 		table = new JTable(model1);
 		scrollPane.setViewportView(table);
 		atualizarJTable();
+		
+		textSobrenome = new JTextField();
+		textSobrenome.setBorder(new RoundedBorder(Color.black, 10));
+		textSobrenome.setText("sobrenome");
+		Principal.add(textSobrenome, "cell 0 2 9 1,growx");
+		textSobrenome.setColumns(10);
+		
+		textFuncao = new JTextField();
+		textFuncao.setBorder(new RoundedBorder(Color.black, 10));
+		textFuncao.setText("funcao");
+		Principal.add(textFuncao, "cell 0 3 6 1,growx");
+		textFuncao.setColumns(10);
+		
+		textNivel = new JTextField();
+		textNivel.setBorder(new RoundedBorder(Color.black, 10));
+		textNivel.setText("nivel");
+		Principal.add(textNivel, "cell 6 3 3 1,growx");
+		textNivel.setColumns(10);
+		
+		textCPF = new JTextField();
+		textCPF.setBorder(new RoundedBorder(Color.black, 10));
+		textCPF.setText("cpf");
+		Principal.add(textCPF, "cell 0 4 6 1,growx");
+		textCPF.setColumns(10);
+		
+		textSalario = new JTextField();
+		textSalario.setBorder(new RoundedBorder(Color.black, 10));
+		textSalario.setText("salario");
+		Principal.add(textSalario, "cell 6 4 3 1,growx");
+		textSalario.setColumns(10);
 		JButton btnCadastrarNovo = new JButton("Cadastrar Novo");
 		btnCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -197,46 +235,115 @@ public class AdminFuncionarios extends JFrame {
 			    UsuariosDAO usuariosDAO = UsuariosDAO.getInstancia();
 
 			    // Criação e insere oo usuário
-			    Usuarios usuario = new Usuarios();
+			    Usuarios usuario= new Usuarios();
 			    usuario.setLogin("a");
 			    usuario.setSenha("b");
 			    usuario.setTipo(true);
 
 			    // Insere o usuário no banco
-				int chaveGerada =usuariosDAO.inserirUsuario(usuario);
-				usuario.setIdUsuario(chaveGerada);
+				usuario.setIdUsuario(usuariosDAO.inserirUsuario(usuario));
 
 			    // Criação do funcionário
-			    Funcionarios funcionario = new Funcionarios();
-			    funcionario.setCPF(textCPF.getText());
-			    funcionario.setFuncao(textFuncao.getText());
-			    funcionario.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
-			    funcionario.setNome(textNome.getText());
-			    funcionario.setSobrenome(textSobrenome.getText());
-			    funcionario.setSalario(Float.valueOf(textSalario.getText()));
-			    funcionario.setUsuario(usuario); // Associa o usuário ao funcionário
+				if((textCPF.getText().isEmpty())||(textFuncao.getText().isEmpty())||(textNivel.getText().isEmpty())||(textNome.getText().isEmpty())
+					||(textSobrenome.getText().isEmpty())||(textSalario.getText().isEmpty()))
+				{
+					JOptionPane.showMessageDialog(null, "Algo está vazio");
+					textCPF.setText("CPF");
+					textCPF.setBorder(new RoundedBorder(Color.RED, 10));
+					
+					textFuncao.setText("Funcao");
+					textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
+					
+					textNivel.setText("Nivel de Acesso");
+					textNivel.setBorder(new RoundedBorder(Color.RED, 10));
 
-			    // Insere o funcionário
-				funcionariosDAO.InserirFuncionario(funcionario);
-				
-				atualizarJTable();
-				
+					textNome.setText("Nome");
+					textNome.setBorder(new RoundedBorder(Color.RED, 10));
+					
+					textSobrenome.setText("Sobrenome");
+					textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
+					
+					textSalario.setText("Salario");
+					textSalario.setBorder(new RoundedBorder(Color.RED, 10));
+				}else {
+					
+					
+					Funcionarios funcionario = new Funcionarios();
+				    funcionario.setCPF(textCPF.getText());
+				    funcionario.setFuncao(textFuncao.getText());
+				    funcionario.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
+				    funcionario.setNome(textNome.getText());
+				    funcionario.setSobrenome(textSobrenome.getText());
+				    funcionario.setSalario(Float.valueOf(textSalario.getText()));
+				    funcionario.setUsuario(usuario); // Associa o usuário ao funcionário
+				 // Insere o funcionário
+					int i=funcionariosDAO.InserirFuncionario(funcionario);
+					
+					if(i>0)
+					{
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+					}
+					atualizarJTable();
+				}
 			}
 		});
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 1 2 4 1");
+		Principal.add(btnCadastrarNovo, "cell 2 5 2 1,alignx left");
 		
-		textNome = new JTextField();
-		textNome.setText("nome");
-		textNome.setToolTipText("");
-		Principal.add(textNome, "cell 7 2 5 1,growx");
-		textNome.setColumns(10);
-		
-		textSobrenome = new JTextField();
-		textSobrenome.setText("sobrenome");
-		Principal.add(textSobrenome, "cell 7 3 5 1,growx");
-		textSobrenome.setColumns(10);
+		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
+		btnAtualizarSelecionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
+				Funcionarios func=new Funcionarios();
+				
+				if((textCPF.getText().isEmpty())||(textFuncao.getText().isEmpty())||(textNivel.getText().isEmpty())||(textNome.getText().isEmpty())
+						||(textSobrenome.getText().isEmpty())||(textSalario.getText().isEmpty()))
+					{
+						JOptionPane.showMessageDialog(null, "Algo está vazio");
+						textCPF.setText("CPF");
+						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
+						
+						textFuncao.setText("Funcao");
+						textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
+						
+						textNivel.setText("Nivel de Acesso");
+						textNivel.setBorder(new RoundedBorder(Color.RED, 10));
+
+						textNome.setText("Nome");
+						textNome.setBorder(new RoundedBorder(Color.RED, 10));
+						
+						textSobrenome.setText("Sobrenome");
+						textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
+						
+						textSalario.setText("Salario");
+						textSalario.setBorder(new RoundedBorder(Color.RED, 10));
+					}else {
+						int linha = table.getSelectedRow();
+						func = Lista.get(linha);
+						func.setCPF(textCPF.getText());
+						func.setFuncao(textFuncao.getText());
+						func.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
+						func.setNome(textNome.getText());
+						func.setSobrenome(textSobrenome.getText());
+						func.setSalario(Float.valueOf(textSalario.getText()));
+						
+						
+						Boolean foi=DAO.AtualizarFuncionarios(func);
+						
+						if(foi==true) {
+							JOptionPane.showMessageDialog(null,"Atualizado com sucesso!");
+						}
+						
+						atualizarJTable();
+					}
+				
+				
+			}
+		});
+		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
+		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
+		Principal.add(btnAtualizarSelecionado, "cell 4 5,alignx center");
 		
 		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
 		btnDeletarSelecionado.addActionListener(new ActionListener() {
@@ -247,7 +354,11 @@ public class AdminFuncionarios extends JFrame {
 				int linha = table.getSelectedRow();
 				func = Lista.get(linha);
 				
-				DAO.RemoverFuncionario(func);
+				boolean foi=DAO.RemoverFuncionario(func);
+				
+				if(foi==true) {
+					JOptionPane.showMessageDialog(null, "O funcionário selecionado foi deletado com sucesso!!");
+				}
 				
 				atualizarJTable();
 				
@@ -255,27 +366,7 @@ public class AdminFuncionarios extends JFrame {
 		});
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 0 4 5 1,alignx right");
-		
-		textFuncao = new JTextField();
-		textFuncao.setText("funcao");
-		Principal.add(textFuncao, "cell 7 4 5 1,growx");
-		textFuncao.setColumns(10);
-		
-		textCPF = new JTextField();
-		textCPF.setText("cpf");
-		Principal.add(textCPF, "cell 7 5 5 1,growx");
-		textCPF.setColumns(10);
-		
-		textSalario = new JTextField();
-		textSalario.setText("salario");
-		Principal.add(textSalario, "cell 7 6 5 1,growx");
-		textSalario.setColumns(10);
-		
-		textNivel = new JTextField();
-		textNivel.setText("nivel");
-		Principal.add(textNivel, "cell 7 7 5 1,growx");
-		textNivel.setColumns(10);
+		Principal.add(btnDeletarSelecionado, "cell 3 6 2 1,alignx center");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -305,7 +396,7 @@ public class AdminFuncionarios extends JFrame {
 		lblTwitter.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/twitter.jpg")));
 	}
 	protected void atualizarJTable() {
-		DefaultTableModel modelo1 = (new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF"}));
+		DefaultTableModel modelo1 = (new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF","Salario"}));
 
 		 FuncionariosDAO funcDAO=FuncionariosDAO.getConexao();
 		 Lista = funcDAO.ListarFuncionarios();
@@ -313,7 +404,7 @@ public class AdminFuncionarios extends JFrame {
 		 for (int i = 0; i < Lista.size(); i++) {
 
 		 Funcionarios p = Lista.get(i);
-		 modelo1.addRow(new Object[] { p.getNome(),p.getSobrenome(),p.getFuncao(),p.getCPF() });
+		 modelo1.addRow(new Object[] { p.getNome(),p.getSobrenome(),p.getFuncao(),p.getCPF(),"R$ "+p.getSalario() });
 		}
 		 System.out.println(Lista.size());
 

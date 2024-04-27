@@ -120,7 +120,7 @@ CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `Funcao` VARCHAR(45) NOT NULL,
   `Salario` FLOAT NOT NULL,
   `IdUsuarioFuncionario` INT NOT NULL,
-  `CPF` VARCHAR(45),
+  `CPF` VARCHAR(45) NOT NULL,
   `NivelDeAcesso` INT NOT NULL,
   PRIMARY KEY (`IdFuncionario`,`IdUsuarioFuncionario`),
   CONSTRAINT `fk_Funcionarios_Usuarios1`
@@ -249,195 +249,171 @@ values ('M@iones3','MAZDARX7',0 ),
  
 
 /*Tabela Hóspedes*/
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru',1);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Elisa', 'Volette', '1984-11-06', '751.425.013-76', 'Peru', 'Female', 'evolette1@stanford.edu',2);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Maxwell', 'Haycraft', '1977-02-16', '316.149.686-40', 'Brazil', 'Male', 'mhaycraft2@wikispaces.com',3);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Gussy', 'Fries', '2003-10-16', '395.415.201-14', 'China', 'Female', 'gfries3@stumbleupon.com',4);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Duff', 'Mungham', '2023-09-21', '805.097.764-25', 'Philippines', 'Male', 'dmungham4@histats.com',5);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Kristo', 'Honnan', '2019-02-21', '636.015.493-06', 'Mongolia', 'Male', 'khonnan5@ovh.net',6);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Teodoor', 'Skeels', '2008-05-23', '421.381.619-25', 'Sweden', 'Male', 'tskeels6@themeforest.net',7);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Malachi', 'Barnewille', '1999-04-14', '427.559.825-55', 'France', 'Male', 'mbarnewille7@newyorker.com',8);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Wallis', 'Bree', '1990-12-15', '636.068.749-13', 'Norway', 'Female', 'wbree8@instagram.com',9);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Marius', 'Bratton', '1994-10-31', '298.583.262-13', 'Brazil', 'Male', 'mbratton9@mashable.com',10);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Obadiah', 'Aylesbury', '2017-04-14', '129.346.434-18', 'China', 'Male', 'oaylesburya@europa.eu',11);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Wright', 'Alkin', '1980-09-19', '949.735.668-02', 'Yemen', 'Male', 'walkinb@surveymonkey.com',12);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Rikki', 'Youson', '1994-06-10', '833.407.132-18', 'Thailand', 'Male', 'ryousonc@vk.com',13);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Benedicto', 'Hodgin', '1970-12-16', '198.397.145-67', 'Iran', 'Male', 'bhodgind@photobucket.com',14);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Lennie', 'Lembrick', '1975-06-23', '882.476.072-06', 'Pakistan', 'Male', 'llembricke@un.org',15);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Eachelle', 'Gonoude', '1998-09-26', '685.862.163-47', 'China', 'Female', 'egonoudef@is.gd',16);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Freddie', 'Millott', '2012-06-22', '363.678.979-99', 'Greece', 'Female', 'fmillottg@xing.com',17);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Had', 'Babar', '2015-08-13', '269.188.281-56', 'Russia', 'Male', 'hbabarh@addtoany.com',18);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Amanda', 'Harbach', '1979-10-08', '700.716.283-32', 'United States', 'Female', 'aharbachi@google.fr',19);
-insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Lurlene', 'Crampsy', '1966-01-08', '480.398.712-27', 'Bosnia and Herzegovina', 'Female', 'lcrampsyj@tiny.cc',20);
-
-/*Tabela funcionarios*/
-
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Gerry', 'Delucia', 'Camareiro', 9526.14, 21,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Suzi', 'Rickarsey', 'Jardineira Specialist IV', 4905.58, 29,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Jonell', 'Devine', 'Garçom', 2276.33, 30,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Mae', 'McNess', 'Garçom', 9164.21, 31,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Moishe', 'McCrea', 'Secretário', 6212.93, 32,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Winny', 'Butterworth', 'Secretário', 2643.54, 33,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Wynn', 'MacAllester', 'Gerente', 9734.61, 34,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Charmaine', 'Chilcott', 'camareira', 3291.06, 35,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Hortense', 'Dwyr', 'Diarista', 7856.25, 36,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Chadwick', 'Ewen', 'Faxineiro', 7086.47, 37,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Tally', 'Liffe', 'Diarista', 5948.04, 38,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Letisha', 'Huggon', 'Diarista', 9692.93, 39,0);
-insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso) values ('Mose', 'Jozwicki', 'Diarista', 2530.39, 40,0);
-
-/*Tabela Quartos*/
-
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 1, 0, 927.53,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (5, 0, 'Casal', 0, 0, 0, 1, 387.28,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 0, 'Casal', 1, 0, 0, 1, 733.04,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 0, 1, 0, 0, 1593.7,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 0, 0, 1, 576.8,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 0, 1, 773.33,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 0, 0, 1, 1, 1478.15,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 1, 1, 0, 765.21,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 0, 0, 735.41,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 1, 1, 508.69,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Solteiro', 1, 1, 1, 0, 1963.8,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1298.17,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1673.81,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 0, 1, 1, 633.46,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Solteiro', 0, 0, 1, 1, 449.5,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1547.8,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 1, 0, 1, 459.85,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Solteiro', 1, 0, 0, 0, 1102.29,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1484.32,'Suite');
-insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1907.04,'Suite');
-
-
-/*Tabela hospedagens*/
-
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-01-28', '2023-10-29', 1,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-11-29', '2023-05-27', 2,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-08-08', '2023-06-28', 3,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-06-04', '2023-04-23', 4,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-06-30', '2023-11-18', 5,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-06-11', '2023-01-06', 6,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-06-21', '2023-08-04', 7,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-04-30', '2023-09-11', 8,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-08-06', '2023-08-28', 9,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-03-10', '2023-06-29', 10,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-02-24', '2023-05-10', 11,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-01-08', '2023-06-21', 12,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-23', '2022-12-28', 13,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-05-07', '2023-07-09', 14,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-02-28', '2022-12-24', 15,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-09-15', '2023-01-22', 16,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-14', '2023-06-10', 17,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-03-06', '2023-03-24', 18,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-05-31', '2023-05-11', 19,1);
-insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-02-07', '2023-05-30', 20,1);
-
-/*Tabela Atividades */
-
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('8:08 AM', '10:05 AM', 9, 'Passeio a cavalo com guia', '2023-09-02', 1,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:10 AM', '4:55 AM', 4, 'Passeio de buggy', '2022-07-27', 2,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:57 AM', '11:59 AM', 12, 'Pesca', '2022-09-23', 3,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:20 AM', '12:56 AM', 4, 'Trilha de offroad 4x4', '2023-10-01', 4,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('6:41 AM', '10:00 AM', 15, 'Trilha a pé com guia', '2023-12-07', 5,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:40 AM', '10:27 AM', 7, 'Alpinismo', '2022-10-27', 6,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:03 AM', '4:06 AM', 15, 'Surf', '2023-12-20', 7,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:15 AM', '6:37 AM', 10, 'Natação', '2022-08-13', 8,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('8:17 AM', '2:32 AM', 11, 'Futebol', '2023-01-19', 9,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:55 AM', '11:47 AM', 12, 'Vôlei', '2022-08-09', 10,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:12 AM', '1:06 AM', 4, 'Hipismo', '2023-09-21', 11,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:03 AM', '1:37 AM', 14, 'Luau', '2022-02-06', 12,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:08 AM', '2:46 AM', 15, 'Yoga', '2023-06-28', 13,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:40 AM', '8:08 AM', 8, 'Oficina de artesanato', '2022-11-29', 14,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('7:45 AM', '6:54 AM', 13, 'Oficina de jardinagem', '2023-01-18', 15,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:24 AM', '9:55 AM', 14, 'Caça ao tesouro', '2023-02-06', 16,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:31 AM', '5:12 AM', 6, 'Passeio de trator', '2022-11-27', 17,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('7:09 AM', '1:52 AM', 18, 'Visita ao mirante', '2022-05-23', 18,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:07 AM', '9:40 AM', 17, 'Teatro ao ar livre', '2022-11-01', 19,20);
-insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:36 AM', '1:20 AM', 16, 'Pratica de cerâmica com guia', '2022-08-17', 20,20);
-
-/*Tabela Servicos*/
-
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (249.96, 'Massagemn',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (260.5, 'Frigobar',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (129.43, 'Máquina de venda',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (93.83, 'Café da manhã',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (89.98, 'Sala de jogos',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (108.29, 'Internet',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (117.71, 'TV a cabo',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (257.47, 'Aluguel de filmes',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (47.94, 'Ar condicionado',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (110.91, 'Kart',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (57.17, 'Aula de surf',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (56.23, 'Aula de hipismo',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (18.3, 'Academia',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (296.42, 'Festa Pagode',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (189.84, 'Bailão',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (246.18, 'Quiroprata',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (252.25, 'Sauna',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (229.48, 'Babás',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (184.17, 'Lavanderia',2);
-insert into Servicos (PrecoServico, NomeServico, Quantidade) values (275.8, 'Aula de dança do ventre',2);
-
-/*Tabela AtividadesHospedes*/
-
-insert into AtividadesHospedes(IdHospedeAtividades, IdAtividadesHospedes)
-values (1,1),
-(2,2),
-(3,3),
-(4,4),
-(5,5),
-(6,6),
-(7,7),
-(8,8),
-(9,9),
-(10,10),
-(11,11),
-(12,12),
-(13,13),
-(14,14),
-(15,15),
-(16,16),
-(17,17),
-(18,18),
-(19,19),
-(20,20);
-
-
-/*Tabela serviços consumidos*/
-
-insert into ServicosConsumidos (IdHospedeServicos, IdServicoServicos, IdHospedagemServicos)
-values(1,1,1),
-(2,2,2),
-(3,3,3),
-(4,4,4),
-(5,5,5),
-(6,6,6),
-(7,7,7),
-(8,8,8),
-(9,9,9),
-(10,10,10),
-(11,11,11),
-(12,12,12),
-(13,13,13),
-(14,14,14),
-(15,15,15),
-(16,16,16),
-(17,17,17),
-(18,18,18),
-(19,19,19),
-(20,20,20);
-
-/*Tabela HospedagensQuartos*/
-
--- insert into HospedagensQuartos (IdHospede, IdQuarto, IdHospedagem)
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru',1);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Elisa', 'Volette', '1984-11-06', '751.425.013-76', 'Peru', 'Female', 'evolette1@stanford.edu',2);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Maxwell', 'Haycraft', '1977-02-16', '316.149.686-40', 'Brazil', 'Male', 'mhaycraft2@wikispaces.com',3);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Gussy', 'Fries', '2003-10-16', '395.415.201-14', 'China', 'Female', 'gfries3@stumbleupon.com',4);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Duff', 'Mungham', '2023-09-21', '805.097.764-25', 'Philippines', 'Male', 'dmungham4@histats.com',5);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Kristo', 'Honnan', '2019-02-21', '636.015.493-06', 'Mongolia', 'Male', 'khonnan5@ovh.net',6);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Teodoor', 'Skeels', '2008-05-23', '421.381.619-25', 'Sweden', 'Male', 'tskeels6@themeforest.net',7);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Malachi', 'Barnewille', '1999-04-14', '427.559.825-55', 'France', 'Male', 'mbarnewille7@newyorker.com',8);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Wallis', 'Bree', '1990-12-15', '636.068.749-13', 'Norway', 'Female', 'wbree8@instagram.com',9);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Marius', 'Bratton', '1994-10-31', '298.583.262-13', 'Brazil', 'Male', 'mbratton9@mashable.com',10);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Obadiah', 'Aylesbury', '2017-04-14', '129.346.434-18', 'China', 'Male', 'oaylesburya@europa.eu',11);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Wright', 'Alkin', '1980-09-19', '949.735.668-02', 'Yemen', 'Male', 'walkinb@surveymonkey.com',12);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Rikki', 'Youson', '1994-06-10', '833.407.132-18', 'Thailand', 'Male', 'ryousonc@vk.com',13);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Benedicto', 'Hodgin', '1970-12-16', '198.397.145-67', 'Iran', 'Male', 'bhodgind@photobucket.com',14);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Lennie', 'Lembrick', '1975-06-23', '882.476.072-06', 'Pakistan', 'Male', 'llembricke@un.org',15);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Eachelle', 'Gonoude', '1998-09-26', '685.862.163-47', 'China', 'Female', 'egonoudef@is.gd',16);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Freddie', 'Millott', '2012-06-22', '363.678.979-99', 'Greece', 'Female', 'fmillottg@xing.com',17);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Had', 'Babar', '2015-08-13', '269.188.281-56', 'Russia', 'Male', 'hbabarh@addtoany.com',18);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Amanda', 'Harbach', '1979-10-08', '700.716.283-32', 'United States', 'Female', 'aharbachi@google.fr',19);
+-- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Lurlene', 'Crampsy', '1966-01-08', '480.398.712-27', 'Bosnia and Herzegovina', 'Female', 'lcrampsyj@tiny.cc',20);
+-- 
+-- /*Tabela funcionarios*/
+-- 
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gerry', 'Delucia', 'Camareiro', 9526.14, 21,0,'00000000001');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22,0,'00000000002');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23,0,'00000000003');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24,0,'00000000004');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25,0,'00000000005');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0,'00000000006');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0,'00000000007');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0,'00000000008');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Suzi', 'Rickarsey', 'Jardineira Specialist IV', 4905.58, 29,0,'00000000009');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Jonell', 'Devine', 'Garçom', 2276.33, 30,0,'00000000010');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Mae', 'McNess', 'Garçom', 9164.21, 31,0,'00000000011');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Moishe', 'McCrea', 'Secretário', 6212.93, 32,0,'00000000012');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Winny', 'Butterworth', 'Secretário', 2643.54, 33,0,'00000000013');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Wynn', 'MacAllester', 'Gerente', 9734.61, 34,0,'00000000014');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Charmaine', 'Chilcott', 'camareira', 3291.06, 35,0,'00000000015');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Hortense', 'Dwyr', 'Diarista', 7856.25, 36,0,'00000000016');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Chadwick', 'Ewen', 'Faxineiro', 7086.47, 37,0,'00000000017');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Tally', 'Liffe', 'Diarista', 5948.04, 38,0,'00000000018');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Letisha', 'Huggon', 'Diarista', 9692.93, 39,0,'00000000019');
+-- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Mose', 'Jozwicki', 'Diarista', 2530.39, 40,0,'00000000020');
+-- 
+-- /*Tabela Quartos*/
+-- 
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 1, 0, 927.53,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (5, 0, 'Casal', 0, 0, 0, 1, 387.28,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 0, 'Casal', 1, 0, 0, 1, 733.04,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 0, 1, 0, 0, 1593.7,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 0, 0, 1, 576.8,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 0, 1, 773.33,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 0, 0, 1, 1, 1478.15,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 1, 1, 0, 765.21,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 0, 0, 735.41,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 1, 1, 508.69,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Solteiro', 1, 1, 1, 0, 1963.8,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1298.17,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1673.81,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 0, 1, 1, 633.46,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Solteiro', 0, 0, 1, 1, 449.5,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1547.8,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 1, 0, 1, 459.85,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Solteiro', 1, 0, 0, 0, 1102.29,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1484.32,'Suite');
+ insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1907.04,'Suite');
+-- 
+-- 
+-- /*Tabela hospedagens*/
+-- 
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-01-28', '2023-10-29', 1,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-11-29', '2023-05-27', 2,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-08-08', '2023-06-28', 3,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-06-04', '2023-04-23', 4,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-06-30', '2023-11-18', 5,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-06-11', '2023-01-06', 6,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-06-21', '2023-08-04', 7,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-04-30', '2023-09-11', 8,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-08-06', '2023-08-28', 9,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-03-10', '2023-06-29', 10,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-02-24', '2023-05-10', 11,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-01-08', '2023-06-21', 12,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-23', '2022-12-28', 13,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-05-07', '2023-07-09', 14,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-02-28', '2022-12-24', 15,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-09-15', '2023-01-22', 16,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-14', '2023-06-10', 17,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-03-06', '2023-03-24', 18,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-05-31', '2023-05-11', 19,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-02-07', '2023-05-30', 20,1);
+-- 
+-- /*Tabela Atividades */
+-- 
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('8:08 AM', '10:05 AM', 9, 'Passeio a cavalo com guia', '2023-09-02', 1,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:10 AM', '4:55 AM', 4, 'Passeio de buggy', '2022-07-27', 2,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:57 AM', '11:59 AM', 12, 'Pesca', '2022-09-23', 3,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:20 AM', '12:56 AM', 4, 'Trilha de offroad 4x4', '2023-10-01', 4,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('6:41 AM', '10:00 AM', 15, 'Trilha a pé com guia', '2023-12-07', 5,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:40 AM', '10:27 AM', 7, 'Alpinismo', '2022-10-27', 6,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:03 AM', '4:06 AM', 15, 'Surf', '2023-12-20', 7,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:15 AM', '6:37 AM', 10, 'Natação', '2022-08-13', 8,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('8:17 AM', '2:32 AM', 11, 'Futebol', '2023-01-19', 9,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:55 AM', '11:47 AM', 12, 'Vôlei', '2022-08-09', 10,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:12 AM', '1:06 AM', 4, 'Hipismo', '2023-09-21', 11,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:03 AM', '1:37 AM', 14, 'Luau', '2022-02-06', 12,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:08 AM', '2:46 AM', 15, 'Yoga', '2023-06-28', 13,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:40 AM', '8:08 AM', 8, 'Oficina de artesanato', '2022-11-29', 14,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('7:45 AM', '6:54 AM', 13, 'Oficina de jardinagem', '2023-01-18', 15,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('9:24 AM', '9:55 AM', 14, 'Caça ao tesouro', '2023-02-06', 16,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('10:31 AM', '5:12 AM', 6, 'Passeio de trator', '2022-11-27', 17,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('7:09 AM', '1:52 AM', 18, 'Visita ao mirante', '2022-05-23', 18,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:07 AM', '9:40 AM', 17, 'Teatro ao ar livre', '2022-11-01', 19,20);
+-- insert into Atividades (Horario, HorarioFim, IdadeMinima, NomeAtividade, data, IdFuncionarioAtividade, Capacidade) values ('11:36 AM', '1:20 AM', 16, 'Pratica de cerâmica com guia', '2022-08-17', 20,20);
+-- 
+-- /*Tabela Servicos*/
+-- 
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (249.96, 'Massagemn',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (260.5, 'Frigobar',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (129.43, 'Máquina de venda',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (93.83, 'Café da manhã',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (89.98, 'Sala de jogos',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (108.29, 'Internet',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (117.71, 'TV a cabo',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (257.47, 'Aluguel de filmes',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (47.94, 'Ar condicionado',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (110.91, 'Kart',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (57.17, 'Aula de surf',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (56.23, 'Aula de hipismo',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (18.3, 'Academia',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (296.42, 'Festa Pagode',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (189.84, 'Bailão',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (246.18, 'Quiroprata',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (252.25, 'Sauna',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (229.48, 'Babás',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (184.17, 'Lavanderia',2);
+-- insert into Servicos (PrecoServico, NomeServico, Quantidade) values (275.8, 'Aula de dança do ventre',2);
+-- 
+-- /*Tabela AtividadesHospedes*/
+-- 
+-- insert into AtividadesHospedes(IdHospedeAtividades, IdAtividadesHospedes,IdAtividadeAtividades)
+-- values (1,1,1),
+-- (2,2,2),
+-- (3,3,3),
+-- (4,4,4),
+-- (5,5,5),
+-- (6,6,6),
+-- (7,7,7),
+-- (8,8,8),
+-- (9,9,9),
+-- (10,10,10),
+-- (11,11,11),
+-- (12,12,12),
+-- (13,13,13),
+-- (14,14,14),
+-- (15,15,15),
+-- (16,16,16),
+-- (17,17,17),
+-- (18,18,18),
+-- (19,19,19),
+-- (20,20,20);
+-- 
+-- 
+-- /*Tabela serviços consumidos*/
+-- 
+-- insert into ServicosConsumidos (IdHospedeServicos, IdServicoServicos, IdHospedagemServicos)
 -- values(1,1,1),
 -- (2,2,2),
 -- (3,3,3),
@@ -458,7 +434,31 @@ values(1,1,1),
 -- (18,18,18),
 -- (19,19,19),
 -- (20,20,20);
-
+-- 
+-- /*Tabela HospedagensQuartos*/
+-- 
+-- -- insert into HospedagensQuartos (IdHospede, IdQuarto, IdHospedagem)
+-- -- values(1,1,1),
+-- -- (2,2,2),
+-- -- (3,3,3),
+-- -- (4,4,4),
+-- -- (5,5,5),
+-- -- (6,6,6),
+-- -- (7,7,7),
+-- -- (8,8,8),
+-- -- (9,9,9),
+-- -- (10,10,10),
+-- -- (11,11,11),
+-- -- (12,12,12),
+-- -- (13,13,13),
+-- -- (14,14,14),
+-- -- (15,15,15),
+-- -- (16,16,16),
+-- -- (17,17,17),
+-- -- (18,18,18),
+-- -- (19,19,19),
+-- -- (20,20,20);
+-- 
 /*Selects*/
 
 Select count(*) from Usuarios;
