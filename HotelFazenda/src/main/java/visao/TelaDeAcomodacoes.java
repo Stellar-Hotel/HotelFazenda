@@ -176,7 +176,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_11.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(1);
 			telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			telaDeQuartos.setVisible(true);
 			telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -211,7 +211,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(2);
 				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaDeQuartos.setVisible(true);
 				telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -243,7 +243,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_13.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos();
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(3);
 				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaDeQuartos.setVisible(true);
 				telaDeQuartos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
