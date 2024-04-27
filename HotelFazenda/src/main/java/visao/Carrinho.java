@@ -54,7 +54,14 @@ public class Carrinho extends JFrame {
      * @param lista 
      */
     public Carrinho(ArrayList<Servicos> lista) {
-    	atualizarJTable(lista);
+   
+    	
+        model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "Produtos", "Preço", "Quantidade",
+  				"Sub-Total" }));
+          
+              table = new JTable(model1);
+      
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1080, 720);
         contentPane = new JPanel();
@@ -227,13 +234,9 @@ public class Carrinho extends JFrame {
         contentPane.add(cTable, "cell 2 6,grow");
         
     
-        model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "Produtos", "Preço", "Quantidade",
-				"Sub-Total" }));
-        
-            table = new JTable(model1);
         cTable.setViewportView(table);
       
-       
+        atualizarJTable(lista);
     }
     protected void atualizarJTable(ArrayList<Servicos> lista) {
     	DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new
