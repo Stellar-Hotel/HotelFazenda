@@ -26,9 +26,12 @@ import javax.swing.border.LineBorder;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 
 public class Carrinho extends JFrame {
-
+	DecimalFormat formato = new DecimalFormat("#.##");
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private DefaultTableModel model1;
@@ -108,6 +111,7 @@ public class Carrinho extends JFrame {
         panel.add(lblNewLabel_6);
 
         JPanel panel_1 = new JPanel();
+     
         panel_1.setBorder(new LineBorder(new Color(0, 255, 0), 2, true));
         panel_1.setBounds(24, 180, 86, 70);
         panel_1.setToolTipText("");
@@ -125,6 +129,7 @@ public class Carrinho extends JFrame {
         panel.add(lblNewLabel_7);
 
         JPanel panel_2 = new JPanel();
+       
         panel_2.setBorder(new LineBorder(new Color(0, 255, 255), 2, true));
         panel_2.setBounds(131, 180, 86, 70);
         panel_2.setBackground(new Color(255, 255, 255));
@@ -136,6 +141,7 @@ public class Carrinho extends JFrame {
         panel_2.add(lblNewLabel_15, "cell 0 0,alignx center,aligny center");
 
         JPanel panel_3 = new JPanel();
+       
         panel_3.setBorder(new LineBorder(new Color(128, 0, 64), 2, true));
         panel_3.setBounds(232, 180, 86, 70);
         panel_3.setBackground(new Color(255, 255, 255));
@@ -166,25 +172,25 @@ public class Carrinho extends JFrame {
         lblNewLabel_11.setBounds(29, 348, 64, 14);
         panel.add(lblNewLabel_11);
 
-        JLabel lblNewLabel_12 = new JLabel("R$");
-        lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-        lblNewLabel_12.setBounds(245, 348, 73, 14);
-        panel.add(lblNewLabel_12);
+        JLabel lblSubtotal = new JLabel("R$");
+        lblSubtotal.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        lblSubtotal.setBounds(245, 348, 86, 14);
+        panel.add(lblSubtotal);
 
-        JLabel lblNewLabel_12_1 = new JLabel("R$");
-        lblNewLabel_12_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-        lblNewLabel_12_1.setBounds(247, 373, 71, 14);
-        panel.add(lblNewLabel_12_1);
+        JLabel lblDesconto = new JLabel("R$");
+        lblDesconto.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        lblDesconto.setBounds(247, 373, 84, 14);
+        panel.add(lblDesconto);
 
         JLabel lblNewLabel_11_1 = new JLabel("Desconto");
         lblNewLabel_11_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
         lblNewLabel_11_1.setBounds(29, 373, 64, 14);
         panel.add(lblNewLabel_11_1);
 
-        JLabel lblNewLabel_12_2 = new JLabel("R$");
-        lblNewLabel_12_2.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-        lblNewLabel_12_2.setBounds(247, 396, 71, 14);
-        panel.add(lblNewLabel_12_2);
+        JLabel lblTaxa = new JLabel("R$");
+        lblTaxa.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        lblTaxa.setBounds(247, 396, 84, 14);
+        panel.add(lblTaxa);
 
         JLabel lblNewLabel_11_2 = new JLabel("Taxa");
         lblNewLabel_11_2.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -197,10 +203,10 @@ public class Carrinho extends JFrame {
         separator_2.setBackground(new Color(0, 0, 0));
         panel.add(separator_2);
 
-        JLabel lblNewLabel_13 = new JLabel("Total:");
-        lblNewLabel_13.setBounds(24, 457, 64, 17);
-        lblNewLabel_13.setFont(new Font("Times New Roman", Font.BOLD, 22));
-        panel.add(lblNewLabel_13);
+        JLabel lblTotal = new JLabel("Total:");
+        lblTotal.setBounds(24, 457, 193, 17);
+        lblTotal.setFont(new Font("Times New Roman", Font.BOLD, 22));
+        panel.add(lblTotal);
 
         Panel panel_4 = new Panel();
         panel_4.setBounds(24, 505, 299, 45);
@@ -229,6 +235,83 @@ public class Carrinho extends JFrame {
         separator_1_2.setBackground(Color.BLACK);
         separator_1_2.setBounds(64, 408, 173, 1);
         panel.add(separator_1_2);
+        
+        JLabel lblInformacao = new JLabel("");
+        lblInformacao.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+        lblInformacao.setBounds(24, 485, 275, 14);
+        panel.add(lblInformacao);
+        panel_2.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		
+        		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
+        		
+        		
+            	for(int i=0;i<lista.size();i++) {
+            		 Servicos s = lista.get(i);
+            			subTotal+=s.getQuantidade()*s.getPrecoServico();
+            	}
+            	
+            	desconto=subTotal*0.12;
+            	taxa=subTotal*0.01;
+            	
+            	total=subTotal+taxa-desconto;
+            	
+            	lblSubtotal.setText("R$ "+String.valueOf(formato.format(subTotal)));
+            	lblDesconto.setText("R$ "+String.valueOf(formato.format(desconto)));
+            	lblTaxa.setText("R$ "+String.valueOf(formato.format(taxa)));
+            	lblTotal.setText("Total: R$ "+String.valueOf(formato.format(total)));
+            	lblInformacao.setText("*Desconto de 12% para pagamento por pix e 1% de taxa.");
+        	}
+        });
+        
+        panel_1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
+        		
+        		
+        	for(int i=0;i<lista.size();i++) {
+        		 Servicos s = lista.get(i);
+        			subTotal+=s.getQuantidade()*s.getPrecoServico();
+        	}
+        	
+        	desconto=subTotal*0.1;
+        	taxa=subTotal*0.01;
+        	
+        	total=subTotal+taxa-desconto;
+        	
+        	lblSubtotal.setText("R$ "+String.valueOf(formato.format(subTotal)));
+        	lblDesconto.setText("R$ "+String.valueOf(formato.format(desconto)));
+        	lblTaxa.setText("R$ "+String.valueOf(formato.format(taxa)));
+        	lblTotal.setText("Total: R$ "+String.valueOf(formato.format(total)));
+        	lblInformacao.setText("*Desconto de 10% para pagamento em dinheiro e 1% de taxa.");
+        		
+        	}
+        });
+        panel_3.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
+        		
+        		
+            	for(int i=0;i<lista.size();i++) {
+            		 Servicos s = lista.get(i);
+            			subTotal+=s.getQuantidade()*s.getPrecoServico();
+            	}
+            	
+            	desconto=subTotal*0.08;
+            	taxa=subTotal*0.03;
+            	
+            	total=subTotal+taxa-desconto;
+            	
+            	lblSubtotal.setText("R$ "+String.valueOf(formato.format(subTotal)));
+            	lblDesconto.setText("R$ "+String.valueOf(formato.format(desconto)));
+            	lblTaxa.setText("R$ "+String.valueOf(formato.format(taxa)));
+            	lblTotal.setText("Total: R$ "+String.valueOf(formato.format(total)));
+            	lblInformacao.setText("*Desconto de 8% para pagamento em dinheiro e 3% de taxa.");
+        	}
+        });
         
         JScrollPane cTable = new JScrollPane();
         contentPane.add(cTable, "cell 2 6,grow");
