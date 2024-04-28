@@ -181,32 +181,33 @@ public class QuartosDAO implements IQuartosDAO {
 	}
 
 	@Override
-	public Quartos buscarQuartoPorNumero(int id) {
+	public ArrayList<Quartos> buscarQuartoPorNumero(int x) {
 		// TODO Auto-generated method stub
-		Quartos Quar = null;
-		String SQL = "Select * from Quartos where IdQuarto = ?";
+		ArrayList<Quartos> Quartos = new ArrayList<Quartos>();
+		String SQL = "Select * from Quartos where TipoQuarto = ?";
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-
-			ps.setInt(1, id);
-
+			ps.setInt(1,x);
 			ResultSet rs = ps.executeQuery();
 
-			if (rs.next()) {
-				Quar = new Quartos();
+			while (rs.next()) {
 
-				Quar.setArCondicionado(rs.getBoolean("ArCondicionado"));
-				Quar.setBanheira(rs.getBoolean("Banheira"));
-				Quar.setFrigobar(rs.getBoolean("Frigobar"));
-				Quar.setManutencao(rs.getString("Manutencao"));
-				Quar.setMaxPessoas(rs.getInt("MaxPessoas"));
-				Quar.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
-				Quar.setTipoCama(rs.getString("TipoCama"));
-				Quar.setTV(rs.getBoolean("TV"));
-				Quar.setIdQuarto(id);
+				Quartos Quarto = new Quartos();
+
+				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quarto.setManutencao(rs.getString("Manutencao"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quarto.setBanheira(rs.getBoolean("Banheira"));
+				Quarto.setTV(rs.getBoolean("TV"));
+				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+
+				Quartos.add(Quarto);
 			}
 
 		} catch (SQLException e) {
@@ -216,6 +217,7 @@ public class QuartosDAO implements IQuartosDAO {
 			con.FecharConexao();
 		}
 
-		return Quar;
+		return Quartos;
 	}
 }
+

@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS  `Servicos` (
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
+  `TipoQuarto` INT,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
   `TipoQuarto` VARCHAR(45) NOT NULL,
@@ -295,26 +296,6 @@ values ('M@iones3','MAZDARX7',0 ),
 -- 
 -- /*Tabela Quartos*/
 -- 
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 1, 0, 927.53,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (5, 0, 'Casal', 0, 0, 0, 1, 387.28,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 0, 'Casal', 1, 0, 0, 1, 733.04,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 0, 1, 0, 0, 1593.7,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 0, 0, 1, 576.8,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 0, 1, 773.33,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 0, 0, 1, 1, 1478.15,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Casal', 0, 1, 1, 0, 765.21,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Casal', 1, 0, 0, 0, 735.41,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Casal', 1, 1, 1, 1, 508.69,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (4, 1, 'Solteiro', 1, 1, 1, 0, 1963.8,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1298.17,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1673.81,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 0, 1, 1, 633.46,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 1, 'Solteiro', 0, 0, 1, 1, 449.5,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1547.8,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 1, 'Solteiro', 0, 1, 0, 1, 459.85,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (2, 0, 'Solteiro', 1, 0, 0, 0, 1102.29,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1484.32,'Suite');
- insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1907.04,'Suite');
 -- 
 -- 
 -- /*Tabela hospedagens*/
@@ -459,6 +440,26 @@ values ('M@iones3','MAZDARX7',0 ),
 -- -- (19,19,19),
 -- -- (20,20,20);
 -- 
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1907.04, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1484.32, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 0, 'Solteiro', 1, 0, 0, 0, 1102.29, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (1, 1, 'Solteiro', 0, 1, 0, 1, 459.85, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1547.8, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 1, 'Solteiro', 0, 0, 1, 1, 449.5, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (1, 1, 'Solteiro', 0, 0, 1, 1, 633.46, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (1, 0, 'Solteiro', 0, 0, 0, 1, 1673.81, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (3, 0, 'Solteiro', 0, 0, 0, 1, 1298.17, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (4, 1, 'Solteiro', 1, 1, 1, 0, 1963.8, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 0, 'Casal', 1, 1, 1, 1, 508.69, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 1, 'Casal', 1, 0, 0, 0, 735.41, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 1, 'Casal', 0, 0, 1, 1, 1478.15, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (4, 1, 'Casal', 0, 1, 1, 0, 765.21, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (4, 1, 'Casal', 0, 0, 0, 1, 576.8, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 0, 'Casal', 1, 1, 0, 1, 773.33, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 0, 'Casal', 0, 1, 0, 0, 1593.7, 1);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (4, 0, 'Casal', 1, 0, 0, 1, 733.04, 3);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (5, 0, 'Casal', 0, 0, 0, 1, 387.28, 2);
+insert into Quartos (MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) values (2, 1, 'Casal', 1, 0, 1, 0, 927.53, 1);
 /*Selects*/
 
 Select count(*) from Usuarios;
