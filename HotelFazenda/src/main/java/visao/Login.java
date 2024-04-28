@@ -9,7 +9,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import controle.Arredondar.RoundedBorder;
+import controle.Funcionarios.FuncionariosDAO;
 import controle.Usuarios.UsuariosDAO;
+import modelo.Funcionarios;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -141,7 +143,9 @@ public class Login extends JFrame {
 
 						if (usuarios != null) {
 							JOptionPane.showMessageDialog(null, "Usuário encontrado!");
-							TelaServicos c = new TelaServicos();
+							FuncionariosDAO DAOF=FuncionariosDAO.getConexao();
+							Funcionarios Func=DAOF.BuscarFuncionarioPorIdUsuario(usuarios);							
+							Home c = new Home(Func);
 							c.setVisible(true);
 							dispose();
 						} else {

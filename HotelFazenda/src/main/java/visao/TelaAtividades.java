@@ -59,26 +59,26 @@ public class TelaAtividades extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					TelaAtividades frame = new TelaAtividades();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				} 
-				
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//
+//					TelaAtividades frame = new TelaAtividades();
+//					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				} 
+//				
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtividades() {
+	public TelaAtividades(Funcionarios Func) {
 		ListaAtividades = new ArrayList<Atividades>();
 		ListaAtividadesinscritas = new ArrayList<Atividades>();
 
@@ -98,10 +98,17 @@ public class TelaAtividades extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
-				"[20px:20px:20px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
+		lblHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Home TelaHome=new Home(Func);
+				TelaHome.setVisible(true);
+				dispose();
+			}
+		});
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Home.jpg")));
@@ -110,41 +117,95 @@ public class TelaAtividades extends JFrame {
 		JLabel lblHospede = new JLabel("Hospede");
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 2,grow");
+		BarraLateral.add(lblHospede, "cell 0 5,grow");
 
 		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaAtividades TelaAtiv=new TelaAtividades(Func);
+				TelaAtiv.setVisible(true);
+				dispose();
+			}
+		});
 		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblAtividades.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Atividades.jpg")));
-		BarraLateral.add(lblAtividades, "cell 0 3,grow");
+		BarraLateral.add(lblAtividades, "cell 0 2,grow");
 
 		JLabel lblQuartos = new JLabel("Quartos");
+		lblQuartos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				// TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes();
+				// TelaDeAcomodacoes.setVisible(true);
+				dispose();
+				
+			}
+		});
 		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblQuartos.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Quartos.jpg")));
-		BarraLateral.add(lblQuartos, "cell 0 4,grow");
+		BarraLateral.add(lblQuartos, "cell 0 3,grow");
 
 		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				TelaServicos TelaServ=new TelaServicos(Func);
+				TelaServ.setVisible(true);
+				dispose();
+				
+			}
+		});
 		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblServicos.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Servicos.jpg")));
-		BarraLateral.add(lblServicos, "cell 0 5,grow");
+		BarraLateral.add(lblServicos, "cell 0 4,grow");
+		
+		JLabel lblNewLabel_13 = new JLabel("Funcionários");
+		lblNewLabel_13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
+				TelaAdm.setVisible(true);
+				dispose();
+			}
+		});
+		lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblNewLabel_13, "cell 0 6");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 7,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/Avatar.jpg")));
 		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
 
-		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNewLabel_2, "cell 1 1,aligny bottom");
+		JLabel lblNome = new JLabel("Erik Roncaglio");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(lblNome, "cell 1 1,aligny bottom");
+		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 
 		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
 		JLabel lblNewLabel_5 = new JLabel("Sair");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login novoLogin=new Login();
+				String op=JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
+				if(op.equals("S")||op.equals("s"))
+				{
+					novoLogin.setVisible(true);
+					dispose();
+				}
+			}
+		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
@@ -339,9 +400,8 @@ public class TelaAtividades extends JFrame {
 						                    ativ.setHorarioFim(HorarioFim);
 						                    ativ.setNomeAtividade(NomeAtividade);
 						                    ativ.setData(data);
-						                    ativ.setCapacidade(Capacidade);
-						                    Funcionarios Func=new Funcionarios();
-						                    Func.setIdFuncionario(2);
+						                    ativ.setCapacidade(Capacidade);	
+						                    System.out.println(Func.getIdFuncionario());
 						                    ativ.setFuncionario(Func);
 
 										

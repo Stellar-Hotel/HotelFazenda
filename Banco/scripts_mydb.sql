@@ -217,11 +217,11 @@ values ('M@iones3','MAZDARX7',0 ),
 ('Bom', 'Tuffy',0 ),
 ('Rastreio', 'Caçador',0 ),
 ('Véia', 'VovóSmurf',0 ),
-('AgroBoy', 'Fazendeiro',0 ),
-('Pedreiro', 'TimberSmurf',0 ),
-('BadBoy', 'AngelSmurf',0 ),
-('Woolly', 'WoolySmurf',0 ),
-('Andras', 'fgyuvu',0 ),
+    ('Admin', 'Admin',1 ),
+    ('Gabriel', 'Gabriel',1 ),
+    ('Bernardo', 'Bernardo',1 ),
+    ('Andrei', 'Andrei',1 ),
+    ('Erik', 'Erik',1 ),
 ('João', 'Monark',0 ),
 ('Mau', 'Ele',0 ),
 ('Pinas', 'Gustas',0 ),
@@ -272,11 +272,11 @@ values ('M@iones3','MAZDARX7',0 ),
 -- 
 -- /*Tabela funcionarios*/
 -- 
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gerry', 'Delucia', 'Camareiro', 9526.14, 21,0,'00000000001');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Editha', 'Stede', 'Zeladora', 9016.38, 22,0,'00000000002');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Agosto', 'Franchyonok', 'Zelador', 7291.94, 23,0,'00000000003');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Giselbert', 'Duthy', 'Faxineira', 5890.71, 24,0,'00000000004');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lurette', 'Smalridge', 'camareira', 6530.11, 25,0,'00000000005');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Admin', 'Admin', 'Admininastro', 9526.14, 21,0,'00000000001');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gabriel', 'Mohr', 'Dev', 9016.38, 22,0,'00000000002');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Bernardo', 'Oliveira', 'Dev', 7291.94, 23,0,'00000000003');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Andrei', 'Ludwig', 'Dev', 5890.71, 24,0,'00000000004');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Erik', 'Roncaglio', 'Dev', 6530.11, 25,0,'00000000005');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0,'00000000006');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0,'00000000007');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0,'00000000008');

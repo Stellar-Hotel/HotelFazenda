@@ -198,17 +198,17 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	}
 
 	@Override
-	public Funcionarios BuscarFuncionarioPorCPF(String CPF) {
+	public Funcionarios BuscarFuncionarioPorIdUsuario(Usuarios user) {
 		// TODO Auto-generated method stub
 		Funcionarios Func=null;
-		String SQL="Select * from Funcionarios where CPF=? inner join Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario";//inner join aqui também
+		String SQL="Select * from Funcionarios inner join Usuarios on Usuarios.IdUsuario=Funcionarios.IdUsuarioFuncionario  where IdUsuarioFuncionario=? ";//inner join aqui também
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
 		try {
 			PreparedStatement ps=conBD.prepareStatement(SQL);
 			
-			ps.setString(1, CPF);
+			ps.setInt(1, user.getIdUsuario());
 			
 			ResultSet rs=ps.executeQuery();
 			
@@ -228,7 +228,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Func.setNome(rs.getString("Nome"));
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
-				Func.setCPF(CPF);
+				Func.setCPF(rs.getString("CPF"));
 				Func.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
 				Func.setUsuario(Usu);
 				

@@ -26,12 +26,15 @@ import controle.Funcionarios.FuncionariosDAO;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Atividades;
 import modelo.Funcionarios;
+import modelo.Servicos;
 import modelo.Usuarios;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminFuncionarios extends JFrame {
 
@@ -51,25 +54,25 @@ public class AdminFuncionarios extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					AdminFuncionarios frame = new AdminFuncionarios();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//
+//					AdminFuncionarios frame = new AdminFuncionarios();
+//					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public AdminFuncionarios() {
+	public AdminFuncionarios(Funcionarios Func) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -86,6 +89,16 @@ public class AdminFuncionarios extends JFrame {
 		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
+		lblHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				Home telaInicial=new Home(Func);
+				telaInicial.setVisible(true);
+				dispose();
+				
+			}
+		});
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Home.jpg")));
@@ -97,16 +110,47 @@ public class AdminFuncionarios extends JFrame {
 		BarraLateral.add(lblHospede, "cell 0 5,grow");
 
 		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				TelaAtividades TelaAtividades=new TelaAtividades(Func);
+				TelaAtividades.setVisible(true);
+				dispose();
+			}
+		});
 		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblAtividades.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Atividades.jpg")));
 		BarraLateral.add(lblAtividades, "cell 0 2,grow");
 
 		JLabel lblQuartos = new JLabel("Quartos");
+		lblQuartos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				// TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes();
+				// TelaDeAcomodacoes.setVisible(true);
+				dispose();
+				
+			}
+		});
 		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblQuartos.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Quartos.jpg")));
 		BarraLateral.add(lblQuartos, "cell 0 3,grow");
 
 		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				TelaServicos telaServico=new TelaServicos(Func);
+				
+				telaServico.setVisible(true);
+				dispose();
+				
+				
+			}
+		});
 		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblServicos.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Servicos.jpg")));
 		BarraLateral.add(lblServicos, "cell 0 4,grow");
@@ -125,15 +169,30 @@ public class AdminFuncionarios extends JFrame {
 		lblNewLabel_4.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Avatar.jpg")));
 		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
 
-		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNewLabel_2, "cell 1 1,aligny bottom");
+		JLabel lblNome = new JLabel("Erik Roncaglio");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(lblNome, "cell 1 1,aligny bottom");
+		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 
 		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
 		JLabel lblNewLabel_5 = new JLabel("Sair");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				Login novoLogin=new Login();
+				String op=JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
+				if(op.equals("S")||op.equals("s"))
+				{
+					novoLogin.setVisible(true);
+					dispose();
+				}
+				
+			}
+		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
@@ -228,6 +287,26 @@ public class AdminFuncionarios extends JFrame {
 		textSalario.setText("salario");
 		Principal.add(textSalario, "cell 6 4 3 1,growx");
 		textSalario.setColumns(10);
+		
+		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
+		btnDeletarSelecionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
+				Funcionarios func=new Funcionarios();
+				
+				int linha = table.getSelectedRow();
+				func = Lista.get(linha);
+				
+				boolean foi=DAO.RemoverFuncionario(func);
+				
+				if(foi==true) {
+					JOptionPane.showMessageDialog(null, "O funcionário selecionado foi deletado com sucesso!!");
+				}
+				
+				atualizarJTable();
+				
+			}
+		});
 		JButton btnCadastrarNovo = new JButton("Cadastrar Novo");
 		btnCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -289,7 +368,7 @@ public class AdminFuncionarios extends JFrame {
 		});
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 2 5 2 1,alignx left");
+		Principal.add(btnCadastrarNovo, "cell 2 6 3 1,alignx right");
 		
 		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
 		btnAtualizarSelecionado.addActionListener(new ActionListener() {
@@ -343,30 +422,10 @@ public class AdminFuncionarios extends JFrame {
 		});
 		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnAtualizarSelecionado, "cell 4 5,alignx center");
-		
-		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
-		btnDeletarSelecionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FuncionariosDAO DAO= FuncionariosDAO.getConexao();
-				Funcionarios func=new Funcionarios();
-				
-				int linha = table.getSelectedRow();
-				func = Lista.get(linha);
-				
-				boolean foi=DAO.RemoverFuncionario(func);
-				
-				if(foi==true) {
-					JOptionPane.showMessageDialog(null, "O funcionário selecionado foi deletado com sucesso!!");
-				}
-				
-				atualizarJTable();
-				
-			}
-		});
+		Principal.add(btnAtualizarSelecionado, "cell 5 6 4 1,alignx left");
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 3 6 2 1,alignx center");
+		Principal.add(btnDeletarSelecionado, "cell 3 7 4 1,alignx right");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -406,7 +465,6 @@ public class AdminFuncionarios extends JFrame {
 		 Funcionarios p = Lista.get(i);
 		 modelo1.addRow(new Object[] { p.getNome(),p.getSobrenome(),p.getFuncao(),p.getCPF(),"R$ "+p.getSalario() });
 		}
-		 System.out.println(Lista.size());
 
 		table.setModel(modelo1);
 		}

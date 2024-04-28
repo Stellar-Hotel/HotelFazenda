@@ -3,6 +3,7 @@ package controle.Funcionarios;
 import java.util.ArrayList;
 
 import modelo.Funcionarios;
+import modelo.Usuarios;
 
 public interface IFuncionariosDAO {
 	public int InserirFuncionario(Funcionarios Func);
@@ -13,5 +14,5 @@ public interface IFuncionariosDAO {
 
 	public boolean RemoverFuncionario(Funcionarios Func);
 
-	public Funcionarios BuscarFuncionarioPorCPF(String CPF);
+	public Funcionarios BuscarFuncionarioPorIdUsuario(Usuarios user);
 }

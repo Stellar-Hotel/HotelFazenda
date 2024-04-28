@@ -98,7 +98,7 @@ public class AtividadesDAO implements IAtividadesDAO
 	public boolean AtualizarAtividades(Atividades Ativ) {
 
 		// Conexâo SQl a ser executada
-		String SQL = "UPDATE Atividades SET NomeAtividade = ?,  Horario = ?,  HorarioFim = ?,  Data = ?,  IdFuncionario = ?,  IdadeMinima = ?, Capacidade=?  WHERE IdAtividade = ?";
+		String SQL = "UPDATE Atividades SET NomeAtividade = ?,  Horario = ?,  HorarioFim = ?,  Data = ?,  IdFuncionarioAtividade = ?,  IdadeMinima = ?, Capacidade=?  WHERE IdAtividade = ?";
 
 		// abre a conexão e cria a "parte de conexão" com MYSQL
 		Conexao con = Conexao.getConexao();
