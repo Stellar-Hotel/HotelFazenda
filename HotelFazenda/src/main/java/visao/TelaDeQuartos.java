@@ -67,7 +67,7 @@ public class TelaDeQuartos extends JFrame {
 		for (int i = 0; i < Lista.size(); i++) {
 
 			Quartos p = Lista.get(i);
-			model1.addRow(new Object[] { p.getNomeQuarto(), p.getManutencao(), p.getPrecoDiaria() });
+			model1.addRow(new Object[] {p.getManutencao(), p.getPrecoDiaria() });
 		}
 		System.out.println(ListaQuartos.size());
 
