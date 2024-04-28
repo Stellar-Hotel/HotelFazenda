@@ -181,7 +181,7 @@ public class QuartosDAO implements IQuartosDAO {
 	}
 
 	@Override
-	public ArrayList<Quartos> buscarQuartoPorNumero(int id) {
+	public ArrayList<Quartos> buscarQuartoPorNumero(int x) {
 		// TODO Auto-generated method stub
 		ArrayList<Quartos> Quartos = new ArrayList<Quartos>();
 		String SQL = "Select * from Quartos where TipoQuarto = ?";

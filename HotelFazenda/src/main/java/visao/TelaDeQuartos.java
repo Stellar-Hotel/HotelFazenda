@@ -40,27 +40,27 @@ public class TelaDeQuartos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	//public static void main(String[] args) {
+		//EventQueue.invokeLater(new Runnable() {
+			//public void run() {
+				//try {
 
-					TelaDeQuartos frame = new TelaDeQuartos();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+					//TelaDeQuartos frame = new TelaDeQuartos();
+					//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
+					//frame.setVisible(true);
+			//	} catch (Exception e) {
+			//		e.printStackTrace();
+		//		}
+		//	}
+	//	});
+	//}
 	
-	protected void atualizarJTable() {
+	protected void atualizarJTable(int x) {
 		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] {"Manutencao", "Preco da Diaria" }));
 
 		QuartosDAO QuartoDAO = QuartosDAO.getConexao();
-		ArrayList<Quartos> Lista = QuartoDAO.ListarQuartos();
+		ArrayList<Quartos> Lista = QuartoDAO.buscarQuartoPorNumero(x);
 
 		for (int i = 0; i < Lista.size(); i++) {
 
@@ -74,9 +74,10 @@ public class TelaDeQuartos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeQuartos() {
+	public TelaDeQuartos(int x) {
 		
 		ListaQuartos = new ArrayList<Quartos>();
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -258,7 +259,7 @@ public class TelaDeQuartos extends JFrame {
 	    	    table = new JTable(model1);
 	    	    
 	    JScrollPane scrollPane1 = new JScrollPane(table);
-	    atualizarJTable();
+	    atualizarJTable(x);
 	    Principal.add(scrollPane1, "cell 2 1,grow");
 		
 
