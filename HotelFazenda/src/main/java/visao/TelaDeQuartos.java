@@ -59,9 +59,11 @@ public class TelaDeQuartos extends JFrame {
 		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] {"Manutencao", "Preco da Diaria" }));
 
+		model1.setRowCount(0);
+		
 		QuartosDAO QuartoDAO = QuartosDAO.getConexao();
 		ArrayList<Quartos> Lista = QuartoDAO.buscarQuartoPorNumero(x);
-
+		
 		for (int i = 0; i < Lista.size(); i++) {
 
 			Quartos p = Lista.get(i);

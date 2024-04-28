@@ -190,7 +190,7 @@ public class QuartosDAO implements IQuartosDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-
+			ps.setInt(1,x);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
