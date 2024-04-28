@@ -19,7 +19,7 @@ public class TelaSucesso extends JFrame {
                 try {
                     TelaSucesso frame = new TelaSucesso();
                     frame.setVisible(true);
-                    frame.animarTela();
+                 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -28,6 +28,7 @@ public class TelaSucesso extends JFrame {
     }
 
     public TelaSucesso() {
+    
         setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(351, 216);
@@ -57,6 +58,7 @@ public class TelaSucesso extends JFrame {
         JLabel lblNewLabel_2 = new JLabel("A operação foi concluída com sucesso.");
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         contentPane.add(lblNewLabel_2, "cell 0 2,alignx center,aligny top");
+    	animarTela();
     }
 
     // Método para animar a tela
