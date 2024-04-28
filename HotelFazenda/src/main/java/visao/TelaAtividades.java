@@ -137,8 +137,8 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				// TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes();
-				// TelaDeAcomodacoes.setVisible(true);
+				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes.setVisible(true);
 				dispose();
 				
 			}

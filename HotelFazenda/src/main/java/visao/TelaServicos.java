@@ -115,8 +115,8 @@ public class TelaServicos extends JFrame {
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
-				// TelaDeAcomodacoes.setVisible(true);
+				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes.setVisible(true);
 				dispose();
 				
 			}

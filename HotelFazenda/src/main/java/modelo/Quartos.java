@@ -86,12 +86,4 @@ public class Quartos {
 		PrecoDiaria = precoDiaria;
 	}
 
-	public String getNomeQuarto() {
-		return NomeQuarto;
-	}
-
-	public void setNomeQuarto(String nomeQuarto) {
-		NomeQuarto = nomeQuarto;
-	}
-
 }
