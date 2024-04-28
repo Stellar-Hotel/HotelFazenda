@@ -38,7 +38,7 @@ public class ServicosDAO implements IServicosDAO {
 		try {
 			PreparedStatement Ps = conBD.prepareStatement(SQL);// se for um insert já conhcendo a chave primária não
 																// adcionar o Statement.RETURN_GENERATED_KEYS
-			Ps.setFloat(1, end.getPrecoServico());
+			Ps.setDouble(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 
 			int result = Ps.executeUpdate();
@@ -73,8 +73,8 @@ public class ServicosDAO implements IServicosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-
-				Servicos Serv = new Servicos();
+				
+				Servicos Serv = new Servicos("a",0.1);//tem que ver como vai ficar isso tbm, agr cque tem o construtor
 
 				int IdServico = rs.getInt("IdServico");
 				Float PrecoServico = rs.getFloat("PrecoServico");
@@ -118,7 +118,7 @@ public class ServicosDAO implements IServicosDAO {
 		try {
 			PreparedStatement Ps = conBD.prepareStatement(SQL);
 
-			Ps.setFloat(1, end.getPrecoServico());
+			Ps.setDouble(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 			Ps.setInt(3, end.getIdServico());
 
@@ -175,7 +175,7 @@ public class ServicosDAO implements IServicosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				Serv = new Servicos();
+				Serv = new Servicos(" ",0.0);
 
 				Serv.setIdServico(rs.getInt("IdServico"));
 				Serv.setNomeServico(nome);

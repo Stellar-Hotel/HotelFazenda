@@ -158,16 +158,16 @@ public class TelaDeCadastro extends JFrame {
 
 													int id = DAO.inserirUsuario(User);
 
-													if (id > 0) {
-														JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-														Login tela = new Login();
-														tela.setVisible(true);
-														dispose();
+												 	if (id > 0) {
+											 			JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+												 		Login tela = new Login();
+												 		tela.setVisible(true);
+												 		dispose();
 
-													}
-												}
-											}
-										});
+											 		}
+											 	}
+										 	}
+										 });
 										contentPane.add(btnCadastrar, "cell 4 11,alignx center");
 	}
 }

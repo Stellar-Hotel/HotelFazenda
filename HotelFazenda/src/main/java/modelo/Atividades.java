@@ -3,7 +3,7 @@ package modelo;
 import java.sql.Date;
 
 public class Atividades {
-	private int IdAtividade, IdadeMinima;
+	private int IdAtividade, IdadeMinima, Capacidade;
 	private String Horario, HorarioFim, NomeAtividade;
 	private Date Data;
 	private Funcionarios Funcionario;
@@ -12,8 +12,8 @@ public class Atividades {
 		return IdadeMinima;
 	}
 
-	public void setIdadeMinima(int Idade) {
-		IdadeMinima = Idade;
+	public void setIdadeMinima(Integer idadeMinima) {
+		IdadeMinima = idadeMinima;
 	}
 
 	public int getIdAtividade() {
@@ -62,5 +62,13 @@ public class Atividades {
 
 	public void setFuncionario(Funcionarios idFuncionario) {
 		Funcionario = idFuncionario;
+	}
+
+	public int getCapacidade() {
+		return Capacidade;
+	}
+
+	public void setCapacidade(int capacidade) {
+		Capacidade = capacidade;
 	}
 }

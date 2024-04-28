@@ -4,9 +4,9 @@ public class Usuarios {
 
 	private int IdUsuario;
 	private String Senha;
-	private int NivelDeAcesso;
 	private String Login;
-
+	private Boolean Tipo;
+	
 	public int getIdUsuario() {
 		return IdUsuario;
 	}
@@ -22,21 +22,21 @@ public class Usuarios {
 	public void setSenha(String senha) {
 		Senha = senha;
 	}
-
-	public int getNivelDeAcesso() {
-		return NivelDeAcesso;
-	}
-
-	public void setNivelDeAcesso(int nivelDeAcesso) {
-		NivelDeAcesso = nivelDeAcesso;
-	}
-
+	
 	public String getLogin() {
 		return Login;
 	}
 
 	public void setLogin(String login) {
 		Login = login;
+	}
+
+	public Boolean getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(Boolean tipo) {
+		Tipo = tipo;
 	}
 
 }
