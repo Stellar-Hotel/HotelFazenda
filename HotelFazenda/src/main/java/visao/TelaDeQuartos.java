@@ -168,7 +168,7 @@ public class TelaDeQuartos extends JFrame {
 				
 			}
 		});
-		lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_15.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_15, "cell 0 6");
 

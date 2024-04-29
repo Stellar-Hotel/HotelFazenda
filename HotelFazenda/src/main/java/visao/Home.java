@@ -129,7 +129,7 @@ public class Home extends JFrame {
 				
 			}
 		});
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_1, "cell 0 6");
 

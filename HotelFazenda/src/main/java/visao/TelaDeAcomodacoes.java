@@ -130,7 +130,7 @@ public class TelaDeAcomodacoes extends JFrame {
 				dispose();
 			}
 		});
-		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_11.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_11, "cell 0 6");
 

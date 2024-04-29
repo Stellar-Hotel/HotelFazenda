@@ -141,7 +141,7 @@ public class TelaServicos extends JFrame {
 				dispose();
 			}
 		});
-		lblNewLabel_26.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_26.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_26.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_26, "cell 0 6");
 

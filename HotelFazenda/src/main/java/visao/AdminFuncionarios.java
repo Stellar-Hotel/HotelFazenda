@@ -156,7 +156,7 @@ public class AdminFuncionarios extends JFrame {
 		BarraLateral.add(lblServicos, "cell 0 4,grow");
 		
 		JLabel lblFuncionrios = new JLabel("Funcionários");
-		lblFuncionrios.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblFuncionrios.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/funcionarios.png")));
 		lblFuncionrios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionrios, "cell 0 6");
 

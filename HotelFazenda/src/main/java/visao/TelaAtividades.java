@@ -171,7 +171,7 @@ public class TelaAtividades extends JFrame {
 				dispose();
 			}
 		});
-		lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\funcionarios.png"));
+		lblNewLabel_13.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_13, "cell 0 6");
 
