@@ -12,6 +12,7 @@ public class Servicos {
 		this.PrecoServico = PrecoServico;
 	
 	}
+	
 
 	public int getIdServico() {
 		return IdServico;

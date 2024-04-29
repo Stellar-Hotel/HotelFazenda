@@ -16,4 +16,6 @@ public interface IServicosDAO {
 
 	public Servicos buscarServicoPorNome(String nome);
 
+	boolean limparServicos();
+
 }

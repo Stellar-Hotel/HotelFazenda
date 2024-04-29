@@ -28,7 +28,7 @@ public class ServicosDAO implements IServicosDAO {
 
 	@Override
 	public int inserirServico(Servicos end) {
-		String SQL = "INSERT INTO Servicos (PrecoServico, NomeServico) VALUES(?, ?)";
+		String SQL = "INSERT INTO Servicos (PrecoServico, NomeServico, Quantidade) VALUES(?, ?, ?)";
 		// TODO Auto-generated method stub
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -36,11 +36,12 @@ public class ServicosDAO implements IServicosDAO {
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement Ps = conBD.prepareStatement(SQL);// se for um insert já conhcendo a chave primária não
+			PreparedStatement Ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);// se for um insert já conhcendo a chave primária não
 																// adcionar o Statement.RETURN_GENERATED_KEYS
 			Ps.setDouble(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
-
+			Ps.setInt(3, end.getQuantidade());
+			
 			int result = Ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível cadastrar o serviço!");
@@ -79,11 +80,13 @@ public class ServicosDAO implements IServicosDAO {
 				int IdServico = rs.getInt("IdServico");
 				Float PrecoServico = rs.getFloat("PrecoServico");
 				String NomeServico = rs.getString("NomeServico");
-
+				Integer Quantidade = rs.getInt("Quantidade");
+				
 				Serv.setIdServico(IdServico);
 				Serv.setPrecoServico(PrecoServico);
 				Serv.setNomeServico(NomeServico);
-
+				Serv.setQuantidade(Quantidade);
+				
 				Servico.add(Serv);
 			}
 		} catch (SQLException e) {
@@ -159,6 +162,32 @@ public class ServicosDAO implements IServicosDAO {
 
 	}
 
+	@Override
+	public boolean limparServicos() {
+
+		String SQL = "Delete from Servicos";
+		// Método pra fazer a conexão com o banco
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement Ps = conBD.prepareStatement(SQL);
+		
+			retorno = Ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return (retorno == 0 ? false : true);
+
+	}
+	
+	
 	@Override
 	public Servicos buscarServicoPorNome(String nome) {
 		// TODO Auto-generated method stub

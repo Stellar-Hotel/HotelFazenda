@@ -52,14 +52,16 @@ public class TelaServicos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaServicos(Funcionarios Func) {
+	public TelaServicos() {
+		ServicosDAO dao = ServicosDAO.getInstancia();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		ArrayList<Servicos> lista=new ArrayList<Servicos>();
+	
 		Servicos Massagem=new Servicos("Massagem", 80.00);
 		//preencher os atributos dos objetos, Id não vai mais precisar
 		Servicos Frigobar=new Servicos("Frigobar", 50.00);
@@ -240,7 +242,18 @@ public class TelaServicos extends JFrame {
 		panel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Carrinho c = new Carrinho(lista);
+//				
+//				ServicosConsumidosDAO dao = ServicosConsumidosDAO.getInstancia();
+//				ServicosConsumidos serv = new ServicosConsumidos();
+				
+//				serv.getHospede()
+				
+//				dao.inserirServicoConsumido(serv);
+				
+				
+				
+				
+				Carrinho c = new Carrinho();
 				c.setVisible(true);
 				dispose();
 				
@@ -324,8 +337,18 @@ public class TelaServicos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Almoco.setQuantidade(Integer.parseInt(lblQuantAlmoco.getText()));
+			
 				
-				lista.add(Almoco);
+				if(Almoco.getQuantidade()>0) {
+				dao.inserirServico(Almoco);
+				TelaSucesso c = new TelaSucesso();
+				c.setVisible(true);
+			
+				
+				
+			}
+			
+			
 			}
 		});
 		panel_6_1.setBackground(new Color(117, 187, 68));
@@ -375,28 +398,30 @@ public class TelaServicos extends JFrame {
 		panel_8_8.add(lblNewLabel_76, "cell 9 0 2 1,alignx right,aligny center");
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Massagem.setQuantidade(Integer.parseInt(lblQuantMassagem.getText()));
+				
+				if(Massagem.getQuantidade()>0) {
+					dao.inserirServico(Massagem);
+				TelaSucesso c = new TelaSucesso();
+				c.setVisible(true);
+				
+				
+				
+			
+				
+				
+			}
+			
+			}
+		});
 		panel_6.setBackground(new Color(117, 187, 68));
 		panel_8_8.add(panel_6, "cell 10 0 2 1,growx,aligny center");
 		
 		JLabel lblNewLabel_7 = new JLabel("Adicionar");
-		lblNewLabel_7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				
-				Massagem.setQuantidade(Integer.parseInt(lblQuantMassagem.getText()));
-				
-				lista.add(Massagem);
-				
-//				ServicosConsumidosDAO dao = ServicosConsumidosDAO.getInstancia();
-//				ServicosConsumidos serv = new ServicosConsumidos();
-				
-//				serv.getHospede()
-				
-//				dao.inserirServicoConsumido(serv);
-				
-			}
-		});
+		
 		panel_6.add(lblNewLabel_7);
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -450,23 +475,23 @@ public class TelaServicos extends JFrame {
 		panel_6_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-Almoco.setQuantidade(Integer.parseInt(lblQuantAlmoco.getText()));
 				
-				lista.add(Almoco);
+Frigobar.setQuantidade(Integer.parseInt(lblQuantFrigobar.getText()));
+if(Frigobar.getQuantidade()>0) {
+	dao.inserirServico(Frigobar);
+	TelaSucesso c = new TelaSucesso();
+	c.setVisible(true);
+			
+				
+				
 			}
+}
 		});
 		panel_6_2.setBackground(new Color(117, 187, 68));
 		panel_8_1.add(panel_6_2, "cell 10 0,growx,aligny center");
 		
 		JLabel lblNewLabel_7_2 = new JLabel("Adicionar");
-		lblNewLabel_7_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-Frigobar.setQuantidade(Integer.parseInt(lblQuantFrigobar.getText()));
-				
-				lista.add(Frigobar);
-			}
-		});
+	
 		panel_6_2.add(lblNewLabel_7_2);
 		lblNewLabel_7_2.setForeground(Color.WHITE);
 		lblNewLabel_7_2.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -513,18 +538,23 @@ Frigobar.setQuantidade(Integer.parseInt(lblQuantFrigobar.getText()));
 		panel_8_4.add(lblNewLabel_44, "cell 9 0 2 1,alignx left,aligny center");
 		
 		JPanel panel_6_3 = new JPanel();
+		panel_6_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+Sauna.setQuantidade(Integer.parseInt(lblQuantSauna.getText()));
+if(Sauna.getQuantidade()>0) {
+	dao.inserirServico(Sauna);
+	TelaSucesso c = new TelaSucesso();
+	c.setVisible(true);
+	
+			}
+			}
+		});
 		panel_6_3.setBackground(new Color(117, 187, 68));
 		panel_8_4.add(panel_6_3, "cell 10 0,growx,aligny center");
 		
 		JLabel lblNewLabel_7_3 = new JLabel("Adicionar");
-		lblNewLabel_7_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-Sauna.setQuantidade(Integer.parseInt(lblQuantSauna.getText()));
-				
-				lista.add(Sauna);
-			}
-		});
+		
 		lblNewLabel_7_3.setForeground(Color.WHITE);
 		lblNewLabel_7_3.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		panel_6_3.add(lblNewLabel_7_3);
@@ -575,8 +605,12 @@ Sauna.setQuantidade(Integer.parseInt(lblQuantSauna.getText()));
 			@Override
 			public void mouseClicked(MouseEvent e) {
 Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
-				
-				lista.add(Show);
+if(Show.getQuantidade()>0) {
+	dao.inserirServico(Show);
+	TelaSucesso c = new TelaSucesso();
+	c.setVisible(true);
+				;
+			}
 			}
 		});
 		panel_6_4.setBackground(new Color(117, 187, 68));
@@ -633,8 +667,12 @@ Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AluguelBike.setQuantidade(Integer.parseInt(lblQuantAluguel.getText()));
+				if(AluguelBike.getQuantidade()>0) {
+					dao.inserirServico(AluguelBike);
+					TelaSucesso c = new TelaSucesso();
+					c.setVisible(true);
 				
-				lista.add(AluguelBike);
+			}
 			}
 		});
 		panel_6_5.setBackground(new Color(117, 187, 68));
@@ -692,9 +730,12 @@ Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
 			public void mouseClicked(MouseEvent e) {
 				
 				Passeio.setQuantidade(Integer.parseInt(lblQuantPasseio.getText()));
+				if(Passeio.getQuantidade()>0) {
+					dao.inserirServico(Passeio);
+					TelaSucesso c = new TelaSucesso();
+					c.setVisible(true);
 				
-				lista.add(Passeio);
-				
+				}
 			}
 		});
 		panel_6_6.setBackground(new Color(117, 187, 68));
@@ -752,9 +793,12 @@ Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
 			public void mouseClicked(MouseEvent e) {
 			
 				Tirolesa.setQuantidade(Integer.parseInt(lblQuantTirolesa.getText()));
+				if(Tirolesa.getQuantidade()>0) {
+					dao.inserirServico(Tirolesa);
+					TelaSucesso c = new TelaSucesso();
+					c.setVisible(true);
 				
-				lista.add(Tirolesa);
-				
+				}
 			}
 		});
 		panel_6_7.setBackground(new Color(117, 187, 68));
