@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 import java.awt.Panel;
 import net.miginfocom.swing.MigLayout;
 import modelo.Atividades;
+import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
 import modelo.ServicosConsumidos;
@@ -54,25 +55,25 @@ public class Carrinho extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Carrinho frame = new Carrinho();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @param lista
-	 */
-	public Carrinho() {
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Carrinho frame = new Carrinho();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+//
+//	/**
+//	 * Create the frame.
+//	 * 
+//	 * @param lista
+//	 */
+	public Carrinho(Funcionarios Func) {
 
 		listaServicos = new ArrayList<Servicos>();
 
@@ -267,7 +268,7 @@ public class Carrinho extends JFrame {
 
 				dao.limparServicos();
 
-				TelaServicos s = new TelaServicos();
+				TelaServicos s = new TelaServicos(Func);
 				s.setVisible(true);
 				dispose();
 
@@ -302,7 +303,7 @@ public class Carrinho extends JFrame {
 
 				Sdao.limparServicos();
 
-				TelaServicos s = new TelaServicos();
+				TelaServicos s = new TelaServicos(Func);
 				s.setVisible(true);
 				dispose();
 
@@ -321,7 +322,7 @@ public class Carrinho extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos s = new TelaServicos();
+				TelaServicos s = new TelaServicos(Func);
 				s.setVisible(true);
 				dispose();
 			}

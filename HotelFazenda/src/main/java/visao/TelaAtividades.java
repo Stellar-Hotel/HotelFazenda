@@ -495,8 +495,6 @@ public class TelaAtividades extends JFrame {
 							                    ativ.setNomeAtividade(NomeAtividade);
 							                    ativ.setData(data);
 							                    ativ.setCapacidade(Capacidade);
-							                    Funcionarios Func=new Funcionarios();
-							                    Func.setIdFuncionario(2);
 							                    ativ.setFuncionario(Func);
 							                    
 							                    AtividadesDAO DAO = AtividadesDAO.getInstancia();

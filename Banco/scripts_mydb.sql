@@ -84,7 +84,6 @@ CREATE TABLE  IF NOT EXISTS `Quartos` (
   `TipoQuarto` INT,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
-  `TipoQuarto` VARCHAR(45) NOT NULL,
   `TipoCama` VARCHAR(45) NOT NULL,
   `Frigobar` TINYINT NOT NULL,
   `ArCondicionado` TINYINT NOT NULL,
