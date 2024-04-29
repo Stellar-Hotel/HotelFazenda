@@ -53,13 +53,15 @@ public class TelaServicos extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaServicos() {
+		ServicosDAO dao = ServicosDAO.getInstancia();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		ArrayList<Servicos> lista=new ArrayList<Servicos>();
+	
 		Servicos Massagem=new Servicos("Massagem", 80.00);
 		//preencher os atributos dos objetos, Id não vai mais precisar
 		Servicos Frigobar=new Servicos("Frigobar", 50.00);
@@ -201,7 +203,7 @@ public class TelaServicos extends JFrame {
 				
 				
 				
-				Carrinho c = new Carrinho(lista);
+				Carrinho c = new Carrinho();
 				c.setVisible(true);
 				dispose();
 				
@@ -288,13 +290,10 @@ public class TelaServicos extends JFrame {
 			
 				
 				if(Almoco.getQuantidade()>0) {
-				lista.add(Almoco);
+				dao.inserirServico(Almoco);
 				TelaSucesso c = new TelaSucesso();
 				c.setVisible(true);
 			
-				
-				
-				lista.add(Almoco);
 				
 				
 			}
@@ -355,13 +354,13 @@ public class TelaServicos extends JFrame {
 				Massagem.setQuantidade(Integer.parseInt(lblQuantMassagem.getText()));
 				
 				if(Massagem.getQuantidade()>0) {
-				lista.add(Massagem);
+					dao.inserirServico(Massagem);
 				TelaSucesso c = new TelaSucesso();
 				c.setVisible(true);
 				
 				
 				
-				lista.add(Massagem);
+			
 				
 				
 			}
@@ -429,10 +428,10 @@ public class TelaServicos extends JFrame {
 				
 Frigobar.setQuantidade(Integer.parseInt(lblQuantFrigobar.getText()));
 if(Frigobar.getQuantidade()>0) {
-	lista.add(Frigobar);
+	dao.inserirServico(Frigobar);
 	TelaSucesso c = new TelaSucesso();
 	c.setVisible(true);
-				lista.add(Frigobar);
+			
 				
 				
 			}
@@ -494,10 +493,10 @@ if(Frigobar.getQuantidade()>0) {
 			public void mouseClicked(MouseEvent e) {
 Sauna.setQuantidade(Integer.parseInt(lblQuantSauna.getText()));
 if(Sauna.getQuantidade()>0) {
-	lista.add(Sauna);
+	dao.inserirServico(Sauna);
 	TelaSucesso c = new TelaSucesso();
 	c.setVisible(true);
-				lista.add(Sauna);
+	
 			}
 			}
 		});
@@ -557,10 +556,10 @@ if(Sauna.getQuantidade()>0) {
 			public void mouseClicked(MouseEvent e) {
 Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
 if(Show.getQuantidade()>0) {
-	lista.add(Massagem);
+	dao.inserirServico(Show);
 	TelaSucesso c = new TelaSucesso();
 	c.setVisible(true);
-				lista.add(Show);
+				;
 			}
 			}
 		});
@@ -619,10 +618,10 @@ if(Show.getQuantidade()>0) {
 			public void mouseClicked(MouseEvent e) {
 				AluguelBike.setQuantidade(Integer.parseInt(lblQuantAluguel.getText()));
 				if(AluguelBike.getQuantidade()>0) {
-					lista.add(AluguelBike);
+					dao.inserirServico(AluguelBike);
 					TelaSucesso c = new TelaSucesso();
 					c.setVisible(true);
-				lista.add(AluguelBike);
+				
 			}
 			}
 		});
@@ -682,10 +681,10 @@ if(Show.getQuantidade()>0) {
 				
 				Passeio.setQuantidade(Integer.parseInt(lblQuantPasseio.getText()));
 				if(Passeio.getQuantidade()>0) {
-					lista.add(Passeio);
+					dao.inserirServico(Passeio);
 					TelaSucesso c = new TelaSucesso();
 					c.setVisible(true);
-				lista.add(Passeio);
+				
 				}
 			}
 		});
@@ -745,10 +744,10 @@ if(Show.getQuantidade()>0) {
 			
 				Tirolesa.setQuantidade(Integer.parseInt(lblQuantTirolesa.getText()));
 				if(Tirolesa.getQuantidade()>0) {
-					lista.add(Tirolesa);
+					dao.inserirServico(Tirolesa);
 					TelaSucesso c = new TelaSucesso();
 					c.setVisible(true);
-				lista.add(Tirolesa);
+				
 				}
 			}
 		});

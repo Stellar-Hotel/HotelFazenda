@@ -14,6 +14,7 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.Atividades.AtividadesDAO;
+import controle.Servicos.ServicosDAO;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
@@ -36,6 +37,8 @@ public class Carrinho extends JFrame {
     private JPanel contentPane;
     private DefaultTableModel model1;
     private JTable table;
+    private ArrayList<Servicos> listaServicos;
+    
     /**
      * Launch the application.
      */
@@ -43,7 +46,7 @@ public class Carrinho extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Carrinho frame = new Carrinho(null);
+                    Carrinho frame = new Carrinho();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -56,13 +59,17 @@ public class Carrinho extends JFrame {
      * Create the frame.
      * @param lista 
      */
-    public Carrinho(ArrayList<Servicos> lista) {
-   
+    public Carrinho() {
+
+    	listaServicos =new ArrayList<Servicos>();
+    	
+    	   
+    	
     	
         model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "Produtos", "Preço", "Quantidade",
   				"Sub-Total" }));
           
-              table = new JTable(model1);
+            
       
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -240,6 +247,17 @@ public class Carrinho extends JFrame {
         lblInformacao.setFont(new Font("Times New Roman", Font.PLAIN, 10));
         lblInformacao.setBounds(24, 485, 275, 14);
         panel.add(lblInformacao);
+        JScrollPane cTable = new JScrollPane();
+        contentPane.add(cTable, "cell 2 6,grow");
+        	table = new JTable(model1);
+    
+        cTable.setViewportView(table);
+        
+        
+        
+    
+	
+        
         panel_2.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
@@ -247,8 +265,8 @@ public class Carrinho extends JFrame {
         		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
         		
         		
-            	for(int i=0;i<lista.size();i++) {
-            		 Servicos s = lista.get(i);
+            	for(int i=0;i<listaServicos.size();i++) {
+            		 Servicos s = listaServicos.get(i);
             			subTotal+=s.getQuantidade()*s.getPrecoServico();
             	}
             	
@@ -271,8 +289,8 @@ public class Carrinho extends JFrame {
         		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
         		
         		
-        	for(int i=0;i<lista.size();i++) {
-        		 Servicos s = lista.get(i);
+        	for(int i=0;i<listaServicos.size();i++) {
+        		 Servicos s = listaServicos.get(i);
         			subTotal+=s.getQuantidade()*s.getPrecoServico();
         	}
         	
@@ -295,8 +313,8 @@ public class Carrinho extends JFrame {
         		double total=0.00, subTotal=0.00, desconto=0.00, taxa=0.00;
         		
         		
-            	for(int i=0;i<lista.size();i++) {
-            		 Servicos s = lista.get(i);
+            	for(int i=0;i<listaServicos.size();i++) {
+            		 Servicos s = listaServicos.get(i);
             			subTotal+=s.getQuantidade()*s.getPrecoServico();
             	}
             	
@@ -313,23 +331,24 @@ public class Carrinho extends JFrame {
         	}
         });
         
-        JScrollPane cTable = new JScrollPane();
-        contentPane.add(cTable, "cell 2 6,grow");
-        
-    
-        cTable.setViewportView(table);
-      
-        atualizarJTable(lista);
+       
+      atualizarJTable();
+       
     }
-    protected void atualizarJTable(ArrayList<Servicos> lista) {
+    protected void atualizarJTable() {
     	DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new
     	String[] { "Produtos", "Preço", "Quantidade",
 			"Sub-Total"});
 
     	
+    	ServicosDAO dao = ServicosDAO.getInstancia();
+    	
+   	 listaServicos = dao.ListarServicos();
+    	
+    	
 
-    	 for (int i = 0; i < lista.size(); i++) {
-    	 Servicos s = lista.get(i);
+    	 for (int i = 0; i < listaServicos.size(); i++) {
+    	 Servicos s = listaServicos.get(i);
     	 modelo1.addRow(new Object[] { s.getNomeServico(), s.getPrecoServico(),s.getQuantidade(),s.getPrecoServico()*s.getQuantidade() });
     	}
 
