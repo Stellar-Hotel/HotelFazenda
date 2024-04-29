@@ -158,8 +158,7 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
   `IdServicoConsumido` INT NOT NULL AUTO_INCREMENT,
   `IdHospedeServicos` INT NOT NULL,
   `IdServicoServicos` INT NOT NULL,
-  `IdHospedagemServicos` INT NOT NULL,
-  PRIMARY KEY (`IdServicoConsumido`, `IdHospedeServicos`, `IdServicoServicos`, `IdHospedagemServicos`),
+  PRIMARY KEY (`IdServicoConsumido`, `IdHospedeServicos`, `IdServicoServicos`),
 
   CONSTRAINT `fk_Hospedes_has_Servicos_Hospedes1`
     FOREIGN KEY (`IdHospedeServicos`)
@@ -168,10 +167,6 @@ CREATE TABLE  IF NOT EXISTS `ServicosConsumidos`(
   CONSTRAINT `fk_Hospedes_has_Servicos_Servicos1`
     FOREIGN KEY (`IdServicoServicos`)
     REFERENCES `Stellar`.`Servicos` (`IdServico`)
-    ,
-  CONSTRAINT `fk_Hospedes_has_serv`
-    FOREIGN KEY (`IdHospedagemServicos`)
-    REFERENCES `Stellar`.`Hospedagens` (`IdHospedagem`)
     )
 ;
 
