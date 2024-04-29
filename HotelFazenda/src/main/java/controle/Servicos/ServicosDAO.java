@@ -163,6 +163,32 @@ public class ServicosDAO implements IServicosDAO {
 	}
 
 	@Override
+	public boolean limparServicos() {
+
+		String SQL = "Delete from Servicos";
+		// Método pra fazer a conexão com o banco
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement Ps = conBD.prepareStatement(SQL);
+		
+			retorno = Ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return (retorno == 0 ? false : true);
+
+	}
+	
+	
+	@Override
 	public Servicos buscarServicoPorNome(String nome) {
 		// TODO Auto-generated method stub
 		Servicos Serv = null;

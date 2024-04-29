@@ -39,7 +39,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
-		String SQL = "INSERT INTO ServicosConsumidos (IdHospedeServicos, IdServicoServicos, IdHospedagemServicos) VALUES(?, ?, ?)";
+		String SQL = "INSERT INTO ServicosConsumidos (IdHospedeServicos, IdServicoServicos) VALUES(?, ?)";
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
@@ -48,7 +48,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 			ps.setInt(1, end.getHospede().getIdHospede());
 			ps.setInt(2, end.getServico().getIdServico());
-			ps.setInt(3, end.getHospedagem().getIdHospedagem());
+		//	ps.setInt(3, end.getHospedagem().getIdHospedagem());
 
 			int result = ps.executeUpdate();
 			if (result == 0) {
