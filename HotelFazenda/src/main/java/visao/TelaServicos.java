@@ -52,7 +52,7 @@ public class TelaServicos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaServicos() {
+	public TelaServicos(Funcionarios Func) {
 		ServicosDAO dao = ServicosDAO.getInstancia();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -253,7 +253,7 @@ public class TelaServicos extends JFrame {
 				
 				
 				
-				Carrinho c = new Carrinho();
+				Carrinho c = new Carrinho(Func);
 				c.setVisible(true);
 				dispose();
 				
