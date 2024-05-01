@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
+import controle.Atividades.AtividadesDAO;
 import controle.Funcionarios.FuncionariosDAO;
 import modelo.Funcionarios;
 import modelo.Quartos;
@@ -225,5 +226,13 @@ public class QuartosDAO implements IQuartosDAO {
 		}
 
 		return Quartos;
+	}
+
+	public static QuartosDAO getInstancia() {
+		if (instancia == null) {
+			instancia = new QuartosDAO();
+		}
+
+		return instancia;
 	}
 }

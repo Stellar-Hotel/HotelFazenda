@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.Atividades.AtividadesDAO;
 import controle.Quartos.QuartosDAO;
+import modelo.Atividades;
 import modelo.Funcionarios;
 import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
@@ -413,25 +415,18 @@ public class TelaDeQuartos extends JFrame {
 		JButton btnNewButton_2 = new JButton("Deletar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-		        if (selectedRow == -1) {
-		            JOptionPane.showMessageDialog(null, "Selecione um quarto para deletar.");
-		            return;
-		        }
-		        Quartos numeroQuarto = (Quartos) table.getValueAt(selectedRow, 0);
+				
+				QuartosDAO DAO = QuartosDAO.getInstancia();										 										
+				int linha = table.getSelectedRow();
+				Quartos quarto = new Quartos();
+				quarto=ListaQuartos.get(linha);
+				DAO.removerQuarto(quarto);
+				atualizarJTable(x);
+				
 
-		        QuartosDAO quartoDAO = QuartosDAO.getConexao();
-		        boolean sucesso = quartoDAO.removerQuarto(numeroQuarto);
-			
-		        if (sucesso) {
-		            JOptionPane.showMessageDialog(null, "Quarto deletado com sucesso!");
-		            // Atualize a tabela de quartos para refletir a exclusão
-		            atualizarJTable(x);
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Falha ao deletar o quarto. Por favor, tente novamente.");
-		        }
 			}
 		});
+
 		panel_6.add(btnNewButton_2, "cell 1 11");
 		panel_6.add(btnNewButton, "cell 2 11,alignx right");
 		
