@@ -297,18 +297,35 @@ public class TelaDeQuartos extends JFrame {
 				 // Obtenha os valores inseridos pelo usuário nos campos de texto e na combobox
 		        String manutencao = textField.getText();
 		        String precoDiaria = textField_1.getText();
+		        
 
 		        // Valide se os campos obrigatórios foram preenchidos
-		        if (textField.isEmpty() || textField_1.isEmpty()) {
+		        if (textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
 		            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
 		            return;
 		        }
 		        double precoDiariaDouble = Double.parseDouble(precoDiaria);
-
-		        Quartos novoQuarto = new Quartos(precoDiariaDouble, manutencao);
+		        
+		        Quartos novoQuarto = new Quartos();
 		        
 		        QuartosDAO quartoDAO = QuartosDAO.getConexao();
-		        boolean sucesso = quartoDAO.inserirQuarto(novoQuarto);
+		        
+		        boolean sucesso = quartoDAO.atualizarQuarto(novoQuarto);
+		        
+		        novoQuarto.setManutencao(manutencao);
+		        String tipoquarto;
+				novoQuarto.setTipoQuarto(tipoquarto);
+		        int maxpessoas;
+				novoQuarto.setMaxPessoas(maxpessoas);
+		        String tipocama;
+				novoQuarto.setTipoCama(tipocama);
+		        Boolean arcondicionado;
+				novoQuarto.setArCondicionado(arcondicionado);
+		        Boolean banheira;
+				novoQuarto.setBanheira(banheira);
+		        Boolean tv;
+				novoQuarto.setTV(tv);
+				novoQuarto.setPrecoDiaria(precoDiariaDouble);
 		        
 		        if (sucesso) {
 		            JOptionPane.showMessageDialog(null, "Quarto cadastrado com sucesso!");
@@ -333,16 +350,34 @@ public class TelaDeQuartos extends JFrame {
 			        String manutencao = textField.getText();
 			        String precoDiaria = textField_1.getText();
 			        
-			        if (textField.isEmpty() || textField_1.isEmpty()) {
+			        if (textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
 			            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
 			            return;
 			        }
 			        double precoDiariaDouble = Double.parseDouble(precoDiaria);
 			        String numeroQuartoSelecionado = (String) table.getValueAt(selectedRow, 0);
-			        Quartos quartoAtualizado = new Quartos(precoDiariaDouble, manutencao);
 
 			        QuartosDAO quartoDAO = QuartosDAO.getConexao();
-			        boolean sucesso = quartoDAO.inserirrQuarto(numeroQuartoSelecionado, quartoAtualizado);
+			        Quartos novoQuarto = new Quartos();
+			        
+			        Quartos quartoAtualizado = new Quartos();
+			        
+			        quartoAtualizado.setManutencao(manutencao);
+			        String tipoquarto;
+			        quartoAtualizado.setTipoQuarto(tipoquarto);
+			        int maxpessoas;
+			        quartoAtualizado.setMaxPessoas(maxpessoas);
+			        String tipocama;
+			        quartoAtualizado.setTipoCama(tipocama);
+			        Boolean arcondicionado;
+			        quartoAtualizado.setArCondicionado(arcondicionado);
+			        Boolean banheira;
+			        quartoAtualizado.setBanheira(banheira);
+			        Boolean tv;
+			        quartoAtualizado.setTV(tv);
+			        quartoAtualizado.setPrecoDiaria(precoDiariaDouble);
+			        
+			        boolean sucesso = quartoDAO.inserirQuarto(quartoAtualizado);
 
 			        // Verifique se a alteração foi realizada com sucesso e exiba uma mensagem ao usuário
 			        if (sucesso) {
