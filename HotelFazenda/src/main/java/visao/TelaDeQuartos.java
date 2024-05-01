@@ -304,7 +304,7 @@ public class TelaDeQuartos extends JFrame {
 		            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
 		            return;
 		        }
-		        double precoDiariaDouble = Double.parseDouble(precoDiaria);
+		        Float precoDiariaDouble = Float.valueOf(precoDiaria);
 		        
 		        Quartos novoQuarto = new Quartos();
 		        
@@ -313,17 +313,17 @@ public class TelaDeQuartos extends JFrame {
 		        boolean sucesso = quartoDAO.atualizarQuarto(novoQuarto);
 		        
 		        novoQuarto.setManutencao(manutencao);
-		        String tipoquarto;
+		        String tipoquarto = null;
 				novoQuarto.setTipoQuarto(tipoquarto);
-		        int maxpessoas;
+		        int maxpessoas = 0;
 				novoQuarto.setMaxPessoas(maxpessoas);
-		        String tipocama;
+		        String tipocama = null;
 				novoQuarto.setTipoCama(tipocama);
-		        Boolean arcondicionado;
+		        Boolean arcondicionado = null;
 				novoQuarto.setArCondicionado(arcondicionado);
-		        Boolean banheira;
+		        Boolean banheira = null;
 				novoQuarto.setBanheira(banheira);
-		        Boolean tv;
+		        Boolean tv = null;
 				novoQuarto.setTV(tv);
 				novoQuarto.setPrecoDiaria(precoDiariaDouble);
 		        
@@ -354,28 +354,29 @@ public class TelaDeQuartos extends JFrame {
 			            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
 			            return;
 			        }
-			        double precoDiariaDouble = Double.parseDouble(precoDiaria);
+			        
 			        String numeroQuartoSelecionado = (String) table.getValueAt(selectedRow, 0);
-
+			        
 			        QuartosDAO quartoDAO = QuartosDAO.getConexao();
 			        Quartos novoQuarto = new Quartos();
-			        
+
 			        Quartos quartoAtualizado = new Quartos();
 			        
 			        quartoAtualizado.setManutencao(manutencao);
-			        String tipoquarto;
+			        String tipoquarto = null;
 			        quartoAtualizado.setTipoQuarto(tipoquarto);
-			        int maxpessoas;
+			        int maxpessoas = 0;
 			        quartoAtualizado.setMaxPessoas(maxpessoas);
-			        String tipocama;
+			        String tipocama = null;
 			        quartoAtualizado.setTipoCama(tipocama);
-			        Boolean arcondicionado;
+			        Boolean arcondicionado = null;
 			        quartoAtualizado.setArCondicionado(arcondicionado);
-			        Boolean banheira;
+			        Boolean banheira = null;
 			        quartoAtualizado.setBanheira(banheira);
-			        Boolean tv;
+			        Boolean tv = null;
 			        quartoAtualizado.setTV(tv);
-			        quartoAtualizado.setPrecoDiaria(precoDiariaDouble);
+			        Float precoDiariaDouble = Float.valueOf(precoDiaria);
+			        quartoAtualizado.setPrecoDiaria(precoDiaria);
 			        
 			        boolean sucesso = quartoDAO.inserirQuarto(quartoAtualizado);
 
