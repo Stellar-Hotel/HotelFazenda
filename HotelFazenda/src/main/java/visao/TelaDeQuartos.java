@@ -376,9 +376,9 @@ public class TelaDeQuartos extends JFrame {
 			        Boolean tv = null;
 			        quartoAtualizado.setTV(tv);
 			        Float precoDiariaDouble = Float.valueOf(precoDiaria);
-			        quartoAtualizado.setPrecoDiaria(precoDiaria);
+			        quartoAtualizado.setPrecoDiaria(precoDiariaDouble);
 			        
-			        boolean sucesso = quartoDAO.inserirQuarto(quartoAtualizado);
+			        boolean sucesso = quartoDAO.atualizarQuarto(quartoAtualizado);
 
 			        // Verifique se a alteração foi realizada com sucesso e exiba uma mensagem ao usuário
 			        if (sucesso) {
