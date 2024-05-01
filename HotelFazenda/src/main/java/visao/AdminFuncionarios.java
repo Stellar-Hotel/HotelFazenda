@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
@@ -31,10 +32,14 @@ import modelo.Usuarios;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JFormattedTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class AdminFuncionarios extends JFrame {
 
@@ -69,10 +74,59 @@ public class AdminFuncionarios extends JFrame {
 //		});
 //	}
 
+//	private MaskFormatter MaskaraCPF() {
+//		// TODO Auto-generated method stub
+//		MaskFormatter F_Mascara = new MaskFormatter();
+//		try{
+//			F_Mascara.setMask("###.###.###-##"); //Atribui a mascara
+//			F_Mascara.setPlaceholderCharacter('_'); //Caracter para preencimento 
+//		}
+//		catch (Exception excecao) {
+//			excecao.printStackTrace();
+//		} 
+//		return F_Mascara;
+//	}
 	/**
 	 * Create the frame.
 	 */
 	public AdminFuncionarios(Funcionarios Func) {
+		
+		MaskFormatter  MCpf= null;
+		MaskFormatter Num = null;
+		MaskFormatter Num1=null;
+		MaskFormatter Letras=null;
+		try {
+			Num = new MaskFormatter("#########");
+			Num.setAllowsInvalid(false);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 9 indica que aceita apenas números
+
+		try {
+			Letras=new MaskFormatter("AAAAAAAAAAAAAAAAAA");
+			Letras.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			MCpf=new MaskFormatter("###.###.###-##");
+			MCpf.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Num1=new MaskFormatter("#");
+			Num1.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -241,9 +295,16 @@ public class AdminFuncionarios extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[30px][30px][30px][30px][30px][30px][30px][grow][30px][30px,grow][30px][30px][30px][30px][30px,grow][30px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[30px][30px,grow][30px][30px][30px][30px][30px][grow][30px][30px,grow][30px][30px][30px][30px][30px,grow][30px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 		
-		textNome = new JTextField();
+		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		Principal.add(lblNewLabel_1, "cell 0 0 5 1");
+		
+		textNome = new JFormattedTextField(Letras);
+		textNome.addFocusListener(new FocusAdapter() {
+
+		});
 		textNome.setBorder(new RoundedBorder(Color.black, 10));
 		textNome.setText("nome");
 		textNome.setToolTipText("");
@@ -258,31 +319,48 @@ public class AdminFuncionarios extends JFrame {
 		scrollPane.setViewportView(table);
 		atualizarJTable();
 		
-		textSobrenome = new JTextField();
+		textSobrenome = new JFormattedTextField(Letras);
+		textSobrenome.addFocusListener(new FocusAdapter() {
+
+		});
 		textSobrenome.setBorder(new RoundedBorder(Color.black, 10));
 		textSobrenome.setText("sobrenome");
 		Principal.add(textSobrenome, "cell 0 2 9 1,growx");
 		textSobrenome.setColumns(10);
 		
-		textFuncao = new JTextField();
+		textFuncao = new JFormattedTextField(Letras);
+		textFuncao.addFocusListener(new FocusAdapter() {
+		});
 		textFuncao.setBorder(new RoundedBorder(Color.black, 10));
 		textFuncao.setText("funcao");
 		Principal.add(textFuncao, "cell 0 3 6 1,growx");
 		textFuncao.setColumns(10);
 		
-		textNivel = new JTextField();
+		
+		
+		
+		textNivel = new JFormattedTextField(Num1);
+		textNivel.addFocusListener(new FocusAdapter() {
+			
+		});
 		textNivel.setBorder(new RoundedBorder(Color.black, 10));
 		textNivel.setText("nivel");
 		Principal.add(textNivel, "cell 6 3 3 1,growx");
 		textNivel.setColumns(10);
 		
-		textCPF = new JTextField();
+		
+		
+		
+		
+		textCPF = new JFormattedTextField(MCpf);
 		textCPF.setBorder(new RoundedBorder(Color.black, 10));
-		textCPF.setText("cpf");
+		
 		Principal.add(textCPF, "cell 0 4 6 1,growx");
 		textCPF.setColumns(10);
 		
-		textSalario = new JTextField();
+		textSalario = new JFormattedTextField(Num);
+		textSalario.addFocusListener(new FocusAdapter() {
+		});
 		textSalario.setBorder(new RoundedBorder(Color.black, 10));
 		textSalario.setText("salario");
 		Principal.add(textSalario, "cell 6 4 3 1,growx");
@@ -426,6 +504,11 @@ public class AdminFuncionarios extends JFrame {
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
 		Principal.add(btnDeletarSelecionado, "cell 3 7 4 1,alignx right");
+		
+		
+		
+		
+		
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
