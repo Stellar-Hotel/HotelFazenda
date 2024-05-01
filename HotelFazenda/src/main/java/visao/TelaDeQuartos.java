@@ -27,6 +27,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaDeQuartos extends JFrame {
 
@@ -260,7 +262,7 @@ public class TelaDeQuartos extends JFrame {
 		
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0,grow");
-		panel_6.setLayout(new MigLayout("", "[][100px:74.00,grow][grow]", "[][][][][][grow][][][][][][]"));
+		panel_6.setLayout(new MigLayout("", "[][][100px:74.00,grow][grow]", "[][][][][][grow][][][][][][]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -270,27 +272,114 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx left");
 		
 		textField = new JTextField();
-		panel_6.add(textField, "cell 1 2 2 1,growx");
+		panel_6.add(textField, "cell 2 2 2 1,growx");
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Data");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
 		
 		textField_1 = new JTextField();
-		panel_6.add(textField_1, "cell 1 3 2 1,grow");
+		panel_6.add(textField_1, "cell 2 3 2 1,grow");
 		textField_1.setColumns(10);
 		
 		JPanel panel_8 = new JPanel();
-		panel_6.add(panel_8, "cell 0 4 3 4,grow");
+		panel_6.add(panel_8, "cell 2 8,grow");
 		
 		JLabel lblNewLabel_13 = new JLabel("Forma de pagamento");
 		panel_6.add(lblNewLabel_13, "cell 0 10,alignx left");
 		
 		JComboBox comboBox = new JComboBox();
-		panel_6.add(comboBox, "cell 1 10 2 1,grow");
+		panel_6.add(comboBox, "cell 2 10 2 1,grow");
 		
-		JButton btnNewButton = new JButton("Efetuar reserva");
-		panel_6.add(btnNewButton, "cell 1 11,alignx right");
+		JButton btnNewButton = new JButton("Cadastrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 // Obtenha os valores inseridos pelo usuário nos campos de texto e na combobox
+		        String manutencao = textField.getText();
+		        String precoDiaria = textField_1.getText();
+
+		        // Valide se os campos obrigatórios foram preenchidos
+		        if (textField.isEmpty() || textField_1.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
+		            return;
+		        }
+		        double precoDiariaDouble = Double.parseDouble(precoDiaria);
+
+		        Quartos novoQuarto = new Quartos(precoDiariaDouble, manutencao);
+		        
+		        QuartosDAO quartoDAO = QuartosDAO.getConexao();
+		        boolean sucesso = quartoDAO.inserirQuarto(novoQuarto);
+		        
+		        if (sucesso) {
+		            JOptionPane.showMessageDialog(null, "Quarto cadastrado com sucesso!");
+		            // Atualize a tabela de quartos para exibir o novo quarto cadastrado
+		            atualizarJTable(x);
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o quarto. Por favor, tente novamente.");
+		        }
+		    }
+		});
+		
+		JButton btnNewButton_1 = new JButton("Alterar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+			        // Verifique se algum quarto está selecionado na tabela
+			        int selectedRow = table.getSelectedRow();
+			        if (selectedRow == -1) {
+			            JOptionPane.showMessageDialog(null, "Selecione um quarto para alterar.");
+			            return;
+			        }
+			        
+			        String manutencao = textField.getText();
+			        String precoDiaria = textField_1.getText();
+			        
+			        if (textField.isEmpty() || textField_1.isEmpty()) {
+			            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
+			            return;
+			        }
+			        double precoDiariaDouble = Double.parseDouble(precoDiaria);
+			        String numeroQuartoSelecionado = (String) table.getValueAt(selectedRow, 0);
+			        Quartos quartoAtualizado = new Quartos(precoDiariaDouble, manutencao);
+
+			        QuartosDAO quartoDAO = QuartosDAO.getConexao();
+			        boolean sucesso = quartoDAO.inserirrQuarto(numeroQuartoSelecionado, quartoAtualizado);
+
+			        // Verifique se a alteração foi realizada com sucesso e exiba uma mensagem ao usuário
+			        if (sucesso) {
+			            JOptionPane.showMessageDialog(null, "Quarto alterado com sucesso!");
+			            // Atualize a tabela de quartos para refletir a alteração
+			            atualizarJTable(x);
+			        } else {
+			            JOptionPane.showMessageDialog(null, "Falha ao alterar o quarto. Por favor, tente novamente.");
+			        }
+			    }
+		});
+		panel_6.add(btnNewButton_1, "cell 0 11");
+		
+		JButton btnNewButton_2 = new JButton("Deletar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+		        if (selectedRow == -1) {
+		            JOptionPane.showMessageDialog(null, "Selecione um quarto para deletar.");
+		            return;
+		        }
+		        Quartos numeroQuarto = (Quartos) table.getValueAt(selectedRow, 0);
+
+		        QuartosDAO quartoDAO = QuartosDAO.getConexao();
+		        boolean sucesso = quartoDAO.removerQuarto(numeroQuarto);
+			
+		        if (sucesso) {
+		            JOptionPane.showMessageDialog(null, "Quarto deletado com sucesso!");
+		            // Atualize a tabela de quartos para refletir a exclusão
+		            atualizarJTable(x);
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Falha ao deletar o quarto. Por favor, tente novamente.");
+		        }
+			}
+		});
+		panel_6.add(btnNewButton_2, "cell 1 11");
+		panel_6.add(btnNewButton, "cell 2 11,alignx right");
 		
 		JPanel panel_7 = new JPanel();
 		panel_5.add(panel_7, "cell 0 1,grow");
