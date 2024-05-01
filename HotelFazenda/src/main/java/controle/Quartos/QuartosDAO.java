@@ -48,7 +48,7 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setInt(1, end.getIdQuarto());
 			ps.setInt(2, end.getMaxPessoas());
 			ps.setString(3, end.getManutencao());
-			ps.setString(4, end.getTipoCama());
+			ps.setBoolean(4, end.getTipoCama());
 			ps.setBoolean(5, end.getFrigobar());
 			ps.setBoolean(6, end.getArCondicionado());
 			ps.setBoolean(7, end.getBanheira());
@@ -98,7 +98,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
-				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setTipoCama(rs.getBoolean("TipoCama"));
 				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
 				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
@@ -133,7 +133,7 @@ public class QuartosDAO implements IQuartosDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 
 			ps.setInt(1, end.getMaxPessoas());
-			ps.setString(2, end.getTipoCama());
+			ps.setBoolean(2, end.getTipoCama());
 			ps.setString(3, end.getManutencao());
 			ps.setBoolean(4, end.getFrigobar());
 			ps.setBoolean(5, end.getArCondicionado());
@@ -200,7 +200,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
-				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setTipoCama(rs.getBoolean("TipoCama"));
 				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
 				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
 				Quarto.setBanheira(rs.getBoolean("Banheira"));

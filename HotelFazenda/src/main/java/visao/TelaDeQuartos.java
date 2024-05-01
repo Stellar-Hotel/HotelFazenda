@@ -313,18 +313,20 @@ public class TelaDeQuartos extends JFrame {
 		        boolean sucesso = quartoDAO.atualizarQuarto(novoQuarto);
 		        
 		        novoQuarto.setManutencao(manutencao);
-		        String tipoquarto = null;
+		        int tipoquarto = 0;
 				novoQuarto.setTipoQuarto(tipoquarto);
 		        int maxpessoas = 0;
 				novoQuarto.setMaxPessoas(maxpessoas);
-		        String tipocama = null;
+		        boolean tipocama = false;
 				novoQuarto.setTipoCama(tipocama);
-		        Boolean arcondicionado = null;
+		        Boolean arcondicionado = false;
 				novoQuarto.setArCondicionado(arcondicionado);
-		        Boolean banheira = null;
+		        Boolean banheira = false;
 				novoQuarto.setBanheira(banheira);
-		        Boolean tv = null;
-				novoQuarto.setTV(tv);
+		        Boolean tv = false;
+		        novoQuarto.setTV(tv);
+		        Boolean frigobar = false;
+				novoQuarto.setFrigobar(frigobar);
 				novoQuarto.setPrecoDiaria(precoDiariaDouble);
 		        
 		        if (sucesso) {
@@ -363,18 +365,20 @@ public class TelaDeQuartos extends JFrame {
 			        Quartos quartoAtualizado = new Quartos();
 			        
 			        quartoAtualizado.setManutencao(manutencao);
-			        String tipoquarto = null;
+			        int tipoquarto = 0;
 			        quartoAtualizado.setTipoQuarto(tipoquarto);
 			        int maxpessoas = 0;
 			        quartoAtualizado.setMaxPessoas(maxpessoas);
-			        String tipocama = null;
+			        boolean tipocama = false;
 			        quartoAtualizado.setTipoCama(tipocama);
-			        Boolean arcondicionado = null;
+			        Boolean arcondicionado = false;
 			        quartoAtualizado.setArCondicionado(arcondicionado);
-			        Boolean banheira = null;
+			        Boolean banheira = false;
 			        quartoAtualizado.setBanheira(banheira);
-			        Boolean tv = null;
+			        Boolean tv = false;
 			        quartoAtualizado.setTV(tv);
+			        Boolean frigobar = false;
+					novoQuarto.setFrigobar(frigobar);
 			        Float precoDiariaDouble = Float.valueOf(precoDiaria);
 			        quartoAtualizado.setPrecoDiaria(precoDiariaDouble);
 			        
