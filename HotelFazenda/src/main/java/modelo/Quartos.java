@@ -2,7 +2,7 @@ package modelo;
 
 public class Quartos {
 	private int IdQuarto, MaxPessoas;
-	boolean TipoCama;
+	String TipoCama;
 	private String Manutencao;
 	int TipoQuarto;
 	private Boolean Frigobar, ArCondicionado, Banheira, TV;
@@ -24,11 +24,11 @@ public class Quartos {
 		IdQuarto = idQuartos;
 	}
 
-	public boolean getTipoCama() {
+	public String getTipoCama() {
 		return TipoCama;
 	}
 
-	public void setTipoCama(boolean tipocama2) {
+	public void setTipoCama(String tipocama2) {
 		TipoCama = tipocama2;
 	}
 

@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 public class TelaDeQuartos extends JFrame {
 
 	
-	private ArrayList<Quartos> ListaQuartos;
+	private ArrayList<Quartos> ListaQuartos=new ArrayList<Quartos>();
 	private DefaultTableModel model1;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -68,11 +68,11 @@ public class TelaDeQuartos extends JFrame {
 		model1.setRowCount(0);
 		
 		QuartosDAO QuartoDAO = QuartosDAO.getConexao();
-		ArrayList<Quartos> Lista = QuartoDAO.buscarQuartoPorNumero(x);
+		ListaQuartos = QuartoDAO.buscarQuartoPorNumero(x);
 		
-		for (int i = 0; i < Lista.size(); i++) {
+		for (int i = 0; i < ListaQuartos.size(); i++) {
 
-			Quartos p = Lista.get(i);
+			Quartos p = ListaQuartos.get(i);
 			model1.addRow(new Object[] {p.getManutencao(), p.getPrecoDiaria() });
 		}
 		System.out.println(ListaQuartos.size());
@@ -84,7 +84,7 @@ public class TelaDeQuartos extends JFrame {
 	 */
 	public TelaDeQuartos(int x, Funcionarios Func) {
 		
-		ListaQuartos = new ArrayList<Quartos>();
+		
 		
 		
 		
@@ -310,14 +310,13 @@ public class TelaDeQuartos extends JFrame {
 		        
 		        QuartosDAO quartoDAO = QuartosDAO.getConexao();
 		        
-		        boolean sucesso = quartoDAO.atualizarQuarto(novoQuarto);
 		        
 		        novoQuarto.setManutencao(manutencao);
-		        int tipoquarto = 0;
+		        int tipoquarto = x;
 				novoQuarto.setTipoQuarto(tipoquarto);
 		        int maxpessoas = 0;
 				novoQuarto.setMaxPessoas(maxpessoas);
-		        boolean tipocama = false;
+		        String tipocama = "0";
 				novoQuarto.setTipoCama(tipocama);
 		        Boolean arcondicionado = false;
 				novoQuarto.setArCondicionado(arcondicionado);
@@ -325,11 +324,14 @@ public class TelaDeQuartos extends JFrame {
 				novoQuarto.setBanheira(banheira);
 		        Boolean tv = false;
 		        novoQuarto.setTV(tv);
-		        Boolean frigobar = false;
+		        Boolean frigobar = true;
 				novoQuarto.setFrigobar(frigobar);
 				novoQuarto.setPrecoDiaria(precoDiariaDouble);
 		        
-		        if (sucesso) {
+				int sucesso = quartoDAO.inserirQuarto(novoQuarto);
+				
+				
+		        if (sucesso>0) {
 		            JOptionPane.showMessageDialog(null, "Quarto cadastrado com sucesso!");
 		            // Atualize a tabela de quartos para exibir o novo quarto cadastrado
 		            atualizarJTable(x);
@@ -343,43 +345,55 @@ public class TelaDeQuartos extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 			        // Verifique se algum quarto está selecionado na tabela
-			        int selectedRow = table.getSelectedRow();
+					int selectedRow = table.getSelectedRow();
 			        if (selectedRow == -1) {
 			            JOptionPane.showMessageDialog(null, "Selecione um quarto para alterar.");
 			            return;
 			        }
 			        
-			        String manutencao = textField.getText();
-			        String precoDiaria = textField_1.getText();
+			        
 			        
 			        if (textField.getText().isEmpty() || textField_1.getText().isEmpty()) {
 			            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos obrigatórios.");
 			            return;
 			        }
 			        
-			        String numeroQuartoSelecionado = (String) table.getValueAt(selectedRow, 0);
+			        
 			        
 			        QuartosDAO quartoDAO = QuartosDAO.getConexao();
-			        Quartos novoQuarto = new Quartos();
-
+			        
+			        
 			        Quartos quartoAtualizado = new Quartos();
 			        
+			        quartoAtualizado.setIdQuarto(ListaQuartos.get(selectedRow).getIdQuarto());
+			        
+			        String manutencao = textField.getText();
 			        quartoAtualizado.setManutencao(manutencao);
-			        int tipoquarto = 0;
+			       
+			        int tipoquarto = x;
 			        quartoAtualizado.setTipoQuarto(tipoquarto);
+			        
 			        int maxpessoas = 0;
 			        quartoAtualizado.setMaxPessoas(maxpessoas);
-			        boolean tipocama = false;
+			        
+			        String tipocama = "0";
 			        quartoAtualizado.setTipoCama(tipocama);
+			        
 			        Boolean arcondicionado = false;
 			        quartoAtualizado.setArCondicionado(arcondicionado);
+			        
 			        Boolean banheira = false;
 			        quartoAtualizado.setBanheira(banheira);
+			        
 			        Boolean tv = false;
 			        quartoAtualizado.setTV(tv);
+			        
 			        Boolean frigobar = false;
-					novoQuarto.setFrigobar(frigobar);
+			        quartoAtualizado.setFrigobar(frigobar);
+			        
+			        String precoDiaria = textField_1.getText();
 			        Float precoDiariaDouble = Float.valueOf(precoDiaria);
+			        
 			        quartoAtualizado.setPrecoDiaria(precoDiariaDouble);
 			        
 			        boolean sucesso = quartoDAO.atualizarQuarto(quartoAtualizado);

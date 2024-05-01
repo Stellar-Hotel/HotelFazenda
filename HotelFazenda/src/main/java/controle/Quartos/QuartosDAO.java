@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -36,7 +37,7 @@ public class QuartosDAO implements IQuartosDAO {
 	public int inserirQuarto(Quartos end) {
 		// TODO Auto-generated method stub
 
-		String SQL = "INSERT INTO Quartos (idQuarto ,MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Quartos (IdQuarto ,MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria,TipoQuarto) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -44,16 +45,17 @@ public class QuartosDAO implements IQuartosDAO {
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL);
+			PreparedStatement ps = conBD.prepareStatement(SQL,Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, end.getIdQuarto());
 			ps.setInt(2, end.getMaxPessoas());
 			ps.setString(3, end.getManutencao());
-			ps.setBoolean(4, end.getTipoCama());
+			ps.setString(4, end.getTipoCama());
 			ps.setBoolean(5, end.getFrigobar());
 			ps.setBoolean(6, end.getArCondicionado());
 			ps.setBoolean(7, end.getBanheira());
 			ps.setBoolean(8, end.getTV());
 			ps.setFloat(9, end.getPrecoDiaria());
+			ps.setInt(10, end.getTipoQuarto());
 
 			int result = ps.executeUpdate();
 			if (result == 0) {
@@ -98,7 +100,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
-				Quarto.setTipoCama(rs.getBoolean("TipoCama"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
 				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
 				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
@@ -121,7 +123,10 @@ public class QuartosDAO implements IQuartosDAO {
 	public boolean atualizarQuarto(Quartos end) {
 
 		// Conexâo SQl a ser executada
-		String SQL = "UPDATE Quartos SET MaxPessoas = ?, TipoCama = ?, Manutencao = ?, Frigobar = ?, ArCondicionado = ?, Banheira = ?, TV = ?, PrecoDiaria = ? WHERE IdQuartos = ?";
+		String SQL = "UPDATE Quartos SET MaxPessoas = ?, "
+				+ "TipoCama = ?, Manutencao = ?, Frigobar = ?, "
+				+ "ArCondicionado = ?, Banheira = ?, TV = ?, "
+				+ "PrecoDiaria = ?,TipoQuarto=? WHERE IdQuarto = ?";
 
 		// abre a conexão e cria a "parte de conexão" com MYSQL
 		Conexao con = Conexao.getConexao();
@@ -133,14 +138,15 @@ public class QuartosDAO implements IQuartosDAO {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 
 			ps.setInt(1, end.getMaxPessoas());
-			ps.setBoolean(2, end.getTipoCama());
+			ps.setString(2, end.getTipoCama());
 			ps.setString(3, end.getManutencao());
 			ps.setBoolean(4, end.getFrigobar());
 			ps.setBoolean(5, end.getArCondicionado());
 			ps.setBoolean(6, end.getBanheira());
 			ps.setBoolean(7, end.getTV());
 			ps.setFloat(8, end.getPrecoDiaria());
-			ps.setInt(9, end.getIdQuarto());
+			ps.setInt(9, end.getTipoQuarto());
+			ps.setInt(10, end.getIdQuarto());
 
 			retorno = ps.executeUpdate();
 
@@ -148,7 +154,7 @@ public class QuartosDAO implements IQuartosDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-
+			con.FecharConexao();
 		}
 
 		return (retorno == 0 ? false : true);
@@ -200,12 +206,13 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
-				Quarto.setTipoCama(rs.getBoolean("TipoCama"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
 				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
 				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quarto.setTipoQuarto(x);
 
 				Quartos.add(Quarto);
 			}
@@ -220,4 +227,3 @@ public class QuartosDAO implements IQuartosDAO {
 		return Quartos;
 	}
 }
-
