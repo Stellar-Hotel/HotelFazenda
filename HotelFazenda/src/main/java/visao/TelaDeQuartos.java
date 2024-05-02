@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
+import com.google.protobuf.TextFormat.ParseException;
 
 import controle.Atividades.AtividadesDAO;
 import controle.Quartos.QuartosDAO;
@@ -26,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -86,10 +90,10 @@ public class TelaDeQuartos extends JFrame {
 	 */
 	public TelaDeQuartos(int x, Funcionarios Func) {
 		
-		MasKFormatter Num = null;
+		MaskFormatter Num = null;
 		
 		try {
-			Num = new MasKFormatter("###.##");
+			Num = new MaskFormatter("###.##");
 			Num.setAllowsInvalid(false);
 		}catch(ParseException e) {
 			e.printStackTrace();
@@ -289,7 +293,7 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Data");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
 		
-		textField_1 = new FormattedTextField();
+		textField_1 = new JFormattedTextField();
 		panel_6.add(textField_1, "cell 2 3 2 1,grow");
 		textField_1.setColumns(10);
 		
