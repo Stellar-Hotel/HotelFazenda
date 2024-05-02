@@ -1,6 +1,5 @@
 package visao;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,20 +11,19 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
-import javax.swing.border.SoftBevelBorder;
+import java.awt.EventQueue;
+
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
+import com.google.protobuf.TextFormat.ParseException;
 
 import controle.Arredondar.RoundedBorder;
-import controle.Atividades.AtividadesDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
 
-import javax.swing.border.BevelBorder;
-import javax.swing.UIManager;
-import java.awt.Panel;
 import net.miginfocom.swing.MigLayout;
-import modelo.Atividades;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -34,13 +32,12 @@ import modelo.ServicosConsumidos;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 public class Carrinho extends JFrame {
@@ -51,35 +48,48 @@ public class Carrinho extends JFrame {
 	private JTable table;
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
-
+	
+	
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Carrinho frame = new Carrinho();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-//
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Carrinho frame = new Carrinho(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 //	/**
 //	 * Create the frame.
 //	 * 
 //	 * @param lista
 //	 */
 	public Carrinho(Funcionarios Func) {
-
+		 MaskFormatter  formatoCpf = null;
+		
+			 try {
+				formatoCpf = new MaskFormatter("###.###.###-##");
+				formatoCpf.setPlaceholderCharacter('_');
+			} catch (java.text.ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			 
+			
 		listaServicos = new ArrayList<Servicos>();
 
 		model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total" }));
 
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -241,11 +251,12 @@ public class Carrinho extends JFrame {
 		lblInformacao.setFont(new Font("Times New Roman", Font.PLAIN, 10));
 		panel.add(lblInformacao, "cell 0 12 3 1,grow");
 
-		JLabel lblNewLabel_4 = new JLabel("Nome do hospede:");
+		JLabel lblNewLabel_4 = new JLabel("CPF do hospede:");
 		panel.add(lblNewLabel_4, "cell 0 4 2 1,alignx left,aligny bottom");
 
 		txtHospede = new JTextField();
 		txtHospede.setBackground(new Color(255, 255, 255));
+		txtHospede = new JFormattedTextField(formatoCpf); 
 		panel.add(txtHospede, "cell 0 5 3 1,grow");
 		txtHospede.setColumns(10);
 		txtHospede.setBorder(new RoundedBorder(Color.black, 10));
@@ -290,7 +301,11 @@ public class Carrinho extends JFrame {
 
 				HospedeDAO Hdao = HospedeDAO.getInstancia();
 
-				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
+//				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
+				
+				Hospedes h= new Hospedes();
+				
+				h.setDocumento(txtHospede.getText());
 
 				for (int i = 0; i < listaServicos.size(); i++) {
 					ServicosConsumidos sc = new ServicosConsumidos();
