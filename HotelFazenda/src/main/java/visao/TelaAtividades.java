@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
@@ -79,6 +81,22 @@ public class TelaAtividades extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAtividades(Funcionarios Func) {
+		MaskFormatter Data=null;
+		try {
+			Data = new MaskFormatter("##/##/####");
+			Data.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MaskFormatter Num=null;
+		try {
+			Num=new MaskFormatter("##");
+			Num.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ListaAtividades = new ArrayList<Atividades>();
 		ListaAtividadesinscritas = new ArrayList<Atividades>();
 
@@ -351,7 +369,7 @@ public class TelaAtividades extends JFrame {
 								JLabel lblNewLabel_12_1_1 = new JLabel("Data");
 								panel_7.add(lblNewLabel_12_1_1, "cell 0 5,growx,aligny center");
 								
-								textData = new JTextField();
+								textData = new JFormattedTextField(Data);
 								textData.setColumns(10);
 								panel_7.add(textData, "cell 2 5 3 1,growx,aligny center");
 								
@@ -421,7 +439,7 @@ public class TelaAtividades extends JFrame {
 								JLabel lblNewLabel_12_1_1_1 = new JLabel("Capacidade");
 								panel_7.add(lblNewLabel_12_1_1_1, "cell 0 6");
 								
-								textCapacidade = new JTextField();
+								textCapacidade = new JFormattedTextField(Num);
 								textCapacidade.setColumns(10);
 								panel_7.add(textCapacidade, "cell 2 6 3 1,growx");
 								btnCadastrar.setForeground(new Color(255, 255, 255));
