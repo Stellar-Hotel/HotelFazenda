@@ -91,17 +91,15 @@ public class TelaDeQuartos extends JFrame {
 	public TelaDeQuartos(int x, Funcionarios Func) {
 		
 		MaskFormatter Num = null;
-		
-		try {
-			Num = new MaskFormatter("###.##");
-			Num.setAllowsInvalid(false);
-		}catch(ParseException e) {
-			e.printStackTrace();
-		}
-		
-		
 		textField_1 = new JFormattedTextField(Num);
-		
+			try {
+				Num = new MaskFormatter("###.##");
+				Num.setAllowsInvalid(false);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
