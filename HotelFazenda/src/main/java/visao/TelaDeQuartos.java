@@ -52,20 +52,20 @@ public class TelaDeQuartos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	//public static void main(String[] args) {
-		//EventQueue.invokeLater(new Runnable() {
-			//public void run() {
-				//try {
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 
-					//TelaDeQuartos frame = new TelaDeQuartos();
-					//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-					//frame.setVisible(true);
-			//	} catch (Exception e) {
-			//		e.printStackTrace();
-		//		}
-		//	}
-	//	});
-	//}
+					TelaDeQuartos frame = new TelaDeQuartos(1,null);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	protected void atualizarJTable(int x) {
 		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
@@ -88,18 +88,18 @@ public class TelaDeQuartos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeQuartos(int x, Funcionarios Func) {
+	public TelaDeQuartos(int x, Funcionarios Func) throws ParseException {
 		
 		MaskFormatter Num = null;
 		textField_1 = new JFormattedTextField(Num);
 			try {
 				Num = new MaskFormatter("###.##");
 				Num.setAllowsInvalid(false);
-			} catch (ParseException e) {
+			} catch (java.text.ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}		
+					
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -199,7 +199,7 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNome = new JLabel("Erik Roncaglio");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNome, "cell 1 1,aligny bottom");
-		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
+//		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 		
 
 		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
@@ -291,7 +291,7 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Data");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
 		
-		textField_1 = new JFormattedTextField();
+		textField_1 = new JFormattedTextField(Num);
 		panel_6.add(textField_1, "cell 2 3 2 1,grow");
 		textField_1.setColumns(10);
 		

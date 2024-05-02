@@ -233,7 +233,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_11.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(1,Func);
+			TelaDeQuartos telaDeQuartos = new TelaDeQuartos(1,Func);
 			telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			telaDeQuartos.setVisible(true);
 			dispose();
