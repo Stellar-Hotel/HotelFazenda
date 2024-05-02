@@ -267,11 +267,11 @@ values ('M@iones3','MAZDARX7',0 ),
 -- 
 -- /*Tabela funcionarios*/
 -- 
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Admin', 'Admin', 'Admininastro', 9526.14, 21,0,'00000000001');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gabriel', 'Mohr', 'Dev', 9016.38, 22,0,'00000000002');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Bernardo', 'Oliveira', 'Dev', 7291.94, 23,0,'00000000003');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Andrei', 'Ludwig', 'Dev', 5890.71, 24,0,'00000000004');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Erik', 'Roncaglio', 'Dev', 6530.11, 25,0,'00000000005');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Admin', 'Admin', 'Admininastro', 9526.14, 21,6,'000.000.000-01');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gabriel', 'Mohr', 'Dev', 9016.38, 22,6,'000.000.000-02');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Bernardo', 'Oliveira', 'Dev', 7291.94, 23,6,'000.000.000-03');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Andrei', 'Ludwig', 'Dev', 5890.71, 24,6,'000.000.000-04');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Erik', 'Roncaglio', 'Dev', 6530.11, 25,6,'000.000.000-05');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0,'00000000006');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0,'00000000007');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0,'00000000008');
