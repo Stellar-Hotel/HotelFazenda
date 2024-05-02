@@ -93,6 +93,8 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	 * Create the frame.
 	 */
 	public AdminFuncionarios(Funcionarios Func) {
+		setTitle("AdminFuncionários");
+		setBackground(new Color(250, 250, 250));
 		
 		
 		
@@ -128,6 +130,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 250, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -135,6 +138,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				"[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
 
 		JPanel BarraLateral = new JPanel();
+		BarraLateral.setBorder(null);
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
 		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
@@ -290,13 +294,14 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblNewLabel_8.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/SinoNotificacao.jpg")));
 
 		JPanel Principal = new JPanel();
+		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
 		Principal.setLayout(new MigLayout("", "[30px][30px,grow][30px][30px][30px][30px][30px][grow][30px][30px,grow][30px][30px][30px][30px][30px,grow][30px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		Principal.add(lblNewLabel_1, "cell 0 0 5 1");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		Principal.add(lblNewLabel_1, "cell 0 0 5 1,alignx left,aligny bottom");
 		
 		textNome = new JTextField();
 		textNome.setBorder(new RoundedBorder(Color.black, 10));

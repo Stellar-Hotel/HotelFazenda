@@ -56,11 +56,13 @@ public class ConfirmacaoADM extends JFrame {
 	 */
 //	public int ConfirmacaoADM(Funcionarios Func) {
 	public ConfirmacaoADM(Funcionarios FuncR, Funcionarios FuncD, Atualizavel att, int op) {
+		setTitle("Confirmação");
 		atualizavel = att;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 313);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
