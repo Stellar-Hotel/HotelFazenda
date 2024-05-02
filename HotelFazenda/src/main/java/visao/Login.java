@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -115,7 +116,7 @@ public class Login extends JFrame {
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField(20);
 		txtSenha.setBorder(new RoundedBorder(Color.black, 10 ));
 		txtSenha.setToolTipText("Digite sua senha");
 		txtSenha.setColumns(10);
