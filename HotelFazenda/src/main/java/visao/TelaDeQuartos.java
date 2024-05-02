@@ -86,8 +86,17 @@ public class TelaDeQuartos extends JFrame {
 	 */
 	public TelaDeQuartos(int x, Funcionarios Func) {
 		
+		MasKFormatter Num = null;
+		
+		try {
+			Num = new MasKFormatter("###.##");
+			Num.setAllowsInvalid(false);
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
 		
 		
+		textField_1 = new JFormattedTextField(Num);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -280,7 +289,7 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Data");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left");
 		
-		textField_1 = new JTextField();
+		textField_1 = new FormattedTextField();
 		panel_6.add(textField_1, "cell 2 3 2 1,grow");
 		textField_1.setColumns(10);
 		
