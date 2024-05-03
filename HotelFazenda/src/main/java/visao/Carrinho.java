@@ -301,11 +301,10 @@ public class Carrinho extends JFrame {
 
 				HospedeDAO Hdao = HospedeDAO.getInstancia();
 
-//				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
+				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
 				
-				Hospedes h= new Hospedes();
 				
-				h.setDocumento(txtHospede.getText());
+		;
 
 				for (int i = 0; i < listaServicos.size(); i++) {
 					ServicosConsumidos sc = new ServicosConsumidos();
