@@ -1,10 +1,12 @@
-package visao;
+ package visao;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -14,6 +16,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Molde extends JFrame {
 
@@ -24,25 +28,25 @@ public class Molde extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					Molde frame = new Molde();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//
+//					Molde frame = new Molde();
+//					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Molde() {
+	public Molde(Funcionarios Func) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -55,38 +59,80 @@ public class Molde extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
-				"[20px:20px:20px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][][251.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
+		lblHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Home TelaHome=new Home(Func);
+				TelaHome.setVisible(true);
+				dispose();
+			}
+		});
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(Molde.class.getResource("/visao/Home.jpg")));
 		BarraLateral.add(lblHome, "cell 0 1,grow");
-
-		JLabel lblHospede = new JLabel("Hospede");
-		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHospede.setIcon(new ImageIcon(Molde.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 2,grow");
-
-		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblAtividades.setIcon(new ImageIcon(Molde.class.getResource("/visao/Atividades.jpg")));
-		BarraLateral.add(lblAtividades, "cell 0 3,grow");
-
-		JLabel lblQuartos = new JLabel("Quartos");
-		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblQuartos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Quartos.jpg")));
-		BarraLateral.add(lblQuartos, "cell 0 4,grow");
-
-		JLabel lblServicos = new JLabel("Serviços");
-		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblServicos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Servicos.jpg")));
-		BarraLateral.add(lblServicos, "cell 0 5,grow");
+		
+				JLabel lblAtividades = new JLabel("Atividades");
+				lblAtividades.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaAtividades TelaAtiv=new TelaAtividades(Func);
+						TelaAtiv.setVisible(true);
+						dispose();
+					}
+				});
+				lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+				lblAtividades.setIcon(new ImageIcon(Molde.class.getResource("/visao/Atividades.jpg")));
+				BarraLateral.add(lblAtividades, "flowy,cell 0 2,grow");
+		
+				JLabel lblQuartos = new JLabel("Quartos");
+				lblQuartos.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						TelaDeAcomodacoes TelaAco=new TelaDeAcomodacoes(Func);
+						TelaAco.setVisible(true);
+						dispose();
+					}
+				});
+				lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+				lblQuartos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Quartos.jpg")));
+				BarraLateral.add(lblQuartos, "cell 0 3,grow");
+		
+				JLabel lblServicos = new JLabel("Serviços");
+				lblServicos.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						TelaServicos TelaServ=new TelaServicos(Func);
+						TelaServ.setVisible(true);
+						dispose();
+					}
+				});
+				lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+				lblServicos.setIcon(new ImageIcon(Molde.class.getResource("/visao/Servicos.jpg")));
+				BarraLateral.add(lblServicos, "cell 0 4,grow");
+		
+		JLabel lblFuncionarios = new JLabel("Funcionarios");
+		lblFuncionarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
+				TelaAdm.setVisible(true);
+				dispose();
+			}
+		});
+		lblFuncionarios.setIcon(new ImageIcon(Molde.class.getResource("/visao/funcionarios.png")));
+		lblFuncionarios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblFuncionarios, "cell 0 6");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 7,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
@@ -107,6 +153,20 @@ public class Molde extends JFrame {
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
 		lblNewLabel_5.setIcon(new ImageIcon(Molde.class.getResource("/visao/Sair.png")));
 		panel.add(lblNewLabel_5, "cell 0 3 2 1,alignx center,aligny top");
+		
+				JLabel lblHospede = new JLabel("Hospede");
+				lblHospede.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaDeHospedes Chama = new TelaDeHospedes(Func);
+						Chama.setVisible(true);
+						dispose();
+						
+					}
+				});
+				lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+				lblHospede.setIcon(new ImageIcon(Molde.class.getResource("/visao/Hospede.jpg")));
+				BarraLateral.add(lblHospede, "cell 0 5,grow");
 
 		JPanel BarraSuperior = new JPanel();
 		BarraSuperior.setBackground(new Color(255, 255, 255));

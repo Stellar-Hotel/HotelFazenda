@@ -115,6 +115,15 @@ public class TelaDeQuartos extends JFrame {
 		BarraLateral.add(lblHome, "cell 0 1,grow");
 
 		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				Chama.setVisible(true);
+				dispose();
+				
+			}
+		});
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/Hospede.jpg")));
 		BarraLateral.add(lblHospede, "cell 0 5,grow");
