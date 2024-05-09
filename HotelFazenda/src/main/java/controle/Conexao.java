@@ -11,8 +11,8 @@ import java.sql.SQLException;
 public class Conexao { // Connection
 
 	private static  String USERNAME;
-	private static  String SENHA ;
-	private static  String BD ;
+	private static  String SENHA;
+	private static  String BD;
 	private Connection con; // jdbc
 	private static Conexao instancia; // singleton
 

@@ -160,6 +160,14 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		BarraLateral.add(lblHome, "cell 0 1,grow");
 
 		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				Chama.setVisible(true);
+				dispose();
+			}
+		});
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Hospede.jpg")));
 		BarraLateral.add(lblHospede, "cell 0 5,grow");
@@ -297,7 +305,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[30px][30px,grow][30px][30px][30px][30px][30px][grow][30px][30px,grow][30px][30px][30px][30px][30px,grow][30px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[30px][30px,grow][30px][30px][30px][30px][30px][grow][][grow][30px][30px][30px][30px][grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -311,7 +319,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textNome.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 9 1 7 11,alignx center,growy");
+		Principal.add(scrollPane, "cell 9 1 6 11,grow");
 		
 		model1=(new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF","Salario"}));
 		table = new JTable(model1);
