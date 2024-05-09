@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 public class Home extends JFrame {
 
@@ -55,8 +56,7 @@ public class Home extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]",
-				"[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
+		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]", "[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
 
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -212,32 +212,19 @@ public class Home extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[173.00,grow]", "[207.00][322.00,grow,fill][322.00,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[20,grow][500,grow][50][150,grow][20]", "[20][40][208.00,grow,fill][96.00,grow,fill][59.00][20]"));
+		
+		JLabel lblNewLabel_7 = new JLabel("Bem vindo(a), NomeUser!");
+		Principal.add(lblNewLabel_7, "cell 1 1");
+		
+		JLabel lblNewLabel_2 = new JLabel("Atividades proximas");
+		Principal.add(lblNewLabel_2, "cell 3 1,alignx center,aligny center");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		Principal.add(scrollPane, "cell 1 2 1 3,grow");
 		
 		JPanel panel_5 = new JPanel();
-		Principal.add(panel_5, "cell 0 1 1 2,grow");
-		panel_5.setLayout(new MigLayout("", "[236.00px][321.00px,grow][10px,grow][]", "[307.00px][grow]"));
-		
-		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6, "flowx,cell 0 0,alignx left,aligny top");
-		
-		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7, "cell 1 0,alignx left,aligny top");
-		
-		JPanel panel_8 = new JPanel();
-		panel_5.add(panel_8, "cell 2 0,alignx left,aligny top");
-		
-		JScrollBar scrollBar = new JScrollBar();
-		panel_5.add(scrollBar, "cell 3 0");
-		
-		JPanel panel_9 = new JPanel();
-		panel_5.add(panel_9, "cell 0 1");
-		
-		JPanel panel_10 = new JPanel();
-		panel_5.add(panel_10, "cell 1 1,grow");
-		
-		JPanel panel_11 = new JPanel();
-		panel_5.add(panel_11, "cell 2 1,grow");
+		Principal.add(panel_5, "cell 3 2 1 2,grow");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
