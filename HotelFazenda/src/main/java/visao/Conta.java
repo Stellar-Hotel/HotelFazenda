@@ -9,18 +9,23 @@ import javax.swing.border.EmptyBorder;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 
 public class Conta extends JFrame {
 
@@ -232,7 +237,7 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[::300px,grow][40px][40px][:40px:200px,grow][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][grow]"));
+		Principal.setLayout(new MigLayout("", "[:220px:275px,grow][40px][40px][:40px:100px,grow][40px][40px][40px][40px][40px][40px][40px][40px][:40px:100px,grow][40px]", "[40px][40px][40px][40px][40px][40px][40px][40px][grow][40px]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Conta");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -240,16 +245,47 @@ public class Conta extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(235, 235, 235));
-		Principal.add(panel_5, "cell 0 1 1 9,grow");
-		panel_5.setLayout(new MigLayout("", "[grow]", "[40px][40px][40px][40px][40px][40px][40px][grow]"));
+		Principal.add(panel_5, "cell 0 1 1 8,grow");
+		panel_5.setLayout(new MigLayout("", "[grow][]", "[40px][40px][40px][40px][40px][40px][40px][40px][grow]"));
 		
-		JLabel lblNewLabel_12 = new JLabel("FOTO");
+		JPanel panel_6 = new JPanel();
+		
+		
+		ImageIcon IC=new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
+
+		JLabel lblNewLabel_12 = new JLabel() {
+			public void paintComponent(Graphics g)
+			{
+				
+				super.paintComponent(g);
+//				g.drawImage(IC.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT), 0, 0, getWidth(), getHeight(), this);
+				ImageIcon icon=(ImageIcon) getIcon();
+				if(icon!=null)
+				{
+					ImageDrawer.drawScaledImage(icon.getImage(),this, g);
+				}
+				
+			}
+			
+		};
+		
+	//	ImageIcon IC2=new ImageIcon(IC.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		panel_6.setLayout(new BorderLayout(0, 0));
+		lblNewLabel_12.setIcon(IC);
 		lblNewLabel_12.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		panel_5.add(lblNewLabel_12, "cell 0 0 1 4,alignx center");
+		panel_6.add(lblNewLabel_12, BorderLayout.CENTER);
+		panel_5.add(panel_6, "cell 0 0 2 4,alignx center,aligny center");
 		
-		JLabel lblNewLabel_14 = new JLabel("ALGUNS DADOS DA PESSOA");
-		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		panel_5.add(lblNewLabel_14, "cell 0 5");
+//		IC.setImage(IC.getImage().getScaledInstance(lblNewLabel_12.getWidth(), lblNewLabel_12.getHeight(), 100));
+		
+		
+		JLabel Nomr = new JLabel("Blbla");
+		Nomr.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(Nomr, "flowx,cell 0 4");
+		
+		JLabel lblNewLabel_15 = new JLabel("BlaBla");
+		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNewLabel_15, "cell 1 4,alignx right");
 		
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
 		Principal.add(lblNewLabel_7, "cell 4 2,alignx center,aligny center");
@@ -279,8 +315,11 @@ public class Conta extends JFrame {
 		passwordField = new JPasswordField();
 		Principal.add(passwordField, "cell 5 5 5 1,growx");
 		
-		JLabel lblNewLabel_13 = new JLabel("New label");
-		Principal.add(lblNewLabel_13, "cell 4 6");
+		JButton btnNewButton_1 = new JButton("Descartar");
+		Principal.add(btnNewButton_1, "cell 8 9 3 1,alignx center");
+		
+		JButton btnNewButton = new JButton("Salvar");
+		Principal.add(btnNewButton, "cell 11 9 3 1,alignx center");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
