@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaDeHospedes extends JFrame {
 
@@ -283,6 +285,11 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textField_6, "cell 1 8 2 1,growx");
 		
 		JButton btnNewButton = new JButton("Cadastrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		panel_5.add(btnNewButton, "cell 1 10");
 		
 		JScrollPane scrollPane = new JScrollPane();
