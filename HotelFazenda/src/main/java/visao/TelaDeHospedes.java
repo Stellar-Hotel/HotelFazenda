@@ -20,6 +20,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -34,13 +37,13 @@ public class TelaDeHospedes extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textNome;
+	private JTextField textSobrenome;
+	private JTextField textNascimento;
+	private JTextField textCPF;
+	private JTextField textNacionalidade;
+	private JTextField textPronome;
+	private JTextField textEmail;
 	private DefaultTableModel Model;
 	private ArrayList <Hospedes> listahospeds = new ArrayList<Hospedes>();
 
@@ -238,59 +241,90 @@ public class TelaDeHospedes extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Nome");
 		panel_5.add(lblNewLabel_10, "cell 0 2");
 		
-		textField = new JTextField();
-		panel_5.add(textField, "cell 1 2 2 1,growx");
-		textField.setColumns(10);
+		textNome = new JTextField();
+		panel_5.add(textNome, "cell 1 2 2 1,growx");
+		textNome.setColumns(10);
 		
 		JLabel lblNewLabel_10_1 = new JLabel("Sobrenome");
 		panel_5.add(lblNewLabel_10_1, "cell 0 3");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		panel_5.add(textField_1, "cell 1 3 2 1,growx");
+		textSobrenome = new JTextField();
+		textSobrenome.setColumns(10);
+		panel_5.add(textSobrenome, "cell 1 3 2 1,growx");
 		
 		JLabel lblNewLabel_10_1_1 = new JLabel("Data Nascimento");
 		panel_5.add(lblNewLabel_10_1_1, "cell 0 4");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		panel_5.add(textField_2, "cell 1 4 2 1,growx");
+		textNascimento = new JTextField();
+		textNascimento.setColumns(10);
+		panel_5.add(textNascimento, "cell 1 4 2 1,growx");
 		
-		JLabel lblNewLabel_10_1_1_1 = new JLabel("CpF");
+		JLabel lblNewLabel_10_1_1_1 = new JLabel("CPF");
 		panel_5.add(lblNewLabel_10_1_1_1, "cell 0 5");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		panel_5.add(textField_3, "cell 1 5 2 1,growx");
+		textCPF = new JTextField();
+		textCPF.setColumns(10);
+		panel_5.add(textCPF, "cell 1 5 2 1,growx");
 		
 		JLabel lblNewLabel_10_1_1_1_1 = new JLabel("Nacionalidade");
 		panel_5.add(lblNewLabel_10_1_1_1_1, "cell 0 6");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		panel_5.add(textField_4, "cell 1 6 2 1,growx");
+		textNacionalidade = new JTextField();
+		textNacionalidade.setColumns(10);
+		panel_5.add(textNacionalidade, "cell 1 6 2 1,growx");
 		
 		JLabel lblNewLabel_10_1_1_1_1_1 = new JLabel("Pronome");
 		panel_5.add(lblNewLabel_10_1_1_1_1_1, "cell 0 7");
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		panel_5.add(textField_5, "cell 1 7 2 1,growx");
+		textPronome = new JTextField();
+		textPronome.setColumns(10);
+		panel_5.add(textPronome, "cell 1 7 2 1,growx");
 		
 		JLabel lblNewLabel_10_1_1_1_1_1_1 = new JLabel("Email");
 		panel_5.add(lblNewLabel_10_1_1_1_1_1_1, "cell 0 8");
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		panel_5.add(textField_6, "cell 1 8 2 1,growx");
+		textEmail = new JTextField();
+		textEmail.setColumns(10);
+		panel_5.add(textEmail, "cell 1 8 2 1,growx");
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){					
+				}else {
+					
+					String Nome = textNome.getText();
+					String Sobrenome = textSobrenome.getText();
+					String Documento = textCPF.getText();
+					String Nacionalidade = textNacionalidade.getText();
+					String Pronome = textPronome.getText();
+					String Email = textEmail.getText();
+					
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 				
+                    Date Nascimento = null;
+                    
+                    try {
+						Nascimento = new Date (dateFormat.parse(textNascimento.getText()).getTime());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                    
+                    Hospedes hospede = new Hospedes();
+                    
+                    hospede.setNome(Nome);
+                    hospede.setSobrenome(Sobrenome);
+                    hospede.setDataNasc(Nascimento);
+                    hospede.setNacionalidade(Nacionalidade);
+                    hospede.setEmail(Email);
+                    hospede.setPronome(Pronome);
+                    hospede.setDocumento(Documento);
+                    
+				}
 			}
 		});
-		panel_5.add(btnNewButton, "cell 1 10");
+		panel_5.add(btnCadastrar, "cell 1 10");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 7 3 3 1,grow");

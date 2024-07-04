@@ -37,7 +37,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,Pronome, Email, IdUsuarioHospede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, Documento, Nacionalidade,Pronome, Email, IdUsuarioHospede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -101,7 +101,7 @@ public class HospedeDAO implements IHospedeDAO {
 				String Nome = rs.getString("Nome");
 				String Sobrenome = rs.getString("Sobrenome");
 				Date DataNasc = rs.getDate("DataNasc");
-				String CPF = rs.getString("CPF");
+				String Documento = rs.getString("Documento");
 				String Nacionalidade = rs.getString("Nacionalidade");
 				String Pronome = rs.getString("Pronome");
 				String Email = rs.getString("Email");
@@ -117,7 +117,7 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setNome(Sobrenome);
 				Hd.setNome(Nome);
 				Hd.setDataNasc(DataNasc);
-				Hd.setDocumento(CPF);
+				Hd.setDocumento(Documento);
 				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
@@ -152,7 +152,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsuarioHospede = ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsuarioHospede = ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -230,7 +230,7 @@ public class HospedeDAO implements IHospedeDAO {
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where CPF = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
+		String SQL="Select * from Hospedes where Documento = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
