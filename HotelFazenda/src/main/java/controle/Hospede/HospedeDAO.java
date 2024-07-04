@@ -37,7 +37,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, Documento, Nacionalidade,Pronome, Email, IdUsuarioHospede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade,Pronome, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -55,11 +55,16 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getEmail());
 			ps.setString(6, Hd.getPronome());
 			ps.setString(7, Hd.getDocumento());
-			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				chavePrimariaGerada = rs.getInt(1);
+			int rs = ps.executeUpdate();
+			if (rs == 0) {
+				throw new SQLException("Não foi possível inverir o hospede");
+			}
+			else {
+				ResultSet result = ps.getGeneratedKeys();
+				if(result.next()) {
+					chavePrimariaGerada = result.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {
@@ -107,12 +112,6 @@ public class HospedeDAO implements IHospedeDAO {
 				String Email = rs.getString("Email");
 				int Id=rs.getInt("IdHospede");
 
-				Usuarios User = new Usuarios();
-
-				// preenche os atributos desse objeto
-
-				User.setSenha(rs.getString("Senha"));
-				User.setLogin(rs.getString("Login"));
 
 				Hd.setNome(Sobrenome);
 				Hd.setNome(Nome);
@@ -123,7 +122,6 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setPronome(Pronome);
 				Hd.setIdHospede(Id);
 				//Atribui o objeto estranjeiro no que vai ser colocado na lista
-				Hd.setUsuario(User);
 				
 				// Adiciona objeto na lista
 				hospede.add(Hd);
@@ -152,7 +150,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsuarioHospede = ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -172,9 +170,8 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getNacionalidade());
 			ps.setString(6, Hd.getPronome());
 			ps.setDate(7, Hd.getDataNasc());
-			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 			// Substitui a segunda interrogação no comando SQL
-			ps.setInt(9, Hd.getIdHospede());
+			ps.setInt(8, Hd.getIdHospede());
 			// Retorna 1 para certo e 0 para erro.
 			retorno = ps.executeUpdate();
 

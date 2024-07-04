@@ -7,11 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.Atividades.AtividadesDAO;
+import controle.Hospede.HospedeDAO;
+import modelo.Atividades;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -45,7 +49,7 @@ public class TelaDeHospedes extends JFrame {
 	private JTextField textPronome;
 	private JTextField textEmail;
 	private DefaultTableModel Model;
-	private ArrayList <Hospedes> listahospeds = new ArrayList<Hospedes>();
+	private ArrayList <Hospedes> listahospedes = new ArrayList<Hospedes>();
 
 	/**
 	 * Launch the application.
@@ -287,6 +291,17 @@ public class TelaDeHospedes extends JFrame {
 		textEmail.setColumns(10);
 		panel_5.add(textEmail, "cell 1 8 2 1,growx");
 		
+	
+		JScrollPane scrollPane = new JScrollPane();
+		Principal.add(scrollPane, "cell 7 3 3 1,grow");
+		
+		
+		Model =(new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Nascimento","Nacionalidade","Email", "Pronome", "Documento"}));
+		table = new JTable(Model);
+		scrollPane.setViewportView(table);
+		atualizarJTable();
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -321,19 +336,79 @@ public class TelaDeHospedes extends JFrame {
                     hospede.setPronome(Pronome);
                     hospede.setDocumento(Documento);
                     
+                    HospedeDAO DAO = HospedeDAO.getInstancia();
+                    int id = DAO.inserirHospede(hospede);
+                    if(id>0) {
+                    	JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+                    	atualizarJTable();
+                    }
 				}
 			}
 		});
-		panel_5.add(btnCadastrar, "cell 1 10");
+		panel_5.add(btnCadastrar, "cell 0 10");
 		
-		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 7 3 3 1,grow");
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){					
+					JOptionPane.showMessageDialog(null, "insira algo");
+				}else {
+					String Nome = textNome.getText();
+					String Sobrenome = textSobrenome.getText();
+					String Documento = textCPF.getText();
+					String Nacionalidade = textNacionalidade.getText();
+					String Pronome = textPronome.getText();
+					String Email = textEmail.getText();
+					
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				
+                    Date Nascimento = null;
+                    
+                    try {
+						Nascimento = new Date (dateFormat.parse(textNascimento.getText()).getTime());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                    
+                    Hospedes hospede = new Hospedes();
+                    
+                    hospede.setNome(Nome);
+                    hospede.setSobrenome(Sobrenome);
+                    hospede.setDataNasc(Nascimento);
+                    hospede.setNacionalidade(Nacionalidade);
+                    hospede.setEmail(Email);
+                    hospede.setPronome(Pronome);
+                    hospede.setDocumento(Documento);
+                    
+                    HospedeDAO DAO = HospedeDAO.getInstancia();
+                    DAO.atualizarHospede(hospede);
+                    
+                    int linha = table.getSelectedRow();
+                    
+                    if(linha<0) {
+                    	JOptionPane.showMessageDialog(null, "Selecione uma linha");
+                    }else if(linha >=0) {
+                    	DefaultTableModel Model = (DefaultTableModel) table.getModel();
+                    	
+                    	Model.setValueAt(Nome, linha, 0);
+                    	Model.setValueAt(Sobrenome, linha, 1);
+                    	Model.setValueAt(Nascimento, linha, 2);
+                    	Model.setValueAt(Nacionalidade, linha, 3);
+						Model.setValueAt(Email, linha, 4);
+						Model.setValueAt(Pronome, linha, 5);
+						Model.setValueAt(Documento, linha, 6);
+                    }
+                    
+				}
+			}
+		});
+		panel_5.add(btnAtualizar, "cell 1 10,growx");
 		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setToolTipText("");
+		panel_5.add(btnExcluir, "cell 2 10");
 		
-		Model =(new DefaultTableModel(new Object[][] {},new String[] {"Nome","Sobrenome","Funcao","CPF","Salario"}));
-		table = new JTable(Model);
-		scrollPane.setViewportView(table);
-//		atulizarJtable();
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
@@ -361,5 +436,22 @@ public class TelaDeHospedes extends JFrame {
 		JLabel lblTwitter = new JLabel("");
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaDeHospedes.class.getResource("/visao/twitter.jpg")));
+	
+		atualizarJTable();
+		
 	}
+	protected void atualizarJTable() {
+		DefaultTableModel Model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome","Sobrenome","Nascimento","Nacionalidade","Email", "Pronome", "Documento"});
+
+		HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
+		listahospedes = hospedeDAO.ListarHospedes();
+
+		for (int i = 0; i < listahospedes.size(); i++) {
+			Hospedes h = listahospedes.get(i);
+			Model.addRow(new Object[] { h.getNome(), h.getSobrenome(), h.getDataNasc(), h.getNacionalidade(),
+					h.getEmail(), h.getPronome(), h.getNacionalidade()});
+		}
+		table.setModel(Model);
+	
+}
 }
