@@ -61,7 +61,7 @@ public class TelaDeQuartos extends JFrame {
 	
 	protected void atualizarJTable(int x) {
 		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
-				new String[] {"Manutencao", "Preco da Diaria" }));
+				new String[] {"Número do quarto",  "Situação do quarto" }));
 
 		model1.setRowCount(0);
 		
@@ -71,7 +71,7 @@ public class TelaDeQuartos extends JFrame {
 		for (int i = 0; i < Lista.size(); i++) {
 
 			Quartos p = Lista.get(i);
-			model1.addRow(new Object[] {p.getManutencao(), p.getPrecoDiaria() });
+			model1.addRow(new Object[] {p.getIdQuarto(), p.getPrecoDiaria() });
 		}
 		System.out.println(ListaQuartos.size());
 
@@ -328,7 +328,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 		
-		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Manutencao",  "Preco da Diaria"});
+		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Número do quarto",  "Situação do quarto"});
 	    
 	    	    table = new JTable(model1);
 	    	    

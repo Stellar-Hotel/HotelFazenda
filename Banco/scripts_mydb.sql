@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS  `Servicos` (
 CREATE TABLE  IF NOT EXISTS `Quartos` (
   `IdQuarto` INT NOT NULL AUTO_INCREMENT,
   `TipoQuarto` INT,
+  `Situacao` INT NOT NULL,
   `MaxPessoas` INT NOT NULL,
   `Manutencao` VARCHAR(45) NOT NULL,
   `TipoCama` VARCHAR(45) NOT NULL,
@@ -92,8 +93,14 @@ CREATE TABLE  IF NOT EXISTS `Quartos` (
   `PrecoDiaria` FLOAT NOT NULL,
   PRIMARY KEY (`IdQuarto`))
 ;
+
+-- -----------------------------------------------------
+-- Table `Stellar`.`Hospedagens`
+-- -----------------------------------------------------
+
 CREATE TABLE  IF NOT EXISTS `Hospedagens` (
   `IdHospedagem` INT NOT NULL AUTO_INCREMENT,
+  `Situacao` INT NOT NULL,
   `Checkin` DATE NOT NULL,
   `Checkout` DATE NOT NULL,
   `IdQuartoHospedagens` INT NOT NULL,
