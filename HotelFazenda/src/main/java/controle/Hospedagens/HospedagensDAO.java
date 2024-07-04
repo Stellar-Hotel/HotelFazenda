@@ -1,6 +1,7 @@
 package controle.Hospedagens;
 
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controle.Conexao;
+import controle.ValidarDia;
+import controle.Quartos.QuartosDAO;
 import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
@@ -72,7 +75,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 		ArrayList<Hospedagens> hospedagens = new ArrayList<Hospedagens>();
 
 		// comando sql executado
-		String SQL = "SELECT * FROM Hospedagens"; //tem que colocar o inner join aqui
+		String SQL = "SELECT * FROM Hospedagens"; // tem que colocar o inner join aqui
 
 		// cria a ponte de conecao com o mysql
 		Conexao con = Conexao.getConexao();
@@ -89,10 +92,10 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospedagens Hg = new Hospedagens();
 
 				Hospedes Hospede = new Hospedes();
-				
-				Quartos Quarto=new Quartos();
-				
-				Usuarios Usuario=new Usuarios();
+
+				Quartos Quarto = new Quartos();
+
+				Usuarios Usuario = new Usuarios();
 
 				Hospede.setNome(rs.getString("Nome"));
 				Hospede.setDocumento(rs.getString("CPF"));
@@ -102,10 +105,10 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
-				
+
 				Hospede.setUsuario(Usuario);
-				
-				//Tem que setar os atributos dos bagulho estrangeiro ainda
+
+				// Tem que setar os atributos dos bagulho estrangeiro ainda
 
 				// Pega os valores de cada coluna d registro
 
@@ -212,7 +215,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 	public Hospedagens BuscarHospedagemId(int Id) {
 		// TODO Auto-generated method stub
 		Hospedagens Hosp = null;
-		String SQL = "Select * from Hospedagens where IdHospedagem = ?"; //tem que arrumar o inner join aqui também
+		String SQL = "Select * from Hospedagens where IdHospedagem = ?"; // tem que arrumar o inner join aqui também
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
@@ -229,7 +232,6 @@ public class HospedagensDAO implements IHospedagenDAO {
 				Hosp.setCheckin(rs.getDate("Checkin"));
 				Hosp.setCheckout(rs.getDate("Checkout"));
 				Hosp.setIdHospedagem(Id);
-				
 
 				Hosp.setHospde(null);
 			}
@@ -241,5 +243,32 @@ public class HospedagensDAO implements IHospedagenDAO {
 		}
 
 		return Hosp;
+	}
+
+	@Override
+	public void AtualizarSituacao() {
+		// TODO Auto-generated method stub
+		LocalDate hoje = LocalDate.now();
+		ArrayList<Hospedagens> ListaHospedagens = new ArrayList<Hospedagens>();
+		HospedagensDAO Hdao = HospedagensDAO.getInstancia();
+		QuartosDAO Qdao = QuartosDAO.getConexao();
+		ListaHospedagens = Hdao.ListarHospedagens();
+
+		if (ValidarDia.lerDia(hoje.toString())) {
+			
+			for (Hospedagens hospedagem : ListaHospedagens) {
+				String checkin = hospedagem.getCheckin().toString();
+				String checkout = hospedagem.getCheckout().toString();
+				if (checkin.equals(hoje)) {
+					hospedagem.getQuarto().setSituacao(1);
+					Qdao.atualizarQuarto(hospedagem.getQuarto());
+				} else if (checkout.equals(hoje)) {
+					hospedagem.getQuarto().setSituacao(0);
+					Qdao.atualizarQuarto(hospedagem.getQuarto());
+				}
+
+			}
+		}
+
 	}
 }
