@@ -34,6 +34,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.awt.Desktop;
+import controle.Arredondar.RoundedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Conta extends JFrame {
 
@@ -41,8 +44,8 @@ public class Conta extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
 	private JTextField textUser;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textEm;
+	private JTextField textPron;
 	private JPasswordField passwordField;
 
 	/**
@@ -169,10 +172,12 @@ public class Conta extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNewLabel_2, "cell 1 1,aligny bottom");
+		lblNewLabel_2.setText(Func.getNome()+" "+Func.getSobrenome());
 
 		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
+		lblNewLabel_3.setText(Func.getEmailFunc());
 
 		JLabel lblNewLabel_5 = new JLabel("Sair");
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
@@ -245,7 +250,7 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:220px:275px,grow][40px][40px][:40px:100px,grow][40px][40px][40px][40px][40px][40px][40px][40px][:40px:100px,grow][40px]", "[40px][40px][40px][40px][40px][40px][40px][40px][grow][40px]"));
+		Principal.setLayout(new MigLayout("", "[:220px:275px,grow][40px][40px][:40px:100px,grow][40px][40px][40px][40px,grow][40px][40px][40px][40px][:40px:100px,grow][40px]", "[40px][:40px:120px,grow][40px][40px][40px][40px][40px][40px][40px][grow][40px]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Conta");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -253,47 +258,51 @@ public class Conta extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(235, 235, 235));
-		Principal.add(panel_5, "cell 0 1 1 8,grow");
-		panel_5.setLayout(new MigLayout("", "[grow][]", "[40px][40px][40px][40px][40px][40px][40px][40px][grow]"));
-		
-		JPanel panel_6 = new JPanel();
+		Principal.add(panel_5, "cell 0 1 1 9,grow");
+		panel_5.setLayout(new MigLayout("", "[::137px,grow][::137px,grow]", "[30px][30px][30px][30px][30px][:30px:90px,grow][30px][30px][15px][30px][30px][::100px,grow]"));
 		
 		
 		ImageIcon IC=new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
-
-		JLabel lblNewLabel_12 = new JLabel() {
-			public void paintComponent(Graphics g)
-			{
-				
-				super.paintComponent(g);
-//				g.drawImage(IC.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT), 0, 0, getWidth(), getHeight(), this);
-				ImageIcon icon=(ImageIcon) getIcon();
-				if(icon!=null)
-				{
-//					ImageDrawer.drawScaledImage(icon.getImage(),this, g);
-				}
-				
-			}
-			
-		};
 		
-	//	ImageIcon IC2=new ImageIcon(IC.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-		panel_6.setLayout(new BorderLayout(0, 0));
-		lblNewLabel_12.setIcon(IC);
-		lblNewLabel_12.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		panel_6.add(lblNewLabel_12, BorderLayout.CENTER);
-		panel_5.add(panel_6, "cell 0 0 2 4,alignx center,aligny center");
+		JLabel lblNewLabel_18 = new JLabel("Dados do Usuário");
+		lblNewLabel_18.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		panel_5.add(lblNewLabel_18, "cell 0 0 2 1");
 		
 //		IC.setImage(IC.getImage().getScaledInstance(lblNewLabel_12.getWidth(), lblNewLabel_12.getHeight(), 100));
 		
 		
-		JLabel Nomr = new JLabel("Blbla");
-		Nomr.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		panel_5.add(Nomr, "flowx,cell 0 4");
+		JLabel lblNome = new JLabel("Blbla");
+		lblNome.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNome, "flowx,cell 0 7 2 1,alignx center");
+		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 		
-		JLabel lblNewLabel_15 = new JLabel("BlaBla");
-		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		panel_5.add(lblNewLabel_15, "cell 1 4,alignx right");
+		JLabel lblNewLabel_15 = new JLabel("Email:");
+		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		panel_5.add(lblNewLabel_15, "cell 0 8 2 1,alignx center,aligny top");
+		lblNewLabel_15.setText(Func.getUsuario().getLogin());
+		
+		JLabel lblNewLabel_16 = new JLabel("Pronomes:");
+		lblNewLabel_16.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNewLabel_16, "cell 0 9,alignx center");
+		lblNewLabel_16.setText(Func.getPronomeFunc());
+		
+		JLabel lblNewLabel_17 = new JLabel("Telefone::");
+		lblNewLabel_17.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNewLabel_17, "cell 1 9,alignx center");
+		lblNewLabel_17.setText(Func.getTelefone());
+		
+		JLabel lblNewLabel_12 = new JLabel("Setor");
+		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNewLabel_12, "cell 0 10,alignx center");
+		lblNewLabel_12.setText(Func.getSetor());
+		
+		JLabel lblNewLabel_13 = new JLabel("Funcao");
+		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		panel_5.add(lblNewLabel_13, "cell 1 10,alignx center");
+		lblNewLabel_13.setText(Func.getFuncao());
+		ImageIcon Ver=new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Ver.png");
+		ImageIcon NaoVer=new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao//NaoVer.png");
+		
 		
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
 		Principal.add(lblNewLabel_7, "cell 4 2,alignx center,aligny center");
@@ -301,33 +310,79 @@ public class Conta extends JFrame {
 		textUser = new JTextField();
 		Principal.add(textUser, "cell 5 2 5 1,growx,aligny center");
 		textUser.setColumns(10);
+		textUser.setText(Func.getUsuario().getLogin());
 		
 		JLabel lblNewLabel_9 = new JLabel("Email");
-		Principal.add(lblNewLabel_9, "cell 4 3,alignx center");
+		Principal.add(lblNewLabel_9, "cell 4 4,alignx center");
 		
-		textField = new JTextField();
-		Principal.add(textField, "cell 5 3 5 1,growx");
-		textField.setColumns(10);
+		textEm = new JTextField();
+		Principal.add(textEm, "cell 5 4 5 1,growx");
+		textEm.setColumns(10);
+		textEm.setText(Func.getEmailFunc());
 		
 		JLabel lblNewLabel_10 = new JLabel("Pronomes");
-		Principal.add(lblNewLabel_10, "cell 4 4,alignx center");
+		Principal.add(lblNewLabel_10, "cell 4 6,alignx center");
 		
-		textField_1 = new JTextField();
-		Principal.add(textField_1, "cell 5 4 5 1,growx");
-		textField_1.setColumns(10);
+		textPron = new JTextField();
+		Principal.add(textPron, "cell 5 6 2 1,growx");
+		textPron.setColumns(10);
+		textPron.setText(Func.getPronomeFunc());
 		
 		JLabel lblNewLabel_11 = new JLabel("Senha");
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		Principal.add(lblNewLabel_11, "cell 4 5,alignx center,aligny center");
+		Principal.add(lblNewLabel_11, "cell 4 8,alignx trailing,aligny center");
 		
 		passwordField = new JPasswordField();
-		Principal.add(passwordField, "cell 5 5 5 1,growx");
+		Principal.add(passwordField, "cell 5 8 5 1,growx");
+		passwordField.setEchoChar('*');
+		passwordField.setText(Func.getUsuario().getSenha());
 		
-		JButton btnNewButton_1 = new JButton("Descartar");
-		Principal.add(btnNewButton_1, "cell 8 9 3 1,alignx center");
+		JLabel lblNewLabel_14 = new JLabel("");
+		lblNewLabel_14.setIcon(Ver);
+		lblNewLabel_14.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(lblNewLabel_14.getIcon()==Ver) {
+				lblNewLabel_14.setIcon(NaoVer);
+				passwordField.setEchoChar((char) 0);
+				}else if(lblNewLabel_14.getIcon()==NaoVer)
+				{
+					lblNewLabel_14.setIcon(Ver);
+					passwordField.setEchoChar('*');
+				}
+			}
+		});
 		
-		JButton btnNewButton = new JButton("Salvar");
-		Principal.add(btnNewButton, "cell 11 9 3 1,alignx center");
+		Principal.add(lblNewLabel_14, "cell 10 8,alignx center");
+		
+		JButton btnDescartarMudanas = new JButton("Descartar Mudanças");
+		btnDescartarMudanas.setForeground(Color.BLACK);
+		btnDescartarMudanas.setBorder(new RoundedBorder(Color.black, 10));
+		btnDescartarMudanas.setBackground(new Color(117, 187, 68));
+		Principal.add(btnDescartarMudanas, "cell 9 10 3 1,alignx center");
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Func.setPronomeFunc(textPron.getText());
+				Func.setEmailFunc(textEm.getText());
+				Func.getUsuario().setLogin(textUser.getText());			
+				Func.getUsuario().setSenha(passwordField.getText());
+				
+				
+				lblNome.setText(Func.getNome()+""+Func.getSobrenome());
+				lblNewLabel_15.setText(Func.getUsuario().getLogin());
+				lblNewLabel_16.setText(Func.getPronomeFunc());
+				lblNewLabel_17.setText(Func.getTelefone());
+				lblNewLabel_12.setText(Func.getSetor());
+				lblNewLabel_13.setText(Func.getFuncao());
+				
+			}
+		});
+		btnSalvar.setForeground(Color.BLACK);
+		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
+		btnSalvar.setBackground(new Color(117, 187, 68));
+		Principal.add(btnSalvar, "cell 12 10 2 1,alignx center");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
