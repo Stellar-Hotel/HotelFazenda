@@ -14,6 +14,8 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
@@ -22,10 +24,16 @@ import java.awt.Graphics;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.awt.Desktop;
 
 public class Conta extends JFrame {
 
@@ -262,7 +270,7 @@ public class Conta extends JFrame {
 				ImageIcon icon=(ImageIcon) getIcon();
 				if(icon!=null)
 				{
-					ImageDrawer.drawScaledImage(icon.getImage(),this, g);
+//					ImageDrawer.drawScaledImage(icon.getImage(),this, g);
 				}
 				
 			}
@@ -333,18 +341,86 @@ public class Conta extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
 
 		JLabel lblInstagram = new JLabel("");
+		lblInstagram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(Conta.class.getResource("/visao/instagram.png")));
 
 		JLabel lblFacebook = new JLabel("");
+		lblFacebook.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=pIwHGjo3Lqs").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblFacebook, "cell 1 0");
 		lblFacebook.setIcon(new ImageIcon(Conta.class.getResource("/visao/Facebook.jpg")));
 
 		JLabel lblWhatsapp = new JLabel("");
+		lblWhatsapp.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=pIwHGjo3Lqs").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblWhatsapp, "cell 2 0");
 		lblWhatsapp.setIcon(new ImageIcon(Conta.class.getResource("/visao/Whatsapp.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
+		lblTwitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=pIwHGjo3Lqs").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(Conta.class.getResource("/visao/twitter.jpg")));
 	}
