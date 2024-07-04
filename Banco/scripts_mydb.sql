@@ -111,16 +111,16 @@ CREATE TABLE  IF NOT EXISTS `Hospedagens` (
 
 
 -- -----------------------------------------------------
--- Table `Stellar`.`Funcionarios`
+-- Table `Stellar`.`Funcionarios` 
 -- -----------------------------------------------------
 CREATE TABLE  IF NOT EXISTS `Funcionarios` (
   `IdFuncionario` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Sobrenome` VARCHAR(45) NOT NULL,
-  `E-mail` VARCHAR(45) NOT NULL,
-  `Telefone` INT NOT NULL,
-  `Pronomes` VARCHAR(45) NOT NULL,
-  `Setor` VARCHAR(45) NOT NULL,
+  `EmailFunc` VARCHAR(45) NOT NULL,
+  `Telefone` VARCHAR(45) NOT NULL,
+  `PronomesFunc` VARCHAR(45) NOT NULL,
+  `SetorFunc` VARCHAR(45) NOT NULL,
   `Funcao` VARCHAR(45) NOT NULL,
   `Salario` FLOAT NOT NULL,
   `IdUsuarioFuncionario` INT NOT NULL,
@@ -269,13 +269,13 @@ values ('M@iones3','MAZDARX7',0 ),
 -- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Amanda', 'Harbach', '1979-10-08', '700.716.283-32', 'United States', 'Female', 'aharbachi@google.fr',19);
 -- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Lurlene', 'Crampsy', '1966-01-08', '480.398.712-27', 'Bosnia and Herzegovina', 'Female', 'lcrampsyj@tiny.cc',20);
 -- 
--- /*Tabela funcionarios*/
+-- /*Tabela funcionarios*/EmailFunc`
 -- 
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Admin', 'Admin', 'Admininastro', 9526.14, 21,6,'000.000.000-01');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Gabriel', 'Mohr', 'Dev', 9016.38, 22,6,'000.000.000-02');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Bernardo', 'Oliveira', 'Dev', 7291.94, 23,6,'000.000.000-03');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Andrei', 'Ludwig', 'Dev', 5890.71, 24,6,'000.000.000-04');
- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Erik', 'Roncaglio', 'Dev', 6530.11, 25,6,'000.000.000-05');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF,EmailFunc,Telefone,PronomesFunc,SetorFunc) values ('Admin', 'Admin', 'Admininastro', 9526.14, 21,6,'000.000.000-01','aaaaaaaaaaaaaa@gmail.com','11 111111111','Ele/Dele','Administração');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF,EmailFunc,Telefone,PronomesFunc,SetorFunc) values ('Gabriel', 'Mohr', 'Dev', 9016.38, 22,6,'000.000.000-02','bbbbbbbbbbb@gmail.com','22 222222222','Ele/Dele','Administração');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF,EmailFunc,Telefone,PronomesFunc,SetorFunc) values ('Bernardo', 'Oliveira', 'Dev', 7291.94, 23,6,'000.000.000-03','cccccccccccccc@gmail.com','33 333333333','Ele/Dele','Admistração');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF,EmailFunc,Telefone,PronomesFunc,SetorFunc) values ('Andrei', 'Ludwig', 'Dev', 5890.71, 24,6,'000.000.000-04','ddddddddddddddd@gmail.com','44 444444444','Ele/Dele','Administração');
+ insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF,EmailFunc,Telefone,PronomesFunc,SetorFunc) values ('Erik', 'Roncaglio', 'Dev', 6530.11, 25,6,'000.000.000-05','eeeeeeeeeee@gmail.com','55 555555555','Ele/Dele','Administração');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Kym', 'Wakerley', 'Zeladora', 1477.57, 26,0,'00000000006');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Aymer', 'Tunbridge', 'Recepcionista', 5917.57, 27,0,'00000000007');
 -- insert into Funcionarios (Nome, Sobrenome, Funcao, Salario, IdUsuarioFuncionario, NivelDeAcesso,CPF) values ('Lindie', 'Kaygill', 'Jardineira', 8184.42, 28,0,'00000000008');
