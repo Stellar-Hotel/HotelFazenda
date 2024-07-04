@@ -41,7 +41,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public int InserirFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario,IdUsuarioFuncionario,CPF,NivelDeAcesso) VALUES (?,?,?, ?, ?, ?,?)";
+		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario,IdUsuarioFuncionario,CPF,NivelDeAcesso,Setor,PronomeFunc,EmailFunc,Telefone) VALUES (?,?,?, ?, ?, ?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -57,6 +57,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setInt(5, Func.getUsuario().getIdUsuario());
 			ps.setString(6, Func.getCPF());
 			ps.setInt(7, Func.getNivelDeAcesso());
+			ps.setString(8,Func.getSetor());
+			ps.setString(9, Func.getPronomeFunc());
+			ps.setString(10, Func.getEmailFunc());
+			ps.setString(11, Func.getTelefone());
 		
 			int result = ps.executeUpdate();
 			if(result==0) {
@@ -108,6 +112,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				String CPF=rs.getString("CPF");
 				int nivel=rs.getInt("NivelDeAcesso");
 				int IdFunc=rs.getInt("IdFuncionario");
+				String Setor=rs.getString("Setor");
+				String PronomeFunc=rs.getString("PronomeFunc");
+				String EmailFunc=rs.getString("EmailFunc");
+				String Telefone=rs.getString("Telefone");
 				
 				Usuarios User= new Usuarios();
 				
@@ -124,6 +132,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Funcionario.setCPF(CPF);
 				Funcionario.setNivelDeAcesso(nivel);
 				Funcionario.setIdFuncionario(IdFunc);
+				Funcionario.setSetor(Setor);
+				Funcionario.setPronomeFunc(PronomeFunc);
+				Funcionario.setEmailFunc(EmailFunc);
+				Funcionario.setTelefone(Telefone);
 				
 				Funcionarios.add(Funcionario);
 				
@@ -141,7 +153,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
 		
-		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=?,PronomeFunc=?,EmailFunc=?,Setor=?,Telefone=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -157,7 +169,14 @@ public class FuncionariosDAO implements IFuncionariosDAO
 			ps.setFloat(4, Func.getSalario());
 			ps.setString(5, Func.getCPF());
 			ps.setInt(6, Func.getNivelDeAcesso());
-			ps.setInt(7, Func.getIdFuncionario());
+			ps.setString(7, Func.getPronomeFunc());
+			ps.setString(8, Func.getEmailFunc());
+			ps.setString(9, Func.getSetor());
+			ps.setString(10, Func.getTelefone());
+			
+			
+			ps.setInt(11, Func.getIdFuncionario());
+			
 			
 			retorno = ps.executeUpdate();
 			
@@ -230,6 +249,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Func.setSobrenome(rs.getString("Sobrenome"));
 				Func.setCPF(rs.getString("CPF"));
 				Func.setNivelDeAcesso(rs.getInt("NivelDeAcesso"));
+				Func.setPronomeFunc(rs.getString("PronomeFunc"));
+				Func.setEmailFunc(rs.getString("EmailFunc"));
+				Func.setTelefone(rs.getString("Telefone"));
+				Func.setSetor(rs.getString("Setor"));
 				Func.setUsuario(Usu);
 				
 			}
@@ -273,6 +296,10 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				Func.setNome(Nome);
 				Func.setSalario(rs.getFloat("Salario"));
 				Func.setSobrenome(rs.getString("Sobrenome"));
+				Func.setPronomeFunc(rs.getString("PronomeFunc"));
+				Func.setEmailFunc(rs.getString("EmailFunc"));
+				Func.setSetor(rs.getString("Setor"));
+				Func.setTelefone(rs.getString("Telefone"));
 				Func.setUsuario(Usu);
 				
 				Lista.add(Func);
