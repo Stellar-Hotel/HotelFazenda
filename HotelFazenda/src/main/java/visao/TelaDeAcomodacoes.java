@@ -39,7 +39,7 @@ public class TelaDeAcomodacoes extends JFrame {
 //			public void run() {
 //				try {
 //
-//					TelaDeAcomodacoes frame = new TelaDeAcomodacoes();
+//					TelaDeAcomodacoes frame = new TelaDeAcomodacoes(null);
 //					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
 //					frame.setVisible(true);
 //				} catch (Exception e) {

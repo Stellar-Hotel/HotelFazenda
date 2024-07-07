@@ -84,10 +84,12 @@ public class UsuariosDAO implements IUsuariosDAO {
 				int Id = rs.getInt("IdUsuario");
 				String Senha = rs.getString("Senha");
 				String Login = rs.getString("Login");
+				Boolean tipo=rs.getBoolean("Tipo");
 
 				Usu.setSenha(Senha);
 				Usu.setLogin(Login);
 				Usu.setIdUsuario(Id);
+				Usu.setTipo(tipo);
 				
 				Usuarios.add(Usu);
 				
@@ -105,7 +107,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	public boolean atualizarUsuarios(Usuarios end) {
 		// TODO Auto-generated method stub
 
-		String SQL = "UPDATE Usuarios SET NivelDeAcesso = ?, Senha = ?, Login = ? Where IdUsuarios = ?";
+		String SQL = "UPDATE Usuarios SET Tipo = ?, Senha = ?, Login = ? Where IdUsuario = ?";
 
 		Conexao con = Conexao.getConexao();// instanciando
 		Connection conBD = con.Conectar();// cria ponte de conexao
@@ -115,6 +117,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 
+			ps.setBoolean(1, end.getTipo());
 			ps.setString(2, end.getSenha());
 			ps.setString(3, end.getLogin());
 			ps.setInt(4, end.getIdUsuario());
