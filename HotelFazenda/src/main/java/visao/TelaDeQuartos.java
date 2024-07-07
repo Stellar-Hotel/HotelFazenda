@@ -98,7 +98,7 @@ public class TelaDeQuartos extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -180,10 +180,23 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_15.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_15, "cell 0 6");
+		
+		JLabel lblNewLabel_2 = new JLabel("Conta");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Conta telaConta=new Conta(Func);
+				telaConta.setVisible(true);
+				dispose();
+			}
+		});
+		lblNewLabel_2.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/conta.png")));
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblNewLabel_2, "cell 0 7");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 9,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
@@ -196,7 +209,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 		
 
-		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
+		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 

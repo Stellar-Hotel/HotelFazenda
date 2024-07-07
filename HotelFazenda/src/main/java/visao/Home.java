@@ -152,7 +152,7 @@ public class Home extends JFrame {
 				dispose();
 			}
 		});
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\conta.png"));
+		lblNewLabel_2.setIcon(new ImageIcon(Home.class.getResource("/visao/conta.png")));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_2, "cell 0 7");
 
@@ -170,7 +170,7 @@ public class Home extends JFrame {
 		panel.add(lblNome, "cell 1 1,aligny bottom");
 		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 
-		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
+		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 

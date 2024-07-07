@@ -163,7 +163,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		BarraLateral.setBorder(null);
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][251.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -244,10 +244,23 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblFuncionrios.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/funcionarios.png")));
 		lblFuncionrios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionrios, "cell 0 6");
+		
+		JLabel lblConta = new JLabel("Conta");
+		lblConta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Conta telaConta=new Conta(Func);
+				telaConta.setVisible(true);
+				dispose();
+			}
+		});
+		lblConta.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/conta.png")));
+		lblConta.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblConta, "cell 0 7");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 9,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
