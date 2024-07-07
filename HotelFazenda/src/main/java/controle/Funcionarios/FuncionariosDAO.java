@@ -42,7 +42,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public int InserirFuncionario(Funcionarios Func) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario,IdUsuarioFuncionario,CPF,NivelDeAcesso,SetorFunc,PronomeFunc,EmailFunc,Telefone) VALUES (?,?,?, ?, ?, ?,?,?,?,?,?)";
+		String SQL = "INSERT INTO Funcionarios (Nome, Sobrenome, Funcao, Salario,IdUsuarioFuncionario,CPF,NivelDeAcesso,SetorFunc,PronomesFunc,EmailFunc,Telefone) VALUES (?,?,?, ?, ?, ?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -114,7 +114,7 @@ public class FuncionariosDAO implements IFuncionariosDAO
 				int nivel=rs.getInt("NivelDeAcesso");
 				int IdFunc=rs.getInt("IdFuncionario");
 				String Setor=rs.getString("SetorFunc");
-				String PronomeFunc=rs.getString("PronomeFunc");
+				String PronomeFunc=rs.getString("PronomesFunc");
 				String EmailFunc=rs.getString("EmailFunc");
 				String Telefone=rs.getString("Telefone");
 				
