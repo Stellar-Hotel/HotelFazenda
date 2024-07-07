@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import controle.Conexao;
 import controle.Funcionarios.FuncionariosDAO;
+import controle.Usuarios.UsuariosDAO;
 import modelo.Funcionarios;
 import modelo.Usuarios;
 
@@ -152,8 +153,9 @@ public class FuncionariosDAO implements IFuncionariosDAO
 	@Override
 	public boolean AtualizarFuncionarios(Funcionarios Func) {
 		// TODO Auto-generated method stub
+		UsuariosDAO dao=UsuariosDAO.getInstancia();
 		
-		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=?,PronomeFunc=?,EmailFunc=?,SetorFunc=?,Telefone=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=?,PronomesFunc=?,EmailFunc=?,SetorFunc=?,Telefone=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -186,7 +188,6 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		} finally {
 			con.FecharConexao();
 		}
-		
 		
 		return (retorno == 0 ? false : true);
 	}
