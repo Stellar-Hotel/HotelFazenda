@@ -152,11 +152,11 @@ public class Molde extends JFrame {
 		lblNewLabel_4.setIcon(new ImageIcon(Molde.class.getResource("/visao/Avatar.jpg")));
 		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
 
-		JLabel lblNewLabel_2 = new JLabel("Erik Roncaglio");
+		JLabel lblNewLabel_2 = new JLabel(Func.getNome()+" "+Func.getSobrenome());
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNewLabel_2, "cell 1 1,aligny bottom");
 
-		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
+		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 

@@ -59,7 +59,7 @@ public class TelaDeHospedes extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px,baseline][251.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px,baseline][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -137,10 +137,23 @@ public class TelaDeHospedes extends JFrame {
 		});
 		lblFuncionarios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionarios, "cell 0 6");
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Conta");
+		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Conta telaConta=new Conta(Func);
+				telaConta.setVisible(true);
+				dispose();
+			}
+		});
+		lblNewLabel_2_1.setIcon(new ImageIcon(TelaDeHospedes.class.getResource("/visao/conta.png")));
+		lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblNewLabel_2_1, "cell 0 7");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 9,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
@@ -155,7 +168,7 @@ public class TelaDeHospedes extends JFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
-		JLabel lblNewLabel_5 = new JLabel("Sair");
+		JLabel lblNewLabel_5 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
