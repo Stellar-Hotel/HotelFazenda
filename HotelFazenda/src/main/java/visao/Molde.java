@@ -59,7 +59,7 @@ public class Molde extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][][251.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211px,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -129,10 +129,23 @@ public class Molde extends JFrame {
 		lblFuncionarios.setIcon(new ImageIcon(Molde.class.getResource("/visao/funcionarios.png")));
 		lblFuncionarios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblFuncionarios, "cell 0 6");
+		
+		JLabel lblConta = new JLabel("Conta");
+		lblConta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Conta telaConta=new Conta(Func);
+				telaConta.setVisible(true);
+				dispose();
+			}
+		});
+		lblConta.setIcon(new ImageIcon(Molde.class.getResource("/visao/conta.png")));
+		lblConta.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		BarraLateral.add(lblConta, "cell 0 7,alignx left");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 8,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 9,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
@@ -148,6 +161,14 @@ public class Molde extends JFrame {
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
 		JLabel lblNewLabel_5 = new JLabel("Sair");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login TelaLogin=new Login();
+				TelaLogin.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -58,6 +59,12 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	private JTextField textNivel;
 	private DefaultTableModel model1;
 	private ArrayList<Funcionarios> Lista=new ArrayList<Funcionarios>();
+	private JTextField txtEmail;
+	private JTextField txtPronome;
+	private JTextField txtTelefone;
+	private JTextField txtSetor;
+	private JTextField txtLogin;
+	private JPasswordField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -97,7 +104,22 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		setBackground(new Color(250, 250, 250));
 		
 		
+		MaskFormatter mNum=null,mPron=null;
 		
+		try {
+			mPron=new MaskFormatter("UUU/UUUU");
+			mPron.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			mNum=new MaskFormatter("+## ## #####-####");
+			mNum.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		MaskFormatter  MCpf= null;
 		MaskFormatter Num = null;
@@ -237,7 +259,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		panel.add(lblNome, "cell 1 1,aligny bottom");
 		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
 
-		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
+		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
@@ -305,17 +327,52 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[30px][30px,grow][30px][30px][30px][30px][30px][grow][][grow][30px][30px][30px][30px][grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[30px,grow][30px,grow][30px][30px,grow][30px,grow][30px][30px,grow][grow][][grow][30px][30px][30px][30px][grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_1, "cell 0 0 5 1,alignx left,aligny bottom");
 		
+		txtLogin = new JTextField();
+		txtLogin.setText("Login");
+		txtLogin.setColumns(10);
+		txtLogin.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtLogin, "cell 0 1 4 1,growx");
+		
+		txtSenha = new JPasswordField();
+		txtSenha.setToolTipText("");
+		txtSenha.setText("senha");
+		txtSenha.setEchoChar('*');
+		txtSenha.setColumns(10);
+		txtSenha.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtSenha, "cell 4 1 4 1,growx");
+		
+		ImageIcon Ver=new ImageIcon(Conta.class.getResource("/visao/Ver.png"));
+		ImageIcon NaoVer=new ImageIcon(Conta.class.getResource("/visao/NaoVer.png"));
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(Ver);
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(lblNewLabel_2.getIcon()==Ver)
+				{
+					lblNewLabel_2.setIcon(NaoVer);
+					txtSenha.setEchoChar((char) 0);
+				}else if(lblNewLabel_2.getIcon()==NaoVer)
+				{
+					lblNewLabel_2.setIcon(Ver);
+					txtSenha.setEchoChar('*');
+				}
+			}
+		});
+		Principal.add(lblNewLabel_2, "cell 8 1");
+		
 		textNome = new JTextField();
 		textNome.setBorder(new RoundedBorder(Color.black, 10));
 		textNome.setText("nome");
 		textNome.setToolTipText("");
-		Principal.add(textNome, "cell 0 1 9 1,growx");
+		Principal.add(textNome, "cell 0 2 9 1,growx");
 		textNome.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -329,13 +386,13 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textSobrenome = new JTextField();
 		textSobrenome.setBorder(new RoundedBorder(Color.black, 10));
 		textSobrenome.setText("sobrenome");
-		Principal.add(textSobrenome, "cell 0 2 9 1,growx");
+		Principal.add(textSobrenome, "cell 0 3 9 1,growx");
 		textSobrenome.setColumns(10);
 		
 		textFuncao = new JTextField();
 		textFuncao.setBorder(new RoundedBorder(Color.black, 10));
 		textFuncao.setText("funcao");
-		Principal.add(textFuncao, "cell 0 3 6 1,growx");
+		Principal.add(textFuncao, "cell 0 4 6 1,growx");
 		textFuncao.setColumns(10);
 		
 		
@@ -347,7 +404,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 		textNivel.setBorder(new RoundedBorder(Color.black, 10));
 		textNivel.setText("nivel");
-		Principal.add(textNivel, "cell 6 3 3 1,growx");
+		Principal.add(textNivel, "cell 6 4 3 1,growx");
 		textNivel.setColumns(10);
 		
 		
@@ -357,7 +414,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textCPF = new JFormattedTextField(MCpf);
 		textCPF.setBorder(new RoundedBorder(Color.black, 10));
 		
-		Principal.add(textCPF, "cell 0 4 6 1,growx");
+		Principal.add(textCPF, "cell 0 5 6 1,growx");
 		textCPF.setColumns(10);
 		
 		textSalario = new JFormattedTextField(Num);
@@ -365,7 +422,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 		textSalario.setBorder(new RoundedBorder(Color.black, 10));
 		textSalario.setText("salario");
-		Principal.add(textSalario, "cell 6 4 3 1,growx");
+		Principal.add(textSalario, "cell 6 5 3 1,growx");
 		textSalario.setColumns(10);
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -380,6 +437,12 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		                String cpf = Lista.get(i).getCPF();
 		                String salario = String.valueOf(Lista.get(i).getSalario());
 		                String nivel=String.valueOf(Lista.get(i).getNivelDeAcesso());
+		                String email=Lista.get(i).getEmailFunc();
+		                String pronome=Lista.get(i).getPronomeFunc();
+		                String telefone=Lista.get(i).getTelefone();
+		                String setor=Lista.get(i).getSetor();
+		                String login=Lista.get(i).getUsuario().getLogin();
+		                String senha=Lista.get(i).getUsuario().getSenha();
 
 		                // Preenche os textfields com os dados recuperados
 		                textNome.setText(nome);
@@ -388,8 +451,12 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		                textCPF.setText(cpf);
 		                textSalario.setText(salario);
 		                textNivel.setText(nivel);
-
-		                
+		                txtEmail.setText(email);
+		                txtPronome.setText(pronome);
+		                txtTelefone.setText(telefone);
+		                txtSetor.setText(setor);
+		                txtLogin.setText(login);
+		                txtSenha.setText(senha);
 		            }
 		        }
 		    }
@@ -422,14 +489,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				FuncionariosDAO funcionariosDAO = FuncionariosDAO.getConexao();
 			    UsuariosDAO usuariosDAO = UsuariosDAO.getInstancia();
 
-			    // Criação e insere oo usuário
-			    Usuarios usuario= new Usuarios();
-			    usuario.setLogin("a");
-			    usuario.setSenha("b");
-			    usuario.setTipo(true);
-
-			    // Insere o usuário no banco
-				usuario.setIdUsuario(usuariosDAO.inserirUsuario(usuario));
+			    
 
 			    // Criação do funcionário
 				if((textCPF.getText().isEmpty())||(textFuncao.getText().isEmpty())||(textNivel.getText().isEmpty())||(textNome.getText().isEmpty())
@@ -448,7 +508,11 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 					
 					textSalario.setBorder(new RoundedBorder(Color.RED, 10));
 				}else {
-					
+					Usuarios user=new Usuarios();
+					user.setLogin(txtLogin.getText());
+					user.setSenha(txtSenha.getText());
+					user.setTipo(true);
+					user.setIdUsuario(usuariosDAO.inserirUsuario(user));
 					
 					Funcionarios funcionario = new Funcionarios();
 				    funcionario.setCPF(textCPF.getText());
@@ -457,7 +521,14 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				    funcionario.setNome(textNome.getText());
 				    funcionario.setSobrenome(textSobrenome.getText());
 				    funcionario.setSalario(Float.valueOf(textSalario.getText()));
-				    funcionario.setUsuario(usuario); // Associa o usuário ao funcionário
+				    funcionario.setPronomeFunc(txtPronome.getText());
+				    funcionario.setEmailFunc(txtEmail.getText());
+				    funcionario.setTelefone(txtTelefone.getText());		
+				    funcionario.setSetor(txtSetor.getText());
+				    
+				    
+				    funcionario.setUsuario(user); // Associa o usuário ao funcionário
+				    
 				 // Insere o funcionário
 					int i=funcionariosDAO.InserirFuncionario(funcionario);
 					
@@ -469,9 +540,33 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				}
 			}
 		});
+		
+		txtEmail = new JTextField();
+		txtEmail.setText("email");
+		txtEmail.setColumns(10);
+		txtEmail.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtEmail, "cell 0 6 6 1,growx");
+		
+		txtPronome = new JFormattedTextField(mPron);
+		txtPronome.setText("");
+		txtPronome.setColumns(10);
+		txtPronome.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtPronome, "cell 6 6 3 1,growx");
+		
+		txtTelefone = new JFormattedTextField(mNum);
+		txtTelefone.setText("telefone");
+		txtTelefone.setColumns(10);
+		txtTelefone.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtTelefone, "cell 0 7 5 1,growx");
+		
+		txtSetor = new JTextField();
+		txtSetor.setText("setor");
+		txtSetor.setColumns(10);
+		txtSetor.setBorder(new RoundedBorder(Color.black, 10));
+		Principal.add(txtSetor, "cell 5 7 4 1,growx");
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 2 6 3 1,alignx right");
+		Principal.add(btnCadastrarNovo, "cell 2 9 3 1,alignx right");
 		
 		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
 		btnAtualizarSelecionado.addActionListener(new ActionListener() {
@@ -520,10 +615,10 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnAtualizarSelecionado, "cell 5 6 4 1,alignx left");
+		Principal.add(btnAtualizarSelecionado, "cell 5 9 4 1,alignx left");
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 3 7 4 1,alignx right");
+		Principal.add(btnDeletarSelecionado, "cell 3 10 4 1,alignx right");
 		
 		
 		
