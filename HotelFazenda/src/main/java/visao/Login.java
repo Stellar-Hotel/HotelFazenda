@@ -11,8 +11,12 @@ import javax.swing.border.EmptyBorder;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Funcionarios.FuncionariosDAO;
+import controle.Hospedagens.HospedagensDAO;
+import controle.Quartos.QuartosDAO;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Funcionarios;
+import modelo.Hospedagens;
+import modelo.Quartos;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -31,6 +35,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -48,8 +53,10 @@ public class Login extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
 				try {
 					Login frame = new Login();
@@ -60,6 +67,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
+
 	}
 
 	/**
@@ -79,7 +87,9 @@ public class Login extends JFrame {
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, "cell 0 0,grow");
-		panel.setLayout(new MigLayout("", "[:84px:84px,grow][84px][210.00px,grow][:125px:125px][][119px][143px,grow][115px]", "[:1.00px:14px][:50px:50px][:125px:125px,grow][14.00px][38.00px][:30px:30px,grow][:70px:70px,grow][33.00px][:30px:30px,grow][93.00,grow][:45px:45px][:45px:45px][grow]"));
+		panel.setLayout(new MigLayout("",
+				"[:84px:84px,grow][84px][210.00px,grow][:125px:125px][][119px][143px,grow][115px]",
+				"[:1.00px:14px][:50px:50px][:125px:125px,grow][14.00px][38.00px][:30px:30px,grow][:70px:70px,grow][33.00px][:30px:30px,grow][93.00,grow][:45px:45px][:45px:45px][grow]"));
 
 		JLabel lblNewLabel = new JLabel("Bem vindo ao ");
 		panel.add(lblNewLabel, "flowx,cell 0 0,growx,aligny top");
@@ -95,10 +105,10 @@ public class Login extends JFrame {
 		lblNewLabel_4_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeCadastro tela=new TelaDeCadastro();
+				TelaDeCadastro tela = new TelaDeCadastro();
 				tela.setVisible(true);
 				dispose();
-				}
+			}
 		});
 		lblNewLabel_4_1.setForeground(new Color(117, 187, 68));
 		panel.add(lblNewLabel_4_1, "cell 7 1,alignx left,aligny top");
@@ -107,17 +117,17 @@ public class Login extends JFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 
-        txtLogin = new JTextField();
-        txtLogin.setBorder(new RoundedBorder(Color.black, 10)); // Altere a cor e o raio conforme necessário
-        panel.add(txtLogin, "cell 0 5 8 1,grow");
-        txtLogin.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBorder(new RoundedBorder(Color.black, 10)); // Altere a cor e o raio conforme necessário
+		panel.add(txtLogin, "cell 0 5 8 1,grow");
+		txtLogin.setColumns(10);
 
 		JLabel lblNewLabel_3_1 = new JLabel("Digite sua senha");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 
 		txtSenha = new JPasswordField(20);
-		txtSenha.setBorder(new RoundedBorder(Color.black, 10 ));
+		txtSenha.setBorder(new RoundedBorder(Color.black, 10));
 		txtSenha.setToolTipText("Digite sua senha");
 		txtSenha.setColumns(10);
 		panel.add(txtSenha, "cell 0 8 8 1,grow");
@@ -129,36 +139,36 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Esqueceu sua senha?");
 		lblNewLabel_2.setForeground(new Color(0, 128, 255));
 		panel.add(lblNewLabel_2, "cell 7 9,alignx right,aligny top");
-		
-				JButton btnNewButton = new JButton("Entrar");
-				btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
 
-						String login = txtLogin.getText();
-						String senha = txtSenha.getText();
+		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-						UsuariosDAO dao = UsuariosDAO.getInstancia();
+				String login = txtLogin.getText();
+				String senha = txtSenha.getText();
 
-						Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
+				UsuariosDAO dao = UsuariosDAO.getInstancia();
 
-						if (usuarios != null) {
-							JOptionPane.showMessageDialog(null, "Usuário encontrado!");
-							FuncionariosDAO DAOF=FuncionariosDAO.getConexao();
-							Funcionarios Func=DAOF.BuscarFuncionarioPorIdUsuario(usuarios);							
-							Home c = new Home(Func);
-							c.setVisible(true);
-							dispose();
-						} else {
-							JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
-                    txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
-                    txtSenha.setBorder(new RoundedBorder(Color.RED,10));
-						}
+				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
 
-					}
-				});
-				btnNewButton.setBackground(new Color(117, 187, 68));
-				btnNewButton.setForeground(new Color(0, 0, 0));
-				panel.add(btnNewButton, "cell 3 10,growx,aligny center");
+				if (usuarios != null) {
+					JOptionPane.showMessageDialog(null, "Usuário encontrado!");
+					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
+					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
+					Home c = new Home(Func);
+					c.setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
+					txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
+					txtSenha.setBorder(new RoundedBorder(Color.RED, 10));
+				}
+
+			}
+		});
+		btnNewButton.setBackground(new Color(117, 187, 68));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		panel.add(btnNewButton, "cell 3 10,growx,aligny center");
 	}
 }

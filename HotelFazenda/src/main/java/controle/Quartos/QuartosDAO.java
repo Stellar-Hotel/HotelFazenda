@@ -36,7 +36,7 @@ public class QuartosDAO implements IQuartosDAO {
 	public int inserirQuarto(Quartos end) {
 		// TODO Auto-generated method stub
 
-		String SQL = "INSERT INTO Quartos (idQuarto ,MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Quartos (idQuarto ,MaxPessoas, Manutencao, TipoCama, Frigobar, ArCondicionado, Banheira, TV, PrecoDiaria, Situacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -54,7 +54,7 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(7, end.getBanheira());
 			ps.setBoolean(8, end.getTV());
 			ps.setFloat(9, end.getPrecoDiaria());
-
+			ps.setInt(10, end.getSituacao());
 			int result = ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível inserir o quarto!");
@@ -104,6 +104,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quarto.setSituacao(rs.getInt("Situacao"));
 
 				Quartos.add(Quarto);
 			}
@@ -121,7 +122,7 @@ public class QuartosDAO implements IQuartosDAO {
 	public boolean atualizarQuarto(Quartos end) {
 
 		// Conexâo SQl a ser executada
-		String SQL = "UPDATE Quartos SET MaxPessoas = ?, TipoCama = ?, Manutencao = ?, Frigobar = ?, ArCondicionado = ?, Banheira = ?, TV = ?, PrecoDiaria = ? WHERE IdQuartos = ?";
+		String SQL = "UPDATE Quartos SET MaxPessoas = ?, TipoCama = ?, Manutencao = ?, Frigobar = ?, ArCondicionado = ?, Banheira = ?, TV = ?, PrecoDiaria = ?, Situacao = ?, WHERE IdQuartos = ?";
 
 		// abre a conexão e cria a "parte de conexão" com MYSQL
 		Conexao con = Conexao.getConexao();
@@ -141,6 +142,7 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setBoolean(7, end.getTV());
 			ps.setFloat(8, end.getPrecoDiaria());
 			ps.setInt(9, end.getIdQuarto());
+			ps.setInt(10, end.getSituacao());
 
 			retorno = ps.executeUpdate();
 
@@ -190,7 +192,7 @@ public class QuartosDAO implements IQuartosDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1,x);
+			ps.setInt(1, x);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -206,7 +208,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setBanheira(rs.getBoolean("Banheira"));
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
-
+				Quarto.setSituacao(rs.getInt("Situacao"));
 				Quartos.add(Quarto);
 			}
 
@@ -220,4 +222,3 @@ public class QuartosDAO implements IQuartosDAO {
 		return Quartos;
 	}
 }
-

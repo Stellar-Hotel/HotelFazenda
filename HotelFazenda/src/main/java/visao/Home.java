@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.Hospedagens.HospedagensDAO;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
@@ -20,13 +21,14 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 public class Home extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
-
+	HospedagensDAO Hdao = HospedagensDAO.getInstancia();
 	/**
 	 * Launch the application.
 	 */
@@ -49,6 +51,9 @@ public class Home extends JFrame {
 	 * Create the frame.
 	 */
 	public Home(Funcionarios Func) {
+
+		Hdao.AtualizarSituacao();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -61,7 +66,8 @@ public class Home extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
+				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -88,11 +94,11 @@ public class Home extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				TelaAtividades telaAtiv=new TelaAtividades(Func);
+
+				TelaAtividades telaAtiv = new TelaAtividades(Func);
 				telaAtiv.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -103,11 +109,11 @@ public class Home extends JFrame {
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
+
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -118,25 +124,25 @@ public class Home extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos telaServ=new TelaServicos(Func);
+				TelaServicos telaServ = new TelaServicos(Func);
 				telaServ.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblServicos.setIcon(new ImageIcon(Home.class.getResource("/visao/Servicos.jpg")));
 		BarraLateral.add(lblServicos, "cell 0 4,grow");
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Funcionários");
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				AdminFuncionarios telaAdm=new AdminFuncionarios(Func);
+
+				AdminFuncionarios telaAdm = new AdminFuncionarios(Func);
 				telaAdm.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/visao/funcionarios.png")));
@@ -168,7 +174,7 @@ public class Home extends JFrame {
 		JLabel lblNome = new JLabel("Erik Roncaglio");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNome, "cell 1 1,aligny bottom");
-		lblNome.setText(Func.getNome()+" "+Func.getSobrenome());
+		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
 
 		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -178,10 +184,9 @@ public class Home extends JFrame {
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Login novoLogin=new Login();
-				String op=JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
-				if(op.equals("S")||op.equals("s"))
-				{
+				Login novoLogin = new Login();
+				String op = JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
+				if (op.equals("S") || op.equals("s")) {
 					novoLogin.setVisible(true);
 					dispose();
 				}
@@ -235,32 +240,20 @@ public class Home extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[173.00,grow]", "[207.00][322.00,grow,fill][322.00,grow,fill]"));
-		
+		Principal.setLayout(new MigLayout("", "[20,grow][500,grow][50][150,grow][20]",
+				"[20][40][208.00,grow,fill][96.00,grow,fill][59.00][20]"));
+
+		JLabel lblNewLabel_7 = new JLabel("Bem vindo(a), NomeUser!");
+		Principal.add(lblNewLabel_7, "cell 1 1");
+
+		JLabel lblNewLabel_2 = new JLabel("Atividades proximas");
+		Principal.add(lblNewLabel_2, "cell 3 1,alignx center,aligny center");
+
+		JScrollPane scrollPane = new JScrollPane();
+		Principal.add(scrollPane, "cell 1 2 1 3,grow");
+
 		JPanel panel_5 = new JPanel();
-		Principal.add(panel_5, "cell 0 1 1 2,grow");
-		panel_5.setLayout(new MigLayout("", "[236.00px][321.00px,grow][10px,grow][]", "[307.00px][grow]"));
-		
-		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6, "flowx,cell 0 0,alignx left,aligny top");
-		
-		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7, "cell 1 0,alignx left,aligny top");
-		
-		JPanel panel_8 = new JPanel();
-		panel_5.add(panel_8, "cell 2 0,alignx left,aligny top");
-		
-		JScrollBar scrollBar = new JScrollBar();
-		panel_5.add(scrollBar, "cell 3 0");
-		
-		JPanel panel_9 = new JPanel();
-		panel_5.add(panel_9, "cell 0 1");
-		
-		JPanel panel_10 = new JPanel();
-		panel_5.add(panel_10, "cell 1 1,grow");
-		
-		JPanel panel_11 = new JPanel();
-		panel_5.add(panel_11, "cell 2 1,grow");
+		Principal.add(panel_5, "cell 3 2 1 2,grow");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
