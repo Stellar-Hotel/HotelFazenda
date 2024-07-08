@@ -48,13 +48,13 @@ public class HospedeDAO implements IHospedeDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, Hd.getNome());
-			ps.setString(2, Hd.getSobrenome());
-			ps.setDate(3, Hd.getDataNasc());
-			ps.setString(4, Hd.getNacionalidade());
-			ps.setString(5, Hd.getEmail());
-			ps.setString(6, Hd.getPronome());
-			ps.setString(7, Hd.getDocumento());
+			ps.setString(1, Hd.getNome()); // nome						
+			ps.setString(2, Hd.getSobrenome());//sobrenome					
+			ps.setDate(3, Hd.getDataNasc());//data	
+			ps.setString(4, Hd.getDocumento());//documento	
+			ps.setString(5, Hd.getNacionalidade());//nacionalidade
+			ps.setString(6, Hd.getPronome());//pronome
+			ps.setString(7, Hd.getEmail());//email
 
 			int rs = ps.executeUpdate();
 			if (rs == 0) {
@@ -113,13 +113,14 @@ public class HospedeDAO implements IHospedeDAO {
 				int Id=rs.getInt("IdHospede");
 
 
-				Hd.setNome(Sobrenome);
+
 				Hd.setNome(Nome);
+				Hd.setSobrenome(Sobrenome);
 				Hd.setDataNasc(DataNasc);
 				Hd.setDocumento(Documento);
-				Hd.setEmail(Email);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
+				Hd.setEmail(Email);
 				Hd.setIdHospede(Id);
 				//Atribui o objeto estranjeiro no que vai ser colocado na lista
 				
@@ -150,7 +151,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNasc=  ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
