@@ -6,8 +6,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.Atividades.AtividadesDAO;
+import controle.AtividadesHospedes.AtividadesHospedesDAO;
+import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospedagens.HospedagensDAO;
+import controle.Hospede.HospedeDAO;
+import controle.Quartos.QuartosDAO;
+import modelo.Atividades;
+import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
+import modelo.Hospedagens;
+import modelo.Hospedes;
+import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -21,6 +31,10 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 import javax.swing.JScrollPane;
 
 public class Home extends JFrame {
@@ -28,7 +42,15 @@ public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
-	HospedagensDAO Hdao = HospedagensDAO.getInstancia();
+	HospedagensDAO HgDao = HospedagensDAO.getInstancia();
+	HospedeDAO HDao = HospedeDAO.getInstancia();
+	AtividadesDAO ADao = AtividadesDAO.getInstancia();
+	QuartosDAO QDao = QuartosDAO.getConexao();
+	FuncionariosDAO FDao = FuncionariosDAO.getConexao();
+	
+	LocalDate hoje = LocalDate.now();
+	JPanel mostrarAtividades = new JPanel();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,9 +72,55 @@ public class Home extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Home(Funcionarios Func) {
 
-		Hdao.AtualizarSituacao();
+	public void loadAtividades() {
+		ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
+		ArrayList<Atividades> atividadesProximas = new ArrayList<>();
+
+		LocalDate limite = hoje.plusDays(7);
+
+		for (Atividades atividade : listaAtividades) {
+			LocalDate dataAtividade = atividade.getData().toLocalDate();
+
+			if (!dataAtividade.isBefore(hoje) && !dataAtividade.isAfter(limite)) {
+				atividadesProximas.add(atividade);
+			}
+		}
+
+		atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
+
+		mostrarAtividades.removeAll();
+
+		for (Atividades atividade : atividadesProximas) {
+			JLabel labelAtividade = new JLabel(
+					atividade.getNomeAtividade() + " - " + atividade.getData() + " - " + atividade.getHorario());
+			labelAtividade.setFont(new Font("Arial", Font.BOLD, 14));
+			mostrarAtividades.add(labelAtividade);
+		}
+
+		mostrarAtividades.revalidate();
+		mostrarAtividades.repaint();
+	}
+
+	public void loadInfos() {
+		ArrayList<Hospedagens> listaHospedagens = HgDao.ListarHospedagens();
+		ArrayList<Hospedes> listaHospedes = HDao.ListarHospedes();
+		ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
+		ArrayList<Quartos> listaQuartos = QDao.ListarQuartos();
+		ArrayList<Funcionarios> listaFuncionarios = FDao.ListarFuncionarios();
+
+		
+		System.out.println(listaAtividades.size());
+		System.out.println(listaHospedagens.size());
+		System.out.println(listaHospedes.size());
+		System.out.println(listaQuartos.size());
+		System.out.println(listaFuncionarios.size());
+	}
+	
+	public Home(Funcionarios Func) {
+		loadAtividades();
+loadInfos();
+		HgDao.AtualizarSituacao();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -79,11 +147,11 @@ public class Home extends JFrame {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
 				Chama.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -148,12 +216,12 @@ public class Home extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_1, "cell 0 6");
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Conta");
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta=new Conta(Func);
+				Conta telaConta = new Conta(Func);
 				telaConta.setVisible(true);
 				dispose();
 			}
@@ -246,14 +314,13 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Bem vindo(a), NomeUser!");
 		Principal.add(lblNewLabel_7, "cell 1 1");
 
-		JLabel lblNewLabel_2 = new JLabel("Atividades proximas");
-		Principal.add(lblNewLabel_2, "cell 3 1,alignx center,aligny center");
+		JLabel lblNewLabel_21 = new JLabel("Atividades proximas");
+		Principal.add(lblNewLabel_21, "cell 3 1,alignx center,aligny center");
 
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 1 2 1 3,grow");
 
-		JPanel panel_5 = new JPanel();
-		Principal.add(panel_5, "cell 3 2 1 2,grow");
+		Principal.add(mostrarAtividades, "cell 3 2 1 2,grow");
 
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
