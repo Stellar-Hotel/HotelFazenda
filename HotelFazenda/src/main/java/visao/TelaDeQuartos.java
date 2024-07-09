@@ -9,8 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
+import controle.Atividades.AtividadesDAO;
+import controle.Hospedagens.HospedagensDAO;
 import controle.Quartos.QuartosDAO;
+import modelo.Atividades;
 import modelo.Funcionarios;
+import modelo.Hospedagens;
+import modelo.Hospedes;
 import modelo.Quartos;
 import modelo.Servicos;
 import net.miginfocom.swing.MigLayout;
@@ -32,11 +37,15 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TelaDeQuartos extends JFrame {
 
@@ -87,10 +96,14 @@ public class TelaDeQuartos extends JFrame {
 
 		table.setModel(model1);
 	}
+	
+	
 	/**
 	 * Create the frame.
 	 */
 	public TelaDeQuartos(int x, Funcionarios Func) {
+		
+		Quartos quartos = new Quartos();
 		
 		ListaQuartos = new ArrayList<Quartos>();
 		
@@ -381,6 +394,9 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_18.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\cartao.png"));
 		panel_15.add(lblNewLabel_18);
 		
+		JLabel label = new JLabel("New label");
+		panel_6.add(label, "cell 0 11");
+		
 		JPanel panel_7 = new JPanel();
 		panel_5.add(panel_7, "cell 0 1,alignx left,growy");
 		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]"));
@@ -421,8 +437,40 @@ public class TelaDeQuartos extends JFrame {
 		panel_9.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int pos = table.getSelectedRow();
+				if((textCPF.getText().isEmpty())||(textChecki.getText().isEmpty())||(textChecko.getText().isEmpty())||(pos < 0)) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+				}else {
+					
+				}
+				 String Cpf = textCPF.getText();
+				 
+				 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				 Date data = null;
+				 
+				 try {
+                     data = new Date ( dateFormat.parse(textChecki.getText()).getTime());
+                 } catch (ParseException e1) {
+                     e1.printStackTrace();
+                 }
+				 try {
+                     data = new Date ( dateFormat.parse(textChecko.getText()).getTime());
+                 } catch (ParseException e1) {
+                     e1.printStackTrace();
+                 }
+				 
+				 Hospedagens ativ = new Hospedagens();
+				 
+				 HospedagensDAO DAO = HospedagensDAO.getInstancia();
+					int id = DAO.InserirHospedagem(ativ);
+					
+					if(id>0) {
+						JOptionPane.showMessageDialog(null, "Cadastro Efetuado com sucesso");
+						atualizarJTable(id);
+					}
+				
 			}
-		});
+		}); 	
 		
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBorder(new RoundedBorder(Color.black, 8));
@@ -479,76 +527,105 @@ public class TelaDeQuartos extends JFrame {
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/twitter.jpg")));
 		
-		lblNewLabel_16.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int pos= table.getSelectedRow();
-				if(pos >=0) {
-					Quartos quartoSelecionado = ListaQuartos.get(pos);
-					double total = 0.00, subTotal = 0.00, desconto = 0.00, taxa = 0.00;
-	
-					for (int i = 0; i < ListaQuartos.size(); i++) {
-						Quartos s = ListaQuartos.get(i);
-						subTotal += s.getPrecoDiaria();
-					}
-	
-					desconto = subTotal * 0.12;
-	
-					total = subTotal - desconto;
-	
-					lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
-					lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
-					lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
-				}
-				
-			}
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent event) {
+		        if (!event.getValueIsAdjusting()) {
+		            int i = table.getSelectedRow();
+		            if (i != -1) { // Verifica se alguma linha foi selecionada
+		                // Recupera os dados da linha selecionada
+		            	int IdQuarto = ListaQuartos.get(i).getIdQuarto();
+		                int MaxPessoas = ListaQuartos.get(i).getMaxPessoas();
+		                String TipoCama = ListaQuartos.get(i).getTipoCama();
+		                String Manutencao = ListaQuartos.get(i).getManutencao();
+		                String TipoQuarto = ListaQuartos.get(i).getTipoQuarto();
+		                Boolean Frigobar=ListaQuartos.get(i).getFrigobar();
+		                Boolean ArCondicionado = ListaQuartos.get(i).getArCondicionado();
+		                Boolean Banheira = ListaQuartos.get(i).getBanheira();
+		                Boolean TV = ListaQuartos.get(i).getTV();
+		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();       
+
+		                // Preenche os textfields com os dados recuperados
+		                textCPF.setText(Cpf);
+		                textChecki.setText(salario);
+		                textChecko.setText(nivel);
+
+		                
+		            }
+		        }
+		    }
 		});
+		
+		lblNewLabel_16.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        int pos = table.getSelectedRow();
+		        if (pos >= 0) {
+		            double subTotal = 0.0;
+		            double desconto = 0.0;
+		            double total = 0.0;
+					
+		            for (int i = 0; i < ListaQuartos.size(); i++) {
+		                Quartos quarto = ListaQuartos.get(pos);
+		                subTotal = quarto.getPrecoDiaria();
+		            }
+
+		            desconto = subTotal * 0.08;
+		            total = subTotal - desconto;
+
+		            lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
+		            lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
+		            lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
+		        }
+		    }
+		});
+
+
 		lblNewLabel_17.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				
-				double total = 0.00, subTotal = 0.00, desconto = 0.00, taxa = 0.00;
+		        int pos = table.getSelectedRow();
+		        if (pos >= 0) {
+		            double subTotal = 0.0;
+		            double desconto = 0.0;
+		            double total = 0.0;
+					
+		            for (int i = 0; i < ListaQuartos.size(); i++) {
+		                Quartos quarto = ListaQuartos.get(pos);
+		                subTotal = quarto.getPrecoDiaria();
+		            }
 
-				for (int i = 0; i < ListaQuartos.size(); i++) {
-					Quartos s = ListaQuartos.get(i);
-					subTotal += s.getPrecoDiaria();
-				}
+		            desconto = subTotal * 0.05;
+		            total = subTotal - desconto;
 
-				desconto = subTotal * 0.12;
-
-				total = subTotal - desconto;
-
-				lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
-				lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
-				lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
-			}
+		            lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
+		            lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
+		            lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
+		        }
+		    }
 		});
 		lblNewLabel_18.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				lblNewLabel_18.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						
-						double total = 0.00, subTotal = 0.00, desconto = 0.00, taxa = 0.00;
+		        int pos = table.getSelectedRow();
+		        if (pos >= 0) {
+		            double subTotal = 0.0;
+		            double desconto = 0.0;
+		            double total = 0.0;
+					
+		            for (int i = 0; i < ListaQuartos.size(); i++) {
+		                Quartos quarto = ListaQuartos.get(pos);
+		                subTotal = quarto.getPrecoDiaria();
+		            }
 
-						for (int i = 0; i < ListaQuartos.size(); i++) {
-							Quartos s = ListaQuartos.get(i);
-							subTotal += s.getPrecoDiaria();
-						}
+		            desconto = subTotal * 0.03;
+		            total = subTotal - desconto;
 
-						desconto = subTotal * 0.12;
-
-						total = subTotal - desconto;
-
-						lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
-						lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
-						lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
-					}
+		            lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal)));
+		            lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto)));
+		            lbltotal.setText("R$ " + String.valueOf(formato.format(total)));
+		        }
+		    }
 				});
 	}
-});
-	}}
+	}
+
