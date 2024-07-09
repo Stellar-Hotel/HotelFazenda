@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
@@ -23,6 +25,10 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 
 public class TelaDeAcomodacoes extends JFrame {
@@ -178,12 +184,10 @@ public class TelaDeAcomodacoes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin=new Login();
-				String op=JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
-				if(op.equals("S")||op.equals("s"))
-				{
+				
 					novoLogin.setVisible(true);
 					dispose();
-				}
+				
 			}
 		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
@@ -368,6 +372,23 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
 
 		JLabel lblInstagram = new JLabel("");
+		lblInstagram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/instagram.png")));
 
