@@ -12,12 +12,18 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class TelaDeHospedes extends JFrame {
 
@@ -164,11 +170,19 @@ public class TelaDeHospedes extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNewLabel_2, "cell 1 1,aligny bottom");
 
-		JLabel lblNewLabel_3 = new JLabel("erikroncaglio@gmail.com");
+		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
-		JLabel lblNewLabel_5 = new JLabel(Func.getEmailFunc());
+		JLabel lblNewLabel_5 = new JLabel("Sair");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login novoLogin = new Login();
+				novoLogin.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
@@ -231,6 +245,23 @@ public class TelaDeHospedes extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
 
 		JLabel lblInstagram = new JLabel("");
+		lblInstagram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(TelaDeHospedes.class.getResource("/visao/instagram.png")));
 

@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
@@ -21,6 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import javax.swing.JScrollPane;
 
 public class Home extends JFrame {
@@ -66,8 +73,7 @@ public class Home extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
-				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][98.00,grow][]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -88,7 +94,7 @@ public class Home extends JFrame {
 		});
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(Home.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 5,grow");
+		BarraLateral.add(lblHospede, "cell 0 6,grow");
 
 		JLabel lblAtividades = new JLabel("Atividades");
 		lblAtividades.addMouseListener(new MouseAdapter() {
@@ -147,7 +153,7 @@ public class Home extends JFrame {
 		});
 		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_1, "cell 0 6");
+		BarraLateral.add(lblNewLabel_1, "cell 0 5");
 		
 		JLabel lblNewLabel_2 = new JLabel("Conta");
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
@@ -185,11 +191,10 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin = new Login();
-				String op = JOptionPane.showInputDialog("Deseja mesmo sair?(S/N)");
-				if (op.equals("S") || op.equals("s")) {
+				
 					novoLogin.setVisible(true);
 					dispose();
-				}
+				
 			}
 		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
@@ -246,8 +251,8 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Bem vindo(a), NomeUser!");
 		Principal.add(lblNewLabel_7, "cell 1 1");
 
-		JLabel lblNewLabel_2 = new JLabel("Atividades proximas");
-		Principal.add(lblNewLabel_2, "cell 3 1,alignx center,aligny center");
+		JLabel lblNewLabel_21 = new JLabel("Atividades proximas");
+		Principal.add(lblNewLabel_21, "cell 3 1,alignx center,aligny center");
 
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 1 2 1 3,grow");
@@ -267,6 +272,23 @@ public class Home extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
 
 		JLabel lblInstagram = new JLabel("");
+		lblInstagram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(Home.class.getResource("/visao/instagram.png")));
 
