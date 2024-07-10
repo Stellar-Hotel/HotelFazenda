@@ -11,6 +11,7 @@ import javax.swing.text.MaskFormatter;
 import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
 import controle.Hospedagens.HospedagensDAO;
+import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
 import modelo.Atividades;
 import modelo.Funcionarios;
@@ -108,6 +109,8 @@ public class TelaDeQuartos extends JFrame {
 		ListaQuartos = new ArrayList<Quartos>();
 		
 		DecimalFormat formato = new DecimalFormat("#.##");
+		
+		Quartos QuartoSelcionado = new Quartos();
 		
 		MaskFormatter  formatoCpf = null;
 		
@@ -441,37 +444,44 @@ public class TelaDeQuartos extends JFrame {
 				if((textCPF.getText().isEmpty())||(textChecki.getText().isEmpty())||(textChecko.getText().isEmpty())||(pos < 0)) {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
 				}else {
-					
+					 String Cpf = textCPF.getText();
+					 
+					 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					 Date data = null;
+					 
+					 try {
+	                     data = new Date ( dateFormat.parse(textChecki.getText()).getTime());
+	                 } catch (ParseException e1) {
+	                     e1.printStackTrace();
+	                 }
+					 try {
+	                     data = new Date ( dateFormat.parse(textChecko.getText()).getTime());
+	                 } catch (ParseException e1) {
+	                     e1.printStackTrace();
+	                 }
+					 
+					 HospedeDAO HospedesDAO = HospedeDAO.getInstancia();
+					 
+					 HospedagensDAO DAO = HospedagensDAO.getInstancia();
+					 
+					 Hospedes hosp=HospedesDAO.buscarHospedePorCPF(textCPF.getText());
+					 
+					 Hospedagens hospedagem = new Hospedagens();
+					 
+					 hospedagem.setCheckin(data);
+					 hospedagem.setCheckout(data);
+					 hospedagem.setHospde(hosp);
+					 hospedagem.setIdHospedagem(pos);
+					 hospedagem.setQuarto(QuartoSelcionado);
+					 
+					 DAO.InserirHospedagem(hospedagem);
+						
 				}
-				 String Cpf = textCPF.getText();
-				 
-				 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-				 Date data = null;
-				 
-				 try {
-                     data = new Date ( dateFormat.parse(textChecki.getText()).getTime());
-                 } catch (ParseException e1) {
-                     e1.printStackTrace();
-                 }
-				 try {
-                     data = new Date ( dateFormat.parse(textChecko.getText()).getTime());
-                 } catch (ParseException e1) {
-                     e1.printStackTrace();
-                 }
-				 
-				 Hospedagens ativ = new Hospedagens();
-				 
-				 HospedagensDAO DAO = HospedagensDAO.getInstancia();
-					int id = DAO.InserirHospedagem(ativ);
-					
-					if(id>0) {
-						JOptionPane.showMessageDialog(null, "Cadastro Efetuado com sucesso");
-						atualizarJTable(id);
-					}
+				
 				
 			}
-		}); 	
-		
+		}); 
+				
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBorder(new RoundedBorder(Color.black, 8));
 		btnNewButton_3.setBackground(new Color(117, 187, 68));
@@ -545,9 +555,16 @@ public class TelaDeQuartos extends JFrame {
 		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();       
 
 		                // Preenche os textfields com os dados recuperados
-		                textCPF.setText(Cpf);
-		                textChecki.setText(salario);
-		                textChecko.setText(nivel);
+		                QuartoSelcionado.setIdQuarto(IdQuarto);
+		                QuartoSelcionado.setMaxPessoas(MaxPessoas);
+		                QuartoSelcionado.setTipoCama(TipoCama);
+		                QuartoSelcionado.setManutencao(Manutencao);
+		                QuartoSelcionado.setTipoQuarto(TipoQuarto);
+		                QuartoSelcionado.setFrigobar(Frigobar);
+		                QuartoSelcionado.setArCondicionado(ArCondicionado);
+		                QuartoSelcionado.setBanheira(Banheira);
+		                QuartoSelcionado.setTV(TV);
+		                QuartoSelcionado.setPrecoDiaria(PrecoDiaria);
 
 		                
 		            }
