@@ -27,11 +27,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 
 import javax.swing.JScrollPane;
-=======
->>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
 
 public class Home extends JFrame {
 
