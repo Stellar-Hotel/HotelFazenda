@@ -27,8 +27,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+//<<<<<<< Updated upstream
 
 import javax.swing.JScrollPane;
+//=======
+//>>>>>>> Stashed changes
 
 public class Home extends JFrame {
 
@@ -301,6 +304,23 @@ public class Home extends JFrame {
 		lblWhatsapp.setIcon(new ImageIcon(Home.class.getResource("/visao/Whatsapp.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
+		lblTwitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(Home.class.getResource("/visao/twitter.jpg")));
 	}

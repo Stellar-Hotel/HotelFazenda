@@ -401,6 +401,23 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblWhatsapp.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/Whatsapp.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
+		lblTwitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/twitter.jpg")));
 	}
