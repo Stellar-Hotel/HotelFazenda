@@ -358,8 +358,10 @@ public class TelaDeHospedes extends JFrame {
 								btnCadastrar.addActionListener(new ActionListener() {
 								    public void actionPerformed(ActionEvent e) {
 								        if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){                    
-								        	TelaErro telaErro = new TelaErro();
-								            telaErro.setVisible(true);
+								        	JOptionPane.showMessageDialog(null, "Erro adicione textos para cadastrar um hospede");
+								        	
+								        	//TelaErro telaErro = new TelaErro();
+								            //telaErro.setVisible(true);
 											} else {
 								            String Nome = textNome.getText();
 								            String Sobrenome = textSobrenome.getText();
@@ -388,8 +390,11 @@ public class TelaDeHospedes extends JFrame {
 								            HospedeDAO DAO = HospedeDAO.getInstancia();
 								            int id = DAO.inserirHospede(hospede);
 								            if (id > 0) {
-								                JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+								            	
 								                atualizarJTable();
+												TelaSucesso c = new TelaSucesso();
+												c.setVisible(true);
+										
 								            }
 								        }
 								    } 
@@ -409,10 +414,15 @@ public class TelaDeHospedes extends JFrame {
 																Hospedes hosp = new Hospedes();
 																
 																int linha = table.getSelectedRow();
-																hosp = listahospedes.get(linha);
-																DAO.removerHospede(hosp);
-																atualizarJTable();
-																
+																if(linha>=0) {
+																	hosp = listahospedes.get(linha);
+																	DAO.removerHospede(hosp);
+																	atualizarJTable();
+																	TelaSucesso c = new TelaSucesso();
+																	c.setVisible(true);
+																}else if(linha<=0) {
+																	JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
+																}
 																
 																
 															}
@@ -465,6 +475,9 @@ public class TelaDeHospedes extends JFrame {
 														                Model.setValueAt(Nacionalidade, linha, 4);
 														                Model.setValueAt(Pronome, linha, 5);
 														                Model.setValueAt(Email, linha, 6);
+														                TelaSucesso c = new TelaSucesso();
+																		c.setVisible(true);
+																
 														            }
 														        }
 														    }
