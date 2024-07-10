@@ -1,27 +1,9 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import controle.Atividades.AtividadesDAO;
-import controle.Hospede.HospedeDAO;
-import modelo.Atividades;
-import modelo.Funcionarios;
-import modelo.Hospedes;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
@@ -29,11 +11,29 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.MaskFormatter;
+
+import controle.Arredondar.RoundedBorder;
+import controle.Hospede.HospedeDAO;
+import modelo.Funcionarios;
+import modelo.Hospedes;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaDeHospedes extends JFrame {
 
@@ -73,6 +73,35 @@ public class TelaDeHospedes extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeHospedes(Funcionarios Func) {
+		
+		MaskFormatter Data = null;
+		MaskFormatter Num = null;
+		MaskFormatter formatter = null;
+		
+	
+		try {
+			Data = new MaskFormatter("##/##/####");
+			Data.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Num=new MaskFormatter("##");
+			Num.setAllowsInvalid(false);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    try {
+	    formatter = new MaskFormatter("UUUUUUUUUU"); // 'U' accepts uppercase and lowercase letters
+	    formatter.setPlaceholderCharacter('_');
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	        
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -229,7 +258,7 @@ public class TelaDeHospedes extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[][101.00][123.00][][][][][][][grow]", "[][][22.00][301.00][]"));
+		Principal.setLayout(new MigLayout("", "[][101.00][123.00][:230.00:230.00][:15:15][:10:10][][][-24.00][grow]", "[][][:50:50,grow][303.00][31.00][grow,fill]"));
 		
 		JLabel lblNewLabel_9 = new JLabel("Hospede");
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 38));
@@ -237,63 +266,83 @@ public class TelaDeHospedes extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		Principal.add(panel_5, "cell 1 3 3 1,grow");
-		panel_5.setLayout(new MigLayout("", "[][][grow][]", "[][][][][][][][][][][]"));
+		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]", "[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][grow]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
-		panel_5.add(lblNewLabel_7, "cell 1 0");
+		panel_5.add(lblNewLabel_7, "cell 3 0 2 1");
 		
 		JLabel lblNewLabel_10 = new JLabel("Nome");
-		panel_5.add(lblNewLabel_10, "cell 0 2");
-		
-		textNome = new JTextField();
-		panel_5.add(textNome, "cell 1 2 2 1,growx");
-		textNome.setColumns(10);
+		panel_5.add(lblNewLabel_10, "cell 0 2,alignx left");
+        
+        textNome = new JTextField();
+        textNome.setColumns(10);
+        textNome.setBorder(new RoundedBorder(Color.black, 10));
+        ((AbstractDocument) textNome.getDocument()).setDocumentFilter(new LetterDocumentFilter());
+        
+				panel_5.add(textNome, "flowx,cell 1 2 3 1,growx");
+				textNome.setColumns(10);
 		
 		JLabel lblNewLabel_10_1 = new JLabel("Sobrenome");
-		panel_5.add(lblNewLabel_10_1, "cell 0 3");
+		panel_5.add(lblNewLabel_10_1, "cell 4 2,alignx left,aligny center");
 		
 		textSobrenome = new JTextField();
-		textSobrenome.setColumns(10);
-		panel_5.add(textSobrenome, "cell 1 3 2 1,growx");
+		textSobrenome.setBorder(new RoundedBorder(Color.black, 10));
+		((AbstractDocument) textSobrenome.getDocument()).setDocumentFilter(new LetterDocumentFilter());//filtra para somente caracteres
+
 		
-		JLabel lblNewLabel_10_1_1 = new JLabel("Data Nascimento");
-		panel_5.add(lblNewLabel_10_1_1, "cell 0 4");
+				textSobrenome.setColumns(10);
+				panel_5.add(textSobrenome, "cell 6 2 3 1,growx");
 		
-		textNascimento = new JTextField();
-		textNascimento.setColumns(10);
-		panel_5.add(textNascimento, "cell 1 4 2 1,growx");
+		JLabel lblNewLabel_10_2 = new JLabel("data de nascimento");
+		panel_5.add(lblNewLabel_10_2, "cell 0 4 2 1,alignx left,aligny center");
 		
-		JLabel lblNewLabel_10_1_1_1 = new JLabel("CPF");
-		panel_5.add(lblNewLabel_10_1_1_1, "cell 0 5");
+		textNascimento = new JFormattedTextField(Data);
+		textNascimento.setBorder(new RoundedBorder(Color.black, 10));
+		
+				textNascimento.setColumns(10);
+				panel_5.add(textNascimento, "cell 2 4 2 1,growx");
+		
+		JLabel lblNewLabel_10_1_1 = new JLabel("Documento");
+		panel_5.add(lblNewLabel_10_1_1, "cell 4 4,alignx left,aligny center");
 		
 		textCPF = new JTextField();
-		textCPF.setColumns(10);
-		panel_5.add(textCPF, "cell 1 5 2 1,growx");
+		textCPF.setBorder(new RoundedBorder(Color.black, 10));
 		
-		JLabel lblNewLabel_10_1_1_1_1 = new JLabel("Nacionalidade");
-		panel_5.add(lblNewLabel_10_1_1_1_1, "cell 0 6");
+				textCPF.setColumns(10);
+				panel_5.add(textCPF, "cell 6 4 3 1,growx");
+		
+		JLabel lblNewLabel_10_2_1 = new JLabel("Nacionalidade");
+		panel_5.add(lblNewLabel_10_2_1, "cell 0 6 2 1,alignx left,aligny center");
 		
 		textNacionalidade = new JTextField();
-		textNacionalidade.setColumns(10);
-		panel_5.add(textNacionalidade, "cell 1 6 2 1,growx");
+		textNacionalidade.setBorder(new RoundedBorder(Color.black, 10));
+		((AbstractDocument) textNacionalidade.getDocument()).setDocumentFilter(new LetterDocumentFilter());//filtra para somente caracteres
 		
-		JLabel lblNewLabel_10_1_1_1_1_1 = new JLabel("Pronome");
-		panel_5.add(lblNewLabel_10_1_1_1_1_1, "cell 0 7");
+		textNacionalidade.setColumns(10);
+		panel_5.add(textNacionalidade, "cell 2 6 2 1,growx");
+		
+		JLabel lblNewLabel_10_2_1_1 = new JLabel("Pronome");
+		panel_5.add(lblNewLabel_10_2_1_1, "cell 4 6,alignx left,aligny center");
 		
 		textPronome = new JTextField();
-		textPronome.setColumns(10);
-		panel_5.add(textPronome, "cell 1 7 2 1,growx");
+		textPronome.setBorder(new RoundedBorder(Color.black, 10));
+		((AbstractDocument) textPronome.getDocument()).setDocumentFilter(new LetterDocumentFilter());//filtra para somente caracteres
+
+				textPronome.setColumns(10);
+				panel_5.add(textPronome, "cell 6 6 3 1,growx");
 		
-		JLabel lblNewLabel_10_1_1_1_1_1_1 = new JLabel("Email");
-		panel_5.add(lblNewLabel_10_1_1_1_1_1_1, "cell 0 8");
+		JLabel lblNewLabel_10_2_1_1_1 = new JLabel("Email");
+		panel_5.add(lblNewLabel_10_2_1_1_1, "cell 0 8,alignx left");
 		
 		textEmail = new JTextField();
+		textEmail.setBorder(new RoundedBorder(Color.black, 10));
+
 		textEmail.setColumns(10);
-		panel_5.add(textEmail, "cell 1 8 2 1,growx");
+		panel_5.add(textEmail, "cell 1 8 8 1,growx");
 		
 	
 		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 7 3 3 1,grow");
+		Principal.add(scrollPane, "cell 5 3 5 1,grow");
 
 		
 		Model = new DefaultTableModel(new Object[][] {}, new String[] {"Nome", "Sobrenome", "Data de Nascimento", "Documento", "Nacionalidade", "Pronome", "Email"});
@@ -301,121 +350,129 @@ public class TelaDeHospedes extends JFrame {
 		table = new JTable(Model);
 		scrollPane.setViewportView(table);
 		atualizarJTable();
-		
-		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){                    
-		            JOptionPane.showMessageDialog(null, "textos vazios insira algo para adicionar");
-		        } else {
-		            String Nome = textNome.getText();
-		            String Sobrenome = textSobrenome.getText();
-		            String Documento = textCPF.getText();
-		            String Nacionalidade = textNacionalidade.getText();
-		            String Pronome = textPronome.getText();
-		            String Email = textEmail.getText();
-		            
-		            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		            Date Nascimento = null;
-		            try {
-		                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
-		            } catch (ParseException e1) {
-		                e1.printStackTrace();
-		            }
-		            
-		            Hospedes hospede = new Hospedes();
-		            hospede.setNome(Nome);
-		            hospede.setSobrenome(Sobrenome);
-		            hospede.setDataNasc(Nascimento);
-		            hospede.setNacionalidade(Nacionalidade);
-		            hospede.setEmail(Email);
-		            hospede.setPronome(Pronome);
-		            hospede.setDocumento(Documento);
-		    
-		            HospedeDAO DAO = HospedeDAO.getInstancia();
-		            int id = DAO.inserirHospede(hospede);
-		            if (id > 0) {
-		                JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
-		                atualizarJTable();
-		            }
-		        }
-		    } 
-		});
-
-		panel_5.add(btnCadastrar, "cell 0 10");
-		
-		JButton btnAtualizar = new JButton("Atualizar");
-		btnAtualizar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){                    
-		            JOptionPane.showMessageDialog(null, "insira algo");
-		        } else {
-		            String Nome = textNome.getText();
-		            String Sobrenome = textSobrenome.getText();
-		            String Documento = textCPF.getText();
-		            String Nacionalidade = textNacionalidade.getText();
-		            String Pronome = textPronome.getText();
-		            String Email = textEmail.getText();
-		            
-		            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		            Date Nascimento = null;
-		            try {
-		                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
-		            } catch (ParseException e1) {
-		                e1.printStackTrace();
-		            }
-		            
-		            Hospedes hospede = new Hospedes();
-		            hospede.setNome(Nome);
-		            hospede.setSobrenome(Sobrenome);
-		            hospede.setDataNasc(Nascimento);
-		            hospede.setNacionalidade(Nacionalidade);
-		            hospede.setEmail(Email);
-		            hospede.setPronome(Pronome);
-		            hospede.setDocumento(Documento);
-		            
-		            HospedeDAO DAO = HospedeDAO.getInstancia();
-		            DAO.atualizarHospede(hospede);
-		            
-		            int linha = table.getSelectedRow();
-		            if (linha < 0) {
-		                JOptionPane.showMessageDialog(null, "Selecione uma linha");
-		            } else if (linha >= 0) {
-		                DefaultTableModel Model = (DefaultTableModel) table.getModel();
-		                Model.setValueAt(Nome, linha, 0);
-		                Model.setValueAt(Sobrenome, linha, 1);
-		                Model.setValueAt(Nascimento, linha, 2);
-		                Model.setValueAt(Documento, linha, 3);
-		                Model.setValueAt(Nacionalidade, linha, 4);
-		                Model.setValueAt(Pronome, linha, 5);
-		                Model.setValueAt(Email, linha, 6);
-		            }
-		        }
-		    }
-		});
-
-		panel_5.add(btnAtualizar, "cell 1 10,growx");
-		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//excluir
-				HospedeDAO DAO = HospedeDAO.getInstancia();
-				Hospedes hosp = new Hospedes();
-				
-				int linha = table.getSelectedRow();
-				hosp = listahospedes.get(linha);
-				DAO.removerHospede(hosp);
-				atualizarJTable();
-				
-				
-				
-			}
-		});
-		btnExcluir.setToolTipText("");
-		panel_5.add(btnExcluir, "cell 2 10");
+								
+								
+								JButton btnCadastrar = new JButton("Cadastrar");
+								btnCadastrar.setBackground(new Color(117, 187, 68));
+								btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
+								btnCadastrar.addActionListener(new ActionListener() {
+								    public void actionPerformed(ActionEvent e) {
+								        if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){                    
+								        	TelaErro telaErro = new TelaErro();
+								            telaErro.setVisible(true);
+											} else {
+								            String Nome = textNome.getText();
+								            String Sobrenome = textSobrenome.getText();
+								            String Documento = textCPF.getText();
+								            String Nacionalidade = textNacionalidade.getText();
+								            String Pronome = textPronome.getText();
+								            String Email = textEmail.getText();
+								            
+								            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+								            Date Nascimento = null;
+								            try {
+								                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
+								            } catch (ParseException e1) {
+								                e1.printStackTrace();
+								            }
+								            
+								            Hospedes hospede = new Hospedes();
+								            hospede.setNome(Nome);
+								            hospede.setSobrenome(Sobrenome);
+								            hospede.setDataNasc(Nascimento);
+								            hospede.setNacionalidade(Nacionalidade);
+								            hospede.setEmail(Email);
+								            hospede.setPronome(Pronome);
+								            hospede.setDocumento(Documento);
+								    
+								            HospedeDAO DAO = HospedeDAO.getInstancia();
+								            int id = DAO.inserirHospede(hospede);
+								            if (id > 0) {
+								                JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso");
+								                atualizarJTable();
+								            }
+								        }
+								    } 
+								});
+								
+										panel_5.add(btnCadastrar, "cell 1 10,alignx center");
+												
+												JButton btnExcluir = new JButton("Excluir");
+												btnExcluir.setBackground(new Color(117, 187, 68));
+												btnExcluir.setBorder(new RoundedBorder(Color.BLACK, 8));
+												
+														btnExcluir.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+																
+																//excluir
+																HospedeDAO DAO = HospedeDAO.getInstancia();
+																Hospedes hosp = new Hospedes();
+																
+																int linha = table.getSelectedRow();
+																hosp = listahospedes.get(linha);
+																DAO.removerHospede(hosp);
+																atualizarJTable();
+																
+																
+																
+															}
+														});
+														
+														JButton btnAtualizar = new JButton("Atualizar");
+														btnAtualizar.setBackground(new Color(117, 187, 68));
+														btnAtualizar.setBorder(new RoundedBorder(Color.BLACK, 8));
+														btnAtualizar.addActionListener(new ActionListener() {
+														    public void actionPerformed(ActionEvent e) {
+														        if((textNome.getText().isEmpty() || (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty() || textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty() || textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))){                    
+														            JOptionPane.showMessageDialog(null, "insira algo");
+														        } else {
+														            String Nome = textNome.getText();
+														            String Sobrenome = textSobrenome.getText();
+														            String Documento = textCPF.getText();
+														            String Nacionalidade = textNacionalidade.getText();
+														            String Pronome = textPronome.getText();
+														            String Email = textEmail.getText();
+														            
+														            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+														            Date Nascimento = null;
+														            try {
+														                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
+														            } catch (ParseException e1) {
+														                e1.printStackTrace();
+														            }
+														            
+														            Hospedes hospede = new Hospedes();
+														            hospede.setNome(Nome);
+														            hospede.setSobrenome(Sobrenome);
+														            hospede.setDataNasc(Nascimento);
+														            hospede.setNacionalidade(Nacionalidade);
+														            hospede.setEmail(Email);
+														            hospede.setPronome(Pronome);
+														            hospede.setDocumento(Documento);
+														            
+														            HospedeDAO DAO = HospedeDAO.getInstancia();
+														            DAO.atualizarHospede(hospede);
+														            
+														            int linha = table.getSelectedRow();
+														            if (linha < 0) {
+														                JOptionPane.showMessageDialog(null, "Selecione uma linha");
+														            } else if (linha >= 0) {
+														                DefaultTableModel Model = (DefaultTableModel) table.getModel();
+														                Model.setValueAt(Nome, linha, 0);
+														                Model.setValueAt(Sobrenome, linha, 1);
+														                Model.setValueAt(Nascimento, linha, 2);
+														                Model.setValueAt(Documento, linha, 3);
+														                Model.setValueAt(Nacionalidade, linha, 4);
+														                Model.setValueAt(Pronome, linha, 5);
+														                Model.setValueAt(Email, linha, 6);
+														            }
+														        }
+														    }
+														});
+														
+																panel_5.add(btnAtualizar, "cell 4 10 2 1,alignx center");
+														btnExcluir.setToolTipText("");
+														panel_5.add(btnExcluir, "cell 8 10,alignx center");
 		
 
 		JPanel BarraInferior = new JPanel();
@@ -460,5 +517,28 @@ public class TelaDeHospedes extends JFrame {
 	    }
 	    table.setModel(Model);
 	}
+	class LetterDocumentFilter extends DocumentFilter {
+	    @Override
+	    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException { //insertString: Este método é chamado quando uma inserção de texto é feita em um documento de texto.
 
+
+	        if (string != null && string.matches("[a-zA-Z]+")) {
+	            super.insertString(fb, offset, string, attr);
+	        }
+	    }
+
+	    @Override
+	    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException { //Este método é chamado quando uma substituição de texto é feita em um documento de texto.
+	        if (text != null && text.matches("[a-zA-Z]+")) {
+	            super.replace(fb, offset, length, text, attrs);
+	        }
+	    }
+
+	    @Override
+	    public void remove(FilterBypass fb, int offset, int length) throws BadLocationException { //Este método é chamado quando uma remoção de texto é feita em um documento de texto.
+	        super.remove(fb, offset, length);
+	    }
+	}
 }
+
+
