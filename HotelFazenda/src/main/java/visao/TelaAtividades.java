@@ -111,7 +111,7 @@ public class TelaAtividades extends JFrame {
 		}
 		MaskFormatter Idade=null;
 		try {
-			Idade=new MaskFormatter("###");
+			Idade=new MaskFormatter("##");
 			Idade.setAllowsInvalid(false);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

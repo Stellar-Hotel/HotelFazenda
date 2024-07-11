@@ -75,7 +75,9 @@ public class HospedagensDAO implements IHospedagenDAO {
 		ArrayList<Hospedagens> hospedagens = new ArrayList<Hospedagens>();
 
 		// comando sql executado
-		String SQL = "SELECT * FROM Hospedagens"; // tem que colocar o inner join aqui
+		String SQL = "SELECT * FROM Hospedagens "
+				+ " inner join Hospedes on Hospedes.IdHospede=Hospedagens.IdHospedeHospedagens"
+				+ " inner join Quartos on Quartos.IdQuarto=Hospedagens.IdQuartoHospedagens"; // tem que colocar o inner join aqui
 
 		// cria a ponte de conecao com o mysql
 		Conexao con = Conexao.getConexao();
@@ -114,7 +116,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 				// Pega os valores de cada coluna d registro
 
 				Hg.setCheckin(rs.getDate("Checkin"));
-				Hg.setCheckout(rs.getDate("Chekout"));
+				Hg.setCheckout(rs.getDate("Checkout"));
 				Hg.setIdHospedagem(rs.getInt("IdHospedagem"));
 				Hg.setHospde(Hospede);
 				Hg.setQuarto(Quarto);
