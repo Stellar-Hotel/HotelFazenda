@@ -511,6 +511,7 @@ public class TelaDeHospedes extends JFrame {
 														            	JOptionPane.showMessageDialog(null, "Data invalida.");
 																        return;
 														            }
+														            int linha = table.getSelectedRow();
 														            
 														            Hospedes hospede = new Hospedes();
 														            hospede.setNome(Nome);
@@ -520,11 +521,10 @@ public class TelaDeHospedes extends JFrame {
 														            hospede.setEmail(Email);
 														            hospede.setPronome(Pronome);
 														            hospede.setDocumento(Documento);
-														            
+														            hospede.setIdHospede(listahospedes.get(linha).getIdHospede());
 														            HospedeDAO DAO = HospedeDAO.getInstancia();
-														            DAO.atualizarHospede(hospede);
+														         
 														            
-														            int linha = table.getSelectedRow();
 														            if (linha < 0) {
 														                JOptionPane.showMessageDialog(null, "Selecione uma linha");
 														            } else if (linha >= 0) {
@@ -536,6 +536,7 @@ public class TelaDeHospedes extends JFrame {
 														                Model.setValueAt(Nacionalidade, linha, 4);
 														                Model.setValueAt(Pronome, linha, 5);
 														                Model.setValueAt(Email, linha, 6);
+														                DAO.atualizarHospede(hospede);
 														                TelaSucesso c = new TelaSucesso("Atualizado com sucesso!");
 																		c.setVisible(true);
 																

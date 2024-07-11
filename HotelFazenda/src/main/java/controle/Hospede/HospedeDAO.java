@@ -184,6 +184,7 @@ public class HospedeDAO implements IHospedeDAO {
 			con.FecharConexao();
 		}
 
+		System.out.println(retorno);
 		// if ternário
 		return (retorno == 0 ? false : true);
 	}
