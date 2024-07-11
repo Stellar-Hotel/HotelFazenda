@@ -228,7 +228,7 @@ public class HospedeDAO implements IHospedeDAO {
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where CPF = ?";
+		String SQL="Select * from Hospedes where Documento = ?";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		

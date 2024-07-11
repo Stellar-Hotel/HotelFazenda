@@ -209,6 +209,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
+				Quarto.setTipoQuarto(rs.getString("TipoQuarto"));
 				Quartos.add(Quarto);
 			}
 
