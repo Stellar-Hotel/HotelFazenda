@@ -95,7 +95,7 @@ public class TelaSucesso extends JFrame {
                 }
             }
         });
-        subirTimer.setInitialDelay(0); / 
+        subirTimer.setInitialDelay(0); 
         subirTimer.start();
     }
 }
