@@ -470,7 +470,8 @@ public class TelaAtividades extends JFrame {
 																		        int id = DAO.InserirAtividades(ativ);
 
 																		        if (id > 0) {
-																		            JOptionPane.showMessageDialog(null, "Cadastro Efetuado com sucesso");
+																		        	TelaSucesso c = new TelaSucesso();
+																					c.setVisible(true);
 																		            atualizarJTable();
 																		        }
 																		    }
@@ -492,7 +493,7 @@ public class TelaAtividades extends JFrame {
 										
 
 										if((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()) )) {
-											JOptionPane.showMessageDialog(null, "ERRO");
+											JOptionPane.showMessageDialog(null, "Textos vazios insira algo para atualizar");
 										}
 										else {  
 											
@@ -547,6 +548,9 @@ public class TelaAtividades extends JFrame {
 							                    	model1.setValueAt(NomeAtividade, linha, 4);
 							                    	model1.setValueAt(data, linha, 5);
 							                    	model1.setValueAt(Capacidade, linha, 6);
+							                    	
+							                    	TelaSucesso c = new TelaSucesso();
+													c.setVisible(true);
 							                
 							                    }
 											    }

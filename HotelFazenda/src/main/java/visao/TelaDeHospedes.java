@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -350,6 +352,7 @@ public class TelaDeHospedes extends JFrame {
 		table = new JTable(Model);
 		scrollPane.setViewportView(table);
 		atualizarJTable();
+		
 								
 								
 								JButton btnCadastrar = new JButton("Cadastrar");
@@ -372,10 +375,13 @@ public class TelaDeHospedes extends JFrame {
 								            
 								            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 								            Date Nascimento = null;
+										    dateFormat.setLenient(false);
+
 								            try {
 								                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 								            } catch (ParseException e1) {
-								                e1.printStackTrace();
+								            	JOptionPane.showMessageDialog(null, "Data invalida.");
+										        return;
 								            }
 								            
 								            Hospedes hospede = new Hospedes();
@@ -445,10 +451,13 @@ public class TelaDeHospedes extends JFrame {
 														            
 														            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 														            Date Nascimento = null;
+																    dateFormat.setLenient(false);
+
 														            try {
 														                Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 														            } catch (ParseException e1) {
-														                e1.printStackTrace();
+														            	JOptionPane.showMessageDialog(null, "Data invalida.");
+																        return;
 														            }
 														            
 														            Hospedes hospede = new Hospedes();
