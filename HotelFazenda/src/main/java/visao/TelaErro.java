@@ -17,9 +17,9 @@ public class TelaErro extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    TelaErro frame = new TelaErro();
+                	TelaErro frame = new TelaErro();
                     frame.setVisible(true);
-                    frame.animarTela();
+                 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -28,6 +28,7 @@ public class TelaErro extends JFrame {
     }
 
     public TelaErro() {
+    
         setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(351, 216);
@@ -57,6 +58,7 @@ public class TelaErro extends JFrame {
         JLabel lblNewLabel_2 = new JLabel("Desculpe, ocorreu um erro inesperado.");
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         contentPane.add(lblNewLabel_2, "cell 0 2,alignx center,aligny top");
+    	animarTela();
     }
 
     // Método para animar a tela
