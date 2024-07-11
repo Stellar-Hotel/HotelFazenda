@@ -382,7 +382,11 @@ public class Conta extends JFrame {
 				}
 			}
 		});
-		
+		textUser.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+			}
 		});
 		textUser.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		textUser.setBorder(new RoundedBorder(Color.black, 10));
