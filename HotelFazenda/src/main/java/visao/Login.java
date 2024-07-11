@@ -158,9 +158,14 @@ public class Login extends JFrame {
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
 					Home c = new Home(Func);
+					c.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					c.setVisible(true);
+					
 					dispose();
 					sucesso.setVisible(true);
+					
+					
+					
 				} else {
 					TelaErro erro = new TelaErro("Credenciais inválidas!");
 					erro.setVisible(true);
