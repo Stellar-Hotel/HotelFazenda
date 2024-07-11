@@ -377,7 +377,7 @@ public class TelaServicos extends JFrame {
 				
 				if(Almoco.getQuantidade()>0) {
 				dao.inserirServico(Almoco);
-				TelaSucesso c = new TelaSucesso();
+				TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 				c.setVisible(true);
 			
 				
@@ -441,7 +441,7 @@ public class TelaServicos extends JFrame {
 				
 				if(Massagem.getQuantidade()>0) {
 					dao.inserirServico(Massagem);
-				TelaSucesso c = new TelaSucesso();
+				TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 				c.setVisible(true);
 				
 				
@@ -515,7 +515,7 @@ public class TelaServicos extends JFrame {
 Frigobar.setQuantidade(Integer.parseInt(lblQuantFrigobar.getText()));
 if(Frigobar.getQuantidade()>0) {
 	dao.inserirServico(Frigobar);
-	TelaSucesso c = new TelaSucesso();
+	TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 	c.setVisible(true);
 			
 				
@@ -580,7 +580,7 @@ if(Frigobar.getQuantidade()>0) {
 Sauna.setQuantidade(Integer.parseInt(lblQuantSauna.getText()));
 if(Sauna.getQuantidade()>0) {
 	dao.inserirServico(Sauna);
-	TelaSucesso c = new TelaSucesso();
+	TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 	c.setVisible(true);
 	
 			}
@@ -643,7 +643,7 @@ if(Sauna.getQuantidade()>0) {
 Show.setQuantidade(Integer.parseInt(lblQuantShow.getText()));
 if(Show.getQuantidade()>0) {
 	dao.inserirServico(Show);
-	TelaSucesso c = new TelaSucesso();
+	TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 	c.setVisible(true);
 				;
 			}
@@ -705,7 +705,7 @@ if(Show.getQuantidade()>0) {
 				AluguelBike.setQuantidade(Integer.parseInt(lblQuantAluguel.getText()));
 				if(AluguelBike.getQuantidade()>0) {
 					dao.inserirServico(AluguelBike);
-					TelaSucesso c = new TelaSucesso();
+					TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 					c.setVisible(true);
 				
 			}
@@ -768,7 +768,7 @@ if(Show.getQuantidade()>0) {
 				Passeio.setQuantidade(Integer.parseInt(lblQuantPasseio.getText()));
 				if(Passeio.getQuantidade()>0) {
 					dao.inserirServico(Passeio);
-					TelaSucesso c = new TelaSucesso();
+					TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 					c.setVisible(true);
 				
 				}
@@ -831,7 +831,7 @@ if(Show.getQuantidade()>0) {
 				Tirolesa.setQuantidade(Integer.parseInt(lblQuantTirolesa.getText()));
 				if(Tirolesa.getQuantidade()>0) {
 					dao.inserirServico(Tirolesa);
-					TelaSucesso c = new TelaSucesso();
+					TelaSucesso c = new TelaSucesso("Adicionado com sucesso");
 					c.setVisible(true);
 				
 				}

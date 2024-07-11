@@ -139,7 +139,7 @@ public class Login extends JFrame {
 				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
 
 				if (usuarios != null) {
-					TelaSucesso sucesso = new TelaSucesso();
+					TelaSucesso sucesso = new TelaSucesso("Credenciais validas");
 
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
@@ -153,7 +153,7 @@ public class Login extends JFrame {
 					
 					
 				} else {
-					TelaErro erro = new TelaErro();
+					TelaErro erro = new TelaErro("Credenciais inválidas");
 					erro.setVisible(true);
 					txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
 					txtSenha.setBorder(new RoundedBorder(Color.RED, 10));

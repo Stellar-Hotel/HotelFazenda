@@ -78,7 +78,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				Home TelaInicial=new Home(Func);
-				TelaIncial.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaInicial.setVisible(true);
 				dispose();
 			}
