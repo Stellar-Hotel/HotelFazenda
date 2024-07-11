@@ -169,6 +169,7 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
 
@@ -184,6 +185,7 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaAtividades telaAtiv = new TelaAtividades(Func);
+				telaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaAtiv.setVisible(true);
 				dispose();
 
@@ -199,6 +201,7 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
 
@@ -213,6 +216,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TelaServicos telaServ = new TelaServicos(Func);
+				telaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaServ.setVisible(true);
 				dispose();
 
@@ -228,6 +232,7 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				AdminFuncionarios telaAdm = new AdminFuncionarios(Func);
+				telaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaAdm.setVisible(true);
 				dispose();
 
@@ -242,6 +247,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Conta telaConta = new Conta(Func);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();
 			}
@@ -275,6 +281,7 @@ public class Home extends JFrame {
 				Login novoLogin = new Login();
 				
 					novoLogin.setVisible(true);
+					novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					dispose();
 				
 			}

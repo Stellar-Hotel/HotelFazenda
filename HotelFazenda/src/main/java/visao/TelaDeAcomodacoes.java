@@ -78,6 +78,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				Home TelaInicial=new Home(Func);
+				TelaIncial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaInicial.setVisible(true);
 				dispose();
 			}
@@ -92,6 +93,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
 			}
@@ -106,6 +108,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				TelaAtividades TelaAtiv=new TelaAtividades(Func);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAtiv.setVisible(true);
 				dispose();
 				
@@ -126,6 +129,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				TelaServicos TelaServ=new TelaServicos(Func);
+				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaServ.setVisible(true);
 				dispose();
 				
@@ -140,6 +144,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAdm.setVisible(true);
 				dispose();
 			}
@@ -153,6 +158,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Conta telaConta=new Conta(Func);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();
 			}
@@ -184,7 +190,7 @@ public class TelaDeAcomodacoes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin=new Login();
-				
+					novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					novoLogin.setVisible(true);
 					dispose();
 				
@@ -241,13 +247,15 @@ public class TelaDeAcomodacoes extends JFrame {
 		Principal.setLayout(new MigLayout("", "[420.00px:n][177.00px:n,grow][50px:n]", "[44px][14px][14px][-1.00][392.00px][97.00,grow]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("Acomodações");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0,alignx left,aligny top");
 		
 		JLabel lblNewLabel_7 = new JLabel("Descubra nossas acomodações feitas sob medida para o seu conforto, ");
+		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		Principal.add(lblNewLabel_7, "cell 0 1,alignx left,aligny top");
 		
 		JLabel lblNewLabel_9 = new JLabel("proporcionando ambientes aconchegantes e climatizados para que você desfrute de momentos relaxantes.");
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		Principal.add(lblNewLabel_9, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_8 = new JPanel();
@@ -277,11 +285,11 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_11.add(lblQuartoSimples);
 		
 		JLabel lblNewLabel_16 = new JLabel("Apartamento Standard");
-		lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_16.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		panel_8.add(lblNewLabel_16, "cell 0 1,alignx left,aligny top");
 		
 		JLabel lblNewLabel_10 = new JLabel("2-4 hóspedes · TV · ar-condicionado · 2 cama solteiro · 1 camas casal · 1 banheiro");
-		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		panel_8.add(lblNewLabel_10, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_9 = new JPanel();
@@ -308,11 +316,11 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_12.add(lblQuartoMediano);
 		
 		JLabel lblNewLabel_17 = new JLabel("Apartamento Master");
-		lblNewLabel_17.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_17.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		panel_9.add(lblNewLabel_17, "cell 0 1,alignx left,aligny top");
 		
 		JLabel lblNewLabel_12 = new JLabel("2-6 hóspedes · TV · Frigobar · ar-condicionado · 2 cama solteiro · 2 camas casal · 2 banheiros");
-		lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		panel_9.add(lblNewLabel_12, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_10 = new JPanel();

@@ -93,6 +93,7 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Home TelaInicial=new Home(Func);
 				TelaInicial.setVisible(true);
+				TelaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
 			}
 		});
@@ -107,6 +108,8 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
 				Chama.setVisible(true);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -120,6 +123,8 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaAtividades TelaAtiv=new TelaAtividades(Func);
 				TelaAtiv.setVisible(true);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -133,6 +138,8 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
 				TelaDeAcomodacoes.setVisible(true);
+				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 				
 			}
@@ -152,6 +159,8 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
 				TelaAdm.setVisible(true);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -165,6 +174,8 @@ public class TelaServicos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Conta telaConta=new Conta(Func);
 				telaConta.setVisible(true);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});

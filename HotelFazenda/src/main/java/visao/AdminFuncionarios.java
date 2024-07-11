@@ -177,6 +177,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			public void mouseClicked(MouseEvent e) {
 
 				Home telaInicial = new Home(Func);
+				telaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaInicial.setVisible(true);
 				dispose();
 
@@ -192,6 +193,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
 			}
@@ -206,6 +208,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaAtividades TelaAtividades = new TelaAtividades(Func);
+				TelaAtividades.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAtividades.setVisible(true);
 				dispose();
 			}
@@ -220,6 +223,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
 
@@ -235,7 +239,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			public void mouseClicked(MouseEvent e) {
 
 				TelaServicos telaServico = new TelaServicos(Func);
-
+				telaServico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaServico.setVisible(true);
 				dispose();
 
@@ -255,6 +259,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Conta telaConta = new Conta(Func);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();
 			}
@@ -288,6 +293,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 				Login novoLogin = new Login();
 				
+					novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					novoLogin.setVisible(true);
 					dispose();
 				
