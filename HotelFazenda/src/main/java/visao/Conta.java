@@ -115,7 +115,7 @@ public class Conta extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211px,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[:130:130,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211px,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {

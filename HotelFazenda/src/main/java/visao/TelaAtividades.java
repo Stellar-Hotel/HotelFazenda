@@ -144,7 +144,7 @@ public class TelaAtividades extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[:130:130,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -320,14 +320,14 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:152.00px:122.00px][74.00][92.00][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
+		Principal.setLayout(new MigLayout("", "[:100px:100px][74.00][92.00][][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
 		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 				
 				JScrollPane spTable = new JScrollPane();
-				Principal.add(spTable, "cell 5 14 4 4,grow");
+				Principal.add(spTable, "cell 6 14 4 5,grow");
 				
 						table = new JTable(model1);
 						spTable.setViewportView(table);
@@ -380,7 +380,7 @@ public class TelaAtividades extends JFrame {
 				panel_5.add(lblNewLabel_7);
 								
 								JPanel panel_7 = new JPanel();
-								Principal.add(panel_7, "cell 0 14 4 4,grow");
+								Principal.add(panel_7, "cell 0 15 5 1,grow");
 								panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:70][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 								
 								JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
@@ -394,107 +394,107 @@ public class TelaAtividades extends JFrame {
 								panel_7.add(textNomeatividade, "cell 1 1 2 1,growx,aligny center");
 								textNomeatividade.setBorder(new RoundedBorder(Color.black, 10));
 								((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());
+								
+																
+																JLabel lblNewLabel_12_1_1_1 = new JLabel("Idade");
+																panel_7.add(lblNewLabel_12_1_1_1, "cell 3 1,alignx center");
+																
+																textIdade = new JFormattedTextField(Idade);
+																panel_7.add(textIdade, "cell 4 1,growx,aligny center");
+																textIdade.setColumns(10);
+																textIdade.setBorder(new RoundedBorder(Color.black, 10));
+																
+																JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
+																panel_7.add(lblNewLabel_12_1_1_1_1_1_3, "cell 0 3,alignx center,aligny center");
+																
+																textCapacidade = new JFormattedTextField(Num);
+																textCapacidade.setColumns(10);
+																panel_7.add(textCapacidade, "cell 1 3 2 1,growx");
+																textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
+																
+																JLabel lblNewLabel_12_1_1_1_1_1_2 = new JLabel("Data");
+																panel_7.add(lblNewLabel_12_1_1_1_1_1_2, "cell 3 3,alignx center,aligny center");
+																
+																textData = new JFormattedTextField(Data);
+																textData.setColumns(10);
+																panel_7.add(textData, "cell 4 3,growx,aligny center");
+																textData.setBorder(new RoundedBorder(Color.black, 10));
+																
+																JLabel lblNewLabel_12_1_1_1_1 = new JLabel("Horario");
+																panel_7.add(lblNewLabel_12_1_1_1_1, "cell 0 5,alignx center,aligny center");
+																
+																textHorario = new JFormattedTextField(Horario);
+																panel_7.add(textHorario, "cell 1 5,growx,aligny center");
+																textHorario.setColumns(10);
+																textHorario.setBorder(new RoundedBorder(Color.black, 10));
+																
+																JLabel lblNewLabel_12_1_1_1_1_1 = new JLabel("Horario Fim");
+																panel_7.add(lblNewLabel_12_1_1_1_1_1, "cell 2 5,alignx center");
+																
+																TextHorarioFim = new JFormattedTextField(Horario);
+																TextHorarioFim.setColumns(10);
+																panel_7.add(TextHorarioFim, "cell 3 5 2 1,growx,aligny center");
+																TextHorarioFim.setBorder(new RoundedBorder(Color.black, 10));
+																
+																
+																								JButton btnCadastrar = new JButton("Cadastrar");
+																								btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
+																								
+																																btnCadastrar.addActionListener(new ActionListener() {
+																																	public void actionPerformed(ActionEvent e) {
+																																		 
+																																	
+																																	
+																																		if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
+																																		    JOptionPane.showMessageDialog(null, "Textos vazios insira algo para adicionar!");
+																																		} else {
+																																		    Integer Idade = Integer.valueOf(textIdade.getText());
+																																		    String Horario = textHorario.getText();
+																																		    String HorarioFim = TextHorarioFim.getText();
+																																		    String NomeAtividade = textNomeatividade.getText();
+																																		    int Capacidade = Integer.valueOf(textCapacidade.getText());
 
-								
-								JLabel lblNewLabel_12_1_1_1 = new JLabel("Idade");
-								panel_7.add(lblNewLabel_12_1_1_1, "cell 3 1,alignx center");
-								
-								textIdade = new JFormattedTextField(Idade);
-								panel_7.add(textIdade, "cell 4 1,growx,aligny center");
-								textIdade.setColumns(10);
-								textIdade.setBorder(new RoundedBorder(Color.black, 10));
-								
-								JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
-								panel_7.add(lblNewLabel_12_1_1_1_1_1_3, "cell 0 3,alignx center,aligny center");
-								
-								textCapacidade = new JFormattedTextField(Num);
-								textCapacidade.setColumns(10);
-								panel_7.add(textCapacidade, "cell 1 3 2 1,growx");
-								textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
-								
-								JLabel lblNewLabel_12_1_1_1_1_1_2 = new JLabel("Data");
-								panel_7.add(lblNewLabel_12_1_1_1_1_1_2, "cell 3 3,alignx center,aligny center");
-								
-								textData = new JFormattedTextField(Data);
-								textData.setColumns(10);
-								panel_7.add(textData, "cell 4 3,growx,aligny center");
-								textData.setBorder(new RoundedBorder(Color.black, 10));
-								
-								JLabel lblNewLabel_12_1_1_1_1 = new JLabel("Horario");
-								panel_7.add(lblNewLabel_12_1_1_1_1, "cell 0 5,alignx center,aligny center");
-								
-								textHorario = new JFormattedTextField(Horario);
-								panel_7.add(textHorario, "cell 1 5,growx,aligny center");
-								textHorario.setColumns(10);
-								textHorario.setBorder(new RoundedBorder(Color.black, 10));
-								
-								JLabel lblNewLabel_12_1_1_1_1_1 = new JLabel("Horario Fim");
-								panel_7.add(lblNewLabel_12_1_1_1_1_1, "cell 2 5,alignx center");
-								
-								TextHorarioFim = new JFormattedTextField(Horario);
-								TextHorarioFim.setColumns(10);
-								panel_7.add(TextHorarioFim, "cell 3 5 2 1,growx,aligny center");
-								TextHorarioFim.setBorder(new RoundedBorder(Color.black, 10));
+																																		    
+																																		    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+																																		    dateFormat.setLenient(false);
+																																		    Date data = null;
+																																		    
 
+																																		    try {
+																																		        data = new Date(dateFormat.parse(textData.getText()).getTime());
+																																		    } catch (ParseException e1) {
+																																		        JOptionPane.showMessageDialog(null, "Data invalida.");
+																																		        return;
+																																		    }
 
-								JButton btnCadastrar = new JButton("Cadastrar");
-								btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
-								
-																btnCadastrar.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		 
-																	
-																	
-																		if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty()) || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty()) || (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
-																		    JOptionPane.showMessageDialog(null, "Textos vazios insira algo para adicionar!");
-																		} else {
-																		    Integer Idade = Integer.valueOf(textIdade.getText());
-																		    String Horario = textHorario.getText();
-																		    String HorarioFim = TextHorarioFim.getText();
-																		    String NomeAtividade = textNomeatividade.getText();
-																		    int Capacidade = Integer.valueOf(textCapacidade.getText());
+																																		    String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
+																																		    if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
+																																		        JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
+																																		    } else {
+																																		        Atividades ativ = new Atividades();
 
-																		    
-																		    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-																		    dateFormat.setLenient(false);
-																		    Date data = null;
-																		    
+																																		        ativ.setIdadeMinima(Idade);
+																																		        ativ.setHorario(Horario);
+																																		        ativ.setHorarioFim(HorarioFim);
+																																		        ativ.setNomeAtividade(NomeAtividade);
+																																		        ativ.setData(data);
+																																		        ativ.setCapacidade(Capacidade);
+																																		        System.out.println(Func.getIdFuncionario());
+																																		        ativ.setFuncionario(Func);
 
-																		    try {
-																		        data = new Date(dateFormat.parse(textData.getText()).getTime());
-																		    } catch (ParseException e1) {
-																		        JOptionPane.showMessageDialog(null, "Data invalida.");
-																		        return;
-																		    }
+																																		        AtividadesDAO DAO = AtividadesDAO.getInstancia();
+																																		        int id = DAO.InserirAtividades(ativ);
 
-																		    String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
-																		    if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-																		        JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
-																		    } else {
-																		        Atividades ativ = new Atividades();
-
-																		        ativ.setIdadeMinima(Idade);
-																		        ativ.setHorario(Horario);
-																		        ativ.setHorarioFim(HorarioFim);
-																		        ativ.setNomeAtividade(NomeAtividade);
-																		        ativ.setData(data);
-																		        ativ.setCapacidade(Capacidade);
-																		        System.out.println(Func.getIdFuncionario());
-																		        ativ.setFuncionario(Func);
-
-																		        AtividadesDAO DAO = AtividadesDAO.getInstancia();
-																		        int id = DAO.InserirAtividades(ativ);
-
-																		        if (id > 0) {
-																		        	TelaSucesso c = new TelaSucesso();
-																					c.setVisible(true);
-																		            atualizarJTable();
-																		        }
-																		    }
-																		}																			
-																	}
-																});
-																//((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new LetterDocumentFilter());
+																																		        if (id > 0) {
+																																		        	TelaSucesso c = new TelaSucesso();
+																																					c.setVisible(true);
+																																		            atualizarJTable();
+																																		        }
+																																		    }
+																																		}																			
+																																	}
+																																});
+																																//((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new LetterDocumentFilter());
 								
 								btnCadastrar.setForeground(new Color(255, 255, 255));
 								btnCadastrar.setBackground(new Color(117, 187, 68));
