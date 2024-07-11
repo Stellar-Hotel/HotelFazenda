@@ -40,6 +40,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -370,9 +374,9 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(textChecki, "cell 1 3 2 1,grow");
 		textChecki.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Data checkout");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 21));
-		panel_6.add(lblNewLabel_2, "cell 0 4,alignx left,aligny bottom");
+		JLabel lblNewLabel_21 = new JLabel("Data checkout");
+		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 21));
+		panel_6.add(lblNewLabel_21, "cell 0 4,alignx left,aligny bottom");
 		
 		textChecko = new JTextField();
 		textChecko = new JFormattedTextField(Data);
