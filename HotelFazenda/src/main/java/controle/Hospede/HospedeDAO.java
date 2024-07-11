@@ -37,7 +37,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "INSERT INTO Hospedagens (Nome, Sobrenome, DataNasc, CPF, Nacionalidade,Pronome, Email, IdUsuarioHospede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade,Pronome, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
@@ -48,18 +48,23 @@ public class HospedeDAO implements IHospedeDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, Hd.getNome());
-			ps.setString(2, Hd.getSobrenome());
-			ps.setDate(3, Hd.getDataNasc());
-			ps.setString(4, Hd.getNacionalidade());
-			ps.setString(5, Hd.getEmail());
-			ps.setString(6, Hd.getPronome());
-			ps.setString(7, Hd.getDocumento());
-			ps.setInt(8, Hd.getUsuario().getIdUsuario());
+			ps.setString(1, Hd.getNome()); // nome						
+			ps.setString(2, Hd.getSobrenome());//sobrenome					
+			ps.setDate(3, Hd.getDataNasc());//data	
+			ps.setString(4, Hd.getDocumento());//documento	
+			ps.setString(5, Hd.getNacionalidade());//nacionalidade
+			ps.setString(6, Hd.getPronome());//pronome
+			ps.setString(7, Hd.getEmail());//email
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				chavePrimariaGerada = rs.getInt(1);
+			int rs = ps.executeUpdate();
+			if (rs == 0) {
+				throw new SQLException("Não foi possível inverir o hospede");
+			}
+			else {
+				ResultSet result = ps.getGeneratedKeys();
+				if(result.next()) {
+					chavePrimariaGerada = result.getInt(1);
+				}
 			}
 
 		} catch (SQLException e) {
@@ -101,29 +106,23 @@ public class HospedeDAO implements IHospedeDAO {
 				String Nome = rs.getString("Nome");
 				String Sobrenome = rs.getString("Sobrenome");
 				Date DataNasc = rs.getDate("DataNasc");
-				String CPF = rs.getString("CPF");
+				String Documento = rs.getString("Documento");
 				String Nacionalidade = rs.getString("Nacionalidade");
 				String Pronome = rs.getString("Pronome");
 				String Email = rs.getString("Email");
 				int Id=rs.getInt("IdHospede");
 
-				Usuarios User = new Usuarios();
 
-				// preenche os atributos desse objeto
 
-				User.setSenha(rs.getString("Senha"));
-				User.setLogin(rs.getString("Login"));
-
-				Hd.setNome(Sobrenome);
 				Hd.setNome(Nome);
+				Hd.setSobrenome(Sobrenome);
 				Hd.setDataNasc(DataNasc);
-				Hd.setDocumento(CPF);
-				Hd.setEmail(Email);
+				Hd.setDocumento(Documento);
 				Hd.setNacionalidade(Nacionalidade);
 				Hd.setPronome(Pronome);
+				Hd.setEmail(Email);
 				Hd.setIdHospede(Id);
 				//Atribui o objeto estranjeiro no que vai ser colocado na lista
-				Hd.setUsuario(User);
 				
 				// Adiciona objeto na lista
 				hospede.add(Hd);
@@ -152,7 +151,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, CPF = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNacs=  ? , IdUsuarioHospede = ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNasc=  ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
@@ -172,9 +171,8 @@ public class HospedeDAO implements IHospedeDAO {
 			ps.setString(5, Hd.getNacionalidade());
 			ps.setString(6, Hd.getPronome());
 			ps.setDate(7, Hd.getDataNasc());
-			ps.setInt(8, Hd.getUsuario().getIdUsuario());
 			// Substitui a segunda interrogação no comando SQL
-			ps.setInt(9, Hd.getIdHospede());
+			ps.setInt(8, Hd.getIdHospede());
 			// Retorna 1 para certo e 0 para erro.
 			retorno = ps.executeUpdate();
 
@@ -230,7 +228,7 @@ public class HospedeDAO implements IHospedeDAO {
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where CPF = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
+		String SQL="Select * from Hospedes where Documento = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		

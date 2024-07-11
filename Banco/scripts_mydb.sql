@@ -26,13 +26,8 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
   `Nacionalidade` VARCHAR(45) NOT NULL,
   `Pronome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `IdUsuarioHospede` INT NOT NULL,
-  PRIMARY KEY (`IdHospede`, `IdUsuarioHospede`),
+  PRIMARY KEY (`IdHospede`));
  
-  CONSTRAINT `fk_Hospedes_Usuarios1`
-    FOREIGN KEY (`IdUsuarioHospede`)
-    REFERENCES `Stellar`.`Usuarios`(`IdUsuario`)
-    )
 ;
 
 
@@ -315,7 +310,7 @@ values ('M@iones3','MAZDARX7',0 ),
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-05-07', '2023-07-09', 14,1);
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2023-02-28', '2022-12-24', 15,1);
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-09-15', '2023-01-22', 16,1);
--- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-14', '2023-06-10', 17,1);
+-- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-12-14', '2023-06-10',hospedeshospedes 17,1);
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-03-06', '2023-03-24', 18,1);
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-05-31', '2023-05-11', 19,1);
 -- insert into Hospedagens (Checkin, Checkout, IdQuartoHospedagens, IdHospedeHospedagens) values ('2022-02-07', '2023-05-30', 20,1);
