@@ -450,7 +450,7 @@ public class TelaDeHospedes extends JFrame {
 								            if (id > 0) {
 								            	
 								                atualizarJTable();
-												TelaSucesso c = new TelaSucesso();
+												TelaSucesso c = new TelaSucesso("Hospede Cadastrado!");
 												c.setVisible(true);
 										
 								            }
@@ -476,7 +476,7 @@ public class TelaDeHospedes extends JFrame {
 																	hosp = listahospedes.get(linha);
 																	DAO.removerHospede(hosp);
 																	atualizarJTable();
-																	TelaSucesso c = new TelaSucesso();
+																	TelaSucesso c = new TelaSucesso("Excluído com sucesso!");
 																	c.setVisible(true);
 																}else if(linha<=0) {
 																	JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
@@ -536,7 +536,7 @@ public class TelaDeHospedes extends JFrame {
 														                Model.setValueAt(Nacionalidade, linha, 4);
 														                Model.setValueAt(Pronome, linha, 5);
 														                Model.setValueAt(Email, linha, 6);
-														                TelaSucesso c = new TelaSucesso();
+														                TelaSucesso c = new TelaSucesso("Atualizado com sucesso!");
 																		c.setVisible(true);
 																
 														            }

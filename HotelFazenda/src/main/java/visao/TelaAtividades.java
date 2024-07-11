@@ -502,7 +502,7 @@ public class TelaAtividades extends JFrame {
 																																		        int id = DAO.InserirAtividades(ativ);
 
 																																		        if (id > 0) {
-																																		        	TelaSucesso c = new TelaSucesso();
+																																		        	TelaSucesso c = new TelaSucesso("Sucesso");
 																																					c.setVisible(true);
 																																		            atualizarJTable();
 																																		        }
@@ -581,7 +581,7 @@ public class TelaAtividades extends JFrame {
 							                    	model1.setValueAt(data, linha, 5);
 							                    	model1.setValueAt(Capacidade, linha, 6);
 							                    	
-							                    	TelaSucesso c = new TelaSucesso();
+							                    	TelaSucesso c = new TelaSucesso("Sucesso");
 													c.setVisible(true);
 							                
 							                    }
@@ -608,7 +608,7 @@ public class TelaAtividades extends JFrame {
 											ativ=ListaAtividades.get(linha);
 											DAO.RemoverAtividades(ativ);
 											atualizarJTable();
-											TelaSucesso c = new TelaSucesso();
+											TelaSucesso c = new TelaSucesso("Atividade Exluída!");
 											c.setVisible(true);
 										}else if(linha<=0) {
 											JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
