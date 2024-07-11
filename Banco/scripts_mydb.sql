@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `Hospedes`(
   `Nacionalidade` VARCHAR(45) NOT NULL,
   `Pronome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `CPF` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IdHospede`));
  
 ;
@@ -250,7 +249,7 @@ values ('M@iones3','MAZDARX7',0 ),
  
 
 /*Tabela Hóspedes*/
- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,CPF) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru','090.909.090-90');
+ insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email) values ('Stacee', 'Glisenan', '1986-09-01', '607.332.182-77', 'Uganda', 'Genderfluid', 'sglisenan0@mail.ru');
 -- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Elisa', 'Volette', '1984-11-06', '751.425.013-76', 'Peru', 'Female', 'evolette1@stanford.edu',2);
 -- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Maxwell', 'Haycraft', '1977-02-16', '316.149.686-40', 'Brazil', 'Male', 'mhaycraft2@wikispaces.com',3);
 -- insert into Hospedes (Nome, Sobrenome, DataNasc, Documento, Nacionalidade, Pronome, Email,IdUsuarioHospede) values ('Gussy', 'Fries', '2003-10-16', '395.415.201-14', 'China', 'Female', 'gfries3@stumbleupon.com',4);
