@@ -343,11 +343,11 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[30px,grow][30px,grow][30px][30px,grow][30px,grow][30px][30px,grow][grow][][grow][30px][30px][30px][30px][grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[:60:60,grow][30px,grow][30px][30px,grow][30px,grow][30px][30px,grow][grow][][grow][30px][30px][30px][30px][grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
-		Principal.add(lblNewLabel_1, "cell 0 0 5 1,alignx left,aligny bottom");
+		Principal.add(lblNewLabel_1, "cell 1 0 5 1,alignx left,aligny bottom");
 		
 		JLabel lblNewLabel_7 = new JLabel("Login:");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 11));
