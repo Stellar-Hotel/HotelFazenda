@@ -17,7 +17,7 @@ public class TelaErro extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	TelaErro frame = new TelaErro();
+                	TelaErro frame = new TelaErro("teste");
                     frame.setVisible(true);
                  
                 } catch (Exception e) {
@@ -27,7 +27,7 @@ public class TelaErro extends JFrame {
         });
     }
 
-    public TelaErro() {
+    public TelaErro(String content) {
     
         setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,30 +55,28 @@ public class TelaErro extends JFrame {
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 24));
         contentPane.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 
-        JLabel lblNewLabel_2 = new JLabel("Desculpe, ocorreu um erro inesperado.");
+        JLabel lblNewLabel_2 = new JLabel(content);
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         contentPane.add(lblNewLabel_2, "cell 0 2,alignx center,aligny top");
     	animarTela();
     }
 
-    // Método para animar a tela
-    public void animarTela() {
+     public void animarTela() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = screenSize.width - getWidth();
         int y = screenSize.height - getHeight();
 
-        // Define um Timer para animar o movimento da tela para cima em 3 segundos
-        Timer subirTimer = new Timer(10, new ActionListener() {
+         Timer subirTimer = new Timer(10, new ActionListener() {
             int dy = screenSize.height;
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (dy > y) {
                     setLocation(x, dy);
-                    dy -= 6; // Velocidade da animação
+                    dy -= 6; 
                 } else {
                     ((Timer) e.getSource()).stop();
-                    // Após 2 segundos, inicia a animação de descida
+                     
                     Timer descerTimer = new Timer(10, new ActionListener() {
                         int dy = getLocation().y;
 
@@ -86,19 +84,19 @@ public class TelaErro extends JFrame {
                         public void actionPerformed(ActionEvent e) {
                             if (dy < screenSize.height) {
                                 setLocation(x, dy);
-                                dy += 20; // Velocidade da animação
+                                dy += 20;  
                             } else {
                                 ((Timer) e.getSource()).stop();
-                                dispose(); // Fecha a janela após a animação de descida
+                                dispose();  
                             }
                         }
                     });
-                    descerTimer.setInitialDelay(2000); // Espera 2 segundos antes de iniciar a animação de descida
+                    descerTimer.setInitialDelay(2000);  
                     descerTimer.start();
                 }
             }
         });
-        subirTimer.setInitialDelay(0); // Começa a animação assim que a tela é iniciada
+        subirTimer.setInitialDelay(0);  
         subirTimer.start();
     }
 }
