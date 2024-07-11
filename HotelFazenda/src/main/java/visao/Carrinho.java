@@ -39,6 +39,8 @@ import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Carrinho extends JFrame {
 	DecimalFormat formato = new DecimalFormat("#.##");
@@ -267,6 +269,10 @@ public class Carrinho extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[403.00px,grow]", "[89.00px,grow]"));
 
 		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_4.add(btnNewButton_2, "flowx,cell 0 0,grow");
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBorder(new RoundedBorder(Color.black, 8));
@@ -287,6 +293,10 @@ public class Carrinho extends JFrame {
 		});
 
 		JButton btnNewButton_3 = new JButton("Finalizar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_4.add(btnNewButton_3, "cell 0 0,grow");
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBorder(new RoundedBorder(Color.black, 8));

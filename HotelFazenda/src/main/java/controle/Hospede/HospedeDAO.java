@@ -228,7 +228,7 @@ public class HospedeDAO implements IHospedeDAO {
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
 		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where Documento = ? inner join Usuarios on Usuarios.IdUsuario=Hospedes.IdUsuarioHospede";
+		String SQL="Select * from Hospedes where CPF = ?";
 		Conexao con=Conexao.getConexao();
 		Connection conBD=con.Conectar();
 		
@@ -242,12 +242,8 @@ public class HospedeDAO implements IHospedeDAO {
 			if(rs.next())
 			{
 				Hosp=new Hospedes();
-				Usuarios User=new Usuarios();
 				
-				User.setIdUsuario(rs.getInt("IdUsuario"));
-				User.setLogin(rs.getString("Login"));
-				User.setSenha(rs.getString("Senha"));
-				User.setTipo(rs.getBoolean("Tipo"));
+				
 				
 				
 				Hosp.setDocumento(CPF);
@@ -259,7 +255,6 @@ public class HospedeDAO implements IHospedeDAO {
 				Hosp.setPronome(rs.getString("Pronome"));
 				Hosp.setSobrenome(rs.getString("Sobrenome"));
 				
-				Hosp.setUsuario(User);
 			}
 			
 		} catch (SQLException e) {
