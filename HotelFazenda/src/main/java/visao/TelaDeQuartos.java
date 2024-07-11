@@ -40,6 +40,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -355,9 +359,9 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(textChecki, "cell 1 3 2 1,grow");
 		textChecki.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Data checkout");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_6.add(lblNewLabel_2, "cell 0 4,alignx left,aligny bottom");
+		JLabel lblNewLabel_21 = new JLabel("Data checkout");
+		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_6.add(lblNewLabel_21, "cell 0 4,alignx left,aligny bottom");
 		
 		textChecko = new JTextField();
 		textChecko = new JFormattedTextField(Data);
@@ -477,7 +481,7 @@ public class TelaDeQuartos extends JFrame {
 					 
 					 HospedagensDAO DAO = HospedagensDAO.getInstancia();
 					 
-					 Hospedes hosp=HospedesDAO.buscarHospedePorCPF(textCPF.getText());
+					 Hospedes hosp=HospedesDAO.buscarHospedePorCPF(Cpf);
 					 
 					 Hospedagens hospedagem = new Hospedagens();
 					 
@@ -599,7 +603,8 @@ public class TelaDeQuartos extends JFrame {
 		                Boolean ArCondicionado = ListaQuartos.get(i).getArCondicionado();
 		                Boolean Banheira = ListaQuartos.get(i).getBanheira();
 		                Boolean TV = ListaQuartos.get(i).getTV();
-		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();       
+		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();  
+		                int Situacao=ListaQuartos.get(i).getSituacao();
 
 		                // Preenche os textfields com os dados recuperados
 		                QuartoSelcionado.setIdQuarto(IdQuarto);
@@ -612,7 +617,7 @@ public class TelaDeQuartos extends JFrame {
 		                QuartoSelcionado.setBanheira(Banheira);
 		                QuartoSelcionado.setTV(TV);
 		                QuartoSelcionado.setPrecoDiaria(PrecoDiaria);
-
+		                QuartoSelcionado.setSituacao(Situacao);
 		                
 		            }
 		        }
