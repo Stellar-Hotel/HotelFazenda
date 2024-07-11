@@ -285,7 +285,7 @@ public class TelaDeQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin=new Login();
-				
+					novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					novoLogin.setVisible(true);
 					dispose();
 				

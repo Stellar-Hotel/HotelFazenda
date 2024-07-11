@@ -155,7 +155,8 @@ public class FuncionariosDAO implements IFuncionariosDAO
 		// TODO Auto-generated method stub
 		UsuariosDAO dao=UsuariosDAO.getInstancia();
 		
-		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,NivelDeAcesso=?,PronomesFunc=?,EmailFunc=?,SetorFunc=?,Telefone=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
+		String SQL = "UPDATE Funcionarios SET nome = ?, Sobrenome = ?, Funcao = ?, Salario = ?,CPF=?,"
+				+ "NivelDeAcesso=?,PronomesFunc=?,EmailFunc=?,SetorFunc=?,Telefone=? WHERE IdFuncionario = ?";//acho que tem que fazer o inner join aqui tbm
 		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();

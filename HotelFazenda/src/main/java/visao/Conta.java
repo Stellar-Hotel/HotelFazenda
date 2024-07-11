@@ -46,6 +46,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Conta extends JFrame {
 
@@ -354,9 +356,9 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_7, "cell 4 2,alignx center,aligny center");
 		
 		textUser = new JTextField();
-		textUser.addFocusListener(new FocusAdapter() {
+		textUser.addKeyListener(new KeyAdapter() {
 			@Override
-			public void focusLost(FocusEvent e) {
+			public void keyTyped(KeyEvent e) {
 				if(textUser.getText().equals(Func.getUsuario().getLogin()))
 				{
 					textUser.setBorder( bordaPreta);
@@ -367,6 +369,20 @@ public class Conta extends JFrame {
 					lblNewLabel_19.setText("Este Dado será alterado!");
 				}
 			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(textUser.getText().equals(Func.getUsuario().getLogin()))
+				{
+					textUser.setBorder( bordaPreta);
+					lblNewLabel_19.setText("");
+
+				}else {
+					textUser.setBorder(bordaVermelha);
+					lblNewLabel_19.setText("Este Dado será alterado!");
+				}
+			}
+		});
+		
 		});
 		textUser.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		textUser.setBorder(new RoundedBorder(Color.black, 10));

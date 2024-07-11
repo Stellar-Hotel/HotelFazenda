@@ -61,6 +61,7 @@ public class Login extends JFrame {
 				try {
 					Login frame = new Login();
 //				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
