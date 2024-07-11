@@ -69,7 +69,7 @@ public class Login extends JFrame {
 		});
 
 	}
- 
+
 	/**
 	 * Create the frame.
 	 */
@@ -153,14 +153,17 @@ public class Login extends JFrame {
 				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
 
 				if (usuarios != null) {
-					JOptionPane.showMessageDialog(null, "Usuário encontrado!");
+					TelaSucesso sucesso = new TelaSucesso();
+
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
 					Home c = new Home(Func);
 					c.setVisible(true);
 					dispose();
+					sucesso.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "Usuario não encontrado!");
+					TelaErro erro = new TelaErro();
+					erro.setVisible(true);
 					txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
 					txtSenha.setBorder(new RoundedBorder(Color.RED, 10));
 				}
