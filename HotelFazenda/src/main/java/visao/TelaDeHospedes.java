@@ -300,7 +300,7 @@ public class TelaDeHospedes extends JFrame {
 		Principal.setLayout(new MigLayout("", "[][101.00][123.00][:230.00:230.00][:15:15][:10:10][][][-24.00][grow]", "[][][:50:50,grow][303.00][31.00][grow,fill]"));
 		
 		JLabel lblNewLabel_9 = new JLabel("Hospede");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 38));
 		Principal.add(lblNewLabel_9, "cell 1 1 2 1");
 		
 		JPanel panel_5 = new JPanel();
@@ -308,9 +308,11 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]", "[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][grow]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
+		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_7, "cell 3 0 2 1");
 		
 		JLabel lblNewLabel_10 = new JLabel("Nome");
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10, "cell 0 2,alignx left");
         
         textNome = new JTextField();
@@ -322,6 +324,7 @@ public class TelaDeHospedes extends JFrame {
 				textNome.setColumns(10);
 		
 		JLabel lblNewLabel_10_1 = new JLabel("Sobrenome");
+		lblNewLabel_10_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_1, "cell 4 2,alignx left,aligny center");
 		
 		textSobrenome = new JTextField();
@@ -333,6 +336,7 @@ public class TelaDeHospedes extends JFrame {
 				panel_5.add(textSobrenome, "cell 6 2 3 1,growx");
 		
 		JLabel lblNewLabel_10_2 = new JLabel("data de nascimento");
+		lblNewLabel_10_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_2, "cell 0 4 2 1,alignx left,aligny center");
 		
 		textNascimento = new JFormattedTextField(Data);
@@ -342,6 +346,7 @@ public class TelaDeHospedes extends JFrame {
 				panel_5.add(textNascimento, "cell 2 4 2 1,growx");
 		
 		JLabel lblNewLabel_10_1_1 = new JLabel("Documento");
+		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_1_1, "cell 4 4,alignx left,aligny center");
 		
 		textCPF = new JTextField();
@@ -351,6 +356,7 @@ public class TelaDeHospedes extends JFrame {
 				panel_5.add(textCPF, "cell 6 4 3 1,growx");
 		
 		JLabel lblNewLabel_10_2_1 = new JLabel("Nacionalidade");
+		lblNewLabel_10_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_2_1, "cell 0 6 2 1,alignx left,aligny center");
 		
 		textNacionalidade = new JTextField();
@@ -361,6 +367,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textNacionalidade, "cell 2 6 2 1,growx");
 		
 		JLabel lblNewLabel_10_2_1_1 = new JLabel("Pronome");
+		lblNewLabel_10_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_2_1_1, "cell 4 6,alignx left,aligny center");
 		
 		textPronome = new JTextField();
@@ -371,6 +378,7 @@ public class TelaDeHospedes extends JFrame {
 				panel_5.add(textPronome, "cell 6 6 3 1,growx");
 		
 		JLabel lblNewLabel_10_2_1_1_1 = new JLabel("Email");
+		lblNewLabel_10_2_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_2_1_1_1, "cell 0 8,alignx left");
 		
 		textEmail = new JTextField();

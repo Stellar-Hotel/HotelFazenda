@@ -111,7 +111,7 @@ public class TelaAtividades extends JFrame {
 		}
 		MaskFormatter Idade=null;
 		try {
-			Idade=new MaskFormatter("##");
+			Idade=new MaskFormatter("###");
 			Idade.setAllowsInvalid(false);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -323,7 +323,7 @@ public class TelaAtividades extends JFrame {
 		Principal.setLayout(new MigLayout("", "[:100px:100px][74.00][92.00][][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]", "[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
 		
 				JLabel lblNewLabel_1 = new JLabel("Atividades");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
+				lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 				Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 				
 				JScrollPane spTable = new JScrollPane();
@@ -345,6 +345,7 @@ public class TelaAtividades extends JFrame {
 				Principal.add(panel_6, "flowy,cell 1 2");
 				
 						JLabel lblNewLabel_9 = new JLabel("Inscritos");
+						lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 						panel_6.add(lblNewLabel_9);
 								
 								JSeparator separator_1 = new JSeparator();
@@ -377,6 +378,7 @@ public class TelaAtividades extends JFrame {
 		
 		
 				JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
+				lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 				panel_5.add(lblNewLabel_7);
 								
 								JPanel panel_7 = new JPanel();
@@ -384,9 +386,11 @@ public class TelaAtividades extends JFrame {
 								panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:70][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 								
 								JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
+								lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 								panel_7.add(lblNewLabel_10, "cell 0 0,alignx center,aligny top");
 								
 								JLabel lblNewLabel_12_1_1_1_1_1_1 = new JLabel("Nome da Atividade");
+								lblNewLabel_12_1_1_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 								panel_7.add(lblNewLabel_12_1_1_1_1_1_1, "cell 0 1");
 								
 								textNomeatividade = new JTextField();
@@ -397,6 +401,7 @@ public class TelaAtividades extends JFrame {
 								
 																
 																JLabel lblNewLabel_12_1_1_1 = new JLabel("Idade");
+																lblNewLabel_12_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 																panel_7.add(lblNewLabel_12_1_1_1, "cell 3 1,alignx center");
 																
 																textIdade = new JFormattedTextField(Idade);
@@ -405,6 +410,7 @@ public class TelaAtividades extends JFrame {
 																textIdade.setBorder(new RoundedBorder(Color.black, 10));
 																
 																JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
+																lblNewLabel_12_1_1_1_1_1_3.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 																panel_7.add(lblNewLabel_12_1_1_1_1_1_3, "cell 0 3,alignx center,aligny center");
 																
 																textCapacidade = new JFormattedTextField(Num);
@@ -413,6 +419,7 @@ public class TelaAtividades extends JFrame {
 																textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
 																
 																JLabel lblNewLabel_12_1_1_1_1_1_2 = new JLabel("Data");
+																lblNewLabel_12_1_1_1_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 																panel_7.add(lblNewLabel_12_1_1_1_1_1_2, "cell 3 3,alignx center,aligny center");
 																
 																textData = new JFormattedTextField(Data);
@@ -421,6 +428,7 @@ public class TelaAtividades extends JFrame {
 																textData.setBorder(new RoundedBorder(Color.black, 10));
 																
 																JLabel lblNewLabel_12_1_1_1_1 = new JLabel("Horario");
+																lblNewLabel_12_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 																panel_7.add(lblNewLabel_12_1_1_1_1, "cell 0 5,alignx center,aligny center");
 																
 																textHorario = new JFormattedTextField(Horario);
@@ -429,6 +437,7 @@ public class TelaAtividades extends JFrame {
 																textHorario.setBorder(new RoundedBorder(Color.black, 10));
 																
 																JLabel lblNewLabel_12_1_1_1_1_1 = new JLabel("Horario Fim");
+																lblNewLabel_12_1_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 																panel_7.add(lblNewLabel_12_1_1_1_1_1, "cell 2 5,alignx center");
 																
 																TextHorarioFim = new JFormattedTextField(Horario);
@@ -610,9 +619,11 @@ public class TelaAtividades extends JFrame {
 								panel_7.add(separator_2, "cell 0 8 6 1,growx");
 								
 								JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
+								lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 								panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
 								
 								JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
+								lblNewLabel_11_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 								panel_7.add(lblNewLabel_11_2, "cell 0 10,alignx left");
 								
 								textField = new JTextField();

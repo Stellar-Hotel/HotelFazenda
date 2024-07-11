@@ -40,10 +40,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -109,6 +105,7 @@ public class TelaDeQuartos extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeQuartos(int x, Funcionarios Func) {
+		setTitle("Tela de Quartos");
 		
 		Quartos quartos = new Quartos();
 		
@@ -150,7 +147,7 @@ public class TelaDeQuartos extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[:200:200,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][211.00,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
@@ -158,6 +155,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Home TelaHome=new Home(Func);
 				TelaHome.setVisible(true);
+				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -172,6 +171,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaDeHospedes Chama = new TelaDeHospedes(Func);
 				Chama.setVisible(true);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 				
 			}
@@ -186,6 +187,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaAtividades TelaAtiv=new TelaAtividades(Func);
 				TelaAtiv.setVisible(true);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -199,6 +202,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaDeAcomodacoes TelaAco=new TelaDeAcomodacoes(Func);
 				TelaAco.setVisible(true);
+				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -212,6 +217,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaServicos TelaServ=new TelaServicos(Func);
 				TelaServ.setVisible(true);
+				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -225,6 +232,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
 				TelaAdm.setVisible(true);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 				
 			}
@@ -239,6 +248,8 @@ public class TelaDeQuartos extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Conta telaConta=new Conta(Func);
 				telaConta.setVisible(true);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 				dispose();
 			}
 		});
@@ -277,7 +288,7 @@ public class TelaDeQuartos extends JFrame {
 			}
 		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
 		lblNewLabel_5.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/Sair.png")));
 		panel.add(lblNewLabel_5, "cell 0 3 2 1,alignx center,aligny top");
@@ -335,14 +346,14 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.setLayout(new MigLayout("", "[grow][100px:74.00,grow][grow]", "[][grow][][][][][grow][grow][][][][][]"));
 		
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		panel_6.add(lblNewLabel_7, "cell 0 0,aligny top");
 		
 		JPanel panel_12 = new JPanel();
 		panel_6.add(panel_12, "cell 0 1 2 1,grow");
 		
 		JLabel lblNewLabel_9 = new JLabel("CPF do hóspede");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx left,aligny bottom");
 		
 		textCPF = new JTextField();
@@ -351,7 +362,7 @@ public class TelaDeQuartos extends JFrame {
 		textCPF.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Data checkin");
-		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left,aligny bottom");
 		
 		textChecki = new JTextField();
@@ -359,9 +370,9 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(textChecki, "cell 1 3 2 1,grow");
 		textChecki.setColumns(10);
 		
-		JLabel lblNewLabel_21 = new JLabel("Data checkout");
-		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_6.add(lblNewLabel_21, "cell 0 4,alignx left,aligny bottom");
+		JLabel lblNewLabel_2 = new JLabel("Data checkout");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 21));
+		panel_6.add(lblNewLabel_2, "cell 0 4,alignx left,aligny bottom");
 		
 		textChecko = new JTextField();
 		textChecko = new JFormattedTextField(Data);
@@ -369,7 +380,7 @@ public class TelaDeQuartos extends JFrame {
 		textChecko.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("Forma de pagamento:");
-		lblNewLabel_13.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		panel_6.add(lblNewLabel_13, "cell 0 5,alignx left,aligny bottom");
 		
 		JPanel panel_8 = new JPanel();
@@ -415,6 +426,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_15.add(lblNewLabel_18);
 		
 		JLabel label = new JLabel("New label");
+		label.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel_6.add(label, "cell 0 11");
 		
 		JPanel panel_7 = new JPanel();
@@ -422,7 +434,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]"));
 		
 		JLabel lblNewLabel_11 = new JLabel("Subtotal:");
-		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		panel_7.add(lblNewLabel_11, "cell 0 0,alignx left,aligny bottom");
 		
 		JLabel lblsubtotal = new JLabel("");
@@ -481,7 +493,7 @@ public class TelaDeQuartos extends JFrame {
 					 
 					 HospedagensDAO DAO = HospedagensDAO.getInstancia();
 					 
-					 Hospedes hosp=HospedesDAO.buscarHospedePorCPF(Cpf);
+					 Hospedes hosp=HospedesDAO.buscarHospedePorCPF(textCPF.getText());
 					 
 					 Hospedagens hospedagem = new Hospedagens();
 					 
@@ -504,18 +516,18 @@ public class TelaDeQuartos extends JFrame {
 		btnNewButton_3.setBackground(new Color(117, 187, 68));
 		
 		JLabel lblNewLabel_12 = new JLabel("Desconto:");
-		lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		panel_7.add(lblNewLabel_12, "cell 0 1,alignx left,aligny top");
 		
 		JLabel lblNewLabel_14 = new JLabel("Total:");
-		lblNewLabel_14.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		panel_7.add(lblNewLabel_14, "cell 0 2,alignx left,aligny top");
 		
 		JPanel panel_10 = new JPanel();
 		panel_7.add(panel_10, "cell 0 3 1 2,grow");
 		
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 		
 		model1 = new DefaultTableModel(new Object[][]{}, new String[]{"Número do quarto",  "Situação do quarto"});
@@ -603,8 +615,7 @@ public class TelaDeQuartos extends JFrame {
 		                Boolean ArCondicionado = ListaQuartos.get(i).getArCondicionado();
 		                Boolean Banheira = ListaQuartos.get(i).getBanheira();
 		                Boolean TV = ListaQuartos.get(i).getTV();
-		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();  
-		                int Situacao=ListaQuartos.get(i).getSituacao();
+		                Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();       
 
 		                // Preenche os textfields com os dados recuperados
 		                QuartoSelcionado.setIdQuarto(IdQuarto);
@@ -617,7 +628,7 @@ public class TelaDeQuartos extends JFrame {
 		                QuartoSelcionado.setBanheira(Banheira);
 		                QuartoSelcionado.setTV(TV);
 		                QuartoSelcionado.setPrecoDiaria(PrecoDiaria);
-		                QuartoSelcionado.setSituacao(Situacao);
+
 		                
 		            }
 		        }

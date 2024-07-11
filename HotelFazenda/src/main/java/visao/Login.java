@@ -94,27 +94,12 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("Bem vindo ao ");
 		panel.add(lblNewLabel, "flowx,cell 0 0,growx,aligny top");
 
-		JLabel lblNewLabel_4 = new JLabel("Não possui uma conta?");
-		panel.add(lblNewLabel_4, "cell 7 0,alignx left,aligny top");
-
 		JLabel lblNewLabel_2_1_1 = new JLabel("Entrar");
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 55));
+		lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 55));
 		panel.add(lblNewLabel_2_1_1, "cell 0 1");
 
-		JLabel lblNewLabel_4_1 = new JLabel("Inscrever-se");
-		lblNewLabel_4_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaDeCadastro tela = new TelaDeCadastro();
-				tela.setVisible(true);
-				dispose();
-			}
-		});
-		lblNewLabel_4_1.setForeground(new Color(117, 187, 68));
-		panel.add(lblNewLabel_4_1, "cell 7 1,alignx left,aligny top");
-
 		JLabel lblNewLabel_3 = new JLabel("Digite seu nome de usuario ou endereço de e-mail");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 
 		txtLogin = new JTextField();
@@ -123,7 +108,7 @@ public class Login extends JFrame {
 		txtLogin.setColumns(10);
 
 		JLabel lblNewLabel_3_1 = new JLabel("Digite sua senha");
-		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 
 		txtSenha = new JPasswordField(20);
@@ -133,6 +118,7 @@ public class Login extends JFrame {
 		panel.add(txtSenha, "cell 0 8 8 1,grow");
 
 		JLabel lblNewLabel_1 = new JLabel("Hotel Fazenda");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblNewLabel_1.setForeground(new Color(117, 187, 68));
 		panel.add(lblNewLabel_1, "cell 0 0,alignx left,aligny top");
 
@@ -153,7 +139,7 @@ public class Login extends JFrame {
 				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
 
 				if (usuarios != null) {
-					TelaSucesso sucesso = new TelaSucesso("Login efetuado com sucesso!");
+					TelaSucesso sucesso = new TelaSucesso();
 
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
@@ -167,9 +153,9 @@ public class Login extends JFrame {
 					
 					
 				} else {
-					TelaErro erro = new TelaErro("Credenciais inválidas!");
+					TelaErro erro = new TelaErro();
 					erro.setVisible(true);
-					txtLogin.setBorder(new RoundedBorder(Color.RED, 10));
+					txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
 					txtSenha.setBorder(new RoundedBorder(Color.RED, 10));
 				}
 
