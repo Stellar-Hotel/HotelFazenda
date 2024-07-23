@@ -342,6 +342,16 @@ public class TelaAtividades extends JFrame {
 		Principal.add(spTable, "cell 6 14 4 5,grow");
 
 		table = new JTable(model1);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+                if (row >= 0) {
+                    // Verifica se o clique foi em uma linha válida
+                    abrirTelaAtividadesHospedes();
+                }
+			}
+		});
 		spTable.setViewportView(table);
 
 		JPanel panel_6 = new JPanel();
@@ -723,7 +733,12 @@ public class TelaAtividades extends JFrame {
 
 		table.setModel(modelo1);
 	}
-
+	private void abrirTelaAtividadesHospedes() {
+        // Supondo que você tenha uma classe chamada `TelaAtividadesHospedes` para a nova tela
+        TelaAtividadesHospedes telaAtividadesHospedes = new TelaAtividadesHospedes(); 
+        telaAtividadesHospedes.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        telaAtividadesHospedes.setVisible(true);
+    }
 	class LetterDocumentFilter extends DocumentFilter {
 		@Override
 		public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
