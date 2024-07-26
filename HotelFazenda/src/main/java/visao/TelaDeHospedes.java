@@ -631,7 +631,7 @@ public class TelaDeHospedes extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "insira algo");
+		 
 
 			}
 
@@ -673,7 +673,7 @@ public class TelaDeHospedes extends JFrame {
 		table.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
 		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(155);
+		table.getColumnModel().getColumn(7).setPreferredWidth(150);
 	}
 
 	class LetterDocumentFilter extends DocumentFilter {
