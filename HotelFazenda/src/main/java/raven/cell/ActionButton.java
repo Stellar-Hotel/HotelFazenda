@@ -19,7 +19,6 @@ public class ActionButton extends JButton {
         this.backgroundColor = color;
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3, 3, 3, 3));
-        setForeground(Color.WHITE);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

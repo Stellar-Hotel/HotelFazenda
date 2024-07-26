@@ -36,6 +36,7 @@ import controle.Hospede.HospedeDAO;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
@@ -620,7 +621,8 @@ public class TelaDeHospedes extends JFrame {
 		Model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Sobrenome", "Data de Nascimento",
 				"Documento", "Nacionalidade", "Pronome", "Email", "Acoes" });
 
-		table = new JTable(Model);
+		table = new CustomTable(Model);
+
 		scrollPane.setViewportView(table);
 
 		atualizarJTable();
@@ -631,7 +633,6 @@ public class TelaDeHospedes extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-		 
 
 			}
 
@@ -670,7 +671,22 @@ public class TelaDeHospedes extends JFrame {
 					h.getNacionalidade(), h.getPronome(), h.getEmail() });
 		}
 		table.setModel(Model);
-		table.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
+
+		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		table.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
+
+		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if (row >= 0) {
+					cellRenderer.setSelectedRow(row);
+					table.repaint(); // Repaint to apply the new row color
+				}
+			}
+		});
+
 		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
 		table.setRowHeight(50);
 		table.getColumnModel().getColumn(7).setPreferredWidth(150);

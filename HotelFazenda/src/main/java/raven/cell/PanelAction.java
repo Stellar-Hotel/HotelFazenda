@@ -64,4 +64,10 @@ public class PanelAction extends JPanel {
         );
         this.setLayout(layout);
     }
+
+    // Método para definir a cor de fundo
+    public void setBackgroundColor(Color color) {
+        this.setBackground(color);
+        
+    }
 }
