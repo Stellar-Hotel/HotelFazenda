@@ -38,9 +38,15 @@ import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
+import controle.Hospede.HospedeDAO;
 import modelo.Atividades;
 import modelo.Funcionarios;
+import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 import visao.TelaDeHospedes.LetterDocumentFilter;
 
 import javax.swing.JSeparator;
@@ -127,12 +133,6 @@ public class TelaAtividades extends JFrame {
 		}
 		ListaAtividades = new ArrayList<Atividades>();
 		ListaAtividadesinscritas = new ArrayList<Atividades>();
-
-		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade" }));
-
-		model2 = (new DefaultTableModel(new Object[][] {},
-				new String[] { "IdAtividade", "Funcionario", "NomeAtividade" }));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -341,19 +341,9 @@ public class TelaAtividades extends JFrame {
 		JScrollPane spTable = new JScrollPane();
 		Principal.add(spTable, "cell 6 14 4 5,grow");
 
-		table = new JTable(model1);
-		spTable.setViewportView(table);
-
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255, 255, 255));
-		panel_6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(new JTable(model2));
-				atualizarJTable();
-			}
-		});
 		Principal.add(panel_6, "flowy,cell 1 2");
 
 		JLabel lblNewLabel_9 = new JLabel("Inscritos");
@@ -372,14 +362,7 @@ public class TelaAtividades extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(255, 255, 255));
-		panel_5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(table);
-				atualizarJTable();
-			}
-		});
 		Principal.add(panel_5, "flowx,cell 0 2");
 
 		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
@@ -548,7 +531,6 @@ public class TelaAtividades extends JFrame {
 
 						int linha = table.getSelectedRow();
 
-						
 						Atividades ativ = new Atividades();
 
 						ativ.setIdadeMinima(Idade);
@@ -559,7 +541,6 @@ public class TelaAtividades extends JFrame {
 						ativ.setCapacidade(Capacidade);
 						ativ.setFuncionario(Func);
 						ativ.setIdAtividade(ListaAtividades.get(linha).getIdAtividade());
-						
 
 						AtividadesDAO DAO = AtividadesDAO.getInstancia();
 						DAO.AtualizarAtividades(ativ);
@@ -704,13 +685,55 @@ public class TelaAtividades extends JFrame {
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
 
+		table = new CustomTable(model1);
+		spTable.setViewportView(table);
+
+		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
+				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
+
+		model2 = (new DefaultTableModel(new Object[][] {},
+				new String[] { "IdAtividade", "Funcionario", "NomeAtividade" }));
+
+		panel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				spTable.setViewportView(table);
+				atualizarJTable();
+			}
+		});
+
+		panel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				spTable.setViewportView(new JTable(model2));
+				atualizarJTable();
+			}
+		});
+
 		atualizarJTable();
 
 	}
 
 	protected void atualizarJTable() {
+
+		TableActionEvent event = new TableActionEvent() {
+
+			@Override
+			public void onEdit(int row) {
+				System.out.println("Edit row : " + row);
+			}
+
+			@Override
+			public void onDelete(int row) {
+				int linhaSelecionada = table.getSelectedRow();
+			 
+			}
+
+		};
 		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
-				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade" });
+				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade", "Ações"  });
 
 		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
 		ListaAtividades = AtivDAO.ListarAtividades();
@@ -722,6 +745,28 @@ public class TelaAtividades extends JFrame {
 		}
 
 		table.setModel(modelo1);
+		
+		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		table.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
+		
+		
+		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if (row >= 0) {
+					cellRenderer.setSelectedRow(row);
+					table.repaint(); // Repaint to apply the new row color
+				}
+			}
+		});
+
+		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+		table.setRowHeight(50);
+		table.getColumnModel().getColumn(7).setPreferredWidth(150);
+		
+		
 	}
 
 	class LetterDocumentFilter extends DocumentFilter {

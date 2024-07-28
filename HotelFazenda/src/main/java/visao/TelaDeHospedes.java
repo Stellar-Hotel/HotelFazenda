@@ -630,13 +630,7 @@ public class TelaDeHospedes extends JFrame {
 	}
 
 	protected void atualizarJTable() {
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-			}
-
-		});
+ 
 		TableActionEvent event = new TableActionEvent() {
 
 			@Override
@@ -660,7 +654,7 @@ public class TelaDeHospedes extends JFrame {
 
 		};
 		DefaultTableModel Model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Sobrenome",
-				"Data de Nascimento", "Documento", "Nacionalidade", "Pronome", "Email", "Acoes" });
+				"Data de Nascimento", "Documento", "Nacionalidade", "Pronome", "Email", "Ações" });
 
 		HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
 		listahospedes = hospedeDAO.ListarHospedes();

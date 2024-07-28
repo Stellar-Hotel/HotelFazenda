@@ -24,6 +24,10 @@ import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
 
 import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -50,8 +54,7 @@ public class Carrinho extends JFrame {
 	private JTable table;
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -74,24 +77,18 @@ public class Carrinho extends JFrame {
 //	 * @param lista
 //	 */
 	public Carrinho(Funcionarios Func) {
-		 MaskFormatter  formatoCpf = null;
-		
-			 try {
-				formatoCpf = new MaskFormatter("###.###.###-##");
-				formatoCpf.setPlaceholderCharacter('_');
-			} catch (java.text.ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			 
-			
+		MaskFormatter formatoCpf = null;
+
+		try {
+			formatoCpf = new MaskFormatter("###.###.###-##");
+			formatoCpf.setPlaceholderCharacter('_');
+		} catch (java.text.ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		listaServicos = new ArrayList<Servicos>();
 
-		model1 = (new DefaultTableModel(new Object[][] {},
-				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total" }));
-
-		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -258,7 +255,7 @@ public class Carrinho extends JFrame {
 
 		txtHospede = new JTextField();
 		txtHospede.setBackground(new Color(255, 255, 255));
-		txtHospede = new JFormattedTextField(formatoCpf); 
+		txtHospede = new JFormattedTextField(formatoCpf);
 		panel.add(txtHospede, "cell 0 5 3 1,grow");
 		txtHospede.setColumns(10);
 		txtHospede.setBorder(new RoundedBorder(Color.black, 10));
@@ -312,9 +309,8 @@ public class Carrinho extends JFrame {
 				HospedeDAO Hdao = HospedeDAO.getInstancia();
 
 				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
-				
-				
-		;
+
+				;
 
 				for (int i = 0; i < listaServicos.size(); i++) {
 					ServicosConsumidos sc = new ServicosConsumidos();
@@ -334,10 +330,6 @@ public class Carrinho extends JFrame {
 			}
 		});
 		JScrollPane cTable = new JScrollPane();
-		contentPane.add(cTable, "cell 2 6,grow");
-		table = new JTable(model1);
-
-		cTable.setViewportView(table);
 
 		JButton btnNewButton = new JButton("Voltar as Compras");
 		btnNewButton.setForeground(new Color(255, 255, 255));
@@ -436,13 +428,35 @@ public class Carrinho extends JFrame {
 			}
 		});
 
+		model1 = (new DefaultTableModel(new Object[][] {},
+				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total", "Ações" }));
+
+		contentPane.add(cTable, "cell 2 6,grow");
+		table = new CustomTable(model1);
+
+		cTable.setViewportView(table);
 		atualizarJTable();
 
 	}
 
 	protected void atualizarJTable() {
+
+		TableActionEvent event = new TableActionEvent() {
+
+			@Override
+			public void onEdit(int row) {
+				System.out.println("Edit row : " + row);
+			}
+
+			@Override
+			public void onDelete(int row) {
+				int linhaSelecionada = table.getSelectedRow();
+
+			}
+
+		};
 		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total" });
+				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total", "Ações" });
 
 		ServicosDAO dao = ServicosDAO.getInstancia();
 
@@ -455,5 +469,25 @@ public class Carrinho extends JFrame {
 		}
 
 		table.setModel(modelo1);
+
+		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+
+		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if (row >= 0) {
+					cellRenderer.setSelectedRow(row);
+					table.repaint(); // Repaint to apply the new row color
+				}
+			}
+		});
+
+		table.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+		table.setRowHeight(50);
+		table.getColumnModel().getColumn(4).setPreferredWidth(150);
+
 	}
 }
