@@ -342,16 +342,6 @@ public class TelaAtividades extends JFrame {
 		Principal.add(spTable, "cell 6 14 4 5,grow");
 
 		table = new JTable(model1);
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int row = table.rowAtPoint(e.getPoint());
-                if (row >= 0) {
-                    // Verifica se o clique foi em uma linha válida
-                    abrirTelaAtividadesHospedes();
-                }
-			}
-		});
 		spTable.setViewportView(table);
 
 		JPanel panel_6 = new JPanel();
@@ -645,8 +635,21 @@ public class TelaAtividades extends JFrame {
 		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				int linha = table.getSelectedRow();
+				
+				if(linha >= 0) {
+					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func);
+					chama.setVisible(true);
+					dispose();
+				}else if(linha <= 0) {
+
+					JOptionPane.showMessageDialog(null, "selecione uma linha para adicionar um hospede");				
+				}
 			}
 		});
+		
+
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(117, 187, 68));
 		panel_7.add(btnNewButton_1, "cell 2 11");
@@ -733,12 +736,7 @@ public class TelaAtividades extends JFrame {
 
 		table.setModel(modelo1);
 	}
-	private void abrirTelaAtividadesHospedes() {
-        // Supondo que você tenha uma classe chamada `TelaAtividadesHospedes` para a nova tela
-        TelaAtividadesHospedes telaAtividadesHospedes = new TelaAtividadesHospedes(); 
-        telaAtividadesHospedes.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        telaAtividadesHospedes.setVisible(true);
-    }
+
 	class LetterDocumentFilter extends DocumentFilter {
 		@Override
 		public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)

@@ -83,8 +83,8 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
-				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividades=Funcionarios.IdFuncionario"
+		String SQL = "SELECT * FROM atividadeshospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
+				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividade=Funcionarios.IdFuncionario"
 				+ " inner join Usuarios on Funcionarios.IdUsuarioFuncionario=Usuarios.IdUsuario"
 				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede";
 		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
