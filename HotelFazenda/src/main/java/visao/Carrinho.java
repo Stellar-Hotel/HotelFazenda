@@ -77,6 +77,21 @@ public class Carrinho extends JFrame {
 //	 * @param lista
 //	 */
 	public Carrinho(Funcionarios Func) {
+		  setUndecorated(true);
+	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	        setSize(500, 1000);
+
+	        contentPane = new JPanel() {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                super.paintComponent(g);
+	                Graphics2D g2d = (Graphics2D) g.create();
+	                g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	                g2d.dispose();
+	            }
+	        };
+	        contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		MaskFormatter formatoCpf = null;
 
 		try {
@@ -91,12 +106,10 @@ public class Carrinho extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		 
 		setContentPane(contentPane);
 		contentPane.setLayout(
-				new MigLayout("", "[::15][][472.00,grow][::100,grow][10px:n:50,grow][331.00,grow][15:n:15,grow]",
-						"[10:n][35.00][26.00][29.00][13.00][][449.00,grow][42.00]"));
+				new MigLayout("", "[::15][][900,grow][::30,grow][::30,grow][331.00,grow][15:n:15,grow]", "[10:n][35.00][26.00][29.00][13.00][][449.00,grow][42.00]"));
 
 		JLabel lblNewLabel = new JLabel("Carrinho");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
@@ -292,6 +305,13 @@ public class Carrinho extends JFrame {
 		JButton btnNewButton_3 = new JButton("Finalizar");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				ServicosConsumidos serv = new ServicosConsumidos();
+				
+				ServicosConsumidosDAO Cdao = ServicosConsumidosDAO.getInstancia();
+				Cdao.inserirServicoConsumido(null);
+				
+				
 			}
 		});
 		panel_4.add(btnNewButton_3, "cell 0 0,grow");
@@ -338,25 +358,11 @@ public class Carrinho extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos s = new TelaServicos(Func);
-				s.setVisible(true);
+				 
 				dispose();
 			}
 		});
 		contentPane.add(btnNewButton, "flowx,cell 2 7,growx,aligny center");
-
-		JButton btnNewButton_1 = new JButton("Atualizar");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBorder(new RoundedBorder(Color.black, 8));
-		btnNewButton_1.setBackground(new Color(117, 187, 68));
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				atualizarJTable();
-			}
-		});
-		contentPane.add(btnNewButton_1, "cell 2 7,growx,aligny center");
 
 		panel_2.addMouseListener(new MouseAdapter() {
 			@Override

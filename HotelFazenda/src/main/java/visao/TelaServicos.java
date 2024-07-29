@@ -62,6 +62,7 @@ public class TelaServicos extends JFrame {
 		ServicosDAO dao = ServicosDAO.getInstancia();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  setLocationRelativeTo(null);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -290,8 +291,10 @@ public class TelaServicos extends JFrame {
 				
 				
 				Carrinho c = new Carrinho(Func);
+				c.setLocationRelativeTo(null);
+
 				c.setVisible(true);
-				dispose();
+			 
 				
 			}
 		});

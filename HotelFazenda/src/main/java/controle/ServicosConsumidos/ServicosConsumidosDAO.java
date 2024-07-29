@@ -88,20 +88,14 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 				ServicosConsumidos Serv = new ServicosConsumidos();
 
-				// Pegar os dados da tabela hospede
-				// Pegar os dados da tabela servicos
-
-				// Pegar os dados da tabela hospedagens
-
-				// Criar obj para cada tabela
+				
 				// tem que preencher os atributos desses objetos
 				Hospedes Hospede = new Hospedes();
 				
 				//tem que arrumar isso aqui, não sei como faria, acho que criando um construtor novo
 				String nada="sim";
 				Servicos Servico = new Servicos(nada,0.1);
-				Hospedagens Hospedagem = new Hospedagens();
-				Quartos Quarto=new Quartos();
+ 				Quartos Quarto=new Quartos();
 				Usuarios User=new Usuarios();
 
 				// Setar os valores nos objetos
@@ -109,9 +103,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Servico.setNomeServico(rs.getString("NomeServico"));
 				Servico.setPrecoServico(rs.getFloat("PrecoServico"));
 
-				Hospedagem.setCheckin(rs.getDate("Checkin"));
-				Hospedagem.setCheckout(rs.getDate("Checkout"));
-				Hospedagem.setIdHospedagem(rs.getInt("IdHospedagem"));
+			 
 
 				Hospede.setDocumento(rs.getString("CPF"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
@@ -122,12 +114,11 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setSobrenome(rs.getString("Sobreneome"));
 
-				Hospedagem.setHospde(Hospede);
-				Hospede.setUsuario(User);
+ 				Hospede.setUsuario(User);
 
 				Serv.setHospede(Hospede);
 				Serv.setServico(Servico);
-				Serv.setHospedagens(Hospedagem);
+				 
 
 				Lista.add(Serv);
 
@@ -164,8 +155,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 			Ps.setInt(1, end.getHospede().getIdHospede());
 			Ps.setInt(2, end.getServico().getIdServico());
-			Ps.setInt(3, end.getHospedagem().getIdHospedagem());
-
+ 
 			Ps.setInt(4, end.getIdServicoConsumido());
 
 			retorno = (Ps.executeUpdate() == 0 ? false : true);
@@ -222,8 +212,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				ServCon = new ServicosConsumidos();
 
 				ServCon.setIdServicoConsumido(Id);
-				ServCon.setHospedagens(null);
-				ServCon.setHospede(null);
+ 				ServCon.setHospede(null);
 				ServCon.setServico(null);
 			}
 		} catch (SQLException e) {
