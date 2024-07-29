@@ -33,8 +33,8 @@ public class HospedagensDAO implements IHospedagenDAO {
 
 	@Override
 	public int InserirHospedagem(Hospedagens Hg) {
-		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,IdQuartoHospedagens,IdHospedeHospedagens) VALUES (?, ?,?,?)";
-
+		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,IdQuartoHospedagens,IdHospedeHospedagens) VALUES (?,?,?,?)";
+System.out.println(SQL);
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();

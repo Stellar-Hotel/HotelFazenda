@@ -2,16 +2,16 @@ package modelo;
 
 public class Quartos {
 	private int IdQuarto, MaxPessoas;
-	private String TipoCama, Manutencao, TipoQuarto;
+	private String TipoCama, Manutencao;
 	private Boolean Frigobar, ArCondicionado, Banheira, TV;
 	private Float PrecoDiaria;
-	private int Situacao;
+	private int Situacao, TipoQuarto;
 
-	public String getTipoQuarto() {
+	public int getTipoQuarto() {
 		return TipoQuarto;
 	}
 
-	public void setTipoQuarto(String tipoQuarto) {
+	public void setTipoQuarto(int tipoQuarto) {
 		TipoQuarto = tipoQuarto;
 	}
 

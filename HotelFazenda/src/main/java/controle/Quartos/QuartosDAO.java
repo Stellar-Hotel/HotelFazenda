@@ -105,7 +105,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
-
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
 				Quartos.add(Quarto);
 			}
 
@@ -209,7 +209,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
-				Quarto.setTipoQuarto(rs.getString("TipoQuarto"));
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
 				Quartos.add(Quarto);
 			}
 
