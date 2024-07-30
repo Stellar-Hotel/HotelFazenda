@@ -24,6 +24,10 @@ import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
 
 import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -50,8 +54,8 @@ public class Carrinho extends JFrame {
 	private JTable table;
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
-	
-	
+	JLabel lblNewLabel_3;
+
 	/**
 	 * Launch the application.
 	 */
@@ -74,47 +78,49 @@ public class Carrinho extends JFrame {
 //	 * @param lista
 //	 */
 	public Carrinho(Funcionarios Func) {
-		 MaskFormatter  formatoCpf = null;
-		
-			 try {
-				formatoCpf = new MaskFormatter("###.###.###-##");
-				formatoCpf.setPlaceholderCharacter('_');
-			} catch (java.text.ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		setUndecorated(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(1200, 700);
+
+		contentPane = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+				g2d.dispose();
 			}
-			 
-			
+		};
+		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		MaskFormatter formatoCpf = null;
+
+		try {
+			formatoCpf = new MaskFormatter("###.###.###-##");
+			formatoCpf.setPlaceholderCharacter('_');
+		} catch (java.text.ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		listaServicos = new ArrayList<Servicos>();
 
-		model1 = (new DefaultTableModel(new Object[][] {},
-				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total" }));
-
-		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1080, 720);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("", "[::15][][472.00,grow][::100,grow][10px:n:50,grow][331.00,grow][15:n:15,grow]",
-						"[10:n][35.00][26.00][29.00][13.00][][449.00,grow][42.00]"));
+		contentPane.setLayout(new MigLayout("",
+				"[::15][][375px:n,grow][375px:n,grow][::30,grow][::30,grow][331.00,grow][15:n:15,grow]",
+				"[10:n][35.00][26.00][29.00][13.00][][449.00,grow][42.00]"));
 
 		JLabel lblNewLabel = new JLabel("Carrinho");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
-		contentPane.add(lblNewLabel, "cell 1 1 2 1");
+		contentPane.add(lblNewLabel, "cell 1 1 3 1");
 
 		JSeparator separator = new JSeparator();
-		contentPane.add(separator, "cell 0 2 4 1,growx");
+		contentPane.add(separator, "cell 0 2 5 1,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Itens do Carrinho");
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-		contentPane.add(lblNewLabel_2, "cell 1 3 2 1");
-
-		JLabel lblNewLabel_3 = new JLabel("Você tem n itens no carrinho.");
-		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		contentPane.add(lblNewLabel_3, "cell 1 4 2 1");
+		contentPane.add(lblNewLabel_2, "cell 1 3 3 1");
 
 		JPanel panel = new JPanel() {
 			@Override
@@ -127,7 +133,7 @@ public class Carrinho extends JFrame {
 		};
 		panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		panel.setBackground(new Color(204, 204, 255));
-		contentPane.add(panel, "cell 5 2 1 5,grow");
+		contentPane.add(panel, "cell 6 2 1 5,grow");
 		panel.setLayout(new MigLayout("", "[100px:100px,grow][100:100,grow][100px:100,grow]",
 				"[33px][36.00px][70px][34.00px][21.00px][32.00px][46.00px,grow][14px][14px][14px][18.00px][45.00px][21.00px][47.00px]"));
 
@@ -258,7 +264,7 @@ public class Carrinho extends JFrame {
 
 		txtHospede = new JTextField();
 		txtHospede.setBackground(new Color(255, 255, 255));
-		txtHospede = new JFormattedTextField(formatoCpf); 
+		txtHospede = new JFormattedTextField(formatoCpf);
 		panel.add(txtHospede, "cell 0 5 3 1,grow");
 		txtHospede.setColumns(10);
 		txtHospede.setBorder(new RoundedBorder(Color.black, 10));
@@ -268,33 +274,25 @@ public class Carrinho extends JFrame {
 		panel.add(panel_4, "cell 0 13 3 1,grow");
 		panel_4.setLayout(new MigLayout("", "[403.00px,grow]", "[89.00px,grow]"));
 
-		JButton btnNewButton_2 = new JButton("Cancelar");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel_4.add(btnNewButton_2, "flowx,cell 0 0,grow");
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBorder(new RoundedBorder(Color.black, 8));
-		btnNewButton_2.setBackground(new Color(204, 0, 0));
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				ServicosDAO dao = ServicosDAO.getInstancia();
-
-				dao.limparServicos();
-
-				TelaServicos s = new TelaServicos(Func);
-				s.setVisible(true);
-				dispose();
-
-			}
-		});
-
-		JButton btnNewButton_3 = new JButton("Finalizar");
+		JButton btnNewButton_3 = new JButton("Finalizar compras");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String Documento = txtHospede.getText();
+					HospedeDAO hDao = HospedeDAO.getInstancia();
+					Hospedes hospede = hDao.buscarHospedePorCPF(Documento);
+
+					ServicosDAO dao = ServicosDAO.getInstancia();
+					dao.limparServicos();
+					TelaSucesso s = new TelaSucesso("Compra efetuada com sucesso!");
+					s.setVisible(true);
+					dispose();
+				} catch (Exception exception) {
+
+					TelaErro e1 = new TelaErro("Erro! Informe um hospede cadastrado.");
+					e1.setVisible(true);
+				}
+
 			}
 		});
 		panel_4.add(btnNewButton_3, "cell 0 0,grow");
@@ -312,9 +310,8 @@ public class Carrinho extends JFrame {
 				HospedeDAO Hdao = HospedeDAO.getInstancia();
 
 				Hospedes h = Hdao.buscarHospedePorCPF(txtHospede.getText());
-				
-				
-		;
+
+				;
 
 				for (int i = 0; i < listaServicos.size(); i++) {
 					ServicosConsumidos sc = new ServicosConsumidos();
@@ -334,10 +331,6 @@ public class Carrinho extends JFrame {
 			}
 		});
 		JScrollPane cTable = new JScrollPane();
-		contentPane.add(cTable, "cell 2 6,grow");
-		table = new JTable(model1);
-
-		cTable.setViewportView(table);
 
 		JButton btnNewButton = new JButton("Voltar as Compras");
 		btnNewButton.setForeground(new Color(255, 255, 255));
@@ -346,25 +339,11 @@ public class Carrinho extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos s = new TelaServicos(Func);
-				s.setVisible(true);
+
 				dispose();
 			}
 		});
 		contentPane.add(btnNewButton, "flowx,cell 2 7,growx,aligny center");
-
-		JButton btnNewButton_1 = new JButton("Atualizar");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBorder(new RoundedBorder(Color.black, 8));
-		btnNewButton_1.setBackground(new Color(117, 187, 68));
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				atualizarJTable();
-			}
-		});
-		contentPane.add(btnNewButton_1, "cell 2 7,growx,aligny center");
 
 		panel_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -436,13 +415,74 @@ public class Carrinho extends JFrame {
 			}
 		});
 
-		atualizarJTable();
+		model1 = (new DefaultTableModel(new Object[][] {},
+				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total", "Ações" }));
 
+		contentPane.add(cTable, "cell 2 6 2 1,grow");
+		table = new CustomTable(model1);
+
+		cTable.setViewportView(table);
+		atualizarJTable();
+		lblNewLabel_3 = new JLabel("Você tem " + listaServicos.size() + " itens no carrinho.");
+
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		contentPane.add(lblNewLabel_3, "cell 1 4 3 1");
+
+		JButton btnNewButton_2 = new JButton("Limpar carinho");
+		contentPane.add(btnNewButton_2, "cell 3 7,growx");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBorder(new RoundedBorder(Color.black, 8));
+		btnNewButton_2.setBackground(new Color(204, 0, 0));
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				ServicosDAO dao = ServicosDAO.getInstancia();
+
+				dao.limparServicos();
+				listaServicos.clear();
+
+				atualizarJTable();
+				atualizarLabelQuantidadeItens();
+			}
+		});
+	}
+
+	private void atualizarLabelQuantidadeItens() {
+		lblNewLabel_3.setText("Você tem " + listaServicos.size() + " itens no carrinho.");
 	}
 
 	protected void atualizarJTable() {
+
+		TableActionEvent event = new TableActionEvent() {
+
+			@Override
+			public void onEdit(int row) {
+				System.out.println("Edit row : " + row);
+			}
+
+			@Override
+			public void onDelete(int row) {
+				try {
+				Servicos servico = listaServicos.get(row);
+				ServicosDAO dao = ServicosDAO.getInstancia();
+				dao.removerServico(servico);
+				atualizarJTable();
+				TelaSucesso s = new TelaSucesso("Produto removido com sucesso!");
+				s.setVisible(true);
+			}catch(Exception exep) {
+				TelaErro s = new TelaErro("Falha ao remover produto!");
+				s.setVisible(true);
+			}
+			}
+
+		};
 		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total" });
+				new String[] { "Produtos", "Preço", "Quantidade", "Sub-Total", "Ações" });
 
 		ServicosDAO dao = ServicosDAO.getInstancia();
 
@@ -455,5 +495,25 @@ public class Carrinho extends JFrame {
 		}
 
 		table.setModel(modelo1);
+
+		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+
+		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if (row >= 0) {
+					cellRenderer.setSelectedRow(row);
+					table.repaint(); // Repaint to apply the new row color
+				}
+			}
+		});
+
+		table.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+		table.setRowHeight(50);
+		table.getColumnModel().getColumn(4).setPreferredWidth(150);
+
 	}
 }
