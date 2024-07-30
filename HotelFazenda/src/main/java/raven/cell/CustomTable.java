@@ -26,7 +26,7 @@ public class CustomTable extends JTable {
         Color rowColor1 = new Color(245, 245, 245); // Light Gray
         Color rowColor2 = Color.WHITE;
         Color selectedRowColor = new Color(190, 253, 151); // Selected row color
-        Color selectedRowTextColor = Color.WHITE; // Selected row text color
+        Color selectedRowTextColor = Color.BLACK; // Selected row text color
 
         // Customize the table header
         JTableHeader header = getTableHeader();
@@ -57,7 +57,7 @@ public class CustomTable extends JTable {
                     cell.setBackground(selectedRowColor);
                     cell.setForeground(selectedRowTextColor);
                 } else {
-                    cell.setForeground(Color.BLACK);
+                    cell.setForeground(Color.GRAY.darker());
                 }
 
                 // Center align text
