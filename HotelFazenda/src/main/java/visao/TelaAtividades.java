@@ -639,7 +639,7 @@ public class TelaAtividades extends JFrame {
 				int linha = table.getSelectedRow();
 				
 				if(linha >= 0) {
-					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func);
+					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
 					chama.setVisible(true);
 					dispose();
 				}else if(linha <= 0) {

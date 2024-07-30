@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,117 +10,178 @@ import javax.swing.table.DefaultTableModel;
 import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
 import controle.AtividadesHospedes.AtividadesHospedesDAO;
+import controle.Hospede.HospedeDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
+import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class TelaAtividadesHospedes extends JFrame {
 
-    private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
-    private JTextField textField;
-    private JTable table;
-    private DefaultTableModel model;
-    private ArrayList<AtividadesHospedes> ListaatividadesHospedes;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTable table;
+	private DefaultTableModel model;
+	private ArrayList<AtividadesHospedes> ListaatividadesHospedes;
+	private JComboBox<Atividades> comboBox;
+	private JTextField textField;
 
-    public TelaAtividadesHospedes(Funcionarios Func) {
-        ListaatividadesHospedes = new ArrayList<AtividadesHospedes>();
-
+	public TelaAtividadesHospedes(Funcionarios Func, ArrayList<Atividades> ListaAtividades) {
+	    setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1080, 720);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
-
-        JPanel panel = new JPanel();
-        panel.setBounds(10, 11, 1044, 670);
-        contentPane.add(panel);
-        panel.setLayout(new MigLayout("", "[][][:100px:100px][][:100px:100px][:200:200,grow][:493.00:493.00,grow]", "[][][][85.00][:100px:100px,grow][:203.00px:203.00px,grow][:300:300]"));
-
-        JLabel lblNewLabel = new JLabel("Nome da Atividade");
-        lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 26));
-        panel.add(lblNewLabel, "cell 2 1,alignx center");
-
-        JPanel panel_1 = new JPanel();
-        panel_1.setFont(new Font("Times New Roman", Font.PLAIN, 11));
-        panel.add(panel_1, "cell 2 4 2 2,grow");
-        panel_1.setLayout(new MigLayout("", "[][][]", "[][][][][][][][]"));
-
-        JLabel lblNewLabel_1 = new JLabel("Adicionar Hospede");
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        panel_1.add(lblNewLabel_1, "cell 1 0");
-
-        JLabel lblNewLabel_2 = new JLabel("Documento");
-        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        panel_1.add(lblNewLabel_2, "cell 0 3");
-
-        textField = new JTextField();
-        panel_1.add(textField, "cell 1 3 2 1,growx");
-        textField.setColumns(10);
-
-        JButton btnNewButton = new JButton("Adicionar");
-        btnNewButton.setBackground(new Color(117, 187, 68));
-        btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para adicionar hospede
+        setSize(700, 600);
+setLocationRelativeTo(null);
+        contentPane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+                g2d.dispose();
             }
-        });
-        panel_1.add(btnNewButton, "cell 0 7,alignx center");
+        };
+		ListaatividadesHospedes = new ArrayList<AtividadesHospedes>();
 
-        JButton btnNewButton_1 = new JButton("Alterar");
-        btnNewButton_1.setBackground(new Color(117, 187, 68));
-        btnNewButton_1.setBorder(new RoundedBorder(Color.black, 10));
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para alterar hospede
-            }
-        });
-        panel_1.add(btnNewButton_1, "cell 1 7,alignx center");
+ 	 
+	 
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        JButton btnNewButton_2 = new JButton("Excluir");
-        btnNewButton_2.setBackground(new Color(117, 187, 68));
-        btnNewButton_2.setBorder(new RoundedBorder(Color.black, 10));
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para excluir hospede
-            }
-        });
-        panel_1.add(btnNewButton_2, "cell 2 7,alignx center");
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-        JScrollPane scrollPane = new JScrollPane();
-        panel.add(scrollPane, "cell 6 4 1 3,grow");
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 643, 670);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
-        // Configurar o modelo da tabela
-        model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome" });
-        table = new JTable(model);
-        scrollPane.setViewportView(table);
+		JLabel lblNewLabel = new JLabel("Nome da Atividade");
+		lblNewLabel.setBounds(24, 13, 201, 31);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		panel.add(lblNewLabel);
 
-        // Atualizar a tabela
-        atualizarJTable();
-    }
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(24, 120, 590, 543);
+		panel.add(scrollPane);
 
-    protected void atualizarJTable() {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0); // Limpar linhas existentes
+		// Configurar o modelo da tabela
+		model = new DefaultTableModel(new Object[][] {}, new String[] { "Atividade", "Hospede" });
+		table = new JTable(model);
+		scrollPane.setViewportView(table);
 
-        AtividadesHospedesDAO hospedesatividadesDAO = AtividadesHospedesDAO.getInstancia();
-        ListaatividadesHospedes = hospedesatividadesDAO.ListarAtividadesHospedes();
+		// Configurar o modelo do JComboBox e o renderizador
+		DefaultComboBoxModel<Atividades> comboBoxModel = new DefaultComboBoxModel<>();
+		for (Atividades atividade : ListaAtividades) {
+			comboBoxModel.addElement(atividade);
+		}
 
-        for (AtividadesHospedes p : ListaatividadesHospedes) {
-            model.addRow(new Object[] { p.getHospede().getNome() });
-        }
-    }
+		comboBox = new JComboBox<>(comboBoxModel);
+		comboBox.setBounds(250, 22, 300, 22); // Ajuste o tamanho conforme necessário
+		panel.add(comboBox);
+
+		// Defina um renderizador personalizado para mostrar apenas o atributo desejado
+		comboBox.setRenderer(new DefaultListCellRenderer() {
+			@Override
+			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+					boolean cellHasFocus) {
+				Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+				if (value instanceof Atividades) {
+					Atividades atividade = (Atividades) value;
+					setText(atividade.getNomeAtividade()); // Substitua por qualquer método que retorne o atributo
+															// desejado
+				}
+				return component;
+			}
+		});
+		
+		JLabel lblNewLabel_1 = new JLabel("Documento");
+		lblNewLabel_1.setBounds(24, 69, 76, 14);
+		panel.add(lblNewLabel_1);
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				String Documento = textField.getText();
+				HospedeDAO DAOHospede = HospedeDAO.getInstancia();
+				
+				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();
+				AtividadesHospedes atividadesHospedes = new AtividadesHospedes(); 
+				Hospedes hospede = DAOHospede.buscarHospedePorCPF(Documento); 
+				
+				atividadesHospedes.setHospede(hospede);
+				Atividades ativ = (Atividades) comboBox.getSelectedItem() ;
+				atividadesHospedes.setAtividade(ativ);
+				
+		
+				DAO.InserirAtividadesHospedes(atividadesHospedes);
+				atualizarJTable();
+				
+				
+				
+				
+			}
+		});
+		btnAdicionar.setBounds(250, 65, 89, 23);
+		panel.add(btnAdicionar);
+		
+		textField = new JTextField();
+		textField.setBounds(94, 66, 131, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Excluir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();				
+				int linha = table.getSelectedRow();				
+				AtividadesHospedes ativ = new AtividadesHospedes();
+				
+				if(linha>=0) {
+					ativ = ListaatividadesHospedes.get(linha);
+					DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
+					atualizarJTable();					
+				}
+				
+				
+			}
+		});
+		btnNewButton.setBounds(360, 65, 89, 23);
+		panel.add(btnNewButton);
+
+		// Atualizar a tabela
+		atualizarJTable();
+	}
+
+	protected void atualizarJTable() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0); // Limpar linhas existentes
+
+		AtividadesHospedesDAO hospedesatividadesDAO = AtividadesHospedesDAO.getInstancia();
+		ListaatividadesHospedes = hospedesatividadesDAO.ListarAtividadesHospedes();
+
+		for (AtividadesHospedes p : ListaatividadesHospedes) {
+			model.addRow(new Object[] {p.getAtividade().getNomeAtividade(), p.getHospede().getNome() });
+		}
+	}
 }
