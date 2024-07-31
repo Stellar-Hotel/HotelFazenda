@@ -25,6 +25,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -494,7 +495,10 @@ public class TelaDeQuartos extends JFrame {
 		JPanel panel_9 = new JPanel();
 		panel_7.add(panel_9, "cell 2 3 3 2,alignx center,aligny bottom");
 
-		JButton btnNewButton_2 = new JButton("Cancelar");
+		DefaultIconButton btnNewButton_2 = new DefaultIconButton("Cancelar");
+		btnNewButton_2.setBackgroundColor(Color.RED);
+		btnNewButton_2.setHoverColor(Color.RED.darker());
+
 		panel_9.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -504,7 +508,8 @@ public class TelaDeQuartos extends JFrame {
 		btnNewButton_2.setBorder(new RoundedBorder(Color.black, 8));
 		btnNewButton_2.setBackground(new Color(204, 0, 0));
 
-		JButton btnNewButton_3 = new JButton("Finalizar");
+		 DefaultIconButton btnNewButton_3 = new DefaultIconButton("Finalizar");
+
 		panel_9.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

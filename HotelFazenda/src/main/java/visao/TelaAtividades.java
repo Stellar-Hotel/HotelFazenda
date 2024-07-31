@@ -341,8 +341,8 @@ public class TelaAtividades extends JFrame {
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 
-		JScrollPane spTable = new JScrollPane();
-		Principal.add(spTable, "cell 6 14 4 5,grow");
+		JScrollPane cTable = new JScrollPane();
+		Principal.add(cTable, "cell 6 14 4 5,grow");
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255, 255, 255));
@@ -702,7 +702,7 @@ public class TelaAtividades extends JFrame {
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
 
 		table = new CustomTable(model1);
-		spTable.setViewportView(table);
+		cTable.setViewportView(table);
 
 		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
 				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
@@ -714,7 +714,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(table);
+				cTable.setViewportView(table);
 				atualizarJTable();
 			}
 		});
@@ -723,7 +723,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(new JTable(model2));
+				cTable.setViewportView(new JTable(model2));
 				atualizarJTable();
 			}
 		});
@@ -744,7 +744,19 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void onDelete(int row) {
 				int linhaSelecionada = table.getSelectedRow();
-			 
+				AtividadesDAO DAO = AtividadesDAO.getInstancia();
+				int linha = table.getSelectedRow();
+				Atividades ativ = new Atividades();
+
+				if (linha >= 0) {
+					ativ = ListaAtividades.get(linha);
+					DAO.RemoverAtividades(ativ);
+					atualizarJTable();
+					TelaSucesso c = new TelaSucesso("Atividade Exluída!");
+					c.setVisible(true);
+				} else if (linha <= 0) {
+					JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
+				}
 			}
 
 		};

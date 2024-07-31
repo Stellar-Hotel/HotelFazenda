@@ -9,15 +9,15 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
 public class DefaultIconButton extends JButton {
-    private Color backgroundColor = new Color(76, 175, 80); // Green background
-    private Color hoverColor = new Color(56, 142, 60); // Darker green for hover
+    private Color backgroundColor = new Color(76, 175, 80); // Cor padrão de fundo (verde)
+    private Color hoverColor = new Color(56, 142, 60); // Cor de hover padrão (verde escuro)
     private boolean mouseHover = false;
-    private static final int ICON_SIZE = 20; // Icon size
-    private static final int TEXT_ICON_GAP = 5; // Gap between text and icon
+    private static final int ICON_SIZE = 20; // Tamanho do ícone
+    private static final int TEXT_ICON_GAP = 5; // Espaço entre texto e ícone
 
     public DefaultIconButton(String text, ImageIcon icon) {
         super(text);
-        setIcon(resizeAndRecolorIcon(icon, ICON_SIZE, ICON_SIZE, Color.WHITE)); // Resize to ICON_SIZE and recolor to white
+        setIcon(resizeAndRecolorIcon(icon, ICON_SIZE, ICON_SIZE, Color.WHITE)); // Redimensionar e colorir o ícone
         initButton();
     }
 
@@ -28,7 +28,7 @@ public class DefaultIconButton extends JButton {
 
     public DefaultIconButton(ImageIcon icon) {
         super();
-        setIcon(resizeAndRecolorIcon(icon, ICON_SIZE, ICON_SIZE, Color.WHITE)); // Resize to ICON_SIZE and recolor to white
+        setIcon(resizeAndRecolorIcon(icon, ICON_SIZE, ICON_SIZE, Color.WHITE)); // Redimensionar e colorir o ícone
         initButton();
     }
 
@@ -43,7 +43,7 @@ public class DefaultIconButton extends JButton {
         setVerticalAlignment(SwingConstants.CENTER);
         setBorder(new EmptyBorder(10, 20, 10, 20));
 
-        // Configure button layout for text and icon alignment
+        // Configuração do layout do botão para alinhamento de texto e ícone
         setHorizontalTextPosition(SwingConstants.RIGHT);
         setIconTextGap(TEXT_ICON_GAP);
 
@@ -78,6 +78,18 @@ public class DefaultIconButton extends JButton {
         super.paintComponent(g);
     }
 
+    // Método para alterar a cor de fundo do botão
+    public void setBackgroundColor(Color color) {
+        this.backgroundColor = color;
+        repaint();
+    }
+
+    // Método para alterar a cor do hover do botão
+    public void setHoverColor(Color color) {
+        this.hoverColor = color;
+        repaint();
+    }
+
     private static ImageIcon resizeAndRecolorIcon(ImageIcon icon, int width, int height, Color color) {
         Image originalImage = icon.getImage();
         BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -86,7 +98,7 @@ public class DefaultIconButton extends JButton {
         g2d.drawImage(originalImage, 0, 0, width, height, null);
         g2d.dispose();
 
-        // Apply color filter
+        // Aplicar filtro de cor
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int argb = resizedImage.getRGB(x, y);
