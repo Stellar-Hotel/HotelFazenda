@@ -14,11 +14,14 @@ import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Quartos.QuartosDAO;
 import controle.Usuarios.UsuariosDAO;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Quartos;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultIconButton;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -41,6 +44,7 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+ 
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -126,9 +130,10 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Esqueceu sua senha?");
 		lblNewLabel_2.setForeground(new Color(0, 128, 255));
 		panel.add(lblNewLabel_2, "cell 7 9,alignx right,aligny top");
-
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
+		
+		ImageIcon icon = new ImageIcon(getClass().getResource("/visao/Sair.png"));
+		 DefaultIconButton btnNewButton = new DefaultIconButton("Entrar", icon);
+	 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -144,7 +149,8 @@ public class Login extends JFrame {
 
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
-					Home c = new Home(Func);
+					CurrentFunc.getInstance().setLoggedInFuncionario(Func);
+					Home c = new Home( );
 					c.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					c.setVisible(true);
 					
@@ -162,8 +168,7 @@ public class Login extends JFrame {
 
 			}
 		});
-		btnNewButton.setBackground(new Color(117, 187, 68));
-		btnNewButton.setForeground(new Color(0, 0, 0));
+		 
 		panel.add(btnNewButton, "cell 3 10,growx,aligny center");
 	}
 }

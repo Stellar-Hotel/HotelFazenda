@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -37,7 +38,14 @@ public class TelaServicos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtPesquisa;
-
+	JLabel lblQuantMassagem;
+	JLabel lblQuantAlmoco;
+	JLabel lblQuantFrigobar;
+	JLabel lblQuantSauna;
+	JLabel lblQuantShow;
+	JLabel lblQuantAluguel;
+	JLabel lblQuantPasseio;
+	JLabel lblQuantTirolesa;
 	/**
 	 * Launch the application.
 	 */
@@ -58,10 +66,13 @@ public class TelaServicos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaServicos(Funcionarios Func) {
+	public TelaServicos( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		ServicosDAO dao = ServicosDAO.getInstancia();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  setLocationRelativeTo(null);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -91,7 +102,7 @@ public class TelaServicos extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaInicial=new Home(Func);
+				Home TelaInicial=new Home( );
 				TelaInicial.setVisible(true);
 				TelaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				dispose();
@@ -106,7 +117,7 @@ public class TelaServicos extends JFrame {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				TelaDeHospedes Chama = new TelaDeHospedes( );
 				Chama.setVisible(true);
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -121,7 +132,7 @@ public class TelaServicos extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv=new TelaAtividades(Func);
+				TelaAtividades TelaAtiv=new TelaAtividades( );
 				TelaAtiv.setVisible(true);
 				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -136,7 +147,7 @@ public class TelaServicos extends JFrame {
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaDeAcomodacoes=new TelaDeAcomodacoes( );
 				TelaDeAcomodacoes.setVisible(true);
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -157,7 +168,7 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_26.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm=new AdminFuncionarios( );
 				TelaAdm.setVisible(true);
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -172,7 +183,7 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta=new Conta(Func);
+				Conta telaConta=new Conta( );
 				telaConta.setVisible(true);
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -278,20 +289,15 @@ public class TelaServicos extends JFrame {
 		panel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				
-//				ServicosConsumidosDAO dao = ServicosConsumidosDAO.getInstancia();
-//				ServicosConsumidos serv = new ServicosConsumidos();
-				
-//				serv.getHospede()
-				
-//				dao.inserirServicoConsumido(serv);
 				
 				
 				
 				
-				Carrinho c = new Carrinho(Func);
+				Carrinho c = new Carrinho( );
+				c.setLocationRelativeTo(null);
+
 				c.setVisible(true);
-				dispose();
+			 atualizarLabelQuantidadeItens();
 				
 			}
 		});
@@ -353,7 +359,7 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_25.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_2.add(lblNewLabel_25, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantAlmoco = new JLabel("0");
+		 lblQuantAlmoco = new JLabel("0");
 		lblQuantAlmoco.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_2.add(lblQuantAlmoco, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -421,7 +427,7 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_74.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_8.add(lblNewLabel_74, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantMassagem = new JLabel("0");
+		 lblQuantMassagem = new JLabel("0");
 		lblQuantMassagem.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_8.add(lblQuantMassagem, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -488,7 +494,7 @@ public class TelaServicos extends JFrame {
 		lblNewLabel_18.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_1.add(lblNewLabel_18, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantFrigobar = new JLabel("0");
+		 lblQuantFrigobar = new JLabel("0");
 		lblQuantFrigobar.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_1.add(lblQuantFrigobar, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -558,7 +564,7 @@ if(Frigobar.getQuantidade()>0) {
 		lblNewLabel_42.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_4.add(lblNewLabel_42, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantSauna = new JLabel("0");
+		 lblQuantSauna = new JLabel("0");
 		lblQuantSauna.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_4.add(lblQuantSauna, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -621,7 +627,7 @@ if(Sauna.getQuantidade()>0) {
 		lblNewLabel_34.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_3.add(lblNewLabel_34, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantShow = new JLabel("0");
+		 lblQuantShow = new JLabel("0");
 		lblQuantShow.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_3.add(lblQuantShow, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -683,7 +689,7 @@ if(Show.getQuantidade()>0) {
 		lblNewLabel_66.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_7.add(lblNewLabel_66, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantAluguel = new JLabel("0");
+		 lblQuantAluguel = new JLabel("0");
 		lblQuantAluguel.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_7.add(lblQuantAluguel, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -745,7 +751,7 @@ if(Show.getQuantidade()>0) {
 		lblNewLabel_82.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_9.add(lblNewLabel_82, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantPasseio = new JLabel("0");
+		 lblQuantPasseio = new JLabel("0");
 		lblQuantPasseio.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_9.add(lblQuantPasseio, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -808,7 +814,7 @@ if(Show.getQuantidade()>0) {
 		lblNewLabel_90.setIcon(new ImageIcon(TelaServicos.class.getResource("/visao/Group 8756.png")));
 		panel_8_10.add(lblNewLabel_90, "flowx,cell 9 0 2 1,alignx left,aligny center");
 
-		JLabel lblQuantTirolesa = new JLabel("0");
+		 lblQuantTirolesa = new JLabel("0");
 		lblQuantTirolesa.setFont(new Font("Dialog", Font.PLAIN, 16));
 		panel_8_10.add(lblQuantTirolesa, "cell 9 0 2 1,alignx left,aligny center");
 
@@ -977,4 +983,15 @@ if(Show.getQuantidade()>0) {
 	    label.setText(String.valueOf(valor - 1));
 	    
 	}
+	private void atualizarLabelQuantidadeItens() {
+		lblQuantMassagem.setText("0");
+		lblQuantAlmoco.setText("0");
+		lblQuantFrigobar.setText("0");
+		lblQuantSauna.setText("0");
+		lblQuantShow.setText("0");
+		lblQuantAluguel.setText("0");
+		lblQuantPasseio.setText("0");
+		lblQuantTirolesa.setText("0");
+	}
 }
+

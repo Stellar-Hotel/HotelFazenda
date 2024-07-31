@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
@@ -81,8 +82,9 @@ public class Conta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Conta(Funcionarios Func) {
-		
+	public Conta( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		MaskFormatter mNum=null,mPron=null;
 		
 		try {
@@ -123,7 +125,7 @@ public class Conta extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome=new Home(Func);
+				Home TelaHome=new Home( );
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaHome.setVisible(true);
 				dispose();
@@ -138,7 +140,7 @@ public class Conta extends JFrame {
 				lblAtividades.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TelaAtividades TelaAtiv=new TelaAtividades(Func);
+						TelaAtividades TelaAtiv=new TelaAtividades( );
 						TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						TelaAtiv.setVisible(true);
 						dispose();
@@ -153,7 +155,7 @@ public class Conta extends JFrame {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						
-						TelaDeAcomodacoes TelaAco=new TelaDeAcomodacoes(Func);
+						TelaDeAcomodacoes TelaAco=new TelaDeAcomodacoes( );
 						TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						TelaAco.setVisible(true);
 						dispose();
@@ -168,7 +170,7 @@ public class Conta extends JFrame {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						
-						TelaServicos TelaServ=new TelaServicos(Func);
+						TelaServicos TelaServ=new TelaServicos( );
 						TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						TelaServ.setVisible(true);
 						dispose();
@@ -183,7 +185,7 @@ public class Conta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				AdminFuncionarios TelaAdm=new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm=new AdminFuncionarios( );
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAdm.setVisible(true);
 				dispose();
@@ -237,7 +239,7 @@ public class Conta extends JFrame {
 				lblHospede.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TelaDeHospedes Chama = new TelaDeHospedes(Func);
+						TelaDeHospedes Chama = new TelaDeHospedes( );
 						Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						Chama.setVisible(true);
 						dispose();
