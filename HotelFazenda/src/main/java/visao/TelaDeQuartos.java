@@ -14,6 +14,7 @@ import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
 import modelo.Atividades;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Hospedes;
@@ -119,7 +120,8 @@ public class TelaDeQuartos extends JFrame {
 		}
 
 		table.setModel(model1);
-		TableActionCellRender cellRenderer = new TableActionCellRender(  true, true); // Inicialmente nenhuma linha selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
+																					// selecionada
 		table.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
@@ -141,7 +143,9 @@ public class TelaDeQuartos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeQuartos(int x, Funcionarios Func) {
+	public TelaDeQuartos(int x) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		setTitle("Tela de Quartos");
 
 		Quartos quartos = new Quartos();
@@ -189,7 +193,7 @@ public class TelaDeQuartos extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home(Func);
+				Home TelaHome = new Home( );
 				TelaHome.setVisible(true);
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -205,7 +209,7 @@ public class TelaDeQuartos extends JFrame {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				TelaDeHospedes Chama = new TelaDeHospedes( );
 				Chama.setVisible(true);
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -221,7 +225,7 @@ public class TelaDeQuartos extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades(Func);
+				TelaAtividades TelaAtiv = new TelaAtividades( );
 				TelaAtiv.setVisible(true);
 				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -236,7 +240,7 @@ public class TelaDeQuartos extends JFrame {
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes( );
 				TelaAco.setVisible(true);
 				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -251,7 +255,7 @@ public class TelaDeQuartos extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos(Func);
+				TelaServicos TelaServ = new TelaServicos( );
 				TelaServ.setVisible(true);
 				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -266,7 +270,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios( );
 				TelaAdm.setVisible(true);
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -282,7 +286,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta( );
 				telaConta.setVisible(true);
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -565,7 +569,8 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 
-		model1 = new DefaultTableModel(new Object[][] {}, new String[] { "Número do quarto", "Situação do quarto", "Ações" });
+		model1 = new DefaultTableModel(new Object[][] {},
+				new String[] { "Número do quarto", "Situação do quarto", "Ações" });
 
 		table = new CustomTable(model1);
 

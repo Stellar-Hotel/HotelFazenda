@@ -40,6 +40,7 @@ import controle.Arredondar.RoundedBorder;
 import controle.Atividades.AtividadesDAO;
 import controle.Hospede.HospedeDAO;
 import modelo.Atividades;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
@@ -98,7 +99,9 @@ public class TelaAtividades extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtividades(Funcionarios Func) {
+	public TelaAtividades( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		MaskFormatter Data = null;
 		try {
 			Data = new MaskFormatter("##/##/####");
@@ -153,7 +156,7 @@ public class TelaAtividades extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home(Func);
+				Home TelaHome = new Home( );
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaHome.setVisible(true);
 				dispose();
@@ -169,7 +172,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				TelaDeHospedes Chama = new TelaDeHospedes( );
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
@@ -183,7 +186,7 @@ public class TelaAtividades extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades(Func);
+				TelaAtividades TelaAtiv = new TelaAtividades( );
 				TelaAtiv.setVisible(true);
 				dispose();
 			}
@@ -197,7 +200,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes( );
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
@@ -213,7 +216,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaServicos TelaServ = new TelaServicos(Func);
+				TelaServicos TelaServ = new TelaServicos( );
 				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaServ.setVisible(true);
 				dispose();
@@ -228,7 +231,7 @@ public class TelaAtividades extends JFrame {
 		lblNewLabel_13.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios( );
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAdm.setVisible(true);
 				dispose();
@@ -242,7 +245,7 @@ public class TelaAtividades extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta( );
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();

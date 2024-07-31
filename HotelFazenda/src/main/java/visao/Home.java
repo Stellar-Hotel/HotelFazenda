@@ -14,6 +14,7 @@ import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Hospedes;
@@ -136,7 +137,9 @@ public class Home extends JFrame {
 		mostrarAtividades.repaint();
 	}
 
-	public Home(Funcionarios Func) {
+	public Home() {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		loadAtividades();
 		loadInfos();
 		HgDao.AtualizarSituacao();
@@ -155,7 +158,8 @@ public class Home extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][98.00,grow][]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
+				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][98.00,grow][]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -168,7 +172,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				TelaDeHospedes Chama = new TelaDeHospedes();
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
@@ -184,7 +188,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaAtividades telaAtiv = new TelaAtividades(Func);
+				TelaAtividades telaAtiv = new TelaAtividades();
 				telaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaAtiv.setVisible(true);
 				dispose();
@@ -200,7 +204,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes();
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
@@ -215,7 +219,7 @@ public class Home extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos telaServ = new TelaServicos(Func);
+				TelaServicos telaServ = new TelaServicos();
 				telaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaServ.setVisible(true);
 				dispose();
@@ -231,7 +235,7 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				AdminFuncionarios telaAdm = new AdminFuncionarios(Func);
+				AdminFuncionarios telaAdm = new AdminFuncionarios();
 				telaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaAdm.setVisible(true);
 				dispose();
@@ -241,12 +245,12 @@ public class Home extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/visao/funcionarios.png")));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		BarraLateral.add(lblNewLabel_1, "cell 0 5");
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Conta");
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta();
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();
@@ -279,11 +283,11 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin = new Login();
-				
-					novoLogin.setVisible(true);
-					novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					dispose();
-				
+
+				novoLogin.setVisible(true);
+				novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				dispose();
+
 			}
 		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
@@ -418,7 +422,8 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Desktop.getDesktop().browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+					Desktop.getDesktop()
+							.browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -447,7 +452,8 @@ public class Home extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Desktop.getDesktop().browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
+					Desktop.getDesktop()
+							.browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

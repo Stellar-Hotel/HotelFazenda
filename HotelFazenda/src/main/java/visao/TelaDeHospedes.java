@@ -33,6 +33,7 @@ import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Hospede.HospedeDAO;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
@@ -95,7 +96,8 @@ public class TelaDeHospedes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeHospedes(Funcionarios Func) {
+	public TelaDeHospedes( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 		MaskFormatter Data = null;
 		MaskFormatter Num = null;
@@ -141,7 +143,7 @@ public class TelaDeHospedes extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home(Func);
+				Home TelaHome = new Home( );
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaHome.setVisible(true);
 				dispose();
@@ -157,7 +159,7 @@ public class TelaDeHospedes extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades(Func);
+				TelaAtividades TelaAtiv = new TelaAtividades( );
 				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAtiv.setVisible(true);
 				dispose();
@@ -172,7 +174,7 @@ public class TelaDeHospedes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes( );
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
@@ -186,7 +188,7 @@ public class TelaDeHospedes extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos(Func);
+				TelaServicos TelaServ = new TelaServicos( );
 				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaServ.setVisible(true);
 				dispose();
@@ -210,7 +212,7 @@ public class TelaDeHospedes extends JFrame {
 		lblFuncionarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios( );
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAdm.setVisible(true);
 				dispose();
@@ -223,7 +225,7 @@ public class TelaDeHospedes extends JFrame {
 		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta( );
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();

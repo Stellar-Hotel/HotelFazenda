@@ -6,8 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultScreen;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,8 +41,10 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 	private JTextField txtPesquisa;
 
  
-	public TelaDeAcomodacoes(Funcionarios Func) {
-		super(Func);
+	public TelaDeAcomodacoes( ) {
+		super( );
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+		
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
@@ -65,7 +70,7 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 		panel_11.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(1,Func);
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(1);
 			telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			telaDeQuartos.setVisible(true);
 			dispose();
@@ -99,7 +104,7 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 		panel_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(2,Func);
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(2);
 				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaDeQuartos.setVisible(true);
 				dispose();
@@ -130,7 +135,7 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 		panel_13.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(3,Func);
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(3);
 				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaDeQuartos.setVisible(true);
 				dispose();
@@ -167,6 +172,6 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 		panel_5.setLayout(new MigLayout("", "[]", "[]"));
 		
 
-		
+		setPrincipalPanel(Principal);
 	}
 }

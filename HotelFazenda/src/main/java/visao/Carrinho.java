@@ -28,6 +28,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -55,29 +56,10 @@ public class Carrinho extends JFrame {
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
 	JLabel lblNewLabel_3;
+ 
+	public Carrinho( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Carrinho frame = new Carrinho(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-//	/**
-//	 * Create the frame.
-//	 * 
-//	 * @param lista
-//	 */
-	public Carrinho(Funcionarios Func) {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 700);
@@ -324,7 +306,7 @@ public class Carrinho extends JFrame {
 
 				Sdao.limparServicos();
 
-				TelaServicos s = new TelaServicos(Func);
+				TelaServicos s = new TelaServicos( );
 				s.setVisible(true);
 				dispose();
 

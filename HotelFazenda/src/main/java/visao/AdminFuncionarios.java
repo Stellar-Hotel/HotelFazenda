@@ -38,6 +38,7 @@ import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Atividades;
+import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
@@ -113,7 +114,9 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	/**
 	 * Create the frame.
 	 */
-	public AdminFuncionarios(Funcionarios Func) {
+	public AdminFuncionarios( ) {
+		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 		setTitle("AdminFuncionários");
 		setBackground(new Color(250, 250, 250));
 
@@ -183,7 +186,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				Home telaInicial = new Home(Func);
+				Home telaInicial = new Home( );
 				telaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaInicial.setVisible(true);
 				dispose();
@@ -199,7 +202,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes(Func);
+				TelaDeHospedes Chama = new TelaDeHospedes( );
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
@@ -214,7 +217,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaAtividades TelaAtividades = new TelaAtividades(Func);
+				TelaAtividades TelaAtividades = new TelaAtividades( );
 				TelaAtividades.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAtividades.setVisible(true);
 				dispose();
@@ -229,7 +232,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes( );
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
@@ -245,7 +248,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaServicos telaServico = new TelaServicos(Func);
+				TelaServicos telaServico = new TelaServicos( );
 				telaServico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaServico.setVisible(true);
 				dispose();
@@ -265,7 +268,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta( );
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();
