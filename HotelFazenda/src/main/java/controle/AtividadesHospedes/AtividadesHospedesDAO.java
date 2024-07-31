@@ -238,5 +238,36 @@ System.out.println(AtividadesHospedes.size());
 		}
 		return (retorno == 0 ? false : true);
 	}
+	
+public int contarHospedesNaAtividade(int idAtividade) {
+	        int contagem = 0;
+	        String SQL = "SELECT COUNT(*) FROM AtividadesHospedes WHERE IdAtividadeAtividades = ?";
+	        
+	        // Obtém a conexão com o banco de dados
+	        Conexao con = Conexao.getConexao();
+	        Connection conBD = con.Conectar();
+
+	        try {
+	            // Prepara o comando SQL
+	            PreparedStatement ps = conBD.prepareStatement(SQL);
+	            ps.setInt(1, idAtividade);
+
+	            // Executa a consulta
+	            ResultSet rs = ps.executeQuery();
+
+	            // Processa o resultado
+	            if (rs.next()) {
+	                contagem = rs.getInt(1);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            // Fecha a conexão com o banco de dados
+	            con.FecharConexao();
+	        }
+	        
+	        return contagem;
+	    }
+
 
 }

@@ -121,25 +121,37 @@ setLocationRelativeTo(null);
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				String Documento = textField.getText();
-				HospedeDAO DAOHospede = HospedeDAO.getInstancia();
-				
-				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();
-				AtividadesHospedes atividadesHospedes = new AtividadesHospedes(); 
-				Hospedes hospede = DAOHospede.buscarHospedePorCPF(Documento); 
-				
-				atividadesHospedes.setHospede(hospede);
-				Atividades ativ = (Atividades) comboBox.getSelectedItem() ;
-				atividadesHospedes.setAtividade(ativ);
-				
-		
-				DAO.InserirAtividadesHospedes(atividadesHospedes);
-				atualizarJTable();
-				
-				
-				
-				
-			}
+                String documento = textField.getText();
+                HospedeDAO daoHospede = HospedeDAO.getInstancia();
+                AtividadesHospedesDAO daoAtividadesHospedes = AtividadesHospedesDAO.getInstancia();
+                AtividadesHospedes atividadesHospedes = new AtividadesHospedes();
+
+                Hospedes hospede = daoHospede.buscarHospedePorCPF(documento);
+                if (hospede == null) {
+                    JOptionPane.showMessageDialog(null, "CPF não encontrado.");
+                    return;
+                }
+
+                Atividades ativ = (Atividades) comboBox.getSelectedItem();
+                if (ativ == null) {
+                    JOptionPane.showMessageDialog(null, "Nenhuma atividade selecionada.");
+                    return;
+                }
+
+                int capacidade = ativ.getCapacidade();
+                int countHospedes = daoAtividadesHospedes.contarHospedesNaAtividade(ativ.getIdAtividade());
+
+                if (countHospedes >= capacidade) {
+                    JOptionPane.showMessageDialog(null, "Capacidade máxima atingida para esta atividade.");
+                    return;
+                }
+
+                atividadesHospedes.setHospede(hospede);
+                atividadesHospedes.setAtividade(ativ);
+                daoAtividadesHospedes.InserirAtividadesHospedes(atividadesHospedes);
+                atualizarJTable();
+				}
+							
 		});
 		btnAdicionar.setBounds(250, 65, 89, 23);
 		panel.add(btnAdicionar);
