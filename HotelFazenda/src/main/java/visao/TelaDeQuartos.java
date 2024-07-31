@@ -119,7 +119,7 @@ public class TelaDeQuartos extends JFrame {
 		}
 
 		table.setModel(model1);
-		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(  true, true); // Inicialmente nenhuma linha selecionada
 		table.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
@@ -134,9 +134,8 @@ public class TelaDeQuartos extends JFrame {
 			}
 		});
 
-		table.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(125);
 	}
 
 	/**

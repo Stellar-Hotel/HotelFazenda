@@ -277,17 +277,17 @@ public class Carrinho extends JFrame {
 		JButton btnNewButton_3 = new JButton("Finalizar compras");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					String Documento = txtHospede.getText();
-					HospedeDAO hDao = HospedeDAO.getInstancia();
-					Hospedes hospede = hDao.buscarHospedePorCPF(Documento);
 
+				String Documento = txtHospede.getText();
+				HospedeDAO hDao = HospedeDAO.getInstancia();
+				Hospedes hospede = hDao.buscarHospedePorCPF(Documento);
+				if (hospede != null) {
 					ServicosDAO dao = ServicosDAO.getInstancia();
 					dao.limparServicos();
 					TelaSucesso s = new TelaSucesso("Compra efetuada com sucesso!");
 					s.setVisible(true);
 					dispose();
-				} catch (Exception exception) {
+				} else {
 
 					TelaErro e1 = new TelaErro("Erro! Informe um hospede cadastrado.");
 					e1.setVisible(true);
@@ -468,16 +468,16 @@ public class Carrinho extends JFrame {
 			@Override
 			public void onDelete(int row) {
 				try {
-				Servicos servico = listaServicos.get(row);
-				ServicosDAO dao = ServicosDAO.getInstancia();
-				dao.removerServico(servico);
-				atualizarJTable();
-				TelaSucesso s = new TelaSucesso("Produto removido com sucesso!");
-				s.setVisible(true);
-			}catch(Exception exep) {
-				TelaErro s = new TelaErro("Falha ao remover produto!");
-				s.setVisible(true);
-			}
+					Servicos servico = listaServicos.get(row);
+					ServicosDAO dao = ServicosDAO.getInstancia();
+					dao.removerServico(servico);
+					atualizarJTable();
+					TelaSucesso s = new TelaSucesso("Produto removido com sucesso!");
+					s.setVisible(true);
+				} catch (Exception exep) {
+					TelaErro s = new TelaErro("Falha ao remover produto!");
+					s.setVisible(true);
+				}
 			}
 
 		};
@@ -496,7 +496,8 @@ public class Carrinho extends JFrame {
 
 		table.setModel(modelo1);
 
-		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(  false, true); // Inicialmente nenhuma linha
+																							// selecionada
 		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
@@ -511,9 +512,9 @@ public class Carrinho extends JFrame {
 			}
 		});
 
-		table.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+		table.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event, false, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(4).setPreferredWidth(150);
+		table.getColumnModel().getColumn(4).setPreferredWidth(60);
 
 	}
 }

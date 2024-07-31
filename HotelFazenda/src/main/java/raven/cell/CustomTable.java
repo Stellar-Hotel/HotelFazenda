@@ -70,7 +70,7 @@ public class CustomTable extends JTable {
         });
 
         // Auto resize columns
-        autoResizeMode = JTable.AUTO_RESIZE_ALL_COLUMNS;
+        setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         // Settings to hide lines and grid
         setShowGrid(false); // Hide grid

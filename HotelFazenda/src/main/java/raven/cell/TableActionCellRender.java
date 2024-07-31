@@ -5,39 +5,34 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author RAVEN
- */
 public class TableActionCellRender extends DefaultTableCellRenderer {
     private static final Color ROW_COLOR1 = new Color(245, 245, 245); // Light Gray
     private static final Color ROW_COLOR2 = Color.WHITE;
-    private static final Color SELECTED_ROW_COLOR = new Color(190, 253, 151) ; // Cor da linha selecionada
-    private static final Color SELECTED_ROW_TEXT_COLOR = Color.WHITE; // Cor do texto da linha selecionada
+    private static final Color SELECTED_ROW_COLOR = new Color(190, 253, 151); // Selected row color
+    private static final Color SELECTED_ROW_TEXT_COLOR = Color.WHITE; // Selected row text color
 
-    private int selectedRow = -1; // Índice da linha selecionada
+    private int selectedRow = -1; // Index of the selected row
+    private boolean showEditButton;
+    private boolean showDeleteButton;
 
-    public TableActionCellRender(int selectedRow) {
-        this.selectedRow = selectedRow;
+    public TableActionCellRender(boolean showEditButton, boolean showDeleteButton) {
+        this.showEditButton = showEditButton;
+        this.showDeleteButton = showDeleteButton;
     }
 
     @Override
     public Component getTableCellRendererComponent(JTable jtable, Object o, boolean isSelected, boolean hasFocus, int row, int column) {
-        Component com = super.getTableCellRendererComponent(jtable, o, isSelected, hasFocus, row, column);
+        PanelAction action = new PanelAction(showEditButton, showDeleteButton);
 
-        // Cria uma instância de PanelAction (ou o componente desejado)
-        PanelAction action = new PanelAction();
-
-        // Define a cor de fundo da linha com base na seleção
+        // Set the background color for the action panel
         Color rowColor = (row % 2 == 0) ? ROW_COLOR1 : ROW_COLOR2;
-        if (row == selectedRow) {
+        if (row == selectedRow || isSelected) {
             rowColor = SELECTED_ROW_COLOR;
-            com.setForeground(SELECTED_ROW_TEXT_COLOR);
+            action.setForeground(SELECTED_ROW_TEXT_COLOR);
         } else {
-            com.setForeground(Color.BLACK);
+            action.setForeground(Color.BLACK);
         }
 
-        // Aplica a cor de fundo
         action.setBackgroundColor(rowColor);
 
         return action;

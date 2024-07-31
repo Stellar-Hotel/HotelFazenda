@@ -666,7 +666,7 @@ public class TelaDeHospedes extends JFrame {
 		}
 		table.setModel(Model);
 
-		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(  true, true); // Inicialmente nenhuma linha selecionada
 		table.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
@@ -681,9 +681,9 @@ public class TelaDeHospedes extends JFrame {
 			}
 		});
 
-		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(150);
+		table.getColumnModel().getColumn(7).setPreferredWidth(145);
 	}
 
 	class LetterDocumentFilter extends DocumentFilter {

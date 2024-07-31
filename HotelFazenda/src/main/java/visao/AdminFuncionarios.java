@@ -355,7 +355,9 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("",
+				"[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]",
+				"[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -667,54 +669,54 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 			}
 		});
-		
-				JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
-				btnAtualizarSelecionado.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Funcionarios funcA = new Funcionarios();
 
-						if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty()) || (textNivel.getText().isEmpty())
-								|| (textNome.getText().isEmpty()) || (textSobrenome.getText().isEmpty())
-								|| (textSalario.getText().isEmpty())) {
-							JOptionPane.showMessageDialog(null, "Algo está vazio");
-							textCPF.setBorder(new RoundedBorder(Color.RED, 10));
+		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
+		btnAtualizarSelecionado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Funcionarios funcA = new Funcionarios();
 
-							textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
+				if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty()) || (textNivel.getText().isEmpty())
+						|| (textNome.getText().isEmpty()) || (textSobrenome.getText().isEmpty())
+						|| (textSalario.getText().isEmpty())) {
+					JOptionPane.showMessageDialog(null, "Algo está vazio");
+					textCPF.setBorder(new RoundedBorder(Color.RED, 10));
 
-							textNivel.setBorder(new RoundedBorder(Color.RED, 10));
+					textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
 
-							textNome.setBorder(new RoundedBorder(Color.RED, 10));
+					textNivel.setBorder(new RoundedBorder(Color.RED, 10));
 
-							textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
+					textNome.setBorder(new RoundedBorder(Color.RED, 10));
 
-							textSalario.setBorder(new RoundedBorder(Color.RED, 10));
-						} else {
-							int linha = table.getSelectedRow();
-							funcA = Lista.get(linha);
-							funcA.setCPF(textCPF.getText());
-							funcA.setFuncao(textFuncao.getText());
-							funcA.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
-							funcA.setNome(textNome.getText());
-							funcA.setSobrenome(textSobrenome.getText());
-							funcA.setSalario(Float.valueOf(textSalario.getText()));
+					textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
 
-							ConfirmacaoADM telinha = new ConfirmacaoADM(Func, funcA, telaPrincipal, 2);
-							telinha.setVisible(true);
-							telinha.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					textSalario.setBorder(new RoundedBorder(Color.RED, 10));
+				} else {
+					int linha = table.getSelectedRow();
+					funcA = Lista.get(linha);
+					funcA.setCPF(textCPF.getText());
+					funcA.setFuncao(textFuncao.getText());
+					funcA.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
+					funcA.setNome(textNome.getText());
+					funcA.setSobrenome(textSobrenome.getText());
+					funcA.setSalario(Float.valueOf(textSalario.getText()));
+
+					ConfirmacaoADM telinha = new ConfirmacaoADM(Func, funcA, telaPrincipal, 2);
+					telinha.setVisible(true);
+					telinha.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //						Boolean foi=DAO.AtualizarFuncionarios(func);
 //						
 //						if(foi==true) {
 //							JOptionPane.showMessageDialog(null,"Atualizado com sucesso!");
 //						}
 
-							atualizarJTable();
-						}
+					atualizarJTable();
+				}
 
-					}
-				});
-				btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
-				btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-				Principal.add(btnAtualizarSelecionado, "cell 2 10,alignx left");
+			}
+		});
+		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
+		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
+		Principal.add(btnAtualizarSelecionado, "cell 2 10,alignx left");
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
 		Principal.add(btnDeletarSelecionado, "cell 4 10,alignx right");
@@ -774,7 +776,6 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			}
 
 		};
-		
 
 		DefaultTableModel modelo1 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "Sobrenome", "Funcao", "CPF", "Salario", "Ações" }));
@@ -791,7 +792,8 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 		table.setModel(modelo1);
 
-		TableActionCellRender cellRenderer = new TableActionCellRender(-1); // Inicialmente nenhuma linha selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
+																					// selecionada
 		table.getColumnModel().getColumn(5).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
@@ -806,10 +808,9 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			}
 		});
 
-	
-		table.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event));
+		table.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(5).setPreferredWidth(150);
+		table.getColumnModel().getColumn(5).setPreferredWidth(135);
 
 	}
 
