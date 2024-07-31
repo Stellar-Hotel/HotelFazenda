@@ -619,8 +619,21 @@ public class TelaAtividades extends JFrame {
 		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				int linha = table.getSelectedRow();
+				
+				if(linha >= 0) {
+					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
+					chama.setVisible(true);
+					dispose();
+				}else if(linha <= 0) {
+
+					JOptionPane.showMessageDialog(null, "selecione uma linha para adicionar um hospede");				
+				}
 			}
 		});
+		
+
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(117, 187, 68));
 		panel_7.add(btnNewButton_1, "cell 2 11");

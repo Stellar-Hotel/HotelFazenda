@@ -13,5 +13,5 @@ public interface IAtividadesHospedesDAO {
 
 	public ArrayList<AtividadesHospedes> BuscarAtividadesHospedesPorIdHospede(int Id);
 
-	public boolean RemoverAtividadeHospede(String IdAtividade);
+	public boolean RemoverAtividadeHospede(int IdAtividade);
 }

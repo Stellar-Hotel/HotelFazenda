@@ -40,7 +40,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	@Override
 	public int InserirAtividadesHospedes(AtividadesHospedes A) {
 		// TODO Auto-generated method stub
-		String SQL = "INSERT INTO AtividadesHospedes(IdHospedeAtividades,IdAtividadeAtividades) VALUES (?,?)";
+		String SQL = "INSERT INTO `AtividadesHospedes` (IdHospedeAtividades, IdAtividadeAtividades) VALUES (?,?)";
 		// Método pra fazer a conexão com o banco
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -83,10 +83,10 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		ArrayList<AtividadesHospedes> AtividadesHospedes = new ArrayList<AtividadesHospedes>();
 
 		// Comando pro MySQL
-		String SQL = "SELECT * FROM AtividadesHospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
-				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividades=Funcionarios.IdFuncionario"
-				+ " inner join Usuarios on Funcionarios.IdUsuarioFuncionario=Usuarios.IdUsuario"
-				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede";
+		String SQL = "SELECT * FROM atividadeshospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
+				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede"
+				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividade=Funcionarios.IdFuncionario";
+
 		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
 
 		// Método pra fazer a conexão
@@ -111,9 +111,9 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				// prenche os atributos desse objeto
 
 				Hospede.setNome(Rs.getString("Nome"));
-				Hospede.setDocumento(Rs.getString("CPF"));
+				Hospede.setDocumento(Rs.getString("Documento"));
 				Hospede.setSobrenome(Rs.getString("Sobrenome"));
-				Hospede.setDataNasc(Rs.getDate("data_nasc"));
+				Hospede.setDataNasc(Rs.getDate("DataNasc"));
 				Hospede.setNacionalidade(Rs.getString("Nacionalidade"));
 				Hospede.setPronome(Rs.getString("Pronome"));
 				Hospede.setEmail(Rs.getString("Email"));
@@ -133,7 +133,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Ativ.setFuncionario(Func);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
-				At.setIdHospedeAtividade(Rs.getInt("IdHospedeAtividade"));
+				At.setIdHospedeAtividade(Rs.getInt("IdAtividadesHospedes"));
 				At.setHospede(Hospede);
 				At.setAtividade(Ativ);
 
@@ -144,7 +144,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		} finally {
 			con.FecharConexao();
 		}
-
+System.out.println(AtividadesHospedes.size());
 		// Return da arraylist
 		return AtividadesHospedes;
 	}
@@ -218,8 +218,8 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 	}
 
 	@Override
-	public boolean RemoverAtividadeHospede(String IdAtividade) {
-		String SQL = "DELETE FROM AtividadesHospedes WHERE NomeAtividade = ?";
+	public boolean RemoverAtividadeHospede(int IdAtividade) {
+		String SQL = "DELETE FROM AtividadesHospedes WHERE IdAtividadesHospedes = ?";
 
 		Conexao con = Conexao.getConexao(); // instanciando
 		Connection conBD = con.Conectar(); // cria "ponte"
@@ -227,7 +227,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		int retorno = 0;
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setString(1, IdAtividade);
+			ps.setInt(1, IdAtividade);
 
 			retorno = ps.executeUpdate();
 
@@ -238,5 +238,36 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		}
 		return (retorno == 0 ? false : true);
 	}
+	
+public int contarHospedesNaAtividade(int idAtividade) {
+	        int contagem = 0;
+	        String SQL = "SELECT COUNT(*) FROM AtividadesHospedes WHERE IdAtividadeAtividades = ?";
+	        
+	        // Obtém a conexão com o banco de dados
+	        Conexao con = Conexao.getConexao();
+	        Connection conBD = con.Conectar();
+
+	        try {
+	            // Prepara o comando SQL
+	            PreparedStatement ps = conBD.prepareStatement(SQL);
+	            ps.setInt(1, idAtividade);
+
+	            // Executa a consulta
+	            ResultSet rs = ps.executeQuery();
+
+	            // Processa o resultado
+	            if (rs.next()) {
+	                contagem = rs.getInt(1);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            // Fecha a conexão com o banco de dados
+	            con.FecharConexao();
+	        }
+	        
+	        return contagem;
+	    }
+
 
 }
