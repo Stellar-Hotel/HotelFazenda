@@ -93,31 +93,7 @@ public class TelaDeQuartos extends JFrame {
 	// });
 	// }
 
-	protected void atualizarJTable(int x) {
-
-		TableActionEvent event = new TableActionEvent() {
-
-			@Override
-			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
-			}
-
-			@Override
-			public void onDelete(int row) {
-
-			}
-
-		};
-
-	// TelaDeQuartos frame = new TelaDeQuartos();
-	// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-	// frame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
+	 
 
 	protected void atualizarJTable(int tipoQuarto) {
 

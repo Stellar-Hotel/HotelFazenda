@@ -506,7 +506,7 @@ public class Quartos2 extends JFrame {
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
 				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
-				q.setTipoQuarto(textTipo.getText());
+				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 				dao.inserirQuarto(q);
 				atualizarJTable();
 			}
@@ -534,7 +534,7 @@ public class Quartos2 extends JFrame {
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
 				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
-				q.setTipoQuarto(textTipo.getText());
+				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 				q.setTV(Boolean.valueOf(textTv.getText()));
 				dao.atualizarQuarto(q);
 				atualizarJTable();
@@ -585,7 +585,7 @@ public class Quartos2 extends JFrame {
 						textFrigobar.setText(String.valueOf(ListaQuartos.get(i).getFrigobar()));
 						textManutencao.setText(String.valueOf(ListaQuartos.get(i).getManutencao()));
 						textSituacao.setText(String.valueOf(ListaQuartos.get(i).getSituacao()));
-						textTipo.setText(ListaQuartos.get(i).getTipoQuarto());
+						textTipo.setText(String.valueOf(ListaQuartos.get(i).getTipoQuarto()));
 						textTv.setText(String.valueOf(ListaQuartos.get(i).getTV()));
 					}
 				}
@@ -670,7 +670,7 @@ public class Quartos2 extends JFrame {
 						int MaxPessoas = ListaQuartos.get(i).getMaxPessoas();
 						String TipoCama = ListaQuartos.get(i).getTipoCama();
 						String Manutencao = ListaQuartos.get(i).getManutencao();
-						String TipoQuarto = ListaQuartos.get(i).getTipoQuarto();
+						Integer TipoQuarto = ListaQuartos.get(i).getTipoQuarto();
 						Boolean Frigobar = ListaQuartos.get(i).getFrigobar();
 						Boolean ArCondicionado = ListaQuartos.get(i).getArCondicionado();
 						Boolean Banheira = ListaQuartos.get(i).getBanheira();
