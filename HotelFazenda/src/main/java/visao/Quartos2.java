@@ -153,8 +153,8 @@ public class Quartos2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Quartos2(Funcionarios Func2) {
-		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+	public Quartos2() {
+		Funcionarios Func2 = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 		setTitle("Tela de Quartos");
 

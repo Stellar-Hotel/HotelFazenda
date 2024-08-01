@@ -221,7 +221,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_19.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Quartos2 q=new Quartos2(Func);
+				Quartos2 q=new Quartos2( );
 				q.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				q.setVisible(true);
 				
