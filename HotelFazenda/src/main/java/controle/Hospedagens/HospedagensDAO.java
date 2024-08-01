@@ -97,7 +97,7 @@ System.out.println(SQL);
 
 				Quartos Quarto = new Quartos();
 
-				Usuarios Usuario = new Usuarios();
+				 
 
 				Hospede.setNome(rs.getString("Nome"));
 				Hospede.setDocumento(rs.getString("Documento"));
@@ -108,9 +108,20 @@ System.out.println(SQL);
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setIdHospede(rs.getInt("IdHospede"));
-
-				Hospede.setUsuario(Usuario);
-
+				
+				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quarto.setManutencao(rs.getString("Manutencao"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quarto.setBanheira(rs.getBoolean("Banheira"));
+				Quarto.setTV(rs.getBoolean("TV"));
+				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quarto.setSituacao(rs.getInt("Situacao"));
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
+			 
+ 
 				// Tem que setar os atributos dos bagulho estrangeiro ainda
 
 				// Pega os valores de cada coluna d registro
@@ -122,8 +133,9 @@ System.out.println(SQL);
 				Hg.setQuarto(Quarto);
 
 				// Adiciona objeto na lista
+				
 				hospedagens.add(Hg);
-
+				 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -108,11 +108,10 @@ public class TelaDeQuartos extends JFrame {
 
 		for (Hospedagens p : ListaHospedagens) {
 
-			model1.addRow(new Object[] { p.getQuarto(), p.getHospede(), p.getCheckin(), p.getCheckout() });
+			model1.addRow(new Object[] { p.getQuarto().getIdQuarto(), p.getHospede().getNome(), p.getCheckin(), p.getCheckout() });
 		}
 
-		System.out.println(ListaHospedagens.size());
-
+	 
 		table.setModel(model1);
 	}
 
@@ -501,46 +500,42 @@ public class TelaDeQuartos extends JFrame {
 		panel_9.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    int pos = table.getSelectedRow();
-			    if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
-			        JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-			    } else {
-			        String cpf = textCPF.getText();
-			        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			        Date checkin = null;
-			        Date checkout = null;
-			        Quartos quarto = (Quartos) comboBox.getSelectedItem();
+				int pos = table.getSelectedRow();
+				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+				} else {
+					String cpf = textCPF.getText();
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					Date checkin = null;
+					Date checkout = null;
+					QuartosDAO qDao = QuartosDAO.getConexao();
 
-			        try {
-			            checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
-			            checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
-			        } catch (ParseException e1) {
-			            e1.printStackTrace();
-			            return;
-			        }
+					Quartos quarto = qDao.buscarQuartoPorId((Integer) comboBox.getSelectedItem());
 
-			        HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
-			        Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
-			        if (hospede == null) {
-			            JOptionPane.showMessageDialog(null, "Hóspede não encontrado.");
-			            return;
-			        }
+					try {
+						checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
+						checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+						return;
+					}
 
-			        HospedagensDAO hospedagensDAO = HospedagensDAO.getInstancia();
-			        Hospedagens hospedagem = new Hospedagens();
-			        hospedagem.setCheckin(checkin);
-			        hospedagem.setCheckout(checkout);
-			        hospedagem.setHospde(hospede);
-			        hospedagem.setQuarto(quarto);
+					HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
+					Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
+					if (hospede == null) {
+						JOptionPane.showMessageDialog(null, "Hóspede não encontrado.");
+						return;
+					}
 
-			        int resultado = hospedagensDAO.InserirHospedagem(hospedagem);
-			        if (resultado > 0) {  
-			            JOptionPane.showMessageDialog(null, "Hospedagem inserida com sucesso.");
-			            atualizarJTable((Integer) comboBox.getSelectedItem());
-			        } else {
-			            JOptionPane.showMessageDialog(null, "Erro ao inserir a hospedagem.");
-			        }
-			    }
+					HospedagensDAO hospedagensDAO = HospedagensDAO.getInstancia();
+					Hospedagens hospedagem = new Hospedagens();
+					hospedagem.setCheckin(checkin);
+					hospedagem.setCheckout(checkout);
+					hospedagem.setHospde(hospede);
+					hospedagem.setQuarto(quarto);
+					hospedagensDAO.InserirHospedagem(hospedagem);
+					atualizarJTable(x);
+				}
 			}
 
 		});
