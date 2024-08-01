@@ -84,7 +84,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 		// Comando pro MySQL
 		String SQL = "SELECT * FROM atividadeshospedes inner join Atividades on Atividades.IdAtividade=AtividadesHospedes.IdAtividadeAtividades"
-				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades=Hospedes.IdHospede"
+				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades"
 				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividade=Funcionarios.IdFuncionario";
 
 		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
@@ -97,6 +97,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		// der erro mostra um erro no método do catch
 		try {
 			PreparedStatement Ps = conBD.prepareStatement(SQL);
+			System.out.println(Ps);
 
 			ResultSet Rs = Ps.executeQuery();
 
@@ -268,6 +269,32 @@ public int contarHospedesNaAtividade(int idAtividade) {
 	        
 	        return contagem;
 	    }
+public boolean isHospedeRegisteredForActivity(String documento, int idAtividade) {
+    boolean isRegistered = false;
+    String SQL = "SELECT COUNT(*) FROM AtividadesHospedes " +
+                 "INNER JOIN Hospedes ON Hospedes.IdHospede = AtividadesHospedes.IdHospedeAtividades " +
+                 "WHERE Hospedes.Documento = ? AND AtividadesHospedes.IdAtividadeAtividades = ?";
+    
+    Conexao con = Conexao.getConexao();
+    Connection conBD = con.Conectar();
+
+    try {
+        PreparedStatement ps = conBD.prepareStatement(SQL);
+        ps.setString(1, documento);
+        ps.setInt(2, idAtividade);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            isRegistered = (count > 0);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        con.FecharConexao();
+    }
+    return isRegistered;
+}
 
 
 }

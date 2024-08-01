@@ -74,7 +74,6 @@ public class TelaAtividades extends JFrame {
 	private JTextField textNomeatividade;
 	private JTextField TextHorarioFim;
 	private JTextField textData;
-	private JTextField textField;
 	private JTextField textCapacidade;
 
 	/**
@@ -603,15 +602,6 @@ public class TelaAtividades extends JFrame {
 		JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
 		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
-
-		JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
-		lblNewLabel_11_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		panel_7.add(lblNewLabel_11_2, "cell 0 10,alignx left");
-
-		textField = new JTextField();
-		panel_7.add(textField, "cell 1 10 4 1,growx,aligny center");
-		textField.setColumns(10);
-		textField.setBorder(new RoundedBorder(Color.black, 10));
 		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
 		// LetterDocumentFilter());
 
@@ -620,16 +610,11 @@ public class TelaAtividades extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int linha = table.getSelectedRow();
 				
-				if(linha >= 0) {
 					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
 					chama.setVisible(true);
-					dispose();
-				}else if(linha <= 0) {
 
-					JOptionPane.showMessageDialog(null, "selecione uma linha para adicionar um hospede");				
-				}
+				
 			}
 		});
 		

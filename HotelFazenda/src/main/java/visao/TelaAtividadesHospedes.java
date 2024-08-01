@@ -31,6 +31,10 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -125,17 +129,18 @@ setLocationRelativeTo(null);
                 HospedeDAO daoHospede = HospedeDAO.getInstancia();
                 AtividadesHospedesDAO daoAtividadesHospedes = AtividadesHospedesDAO.getInstancia();
                 AtividadesHospedes atividadesHospedes = new AtividadesHospedes();
-
+                LocalDate dataHoje = LocalDate.now();
+                
                 Hospedes hospede = daoHospede.buscarHospedePorCPF(documento);
                 if (hospede == null) {
                     JOptionPane.showMessageDialog(null, "CPF não encontrado.");
-                    return;
+                    
                 }
 
                 Atividades ativ = (Atividades) comboBox.getSelectedItem();
                 if (ativ == null) {
                     JOptionPane.showMessageDialog(null, "Nenhuma atividade selecionada.");
-                    return;
+                    
                 }
 
                 int capacidade = ativ.getCapacidade();
@@ -143,13 +148,31 @@ setLocationRelativeTo(null);
 
                 if (countHospedes >= capacidade) {
                     JOptionPane.showMessageDialog(null, "Capacidade máxima atingida para esta atividade.");
-                    return;
+                    
+                }
+                
+                LocalDate dataNascimento = convertToLocalDate(hospede.getDataNasc());
+                int idade = calcularIdade(dataNascimento);
+                System.out.println("Idade do hóspede: " + idade);
+
+                
+                if (idade < ativ.getIdadeMinima()) {
+                    JOptionPane.showMessageDialog(null, "Idade do hóspede menor que a idade mínima necessária.");
+                    
+                }
+                
+                if (daoAtividadesHospedes.isHospedeRegisteredForActivity(hospede.getDocumento(), ativ.getIdAtividade())) {
+                    JOptionPane.showMessageDialog(null, "CPF já está vinculado a esta atividade.");
+                    
                 }
 
+                // Adicionar atividade para o hóspede
                 atividadesHospedes.setHospede(hospede);
                 atividadesHospedes.setAtividade(ativ);
                 daoAtividadesHospedes.InserirAtividadesHospedes(atividadesHospedes);
                 atualizarJTable();
+                
+
 				}
 							
 		});
@@ -180,6 +203,17 @@ setLocationRelativeTo(null);
 		});
 		btnNewButton.setBounds(360, 65, 89, 23);
 		panel.add(btnNewButton);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaAtividades chama = new TelaAtividades();
+				chama.setVisible(true);
+				dispose();
+			}
+		});
+		btnSair.setBounds(560, 22, 54, 23);
+		panel.add(btnSair);
 
 		// Atualizar a tabela
 		atualizarJTable();
@@ -187,8 +221,10 @@ setLocationRelativeTo(null);
 
 	protected void atualizarJTable() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.setRowCount(0); // Limpar linhas existentes
+		
+	    model.setRowCount(0);
 
+ 
 		AtividadesHospedesDAO hospedesatividadesDAO = AtividadesHospedesDAO.getInstancia();
 		ListaatividadesHospedes = hospedesatividadesDAO.ListarAtividadesHospedes();
 
@@ -196,4 +232,15 @@ setLocationRelativeTo(null);
 			model.addRow(new Object[] {p.getAtividade().getNomeAtividade(), p.getHospede().getNome() });
 		}
 	}
+	 private int calcularIdade(LocalDate dataNascimento) {
+	        LocalDate hoje = LocalDate.now();
+	        if (dataNascimento != null) {
+	            return Period.between(dataNascimento, hoje).getYears();
+	        } else {
+	            throw new IllegalArgumentException("Data de nascimento não pode ser nula.");
+	        }
+	    }
+	 private LocalDate convertToLocalDate(Date sqlDate) {
+	        return sqlDate.toLocalDate();
+	    }
 }
