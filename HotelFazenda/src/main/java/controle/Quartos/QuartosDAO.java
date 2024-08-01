@@ -108,7 +108,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
-				Quarto.setTipoQuarto(rs.getString("TipoQuarto"));
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
 				Quartos.add(Quarto);
 			}
 
@@ -213,7 +213,7 @@ public class QuartosDAO implements IQuartosDAO {
 				Quarto.setTV(rs.getBoolean("TV"));
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
-				Quarto.setTipoQuarto(rs.getString("TipoQuarto"));
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
 				Quartos.add(Quarto);
 			}
 
@@ -225,5 +225,47 @@ public class QuartosDAO implements IQuartosDAO {
 		}
 
 		return Quartos;
+	}
+
+	@Override
+	public Quartos buscarQuartoPorId(int id) {
+		// TODO Auto-generated method stub
+				 Quartos Quarto = null;
+				String SQL = "Select * from Quartos where IdQuarto = ?";
+				Conexao con = Conexao.getConexao();
+				Connection conBD = con.Conectar();
+
+				try {
+					PreparedStatement ps = conBD.prepareStatement(SQL);
+					ps.setInt(1, id);
+					ResultSet rs = ps.executeQuery();
+
+					 
+					if(rs.next())
+					{
+						Quarto=new  Quartos();
+
+						Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+						Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+						Quarto.setManutencao(rs.getString("Manutencao"));
+						Quarto.setTipoCama(rs.getString("TipoCama"));
+						Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+						Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+						Quarto.setBanheira(rs.getBoolean("Banheira"));
+						Quarto.setTV(rs.getBoolean("TV"));
+						Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+						Quarto.setSituacao(rs.getInt("Situacao"));
+						Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
+						 
+					}
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					con.FecharConexao();
+				}
+
+				return Quarto;
 	}
 }
