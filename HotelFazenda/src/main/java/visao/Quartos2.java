@@ -126,7 +126,7 @@ public class Quartos2 extends JFrame {
 		for (int i = 0; i < ListaQuartos.size(); i++) {
 
 			Quartos p = ListaQuartos.get(i);
-			model1.addRow(new Object[] { p.getTipoQuarto(),p.getSituacao(),p.getMaxPessoas(),p.getManutencao(),p.getTipoCama(),p.getFrigobar(),p.getArCondicionado(),p.getBanheira(),p.getTV(),p.getPrecoDiaria() });
+			model1.addRow(new Object[] { p.getTipoQuarto(),p.getSituacao(),p.getMaxPessoas(),p.getManutencao(),p.getTipoCama(),p.getFrigobar(),p.getArCondicionado(),p.getBanheira(),p.getTV(),"R$"+p.getPrecoDiaria() });
 		}
 
 		table.setModel(model1);
