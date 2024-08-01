@@ -170,5 +170,6 @@ public class Login extends JFrame {
 		});
 		 
 		panel.add(btnNewButton, "cell 3 10,growx,aligny center");
+		
 	}
 }
