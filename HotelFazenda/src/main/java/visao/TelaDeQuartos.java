@@ -500,7 +500,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_9.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int pos = table.getSelectedRow();
+				Object pos =  comboBox.getSelectedItem();
 				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
 				} else {
@@ -629,14 +629,14 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_16.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int pos = table.getSelectedRow();
-				if (pos >= 0) {
+				Object pos = comboBox.getSelectedItem();
+				if (pos == comboBox.getSelectedItem()) {
 					double subTotal = 0.0;
 					double desconto = 0.0;
 					double total = 0.0;
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
-						Quartos quarto = ListaQuartos.get(pos);
+						Quartos quarto = ListaQuartos.get((int) pos);
 						subTotal = quarto.getPrecoDiaria();
 					}
 
@@ -653,14 +653,14 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_17.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int pos = table.getSelectedRow();
-				if (pos >= 0) {
+				Object pos = comboBox.getSelectedItem();
+				if (pos == comboBox.getSelectedItem()) {
 					double subTotal = 0.0;
 					double desconto = 0.0;
 					double total = 0.0;
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
-						Quartos quarto = ListaQuartos.get(pos);
+						Quartos quarto = ListaQuartos.get((int) pos);
 						subTotal = quarto.getPrecoDiaria();
 					}
 
@@ -676,14 +676,14 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_18.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int pos = table.getSelectedRow();
-				if (pos >= 0) {
+				Object pos = comboBox.getSelectedItem();
+				if (pos == comboBox.getSelectedItem()) {
 					double subTotal = 0.0;
 					double desconto = 0.0;
 					double total = 0.0;
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
-						Quartos quarto = ListaQuartos.get(pos);
+						Quartos quarto = ListaQuartos.get((int) pos);
 						subTotal = quarto.getPrecoDiaria();
 					}
 
