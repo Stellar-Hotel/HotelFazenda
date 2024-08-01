@@ -74,7 +74,6 @@ public class TelaAtividades extends JFrame {
 	private JTextField textNomeatividade;
 	private JTextField TextHorarioFim;
 	private JTextField textData;
-	private JTextField textField;
 	private JTextField textCapacidade;
 
 	/**
@@ -354,8 +353,8 @@ public class TelaAtividades extends JFrame {
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 
-		JScrollPane spTable = new JScrollPane();
-		Principal.add(spTable, "cell 6 14 4 5,grow");
+		JScrollPane cTable = new JScrollPane();
+		Principal.add(cTable, "cell 6 14 4 5,grow");
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255, 255, 255));
@@ -616,15 +615,6 @@ public class TelaAtividades extends JFrame {
 		JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
 		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
-
-		JLabel lblNewLabel_11_2 = new JLabel("Cadastrar Hospede");
-		lblNewLabel_11_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		panel_7.add(lblNewLabel_11_2, "cell 0 10,alignx left");
-
-		textField = new JTextField();
-		panel_7.add(textField, "cell 1 10 4 1,growx,aligny center");
-		textField.setColumns(10);
-		textField.setBorder(new RoundedBorder(Color.black, 10));
 		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
 		// LetterDocumentFilter());
 
@@ -632,8 +622,16 @@ public class TelaAtividades extends JFrame {
 		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+					TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
+					chama.setVisible(true);
+
+				
 			}
 		});
+		
+
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(117, 187, 68));
 		panel_7.add(btnNewButton_1, "cell 2 11");
@@ -702,7 +700,7 @@ public class TelaAtividades extends JFrame {
 		lblTwitter.setIcon(new ImageIcon(TelaAtividades.class.getResource("/visao/twitter.jpg")));
 
 		table = new CustomTable(model1);
-		spTable.setViewportView(table);
+		cTable.setViewportView(table);
 
 		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
 				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
@@ -714,7 +712,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(table);
+				cTable.setViewportView(table);
 				atualizarJTable();
 			}
 		});
@@ -723,7 +721,7 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				spTable.setViewportView(new JTable(model2));
+				cTable.setViewportView(new JTable(model2));
 				atualizarJTable();
 			}
 		});
@@ -744,7 +742,19 @@ public class TelaAtividades extends JFrame {
 			@Override
 			public void onDelete(int row) {
 				int linhaSelecionada = table.getSelectedRow();
-			 
+				AtividadesDAO DAO = AtividadesDAO.getInstancia();
+				int linha = table.getSelectedRow();
+				Atividades ativ = new Atividades();
+
+				if (linha >= 0) {
+					ativ = ListaAtividades.get(linha);
+					DAO.RemoverAtividades(ativ);
+					atualizarJTable();
+					TelaSucesso c = new TelaSucesso("Atividade Exluída!");
+					c.setVisible(true);
+				} else if (linha <= 0) {
+					JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
+				}
 			}
 
 		};

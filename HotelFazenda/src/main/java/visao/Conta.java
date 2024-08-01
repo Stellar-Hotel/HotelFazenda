@@ -10,6 +10,8 @@ import javax.swing.text.MaskFormatter;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultIconButton;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 
@@ -552,8 +554,10 @@ public class Conta extends JFrame {
 		
 		
 		Principal.add(lblNewLabel_14, "cell 10 8,alignx center");
-		
-		JButton btnDescartarMudanas = new JButton("Descartar Mudanças");
+		DefaultIconButton btnDescartarMudanas = new DefaultIconButton("Descartar Mudanças");
+		btnDescartarMudanas.setBackgroundColor(new Color(255, 38, 38));
+		btnDescartarMudanas.setHoverColor(Color.RED.darker());
+
 		btnDescartarMudanas.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnDescartarMudanas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -572,7 +576,8 @@ public class Conta extends JFrame {
 		
 		Conta Tela=this;
 		
-		JButton btnSalvar = new JButton("Salvar");
+		DefaultIconButton btnSalvar = new DefaultIconButton("Cancelar");
+		
 		btnSalvar.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
