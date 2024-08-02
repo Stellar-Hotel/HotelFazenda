@@ -14,18 +14,12 @@ import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
 import modelo.Atividades;
-import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
 import modelo.Servicos;
 import net.miginfocom.swing.MigLayout;
-import raven.cell.CustomTable;
-import raven.cell.TableActionCellEditor;
-import raven.cell.TableActionCellRender;
-import raven.cell.TableActionEvent;
-import utils.DefaultIconButton;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -93,8 +87,6 @@ public class TelaDeQuartos extends JFrame {
 	// });
 	// }
 
-	 
-
 	protected void atualizarJTable(int tipoQuarto) {
 
 		QuartosDAO Qdao = QuartosDAO.getConexao();
@@ -121,32 +113,12 @@ public class TelaDeQuartos extends JFrame {
 
 	 
 		table.setModel(model1);
-		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
-																					// selecionada
-		table.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
-
-		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int row = table.rowAtPoint(e.getPoint());
-				if (row >= 0) {
-					cellRenderer.setSelectedRow(row);
-					table.repaint(); // Repaint to apply the new row color
-				}
-			}
-		});
-
-		table.setRowHeight(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(125);
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeQuartos(int x) {
-		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
-
+	public TelaDeQuartos(int x, Funcionarios Func) {
 		setTitle("Tela de Quartos");
 
 		Quartos quartos = new Quartos();
@@ -197,7 +169,7 @@ public class TelaDeQuartos extends JFrame {
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home(Func);
+				Home TelaHome = new Home( );
 				TelaHome.setVisible(true);
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -221,18 +193,15 @@ public class TelaDeQuartos extends JFrame {
 
 			}
 		});
-		lblNewLabel_19.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/Quartos.jpg")));
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_19, "cell 0 4");
 		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblHospede.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 6,grow");
+		BarraLateral.add(lblHospede, "cell 0 5,grow");
 
 		JLabel lblAtividades = new JLabel("Atividades");
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades(Func);
+				TelaAtividades TelaAtiv = new TelaAtividades( );
 				TelaAtiv.setVisible(true);
 				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -243,11 +212,11 @@ public class TelaDeQuartos extends JFrame {
 		lblAtividades.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/Atividades.jpg")));
 		BarraLateral.add(lblAtividades, "cell 0 2,grow");
 
-		JLabel lblQuartos = new JLabel("Reservas");
+		JLabel lblQuartos = new JLabel("Quartos");
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes(Func);
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes( );
 				TelaAco.setVisible(true);
 				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -262,7 +231,7 @@ public class TelaDeQuartos extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos(Func);
+				TelaServicos TelaServ = new TelaServicos( );
 				TelaServ.setVisible(true);
 				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -277,7 +246,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios(Func);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios( );
 				TelaAdm.setVisible(true);
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -293,7 +262,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta(Func);
+				Conta telaConta = new Conta( );
 				telaConta.setVisible(true);
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -302,11 +271,11 @@ public class TelaDeQuartos extends JFrame {
 		});
 		lblNewLabel_2.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/conta.png")));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_2, "cell 0 8");
+		BarraLateral.add(lblNewLabel_2, "cell 0 7");
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 10,growx,aligny baseline");
+		BarraLateral.add(panel, "cell 0 9,growx,aligny baseline");
 		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
 
 		JLabel lblNewLabel_4 = new JLabel("");
