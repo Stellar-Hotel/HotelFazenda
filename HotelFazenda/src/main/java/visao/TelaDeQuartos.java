@@ -1,61 +1,43 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
-import controle.Atividades.AtividadesDAO;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
-import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
-import modelo.Servicos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultScreen;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Desktop;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 public class TelaDeQuartos extends DefaultScreen {
 
@@ -63,8 +45,7 @@ public class TelaDeQuartos extends DefaultScreen {
 	private ArrayList<Quartos> ListaQuartos;
 	private DefaultTableModel model1;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtPesquisa;
+ 
 	private JTable table;
 	private JTextField textCPF;
 	private JTextField textChecki;
@@ -110,17 +91,17 @@ public class TelaDeQuartos extends DefaultScreen {
 
 		for (Hospedagens p : ListaHospedagens) {
 
-			model1.addRow(new Object[] { p.getQuarto().getIdQuarto(), p.getHospede().getNome(), p.getCheckin(), p.getCheckout() });
+			model1.addRow(new Object[] { p.getQuarto().getIdQuarto(), p.getHospede().getNome(), p.getCheckin(),
+					p.getCheckout() });
 		}
 
-	 
 		table.setModel(model1);
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaDeQuartos(int x ) {
+	public TelaDeQuartos(int x) {
 		super();
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 		setTitle("Tela de Quartos");
@@ -153,8 +134,6 @@ public class TelaDeQuartos extends DefaultScreen {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		 
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
@@ -309,7 +288,7 @@ public class TelaDeQuartos extends DefaultScreen {
 		panel_9.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Object pos =  comboBox.getSelectedItem();
+				Object pos = comboBox.getSelectedItem();
 				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
 				} else {
@@ -371,8 +350,6 @@ public class TelaDeQuartos extends DefaultScreen {
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		atualizarJTable(x);
 		Principal.add(scrollPane1, "cell 2 1,grow");
-
-	 
 
 		lblNewLabel_16.addMouseListener(new MouseAdapter() {
 			@Override

@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class Conexao { // Connection
 
-	private static  String USERNAME;
-	private static  String SENHA;
-	private static  String BD;
+	private static String USERNAME;
+	private static String SENHA;
+	private static String BD;
 	private Connection con; // jdbc
 	private static Conexao instancia; // singleton
 
@@ -33,23 +33,22 @@ public class Conexao { // Connection
 
 		return instancia;
 	}
-	
+
 	public static void LerArquivoBD() {
 		FileReader arquivo;
 		try {
 			arquivo = new FileReader("credenciais.txt");
-			
-			if(arquivo!=null)
-			{
-				BufferedReader reader=new BufferedReader(arquivo);
-				
-				USERNAME=reader.readLine();
-				SENHA=reader.readLine();
-				BD=reader.readLine();
-				
+
+			if (arquivo != null) {
+				BufferedReader reader = new BufferedReader(arquivo);
+
+				USERNAME = reader.readLine();
+				SENHA = reader.readLine();
+				BD = reader.readLine();
+
 				reader.close();
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,10 +56,7 @@ public class Conexao { // Connection
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+
 	}
 
 	/**

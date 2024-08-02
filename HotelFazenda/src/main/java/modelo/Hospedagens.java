@@ -1,7 +1,6 @@
 package modelo;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Hospedagens {
 
@@ -10,7 +9,6 @@ public class Hospedagens {
 	private Date Checkout;
 	private Hospedes Hospede;
 	private Quartos Quarto;
-
 
 	public int getIdHospedagem() {
 		return IdHospedagem;

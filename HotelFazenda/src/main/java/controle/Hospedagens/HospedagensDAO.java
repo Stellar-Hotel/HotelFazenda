@@ -1,12 +1,11 @@
 package controle.Hospedagens;
 
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controle.Conexao;
@@ -15,7 +14,6 @@ import controle.Quartos.QuartosDAO;
 import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
-import modelo.Usuarios;
 
 public class HospedagensDAO implements IHospedagenDAO {
 
@@ -34,7 +32,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 	@Override
 	public int InserirHospedagem(Hospedagens Hg) {
 		String SQL = "INSERT INTO Hospedagens (Checkin, Checkout,IdQuartoHospedagens,IdHospedeHospedagens) VALUES (?,?,?,?)";
-System.out.println(SQL);
+		System.out.println(SQL);
 		// cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
@@ -77,7 +75,8 @@ System.out.println(SQL);
 		// comando sql executado
 		String SQL = "SELECT * FROM Hospedagens "
 				+ " inner join Hospedes on Hospedes.IdHospede=Hospedagens.IdHospedeHospedagens"
-				+ " inner join Quartos on Quartos.IdQuarto=Hospedagens.IdQuartoHospedagens"; // tem que colocar o inner join aqui
+				+ " inner join Quartos on Quartos.IdQuarto=Hospedagens.IdQuartoHospedagens"; // tem que colocar o inner
+																								// join aqui
 
 		// cria a ponte de conecao com o mysql
 		Conexao con = Conexao.getConexao();
@@ -97,8 +96,6 @@ System.out.println(SQL);
 
 				Quartos Quarto = new Quartos();
 
-				 
-
 				Hospede.setNome(rs.getString("Nome"));
 				Hospede.setDocumento(rs.getString("Documento"));
 				Hospede.setSobrenome(rs.getString("Sobrenome"));
@@ -108,7 +105,7 @@ System.out.println(SQL);
 				Hospede.setEmail(rs.getString("Email"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
 				Hospede.setIdHospede(rs.getInt("IdHospede"));
-				
+
 				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
 				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
 				Quarto.setManutencao(rs.getString("Manutencao"));
@@ -120,8 +117,7 @@ System.out.println(SQL);
 				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
 				Quarto.setSituacao(rs.getInt("Situacao"));
 				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
-			 
- 
+
 				// Tem que setar os atributos dos bagulho estrangeiro ainda
 
 				// Pega os valores de cada coluna d registro
@@ -133,9 +129,9 @@ System.out.println(SQL);
 				Hg.setQuarto(Quarto);
 
 				// Adiciona objeto na lista
-				
+
 				hospedagens.add(Hg);
-				 
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -270,7 +266,7 @@ System.out.println(SQL);
 		ListaHospedagens = Hdao.ListarHospedagens();
 
 		if (ValidarDia.lerDia(hoje.toString())) {
-			
+
 			for (Hospedagens hospedagem : ListaHospedagens) {
 				String checkin = hospedagem.getCheckin().toString();
 				String checkout = hospedagem.getCheckout().toString();

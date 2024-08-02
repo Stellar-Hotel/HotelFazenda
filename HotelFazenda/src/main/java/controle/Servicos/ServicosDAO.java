@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import controle.Usuarios.UsuariosDAO;
 import modelo.Servicos;
 
 public class ServicosDAO implements IServicosDAO {
@@ -36,12 +35,14 @@ public class ServicosDAO implements IServicosDAO {
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement Ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);// se for um insert já conhcendo a chave primária não
-																// adcionar o Statement.RETURN_GENERATED_KEYS
+			PreparedStatement Ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);// se for um insert já
+																								// conhcendo a chave
+																								// primária não
+			// adcionar o Statement.RETURN_GENERATED_KEYS
 			Ps.setDouble(1, end.getPrecoServico());
 			Ps.setString(2, end.getNomeServico());
 			Ps.setInt(3, end.getQuantidade());
-			
+
 			int result = Ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível cadastrar o serviço!");
@@ -74,19 +75,19 @@ public class ServicosDAO implements IServicosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				
-				Servicos Serv = new Servicos("a",0.1);//tem que ver como vai ficar isso tbm, agr cque tem o construtor
+
+				Servicos Serv = new Servicos("a", 0.1);// tem que ver como vai ficar isso tbm, agr cque tem o construtor
 
 				int IdServico = rs.getInt("IdServico");
 				Float PrecoServico = rs.getFloat("PrecoServico");
 				String NomeServico = rs.getString("NomeServico");
 				Integer Quantidade = rs.getInt("Quantidade");
-				
+
 				Serv.setIdServico(IdServico);
 				Serv.setPrecoServico(PrecoServico);
 				Serv.setNomeServico(NomeServico);
 				Serv.setQuantidade(Quantidade);
-				
+
 				Servico.add(Serv);
 			}
 		} catch (SQLException e) {
@@ -174,7 +175,7 @@ public class ServicosDAO implements IServicosDAO {
 
 		try {
 			PreparedStatement Ps = conBD.prepareStatement(SQL);
-		
+
 			retorno = Ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -186,8 +187,7 @@ public class ServicosDAO implements IServicosDAO {
 		return (retorno == 0 ? false : true);
 
 	}
-	
-	
+
 	@Override
 	public Servicos buscarServicoPorNome(String nome) {
 		// TODO Auto-generated method stub
@@ -204,7 +204,7 @@ public class ServicosDAO implements IServicosDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				Serv = new Servicos(" ",0.0);
+				Serv = new Servicos(" ", 0.0);
 
 				Serv.setIdServico(rs.getInt("IdServico"));
 				Serv.setNomeServico(nome);

@@ -14,9 +14,9 @@ public interface IAtividadesHospedesDAO {
 	public ArrayList<AtividadesHospedes> BuscarAtividadesHospedesPorIdHospede(int Id);
 
 	public boolean RemoverAtividadeHospede(int IdAtividade);
-	
-    public boolean isHospedeRegisteredForActivity(String documento, int idAtividade);
-    
-    public int contarHospedesNaAtividade(int idAtividade);
+
+	public boolean isHospedeRegisteredForActivity(String documento, int idAtividade);
+
+	public int contarHospedesNaAtividade(int idAtividade);
 
 }

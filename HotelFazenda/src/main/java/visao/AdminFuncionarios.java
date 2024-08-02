@@ -1,64 +1,49 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
-
-import net.miginfocom.swing.MigLayout;
-import raven.cell.CustomTable;
-import raven.cell.TableActionCellEditor;
-import raven.cell.TableActionCellRender;
-import raven.cell.TableActionEvent;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Desktop;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import controle.Arredondar.RoundedBorder;
-import controle.Atividades.AtividadesDAO;
-import controle.Atualizavel.Atualizavel;
-import controle.Funcionarios.FuncionariosDAO;
-import controle.Hospede.HospedeDAO;
-import controle.Usuarios.UsuariosDAO;
-import modelo.Atividades;
-import modelo.CurrentFunc;
-import modelo.Funcionarios;
-import modelo.Hospedes;
-import modelo.Servicos;
-import modelo.Usuarios;
-
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
+import controle.Arredondar.RoundedBorder;
+import controle.Atualizavel.Atualizavel;
+import controle.Funcionarios.FuncionariosDAO;
+import controle.Usuarios.UsuariosDAO;
+import modelo.CurrentFunc;
+import modelo.Funcionarios;
+import modelo.Usuarios;
+import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 
 public class AdminFuncionarios extends JFrame implements Atualizavel {
 
@@ -114,7 +99,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	/**
 	 * Create the frame.
 	 */
-	public AdminFuncionarios( ) {
+	public AdminFuncionarios() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 		setTitle("AdminFuncionários");
@@ -178,14 +163,15 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		BarraLateral.setBorder(null);
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
+				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				Home telaInicial = new Home( );
+				Home telaInicial = new Home();
 				telaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaInicial.setVisible(true);
 				dispose();
@@ -201,21 +187,21 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes( );
+				TelaDeHospedes Chama = new TelaDeHospedes();
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				Chama.setVisible(true);
 				dispose();
 			}
 		});
-		
+
 		JLabel lblNewLabel_19_1 = new JLabel("Quartos");
 		lblNewLabel_19_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Quartos2 q=new Quartos2( );
+				Quartos2 q = new Quartos2();
 				q.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				q.setVisible(true);
-				
+
 				dispose();
 			}
 		});
@@ -231,7 +217,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaAtividades TelaAtividades = new TelaAtividades( );
+				TelaAtividades TelaAtividades = new TelaAtividades();
 				TelaAtividades.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaAtividades.setVisible(true);
 				dispose();
@@ -246,7 +232,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes( );
+				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes();
 				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				TelaDeAcomodacoes.setVisible(true);
 				dispose();
@@ -262,7 +248,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				TelaServicos telaServico = new TelaServicos( );
+				TelaServicos telaServico = new TelaServicos();
 				telaServico.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaServico.setVisible(true);
 				dispose();
@@ -282,7 +268,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		lblConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta( );
+				Conta telaConta = new Conta();
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				telaConta.setVisible(true);
 				dispose();

@@ -7,12 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.cj.protocol.Resultset;
-
 import controle.Conexao;
-import controle.Servicos.ServicosDAO;
-import controle.Usuarios.UsuariosDAO;
-import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
 import modelo.Servicos;
@@ -48,7 +43,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 			ps.setInt(1, end.getHospede().getIdHospede());
 			ps.setInt(2, end.getServico().getIdServico());
-		//	ps.setInt(3, end.getHospedagem().getIdHospedagem());
+			// ps.setInt(3, end.getHospedagem().getIdHospedagem());
 
 			int result = ps.executeUpdate();
 			if (result == 0) {
@@ -75,8 +70,9 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
 		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos"
-					+" inner join servicos.IdServico=ServicosConsumidos.IdServicoServicos"
-					+" inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagemServicos";//tem que checar esse inner join dps
+				+ " inner join servicos.IdServico=ServicosConsumidos.IdServicoServicos"
+				+ " inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagemServicos";// tem que checar esse
+																									// inner join dps
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
@@ -88,22 +84,20 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 				ServicosConsumidos Serv = new ServicosConsumidos();
 
-				
 				// tem que preencher os atributos desses objetos
 				Hospedes Hospede = new Hospedes();
-				
-				//tem que arrumar isso aqui, não sei como faria, acho que criando um construtor novo
-				String nada="sim";
-				Servicos Servico = new Servicos(nada,0.1);
- 				Quartos Quarto=new Quartos();
-				Usuarios User=new Usuarios();
+
+				// tem que arrumar isso aqui, não sei como faria, acho que criando um construtor
+				// novo
+				String nada = "sim";
+				Servicos Servico = new Servicos(nada, 0.1);
+				Quartos Quarto = new Quartos();
+				Usuarios User = new Usuarios();
 
 				// Setar os valores nos objetos
 				Servico.setIdServico(rs.getInt("IdServico"));
 				Servico.setNomeServico(rs.getString("NomeServico"));
 				Servico.setPrecoServico(rs.getFloat("PrecoServico"));
-
-			 
 
 				Hospede.setDocumento(rs.getString("CPF"));
 				Hospede.setDataNasc(rs.getDate("DataNasc"));
@@ -114,11 +108,10 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				Hospede.setPronome(rs.getString("Pronome"));
 				Hospede.setSobrenome(rs.getString("Sobreneome"));
 
- 				Hospede.setUsuario(User);
+				Hospede.setUsuario(User);
 
 				Serv.setHospede(Hospede);
 				Serv.setServico(Servico);
-				 
 
 				Lista.add(Serv);
 
@@ -155,7 +148,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 
 			Ps.setInt(1, end.getHospede().getIdHospede());
 			Ps.setInt(2, end.getServico().getIdServico());
- 
+
 			Ps.setInt(4, end.getIdServicoConsumido());
 
 			retorno = (Ps.executeUpdate() == 0 ? false : true);
@@ -197,7 +190,8 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ServicosConsumidos buscarServicoConsumidoPorId(int Id) {
 		// TODO Auto-generated method stub
 		ServicosConsumidos ServCon = null;
-		String sql = "Select * from ServicosConsumidos where IdServicoConsumido = ?";// tem que fazer o inner join aqui se for usar
+		String sql = "Select * from ServicosConsumidos where IdServicoConsumido = ?";// tem que fazer o inner join aqui
+																						// se for usar
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
 
@@ -212,7 +206,7 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 				ServCon = new ServicosConsumidos();
 
 				ServCon.setIdServicoConsumido(Id);
- 				ServCon.setHospede(null);
+				ServCon.setHospede(null);
 				ServCon.setServico(null);
 			}
 		} catch (SQLException e) {

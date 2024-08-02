@@ -15,7 +15,7 @@ public interface IHospedagenDAO {
 	public boolean RemoverHospedagem(Hospedagens Hosp);
 
 	public Hospedagens BuscarHospedagemId(int Id);
-	
+
 	public void AtualizarSituacao();
 
 }

@@ -1,9 +1,20 @@
 package utils;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import modelo.CurrentFunc;
@@ -19,23 +30,6 @@ import visao.TelaDeAcomodacoes;
 import visao.TelaDeHospedes;
 import visao.TelaServicos;
 
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Desktop;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 public class DefaultScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +39,8 @@ public class DefaultScreen extends JFrame {
 	protected JPanel BarraInferior;
 	protected JPanel Principal;
 	private JTextField txtPesquisa;
-	public DefaultScreen( ) {
+
+	public DefaultScreen() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -59,13 +54,14 @@ public class DefaultScreen extends JFrame {
 		JPanel BarraLateral = new JPanel();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[:200:200,grow]", "[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
+		BarraLateral.setLayout(new MigLayout("", "[:200:200,grow]",
+				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
 
 		JLabel lblHome = new JLabel("Home");
 		lblHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home( );
+				Home TelaHome = new Home();
 				TelaHome.setVisible(true);
 				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -81,7 +77,7 @@ public class DefaultScreen extends JFrame {
 		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes( );
+				TelaDeHospedes Chama = new TelaDeHospedes();
 				Chama.setVisible(true);
 				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -89,11 +85,18 @@ public class DefaultScreen extends JFrame {
 
 			}
 		});
-		
+
 		JLabel lblNewLabel_19 = new JLabel("Quartos");
 		lblNewLabel_19.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				Quartos2 q2 = new Quartos2();
+				q2.setVisible(true);
+				q2.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+
 			}
 		});
 		lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
@@ -107,7 +110,7 @@ public class DefaultScreen extends JFrame {
 		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades( );
+				TelaAtividades TelaAtiv = new TelaAtividades();
 				TelaAtiv.setVisible(true);
 				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -122,7 +125,7 @@ public class DefaultScreen extends JFrame {
 		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes( );
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
 				TelaAco.setVisible(true);
 				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -137,7 +140,7 @@ public class DefaultScreen extends JFrame {
 		lblServicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos( );
+				TelaServicos TelaServ = new TelaServicos();
 				TelaServ.setVisible(true);
 				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -152,7 +155,7 @@ public class DefaultScreen extends JFrame {
 		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios( );
+				AdminFuncionarios TelaAdm = new AdminFuncionarios();
 				TelaAdm.setVisible(true);
 				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -168,7 +171,7 @@ public class DefaultScreen extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta( );
+				Conta telaConta = new Conta();
 				telaConta.setVisible(true);
 				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -191,7 +194,7 @@ public class DefaultScreen extends JFrame {
 		JLabel lblNome = new JLabel("Erik Roncaglio");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNome, "cell 1 1,aligny bottom");
-		
+
 //		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
 //		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
 //		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -317,13 +320,13 @@ public class DefaultScreen extends JFrame {
 	}
 
 	protected void setPrincipalPanel(JPanel panel) {
-		if(Principal!=null) {
-		contentPane.remove(Principal);
+		if (Principal != null) {
+			contentPane.remove(Principal);
 		}
 		Principal = panel;
 		contentPane.add(Principal, "cell 1 1,grow");
 		revalidate();
 		repaint();
-		
+
 	}
 }

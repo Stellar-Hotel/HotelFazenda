@@ -1,32 +1,26 @@
 package visao;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Atualizavel.Atualizavel;
-import controle.Funcionarios.FuncionariosDAO;
 import modelo.Funcionarios;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class ConfirmacaoConta extends JFrame {
 
@@ -96,7 +90,7 @@ public class ConfirmacaoConta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		contentPane.add(btnNewButton, "cell 3 5 3 1,alignx center");
 		btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
 		btnNewButton.setBackground(new Color(117, 187, 68));

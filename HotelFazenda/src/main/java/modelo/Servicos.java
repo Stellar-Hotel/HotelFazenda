@@ -1,7 +1,7 @@
 package modelo;
 
 public class Servicos {
-	private int IdServico,Quantidade;
+	private int IdServico, Quantidade;
 	private double PrecoServico;
 	private String NomeServico;
 
@@ -10,9 +10,8 @@ public class Servicos {
 
 		this.NomeServico = NomeServico;
 		this.PrecoServico = PrecoServico;
-	
+
 	}
-	
 
 	public int getIdServico() {
 		return IdServico;

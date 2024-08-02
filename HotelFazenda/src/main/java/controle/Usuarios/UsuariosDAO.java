@@ -84,15 +84,15 @@ public class UsuariosDAO implements IUsuariosDAO {
 				int Id = rs.getInt("IdUsuario");
 				String Senha = rs.getString("Senha");
 				String Login = rs.getString("Login");
-				Boolean tipo=rs.getBoolean("Tipo");
+				Boolean tipo = rs.getBoolean("Tipo");
 
 				Usu.setSenha(Senha);
 				Usu.setLogin(Login);
 				Usu.setIdUsuario(Id);
 				Usu.setTipo(tipo);
-				
+
 				Usuarios.add(Usu);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +137,7 @@ public class UsuariosDAO implements IUsuariosDAO {
 	@Override
 	public boolean removerUsuario(Usuarios User) {
 		// TODO Auto-generated method stub
-		
+
 		String SQL = "DELETE FROM Usuarios WHERE Login=?";
 
 		Conexao con = Conexao.getConexao(); // instanciando

@@ -1,50 +1,30 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Funcionarios.FuncionariosDAO;
-import controle.Hospedagens.HospedagensDAO;
-import controle.Quartos.QuartosDAO;
 import controle.Usuarios.UsuariosDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
-import modelo.Hospedagens;
-import modelo.Quartos;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.geom.RoundRectangle2D;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
- 
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -130,10 +110,10 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Esqueceu sua senha?");
 		lblNewLabel_2.setForeground(new Color(0, 128, 255));
 		panel.add(lblNewLabel_2, "cell 7 9,alignx right,aligny top");
-		
+
 		ImageIcon icon = new ImageIcon(getClass().getResource("/visao/Sair.png"));
-		 DefaultIconButton btnNewButton = new DefaultIconButton("Entrar", icon);
-	 
+		DefaultIconButton btnNewButton = new DefaultIconButton("Entrar", icon);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -150,15 +130,13 @@ public class Login extends JFrame {
 					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
 					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
 					CurrentFunc.getInstance().setLoggedInFuncionario(Func);
-					Home c = new Home( );
+					Home c = new Home();
 					c.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					c.setVisible(true);
-					
+
 					dispose();
 					sucesso.setVisible(true);
-					
-					
-					
+
 				} else {
 					TelaErro erro = new TelaErro("Algum Erro Ocorreu");
 					erro.setVisible(true);
@@ -168,8 +146,8 @@ public class Login extends JFrame {
 
 			}
 		});
-		 
+
 		panel.add(btnNewButton, "cell 3 10,growx,aligny center");
-		
+
 	}
 }

@@ -2,10 +2,10 @@ package modelo;
 
 public class Funcionarios {
 	private int IdFuncionario, NivelDeAcesso;
-	private String Nome, Sobrenome, Funcao, CPF,Setor,Telefone,PronomeFunc,EmailFunc;
+	private String Nome, Sobrenome, Funcao, CPF, Setor, Telefone, PronomeFunc, EmailFunc;
 	private Usuarios Usuario;
 	private Float Salario;
-	
+
 	public int getIdFuncionario() {
 		return IdFuncionario;
 	}
@@ -102,5 +102,4 @@ public class Funcionarios {
 		EmailFunc = emailFunc;
 	}
 
-	
 }

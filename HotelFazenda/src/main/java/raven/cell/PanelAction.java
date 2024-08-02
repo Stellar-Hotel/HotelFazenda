@@ -1,11 +1,12 @@
 package raven.cell;
 
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout;
-import javax.swing.JPanel;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.Dimension;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class PanelAction extends JPanel {
 

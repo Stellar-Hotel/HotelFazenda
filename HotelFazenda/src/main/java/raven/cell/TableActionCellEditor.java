@@ -1,7 +1,7 @@
 package raven.cell;
 
-import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;

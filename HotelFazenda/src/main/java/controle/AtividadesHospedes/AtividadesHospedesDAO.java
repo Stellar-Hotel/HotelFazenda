@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
@@ -53,16 +52,14 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 			Ps.setInt(2, A.getAtividade().getIdAtividade());
 
 			int result = Ps.executeUpdate();
-			if (result ==0) {
+			if (result == 0) {
 				throw new SQLException("Não foi possível inserir na tabela Ativides Hospedes!");
-			}
-			else {
-				ResultSet rs=Ps.getGeneratedKeys();
-				if(rs.next())
-				{
-					ChavePrimariaGerada=rs.getInt(1);
+			} else {
+				ResultSet rs = Ps.getGeneratedKeys();
+				if (rs.next()) {
+					ChavePrimariaGerada = rs.getInt(1);
 				}
-			}				
+			}
 			/*
 			 * return Ps.executeUpdate();Atualiza o banco sem retorno do banco quando o
 			 * insert for sem coisa auto gerada
@@ -87,7 +84,8 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				+ " inner join Hospedes on Hospedes.IdHospede=AtividadesHospedes.IdHospedeAtividades"
 				+ " inner join Funcionarios on Atividades.IdFuncionarioAtividade=Funcionarios.IdFuncionario";
 
-		//tem que rever esse inner join aqui e preencher os atributos dos objetos de cada tabela
+		// tem que rever esse inner join aqui e preencher os atributos dos objetos de
+		// cada tabela
 
 		// Método pra fazer a conexão
 		Conexao con = Conexao.getConexao();
@@ -103,9 +101,9 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 
 			while (Rs.next()) {
 				AtividadesHospedes At = new AtividadesHospedes();
-				
-				Funcionarios Func=new Funcionarios();
-				
+
+				Funcionarios Func = new Funcionarios();
+
 				Func.setIdFuncionario(Rs.getInt("IdFuncionario"));
 
 				Hospedes Hospede = new Hospedes();
@@ -129,8 +127,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 				Ativ.setNomeAtividade(Rs.getString("NomeAtividade"));
 				Ativ.setData(Rs.getDate("Data"));
 				Ativ.setIdAtividade(Rs.getInt("IdAtividade"));
-				
-				
+
 				Ativ.setFuncionario(Func);
 
 				// Tem que preencher os atributos dos objetos hd e ativ
@@ -145,7 +142,7 @@ public class AtividadesHospedesDAO implements IAtividadesHospedesDAO {
 		} finally {
 			con.FecharConexao();
 		}
-System.out.println(AtividadesHospedes.size());
+		System.out.println(AtividadesHospedes.size());
 		// Return da arraylist
 		return AtividadesHospedes;
 	}
@@ -154,65 +151,64 @@ System.out.println(AtividadesHospedes.size());
 	public boolean AtualizarAtividadesHospedes(AtividadesHospedes AtivHosp) {
 		// TODO Auto-generated method stub
 		String SQL = "UPDATE AtividadesHospedes SET IdHospede = ?, IdAtividade = ? WHERE IdHospedeAtividade = ?";
-		
-		Conexao con=Conexao.getConexao();
-		Connection conBD=con.Conectar();
-		
-		int Retorno=0;
+
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		int Retorno = 0;
 		try {
-			PreparedStatement ps=conBD.prepareStatement(SQL);
-			
-			ps.setInt(1,AtivHosp.getHospede().getIdHospede() );
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
+			ps.setInt(1, AtivHosp.getHospede().getIdHospede());
 			ps.setInt(2, AtivHosp.getAtividade().getIdAtividade());
-			
+
 			ps.setInt(3, AtivHosp.getIdHospedeAtividade());
-			
-			Retorno=ps.executeUpdate();
-			
-			} catch (SQLException e) {
+
+			Retorno = ps.executeUpdate();
+
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			con.FecharConexao();
 		}
-		return (Retorno==0?false:true);
+		return (Retorno == 0 ? false : true);
 	}
 
 	@Override
 	public ArrayList<AtividadesHospedes> BuscarAtividadesHospedesPorIdHospede(int Id) {
 		// TODO Auto-generated method stub
-		AtividadesHospedes AtivHosp=null;
-		ArrayList<AtividadesHospedes> Lista=new ArrayList<AtividadesHospedes>();
-		String SQL="Select * from AtividadesHospedes where IdHospede = ? inner join Atividades.IdAtividade=AtividadesHospedes.IdAtividade"+
-					" inner join Hospedes.IdHospede=AtividadesHospedes.IdHospede inner join Usuarios.IdUsuario=Hospede.IdUsuario "+
-					" inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario inner join Usuarios.IdUsuario=Funcionario.IdUsuario";
-		Conexao con=Conexao.getConexao();
-		Connection conBD=con.Conectar();
-		
+		AtividadesHospedes AtivHosp = null;
+		ArrayList<AtividadesHospedes> Lista = new ArrayList<AtividadesHospedes>();
+		String SQL = "Select * from AtividadesHospedes where IdHospede = ? inner join Atividades.IdAtividade=AtividadesHospedes.IdAtividade"
+				+ " inner join Hospedes.IdHospede=AtividadesHospedes.IdHospede inner join Usuarios.IdUsuario=Hospede.IdUsuario "
+				+ " inner join Funcionarios.IdFuncionario=Atividades.IdFuncionario inner join Usuarios.IdUsuario=Funcionario.IdUsuario";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
 		try {
-			PreparedStatement ps=conBD.prepareStatement(SQL);
+			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setInt(1, Id);
-			ResultSet rs=ps.executeQuery();
-			
-			if(rs.next()) 
-			{
-				Usuarios Usu=new Usuarios();
-				Hospedes Hosp=new Hospedes();
-				
-				Atividades Ativ=new Atividades();
-				
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Usuarios Usu = new Usuarios();
+				Hospedes Hosp = new Hospedes();
+
+				Atividades Ativ = new Atividades();
+
 				Ativ.setData(rs.getDate("Data"));
-				AtivHosp=new AtividadesHospedes();
+				AtivHosp = new AtividadesHospedes();
 				AtivHosp.setIdHospedeAtividade(rs.getInt("IdAtividadeHospede"));
 				AtivHosp.setHospede(null);
 				AtivHosp.setAtividade(null);
-				
+
 				Lista.add(AtivHosp);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			con.FecharConexao();
 		}
 		return Lista;
@@ -239,62 +235,62 @@ System.out.println(AtividadesHospedes.size());
 		}
 		return (retorno == 0 ? false : true);
 	}
-	
-public int contarHospedesNaAtividade(int idAtividade) {
-	        int contagem = 0;
-	        String SQL = "SELECT COUNT(*) FROM AtividadesHospedes WHERE IdAtividadeAtividades = ?";
-	        
-	        // Obtém a conexão com o banco de dados
-	        Conexao con = Conexao.getConexao();
-	        Connection conBD = con.Conectar();
 
-	        try {
-	            // Prepara o comando SQL
-	            PreparedStatement ps = conBD.prepareStatement(SQL);
-	            ps.setInt(1, idAtividade);
+	public int contarHospedesNaAtividade(int idAtividade) {
+		int contagem = 0;
+		String SQL = "SELECT COUNT(*) FROM AtividadesHospedes WHERE IdAtividadeAtividades = ?";
 
-	            // Executa a consulta
-	            ResultSet rs = ps.executeQuery();
+		// Obtém a conexão com o banco de dados
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
 
-	            // Processa o resultado
-	            if (rs.next()) {
-	                contagem = rs.getInt(1);
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } finally {
-	            // Fecha a conexão com o banco de dados
-	            con.FecharConexao();
-	        }
-	        
-	        return contagem;
-	    }
-public boolean isHospedeRegisteredForActivity(String documento, int idAtividade) {
-    boolean isRegistered = false;
-    String SQL = "SELECT COUNT(*) FROM AtividadesHospedes " +
-                 "INNER JOIN Hospedes ON Hospedes.IdHospede = AtividadesHospedes.IdHospedeAtividades " +
-                 "WHERE Hospedes.Documento = ? AND AtividadesHospedes.IdAtividadeAtividades = ?";
-    
-    Conexao con = Conexao.getConexao();
-    Connection conBD = con.Conectar();
+		try {
+			// Prepara o comando SQL
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, idAtividade);
 
-    try {
-        PreparedStatement ps = conBD.prepareStatement(SQL);
-        ps.setString(1, documento);
-        ps.setInt(2, idAtividade);
-        ResultSet rs = ps.executeQuery();
+			// Executa a consulta
+			ResultSet rs = ps.executeQuery();
 
-        if (rs.next()) {
-            int count = rs.getInt(1);
-            isRegistered = (count > 0);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
-        con.FecharConexao();
-    }
-    return isRegistered;
-}
+			// Processa o resultado
+			if (rs.next()) {
+				contagem = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// Fecha a conexão com o banco de dados
+			con.FecharConexao();
+		}
 
+		return contagem;
+	}
+
+	public boolean isHospedeRegisteredForActivity(String documento, int idAtividade) {
+		boolean isRegistered = false;
+		String SQL = "SELECT COUNT(*) FROM AtividadesHospedes "
+				+ "INNER JOIN Hospedes ON Hospedes.IdHospede = AtividadesHospedes.IdHospedeAtividades "
+				+ "WHERE Hospedes.Documento = ? AND AtividadesHospedes.IdAtividadeAtividades = ?";
+
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, documento);
+			ps.setInt(2, idAtividade);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				isRegistered = (count > 0);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+		return isRegistered;
+	}
 
 }

@@ -1,51 +1,45 @@
 package visao;
 
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
-
-import com.google.protobuf.TextFormat.ParseException;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Hospede.HospedeDAO;
 import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
-
-import net.miginfocom.swing.MigLayout;
-import raven.cell.CustomTable;
-import raven.cell.TableActionCellEditor;
-import raven.cell.TableActionCellRender;
-import raven.cell.TableActionEvent;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
 import modelo.Servicos;
 import modelo.ServicosConsumidos;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.border.LineBorder;
-import javax.swing.JScrollPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.DecimalFormat;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 
 public class Carrinho extends JFrame {
 	DecimalFormat formato = new DecimalFormat("#.##");
@@ -56,8 +50,8 @@ public class Carrinho extends JFrame {
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
 	JLabel lblNewLabel_3;
- 
-	public Carrinho( ) {
+
+	public Carrinho() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 		setUndecorated(true);
@@ -306,7 +300,7 @@ public class Carrinho extends JFrame {
 
 				Sdao.limparServicos();
 
-				TelaServicos s = new TelaServicos( );
+				TelaServicos s = new TelaServicos();
 				s.setVisible(true);
 				dispose();
 
@@ -478,8 +472,8 @@ public class Carrinho extends JFrame {
 
 		table.setModel(modelo1);
 
-		TableActionCellRender cellRenderer = new TableActionCellRender(  false, true); // Inicialmente nenhuma linha
-																							// selecionada
+		TableActionCellRender cellRenderer = new TableActionCellRender(false, true); // Inicialmente nenhuma linha
+																						// selecionada
 		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada

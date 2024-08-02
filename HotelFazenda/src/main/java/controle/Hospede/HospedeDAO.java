@@ -1,16 +1,15 @@
 package controle.Hospede;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
 import modelo.Hospedes;
-import modelo.Usuarios;
 
 public class HospedeDAO implements IHospedeDAO {
 
@@ -48,21 +47,20 @@ public class HospedeDAO implements IHospedeDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, Hd.getNome()); // nome						
-			ps.setString(2, Hd.getSobrenome());//sobrenome					
-			ps.setDate(3, Hd.getDataNasc());//data	
-			ps.setString(4, Hd.getDocumento());//documento	
-			ps.setString(5, Hd.getNacionalidade());//nacionalidade
-			ps.setString(6, Hd.getPronome());//pronome
-			ps.setString(7, Hd.getEmail());//email
+			ps.setString(1, Hd.getNome()); // nome
+			ps.setString(2, Hd.getSobrenome());// sobrenome
+			ps.setDate(3, Hd.getDataNasc());// data
+			ps.setString(4, Hd.getDocumento());// documento
+			ps.setString(5, Hd.getNacionalidade());// nacionalidade
+			ps.setString(6, Hd.getPronome());// pronome
+			ps.setString(7, Hd.getEmail());// email
 
 			int rs = ps.executeUpdate();
 			if (rs == 0) {
 				throw new SQLException("Não foi possível inverir o hospede");
-			}
-			else {
+			} else {
 				ResultSet result = ps.getGeneratedKeys();
-				if(result.next()) {
+				if (result.next()) {
 					chavePrimariaGerada = result.getInt(1);
 				}
 			}
@@ -110,9 +108,7 @@ public class HospedeDAO implements IHospedeDAO {
 				String Nacionalidade = rs.getString("Nacionalidade");
 				String Pronome = rs.getString("Pronome");
 				String Email = rs.getString("Email");
-				int Id=rs.getInt("IdHospede");
-
-
+				int Id = rs.getInt("IdHospede");
 
 				Hd.setNome(Nome);
 				Hd.setSobrenome(Sobrenome);
@@ -122,8 +118,8 @@ public class HospedeDAO implements IHospedeDAO {
 				Hd.setPronome(Pronome);
 				Hd.setEmail(Email);
 				Hd.setIdHospede(Id);
-				//Atribui o objeto estranjeiro no que vai ser colocado na lista
-				
+				// Atribui o objeto estranjeiro no que vai ser colocado na lista
+
 				// Adiciona objeto na lista
 				hospede.add(Hd);
 
@@ -228,25 +224,21 @@ public class HospedeDAO implements IHospedeDAO {
 	@Override
 	public Hospedes buscarHospedePorCPF(String CPF) {
 		// TODO Auto-generated method stub
-		Hospedes Hosp=null;
-		String SQL="Select * from Hospedes where Documento = ?";
-		Conexao con=Conexao.getConexao();
-		Connection conBD=con.Conectar();
-		
+		Hospedes Hosp = null;
+		String SQL = "Select * from Hospedes where Documento = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
+
 		try {
-			PreparedStatement ps=conBD.prepareStatement(SQL);
-			
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+
 			ps.setString(1, CPF);
-			
-			ResultSet rs=ps.executeQuery();
-			
-			if(rs.next())
-			{
-				Hosp=new Hospedes();
-				
-				
-				
-				
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Hosp = new Hospedes();
+
 				Hosp.setDocumento(CPF);
 				Hosp.setDataNasc(rs.getDate("DataNasc"));
 				Hosp.setEmail(rs.getString("Email"));
@@ -255,16 +247,16 @@ public class HospedeDAO implements IHospedeDAO {
 				Hosp.setNome(rs.getString("Nome"));
 				Hosp.setPronome(rs.getString("Pronome"));
 				Hosp.setSobrenome(rs.getString("Sobrenome"));
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			con.FecharConexao();
 		}
-		
+
 		return Hosp;
 	}
 }

@@ -1,65 +1,42 @@
 package visao;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import controle.Atividades.AtividadesDAO;
-import controle.AtividadesHospedes.AtividadesHospedesDAO;
-import controle.Funcionarios.FuncionariosDAO;
-import controle.Hospedagens.HospedagensDAO;
-import controle.Hospede.HospedeDAO;
-import controle.Quartos.QuartosDAO;
-import modelo.Atividades;
-import modelo.AtividadesHospedes;
-import modelo.CurrentFunc;
-import modelo.Funcionarios;
-import modelo.Hospedagens;
-import modelo.Hospedes;
-import modelo.Quartos;
-import net.miginfocom.swing.MigLayout;
-import utils.DefaultScreen;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.Desktop;
-
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
-import javax.swing.JTextField;
-import javax.swing.JScrollBar;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import java.awt.CardLayout;
-import java.awt.Canvas;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import controle.Atividades.AtividadesDAO;
+import controle.Funcionarios.FuncionariosDAO;
+import controle.Hospedagens.HospedagensDAO;
+import controle.Hospede.HospedeDAO;
+import controle.Quartos.QuartosDAO;
+import modelo.Atividades;
+import modelo.CurrentFunc;
+import modelo.Funcionarios;
+import modelo.Hospedagens;
+import modelo.Hospedes;
+import modelo.Quartos;
+import utils.DefaultScreen;
 
 public class Home extends DefaultScreen {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtPesquisa;
+ 
 	HospedagensDAO HgDao = HospedagensDAO.getInstancia();
 	HospedeDAO HDao = HospedeDAO.getInstancia();
 	AtividadesDAO ADao = AtividadesDAO.getInstancia();
@@ -87,10 +64,8 @@ public class Home extends DefaultScreen {
 		}
 	};
 
- 
-
 	public void loadAtividades() {
-		 
+
 		ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
 		ArrayList<Atividades> atividadesProximas = new ArrayList<>();
 
@@ -121,7 +96,7 @@ public class Home extends DefaultScreen {
 	}
 
 	public Home() {
-		super( );
+		super();
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 		loadAtividades();
@@ -130,10 +105,9 @@ public class Home extends DefaultScreen {
 
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-		 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
- 
+
 		JPanel panel_5 = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -144,7 +118,7 @@ public class Home extends DefaultScreen {
 			}
 		};
 		panel_5.setBounds(108, 41, 1096, 167);
-		 
+
 		Principal.setLayout(null);
 		Principal.add(panel_5);
 		panel_5.setLayout(new GridLayout(0, 5, 0, 0));
@@ -200,8 +174,6 @@ public class Home extends DefaultScreen {
 		Principal.add(lblNewLabel_21);
 
 		Principal.add(mostrarAtividades);
-
- 
 
 		loadInfos();
 		lblQuarto.setText(String.valueOf(listaQuartos.size()));
@@ -306,5 +278,5 @@ public class Home extends DefaultScreen {
 	private void updateImage() {
 		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex))));
 	}
-	
+
 }

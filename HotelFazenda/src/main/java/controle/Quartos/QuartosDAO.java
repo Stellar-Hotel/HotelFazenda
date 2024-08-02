@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import controle.Funcionarios.FuncionariosDAO;
-import modelo.Funcionarios;
 import modelo.Quartos;
 
 public class QuartosDAO implements IQuartosDAO {
@@ -45,8 +43,8 @@ public class QuartosDAO implements IQuartosDAO {
 		int ChavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL,Statement.RETURN_GENERATED_KEYS);
-		
+			PreparedStatement ps = conBD.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+
 			ps.setInt(1, end.getMaxPessoas());
 			ps.setString(2, end.getManutencao());
 			ps.setString(3, end.getTipoCama());
@@ -57,7 +55,7 @@ public class QuartosDAO implements IQuartosDAO {
 			ps.setFloat(8, end.getPrecoDiaria());
 			ps.setInt(9, end.getSituacao());
 			ps.setInt(10, Integer.valueOf(end.getTipoQuarto()));
-			
+
 			int result = ps.executeUpdate();
 			if (result == 0) {
 				throw new SQLException("Não foi possível inserir o quarto!");
@@ -230,42 +228,40 @@ public class QuartosDAO implements IQuartosDAO {
 	@Override
 	public Quartos buscarQuartoPorId(int id) {
 		// TODO Auto-generated method stub
-				 Quartos Quarto = null;
-				String SQL = "Select * from Quartos where IdQuarto = ?";
-				Conexao con = Conexao.getConexao();
-				Connection conBD = con.Conectar();
+		Quartos Quarto = null;
+		String SQL = "Select * from Quartos where IdQuarto = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.Conectar();
 
-				try {
-					PreparedStatement ps = conBD.prepareStatement(SQL);
-					ps.setInt(1, id);
-					ResultSet rs = ps.executeQuery();
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
 
-					 
-					if(rs.next())
-					{
-						Quarto=new  Quartos();
+			if (rs.next()) {
+				Quarto = new Quartos();
 
-						Quarto.setIdQuarto(rs.getInt("IdQuarto"));
-						Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
-						Quarto.setManutencao(rs.getString("Manutencao"));
-						Quarto.setTipoCama(rs.getString("TipoCama"));
-						Quarto.setFrigobar(rs.getBoolean("Frigobar"));
-						Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
-						Quarto.setBanheira(rs.getBoolean("Banheira"));
-						Quarto.setTV(rs.getBoolean("TV"));
-						Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
-						Quarto.setSituacao(rs.getInt("Situacao"));
-						Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
-						 
-					}
+				Quarto.setIdQuarto(rs.getInt("IdQuarto"));
+				Quarto.setMaxPessoas(rs.getInt("MaxPessoas"));
+				Quarto.setManutencao(rs.getString("Manutencao"));
+				Quarto.setTipoCama(rs.getString("TipoCama"));
+				Quarto.setFrigobar(rs.getBoolean("Frigobar"));
+				Quarto.setArCondicionado(rs.getBoolean("ArCondicionado"));
+				Quarto.setBanheira(rs.getBoolean("Banheira"));
+				Quarto.setTV(rs.getBoolean("TV"));
+				Quarto.setPrecoDiaria(rs.getFloat("PrecoDiaria"));
+				Quarto.setSituacao(rs.getInt("Situacao"));
+				Quarto.setTipoQuarto(rs.getInt("TipoQuarto"));
 
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					con.FecharConexao();
-				}
+			}
 
-				return Quarto;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			con.FecharConexao();
+		}
+
+		return Quarto;
 	}
 }

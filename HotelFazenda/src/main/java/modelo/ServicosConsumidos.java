@@ -5,7 +5,6 @@ public class ServicosConsumidos {
 	private int IdServicoConsumido;
 	private Hospedes Hospede;
 	private Servicos Servico;
- 
 
 	public int getIdServicoConsumido() {
 		return IdServicoConsumido;
@@ -30,7 +29,5 @@ public class ServicosConsumidos {
 	public void setServico(Servicos Servico) {
 		this.Servico = Servico;
 	}
-
- 
 
 }

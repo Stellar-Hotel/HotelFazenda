@@ -6,7 +6,7 @@ public class Usuarios {
 	private String Senha;
 	private String Login;
 	private Boolean Tipo;
-	
+
 	public int getIdUsuario() {
 		return IdUsuario;
 	}
@@ -22,7 +22,7 @@ public class Usuarios {
 	public void setSenha(String senha) {
 		Senha = senha;
 	}
-	
+
 	public String getLogin() {
 		return Login;
 	}
