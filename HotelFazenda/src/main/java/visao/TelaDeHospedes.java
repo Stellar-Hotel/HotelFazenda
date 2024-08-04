@@ -76,7 +76,15 @@ public class TelaDeHospedes extends JFrame {
 
 		MaskFormatter Data = null;
 		MaskFormatter Num = null;
-		MaskFormatter formatter = null;
+		MaskFormatter formatter = null, mPron = null;
+
+		try {
+			mPron = new MaskFormatter("UUU/UUUU");
+			mPron.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		try {
 			Data = new MaskFormatter("##/##/####");
@@ -181,7 +189,7 @@ public class TelaDeHospedes extends JFrame {
 		lblNewLabel_10_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_10_2_1_1, "cell 4 6,alignx left,aligny center");
 
-		textPronome = new JTextField();
+		textPronome = new JFormattedTextField(mPron);
 		textPronome.setBorder(new RoundedBorder(Color.black, 10));
 		((AbstractDocument) textPronome.getDocument()).setDocumentFilter(new LetterDocumentFilter());// filtra para
 																										// somente

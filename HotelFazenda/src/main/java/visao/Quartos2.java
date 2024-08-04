@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -127,7 +128,30 @@ public class Quartos2 extends JFrame {
 	 */
 	public Quartos2() {
 	 
-screen();
+		MaskFormatter Num1=null;
+		try {
+			Num1=new MaskFormatter("#");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MaskFormatter Num2=null;
+		try {
+			Num2=new MaskFormatter("##");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MaskFormatter Num3=null;
+		try {
+			Num3=new MaskFormatter("####.##");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		screen();
 		setTitle("Tela de Quartos");
 
 		Quartos quartos = new Quartos();
@@ -180,7 +204,7 @@ screen();
 
 		textChecko = new JTextField();
 
-		textTipo = new JTextField();
+		textTipo = new JFormattedTextField(Num1);
 		textTipo.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textTipo, "cell 1 1 2 1,growx");
 		textTipo.setColumns(10);
@@ -188,7 +212,7 @@ screen();
 		JLabel lblNewLabel_9 = new JLabel("Situação: ");
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx trailing");
 
-		textSituacao = new JTextField();
+		textSituacao = new JFormattedTextField(Num1);
 		textSituacao.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textSituacao, "cell 1 2 2 1,growx");
 		textSituacao.setColumns(10);
@@ -196,7 +220,7 @@ screen();
 		JLabel lblNewLabel_10 = new JLabel("Capacidade: ");
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx trailing");
 
-		textCapacidade = new JTextField();
+		textCapacidade = new JFormattedTextField(Num2);
 		textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textCapacidade, "cell 1 3 2 1,growx");
 		textCapacidade.setColumns(10);
@@ -220,7 +244,7 @@ screen();
 		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
 		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing");
 
-		textFrigobar = new JTextField();
+		textFrigobar = new JFormattedTextField(Num1);
 		textFrigobar.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textFrigobar, "cell 1 6 2 1,growx");
 		textFrigobar.setColumns(10);
@@ -228,7 +252,7 @@ screen();
 		JLabel lblNewLabel_14 = new JLabel("Ar Condicionado: ");
 		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing");
 
-		textAr = new JTextField();
+		textAr =new JFormattedTextField(Num1);
 		textAr.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textAr, "cell 1 7 2 1,growx");
 		textAr.setColumns(10);
@@ -236,7 +260,7 @@ screen();
 		JLabel lblNewLabel_16 = new JLabel("Banheira: ");
 		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing");
 
-		textBanheira = new JTextField();
+		textBanheira = new JFormattedTextField(Num1);
 		textBanheira.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textBanheira, "cell 1 8 2 1,growx");
 		textBanheira.setColumns(10);
@@ -244,7 +268,7 @@ screen();
 		JLabel lblNewLabel_17 = new JLabel("Televisão: ");
 		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing");
 
-		textTv = new JTextField();
+		textTv = new JFormattedTextField(Num1);
 		textTv.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textTv, "cell 1 9 2 1,growx");
 		textTv.setColumns(10);
@@ -252,7 +276,7 @@ screen();
 		JLabel lblNewLabel_18 = new JLabel("Diária: ");
 		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing");
 
-		textDiaria = new JTextField();
+		textDiaria = new JFormattedTextField(Num3);
 		textDiaria.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textDiaria, "cell 1 10 2 1,growx");
 		textDiaria.setColumns(10);
@@ -281,7 +305,7 @@ screen();
 		btnSalvar.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
 		btnSalvar.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnSalvar, "cell 0 12,alignx center");
+		panel_6.add(btnSalvar, "cell 0 12,alignx right");
 
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addMouseListener(new MouseAdapter() {
@@ -343,16 +367,50 @@ screen();
 				if (!e.getValueIsAdjusting()) {
 					int i = table.getSelectedRow();
 					if (i != -1) { // Verifica se alguma linha foi selecionada
-						textAr.setText(String.valueOf(ListaQuartos.get(i).getArCondicionado()));
-						textBanheira.setText(String.valueOf(ListaQuartos.get(i).getBanheira()));
 						textCama.setText(ListaQuartos.get(i).getTipoCama());
 						textCapacidade.setText(String.valueOf(ListaQuartos.get(i).getMaxPessoas()));
 						textDiaria.setText(String.valueOf(ListaQuartos.get(i).getPrecoDiaria()));
-						textFrigobar.setText(String.valueOf(ListaQuartos.get(i).getFrigobar()));
 						textManutencao.setText(String.valueOf(ListaQuartos.get(i).getManutencao()));
 						textSituacao.setText(String.valueOf(ListaQuartos.get(i).getSituacao()));
 						textTipo.setText(String.valueOf(ListaQuartos.get(i).getTipoQuarto()));
-						textTv.setText(String.valueOf(ListaQuartos.get(i).getTV()));
+						
+						//Frigobar
+						if(ListaQuartos.get(i).getFrigobar()==true)
+						{
+							textFrigobar.setText("1");
+						} else if(ListaQuartos.get(i).getFrigobar()==false)
+						{
+							textFrigobar.setText("0");
+						}
+						
+						//TV
+						if(ListaQuartos.get(i).getTV()==true)
+						{
+							textTv.setText("1");
+						} else if(ListaQuartos.get(i).getTV()==false)
+						{
+							textTv.setText("0");
+						}
+						
+						//Ar condicionado
+						if(ListaQuartos.get(i).getArCondicionado()==true)
+						{
+							textAr.setText("1");
+						} else if(ListaQuartos.get(i).getArCondicionado()==false)
+						{
+							textAr.setText("0");
+						}
+						
+						//Banheira
+						if(ListaQuartos.get(i).getBanheira()==true)
+						{
+							textBanheira.setText("1");
+						} else if(ListaQuartos.get(i).getBanheira()==false)
+						{
+							textBanheira.setText("0");
+						}
+						
+
 					}
 				}
 			}
