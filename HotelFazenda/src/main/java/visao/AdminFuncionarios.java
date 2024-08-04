@@ -130,9 +130,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("",
-				"[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]",
-				"[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -364,7 +362,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 1 10,alignx right");
+		Principal.add(btnCadastrarNovo, "cell 0 10 2 1,alignx right");
 		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
 		btnDeletarSelecionado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -428,10 +426,10 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnAtualizarSelecionado, "cell 2 10,alignx left");
+		Principal.add(btnAtualizarSelecionado, "cell 2 10,alignx center");
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 4 10,alignx right");
+		Principal.add(btnDeletarSelecionado, "cell 3 10 3 1,alignx left");
 
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent event) {
