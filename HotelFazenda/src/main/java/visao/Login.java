@@ -90,6 +90,15 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 
 		txtLogin = new JTextField();
+		txtLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER)
+				{
+					FazLogin();
+				}
+			}
+		});
 		txtLogin.setBorder(new RoundedBorder(Color.black, 10)); // Altere a cor e o raio conforme necessário
 		panel.add(txtLogin, "cell 0 5 7 1,grow");
 		txtLogin.setColumns(10);
@@ -102,6 +111,10 @@ public class Login extends JFrame {
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER)
+				{
+					FazLogin();
+				}
 			}
 		});
 		passwordField.setBorder(new RoundedBorder(Color.black, 10));
@@ -144,37 +157,41 @@ public class Login extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String login = txtLogin.getText();
-				String senha = passwordField.getText();
-
-				UsuariosDAO dao = UsuariosDAO.getInstancia();
-
-				Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
-
-				if (usuarios != null) {
-					TelaSucesso sucesso = new TelaSucesso("Login Efetuado com Sucesso");
-
-					FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
-					Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
-					CurrentFunc.getInstance().setLoggedInFuncionario(Func);
-					Home c = new Home();
-					c.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					c.setVisible(true);
-
-					dispose();
-					sucesso.setVisible(true);
-
-				} else {
-					TelaErro erro = new TelaErro("Algum Erro Ocorreu");
-					erro.setVisible(true);
-					txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
-					passwordField.setBorder(new RoundedBorder(Color.RED, 10));
-				}
+				FazLogin();
 
 			}
 		});
 
 		panel.add(btnNewButton, "cell 3 10,growx,aligny center");
 
+	}
+	
+	private void FazLogin() {
+		String login = txtLogin.getText();
+		String senha = passwordField.getText();
+
+		UsuariosDAO dao = UsuariosDAO.getInstancia();
+
+		Usuarios usuarios = dao.BuscarUsuario(login.trim(), senha.trim());
+
+		if (usuarios != null) {
+			TelaSucesso sucesso = new TelaSucesso("Login Efetuado com Sucesso");
+
+			FuncionariosDAO DAOF = FuncionariosDAO.getConexao();
+			Funcionarios Func = DAOF.BuscarFuncionarioPorIdUsuario(usuarios);
+			CurrentFunc.getInstance().setLoggedInFuncionario(Func);
+			Home c = new Home();
+			c.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			c.setVisible(true);
+
+			dispose();
+			sucesso.setVisible(true);
+
+		} else {
+			TelaErro erro = new TelaErro("Algum Erro Ocorreu");
+			erro.setVisible(true);
+			txtLogin.setBorder(new RoundedBorder(Color.RED, 10)); // Mudando a cor da borda para vermelho
+			passwordField.setBorder(new RoundedBorder(Color.RED, 10));
+		}
 	}
 }
