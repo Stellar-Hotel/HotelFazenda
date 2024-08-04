@@ -26,6 +26,8 @@ import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JFrame {
 
@@ -97,6 +99,11 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 
 		passwordField = new JPasswordField(20);
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		passwordField.setBorder(new RoundedBorder(Color.black, 10));
 		passwordField.setToolTipText("Digite sua senha");
 		passwordField.setColumns(10);
