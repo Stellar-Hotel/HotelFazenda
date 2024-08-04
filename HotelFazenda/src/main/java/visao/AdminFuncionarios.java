@@ -2,7 +2,10 @@ package visao;
 
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -26,6 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -44,6 +48,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultModal;
 
 public class AdminFuncionarios extends JFrame implements Atualizavel {
 
@@ -66,44 +71,14 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	private JTextField txtLogin;
 	private JPasswordField txtSenha;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//
-//					AdminFuncionarios frame = new AdminFuncionarios();
-//					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);// abre a tela em full screen
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	protected JPanel BarraLateral;
+	protected JPanel BarraSuperior;
+	protected JPanel BarraInferior;
 
-//	private MaskFormatter MaskaraCPF() {
-//		// TODO Auto-generated method stub
-//		MaskFormatter F_Mascara = new MaskFormatter();
-//		try{
-//			F_Mascara.setMask("###.###.###-##"); //Atribui a mascara
-//			F_Mascara.setPlaceholderCharacter('_'); //Caracter para preencimento 
-//		}
-//		catch (Exception excecao) {
-//			excecao.printStackTrace();
-//		} 
-//		return F_Mascara;
-//	}
-	/**
-	 * Create the frame.
-	 */
+	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 	public AdminFuncionarios() {
-		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
-
-		setTitle("AdminFuncionários");
-		setBackground(new Color(250, 250, 250));
+		screen();
 
 		MaskFormatter mNum = null, mPron = null;
 
@@ -149,212 +124,9 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			e.printStackTrace();
 		}
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1080, 720);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(250, 250, 250));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]",
-				"[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
-
-		JPanel BarraLateral = new JPanel();
-		BarraLateral.setBorder(null);
-		BarraLateral.setBackground(new Color(255, 255, 255));
-		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[131px,grow]",
-				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
-
-		JLabel lblHome = new JLabel("Home");
-		lblHome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				Home telaInicial = new Home();
-				telaInicial.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				telaInicial.setVisible(true);
-				dispose();
-
-			}
-		});
-		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHome.setBackground(new Color(0, 204, 0));
-		lblHome.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Home.jpg")));
-		BarraLateral.add(lblHome, "cell 0 1,grow");
-
-		JLabel lblHospede = new JLabel("Hospede");
-		lblHospede.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes();
-				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				Chama.setVisible(true);
-				dispose();
-			}
-		});
-
-		JLabel lblNewLabel_19_1 = new JLabel("Quartos");
-		lblNewLabel_19_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Quartos2 q = new Quartos2();
-				q.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				q.setVisible(true);
-
-				dispose();
-			}
-		});
-		lblNewLabel_19_1.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Quartos.jpg")));
-		lblNewLabel_19_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_19_1, "cell 0 4");
-		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHospede.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 6,grow");
-
-		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				TelaAtividades TelaAtividades = new TelaAtividades();
-				TelaAtividades.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				TelaAtividades.setVisible(true);
-				dispose();
-			}
-		});
-		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblAtividades.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Atividades.jpg")));
-		BarraLateral.add(lblAtividades, "cell 0 2,grow");
-
-		JLabel lblQuartos = new JLabel("Reservas");
-		lblQuartos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				TelaDeAcomodacoes TelaDeAcomodacoes = new TelaDeAcomodacoes();
-				TelaDeAcomodacoes.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				TelaDeAcomodacoes.setVisible(true);
-				dispose();
-
-			}
-		});
-		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblQuartos.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Quartos.jpg")));
-		BarraLateral.add(lblQuartos, "cell 0 3,grow");
-
-		JLabel lblServicos = new JLabel("Serviços");
-		lblServicos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				TelaServicos telaServico = new TelaServicos();
-				telaServico.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				telaServico.setVisible(true);
-				dispose();
-
-			}
-		});
-		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblServicos.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Servicos.jpg")));
-		BarraLateral.add(lblServicos, "cell 0 5,grow");
-
-		JLabel lblFuncionrios = new JLabel("Funcionários");
-		lblFuncionrios.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/funcionarios.png")));
-		lblFuncionrios.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblFuncionrios, "cell 0 7");
-
-		JLabel lblConta = new JLabel("Conta");
-		lblConta.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta();
-				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				telaConta.setVisible(true);
-				dispose();
-			}
-		});
-		lblConta.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/conta.png")));
-		lblConta.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblConta, "cell 0 8");
-
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 10,growx,aligny baseline");
-		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
-
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Avatar.jpg")));
-		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
-
-		JLabel lblNome = new JLabel("Erik Roncaglio");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNome, "cell 1 1,aligny bottom");
-		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
-
-		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
-
-		JLabel lblNewLabel_5 = new JLabel("Sair");
-		lblNewLabel_5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				Login novoLogin = new Login();
-
-				novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				novoLogin.setVisible(true);
-				dispose();
-
-			}
-		});
-		lblNewLabel_5.setForeground(new Color(0, 0, 0));
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_5.setBackground(new Color(255, 255, 255));
-		lblNewLabel_5.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Sair.png")));
-		panel.add(lblNewLabel_5, "cell 0 3 2 1,alignx center,aligny top");
-
-		JPanel BarraSuperior = new JPanel();
-		BarraSuperior.setBackground(new Color(255, 255, 255));
-		contentPane.add(BarraSuperior, "cell 0 0 2 1,grow");
-		BarraSuperior.setLayout(new MigLayout("",
-				"[40px:54.00px:40px][150.00][300px:360.00px:300px][grow][40px:40px:40px,right]", "[29.00px]"));
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_3, "cell 0 0,grow");
-		panel_3.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(10, 0, 33, 31);
-		lblNewLabel.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/logo.png")));
-		panel_3.add(lblNewLabel);
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_4, "cell 2 0,grow");
-		panel_4.setLayout(new MigLayout("", "[20px][251.00px]", "[21px]"));
-
-		JLabel lblNewLabel_6 = new JLabel("");
-		panel_4.add(lblNewLabel_6, "cell 0 0,alignx left,aligny top");
-		lblNewLabel_6.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/search.png")));
-
-		txtPesquisa = new JTextField();
-		panel_4.add(txtPesquisa, "cell 1 0,growx,aligny top");
-		txtPesquisa.setBackground(new Color(245, 245, 245));
-		txtPesquisa.setText("Search");
-		txtPesquisa.setColumns(10);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_2, "cell 4 0,grow");
-
-		JLabel lblNewLabel_8 = new JLabel("");
-		panel_2.add(lblNewLabel_8);
-		lblNewLabel_8.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/SinoNotificacao.jpg")));
-
 		JPanel Principal = new JPanel();
+		setTitle("AdminFuncionários");
+		setBackground(new Color(250, 250, 250));
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
@@ -517,69 +289,6 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		txtSetor.setColumns(10);
 		txtSetor.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(txtSetor, "cell 4 7 2 1,growx");
-
-		JPanel BarraInferior = new JPanel();
-		BarraInferior.setBackground(new Color(255, 255, 255));
-		contentPane.add(BarraInferior, "cell 1 2,grow");
-		BarraInferior.setLayout(
-				new MigLayout("", "[][679.00,grow,center][center][center][center][]", "[42.00,grow,center]"));
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		BarraInferior.add(panel_1, "cell 4 0,grow");
-		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
-
-		JLabel lblInstagram = new JLabel("");
-		lblInstagram.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					Desktop.getDesktop()
-							.browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		panel_1.add(lblInstagram, "cell 0 0");
-		lblInstagram.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/instagram.png")));
-
-		JLabel lblFacebook = new JLabel("");
-		panel_1.add(lblFacebook, "cell 1 0");
-		lblFacebook.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Facebook.jpg")));
-
-		JLabel lblWhatsapp = new JLabel("");
-		panel_1.add(lblWhatsapp, "cell 2 0");
-		lblWhatsapp.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/Whatsapp.jpg")));
-
-		JLabel lblTwitter = new JLabel("");
-		lblTwitter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					Desktop.getDesktop()
-							.browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		panel_1.add(lblTwitter, "cell 3 0");
-		lblTwitter.setIcon(new ImageIcon(AdminFuncionarios.class.getResource("/visao/twitter.jpg")));
 
 		model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "Sobrenome", "Funcao", "CPF", "Salario", "Ações" }));
@@ -821,5 +530,329 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	public void atualizarTabela() {
 		// TODO Auto-generated method stub
 		atualizarJTable();
+	}
+
+	public void screen() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1452, 756);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(
+				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+
+		DefaultModal BarraLateral = new DefaultModal();
+		BarraLateral.setBackground(new Color(255, 255, 255));
+		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
+		BarraLateral.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_10);
+		panel_10.setLayout(new MigLayout("", "[93px]", "[32px,grow]"));
+
+		JLabel lblHome = new JLabel("Home");
+		lblHome.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_10.add(lblHome, "cell 0 0,alignx left,aligny center");
+		lblHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Home TelaHome = new Home();
+				TelaHome.setVisible(true);
+				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblHome.setBackground(new Color(0, 204, 0));
+		lblHome.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Home.jpg")));
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_3);
+		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
+
+		JLabel lblNewLabel_15 = new JLabel("Funcionários");
+		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
+		lblNewLabel_15.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AdminFuncionarios TelaAdm = new AdminFuncionarios();
+				TelaAdm.setVisible(true);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+
+			}
+		});
+		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_5);
+		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
+
+		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
+		lblHospede.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeHospedes Chama = new TelaDeHospedes();
+				Chama.setVisible(true);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+
+			}
+		});
+		lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
+
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_6);
+		panel_6.setLayout(new MigLayout("", "[112px,grow]", "[32px,grow]"));
+
+		JLabel lblNewLabel_19 = new JLabel("Quartos");
+		lblNewLabel_19.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_6.add(lblNewLabel_19, "cell 0 0,alignx left,aligny center");
+		lblNewLabel_19.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				Quartos2 q2 = new Quartos2();
+				q2.setVisible(true);
+				q2.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+
+			}
+		});
+		lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
+		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_7);
+		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
+
+		JLabel lblQuartos = new JLabel("Reservas");
+		lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
+		lblQuartos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
+				TelaAco.setVisible(true);
+				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_8);
+		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+
+		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
+		lblServicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaServicos TelaServ = new TelaServicos();
+				TelaServ.setVisible(true);
+				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
+
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_9);
+		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
+
+		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
+		lblAtividades.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaAtividades TelaAtiv = new TelaAtividades();
+				TelaAtiv.setVisible(true);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
+
+		JLabel label = new JLabel("");
+		BarraLateral.add(label);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		BarraLateral.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		BarraLateral.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel = new JLabel("");
+		BarraLateral.add(lblNewLabel);
+
+		JLabel label_1 = new JLabel("");
+		BarraLateral.add(label_1);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel);
+		panel.setLayout(new MigLayout("", "[][167.00,grow,center]", "[32.00,grow,center]"));
+
+		JLabel lblNewLabel_5 = new JLabel("Sair");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login novoLogin = new Login();
+				novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				novoLogin.setVisible(true);
+				dispose();
+
+			}
+		});
+		lblNewLabel_5.setForeground(new Color(0, 0, 0));
+		lblNewLabel_5.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		lblNewLabel_5.setBackground(new Color(255, 255, 255));
+		lblNewLabel_5.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Sair.png")));
+		panel.add(lblNewLabel_5, "cell 0 0 2 1,alignx center,aligny center");
+
+		JPanel BarraSuperior = new JPanel();
+		BarraSuperior.setBackground(new Color(203, 167, 58));
+
+		contentPane.add(BarraSuperior, "cell 0 0 2 1,grow");
+		BarraSuperior
+				.setLayout(new MigLayout("", "[200:209.00px:200][grow,center][50:40px:50,right]", "[29.00px,center]"));
+		ImageIcon logoIcon = new ImageIcon(Quartos2.class.getResource("/visao/logoMedia.png"));
+
+		Image logoImage = logoIcon.getImage().getScaledInstance(190, 55, Image.SCALE_SMOOTH); // Ajuste o tamanho
+																								// conforme necessário
+		logoIcon = new ImageIcon(logoImage);
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(203, 167, 58));
+		BarraSuperior.add(panel_4, "cell 0 0,alignx left,aligny center");
+		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
+
+		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
+
+		JLabel lblNome = new JLabel(Func.getNome());
+		lblNome.setForeground(new Color(255, 255, 255));
+		panel_4.add(lblNome, "cell 0 1,alignx left,aligny top");
+		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+
+		JPanel panel_11 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_11.getLayout();
+		flowLayout.setVgap(0);
+		flowLayout.setHgap(0);
+		BarraSuperior.add(panel_11, "flowx,cell 1 0");
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_11.add(lblLogo);
+		lblLogo.setIcon(logoIcon);
+		panel_11.setBackground(new Color(203, 167, 58));
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(203, 167, 58));
+		BarraSuperior.add(panel_2, "cell 1 0,alignx center,aligny center");
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JLabel lblNewLabel_2 = new JLabel("");
+		BarraSuperior.add(lblNewLabel_2, "cell 2 0,alignx center");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Conta telaConta = new Conta();
+				telaConta.setVisible(true);
+				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+
+		ImageIcon contaIcon = new ImageIcon(Quartos2.class.getResource("/visao/contaAppBar.png"));
+		Image contaImage = contaIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH); // Ajuste o tamanho
+																								// conforme necessário
+		contaIcon = new ImageIcon(contaImage);
+		lblNewLabel_2.setIcon(contaIcon);
+		JPanel BarraInferior = new JPanel();
+		BarraInferior.setBackground(new Color(255, 255, 255));
+		contentPane.add(BarraInferior, "cell 1 2,grow");
+		BarraInferior.setLayout(
+				new MigLayout("", "[][679.00,grow,center][center][center][center][]", "[42.00,grow,center]"));
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		BarraInferior.add(panel_1, "cell 4 0,grow");
+		panel_1.setLayout(new MigLayout("", "[][][][]", "[]"));
+
+		JLabel lblInstagram = new JLabel("");
+		lblInstagram.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop()
+							.browse(new URL("https://www.instagram.com/stellar_.hotel?igsh=bDl2dmkwY2MzNHFy").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		panel_1.add(lblInstagram, "cell 0 0");
+		lblInstagram.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/instagram.png")));
+
+		JLabel lblFacebook = new JLabel("");
+		panel_1.add(lblFacebook, "cell 1 0");
+		lblFacebook.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Facebook.jpg")));
+
+		JLabel lblTwitter = new JLabel("");
+		lblTwitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop()
+							.browse(new URL("https://x.com/Stellar1933323?t=sMKnmdFjz2z29kZNNmOY3g&s=09").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		panel_1.add(lblTwitter, "cell 3 0");
+		lblTwitter.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/twitter.jpg")));
 	}
 }
