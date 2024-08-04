@@ -3,6 +3,7 @@ package utils;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -14,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import modelo.CurrentFunc;
@@ -29,6 +29,8 @@ import visao.TelaAtividades;
 import visao.TelaDeAcomodacoes;
 import visao.TelaDeHospedes;
 import visao.TelaServicos;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 
 public class DefaultScreen extends JFrame {
 
@@ -38,7 +40,6 @@ public class DefaultScreen extends JFrame {
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
 	protected JPanel Principal;
-	private JTextField txtPesquisa;
 
 	public DefaultScreen() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
@@ -48,110 +49,45 @@ public class DefaultScreen extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[200px:200px:200px][830.00,grow]",
-				"[40px:49.00px:40px][571.00,grow,fill][60px:60px:60px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[70:69px:70,center][560px,grow][52px]"));
 
-		JPanel BarraLateral = new JPanel();
+		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraLateral, "cell 0 1 1 2,grow");
-		BarraLateral.setLayout(new MigLayout("", "[:200:200,grow]",
-				"[20px:20px:20px][40px][40px][40px][40px][40px][40px][40px][40px][171px,grow][98.00]"));
+		BarraLateral.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_10);
+				panel_10.setLayout(new MigLayout("", "[93px]", "[32px,grow]"));
+		
+				JLabel lblHome = new JLabel("Home");
+				lblHome.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_10.add(lblHome, "cell 0 0,alignx left,aligny center");
+				lblHome.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						Home TelaHome = new Home();
+						TelaHome.setVisible(true);
+						TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblHome = new JLabel("Home");
-		lblHome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home TelaHome = new Home();
-				TelaHome.setVisible(true);
-				TelaHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblHome.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHome.setBackground(new Color(0, 204, 0));
-		lblHome.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Home.jpg")));
-		BarraLateral.add(lblHome, "cell 0 1,grow");
-
-		JLabel lblHospede = new JLabel("Hospede");
-		lblHospede.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes();
-				Chama.setVisible(true);
-				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-
-			}
-		});
-
-		JLabel lblNewLabel_19 = new JLabel("Quartos");
-		lblNewLabel_19.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				Quartos2 q2 = new Quartos2();
-				q2.setVisible(true);
-				q2.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-
-			}
-		});
-		lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_19, "cell 0 4");
-		lblHospede.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
-		BarraLateral.add(lblHospede, "cell 0 6,grow");
-
-		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades();
-				TelaAtiv.setVisible(true);
-				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblAtividades.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
-		BarraLateral.add(lblAtividades, "cell 0 2,grow");
-
-		JLabel lblQuartos = new JLabel("Reservas");
-		lblQuartos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
-				TelaAco.setVisible(true);
-				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblQuartos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
-		BarraLateral.add(lblQuartos, "cell 0 3,grow");
-
-		JLabel lblServicos = new JLabel("Serviços");
-		lblServicos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos();
-				TelaServ.setVisible(true);
-				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblServicos.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
-		BarraLateral.add(lblServicos, "cell 0 5,grow");
-
+						dispose();
+					}
+				});
+				lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+				lblHome.setBackground(new Color(0, 204, 0));
+				lblHome.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Home.jpg")));
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_3);
+		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
+		
+		
+		
 		JLabel lblNewLabel_15 = new JLabel("Funcionários");
+		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
 		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -164,41 +100,131 @@ public class DefaultScreen extends JFrame {
 			}
 		});
 		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
-		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_15, "cell 0 7");
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_5);
+		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
+		
+				JLabel lblHospede = new JLabel("Hospede");
+				lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
+				lblHospede.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaDeHospedes Chama = new TelaDeHospedes();
+						Chama.setVisible(true);
+						Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblNewLabel_2 = new JLabel("Conta");
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Conta telaConta = new Conta();
-				telaConta.setVisible(true);
-				telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+						dispose();
 
-				dispose();
-			}
-		});
-		lblNewLabel_2.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/conta.png")));
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		BarraLateral.add(lblNewLabel_2, "cell 0 8");
+					}
+				});
+				lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+				lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_6);
+		panel_6.setLayout(new MigLayout("", "[112px,grow]", "[32px,grow]"));
+		
+				JLabel lblNewLabel_19 = new JLabel("Quartos");
+				lblNewLabel_19.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_6.add(lblNewLabel_19, "cell 0 0,alignx left,aligny center");
+				lblNewLabel_19.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+
+						Quartos2 q2 = new Quartos2();
+						q2.setVisible(true);
+						q2.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+						dispose();
+
+					}
+				});
+				lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
+				lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_7);
+		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
+		
+				JLabel lblQuartos = new JLabel("Reservas");
+				lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
+				lblQuartos.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
+						TelaAco.setVisible(true);
+						TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+						dispose();
+					}
+				});
+				lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+				lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_8);
+		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+		
+				JLabel lblServicos = new JLabel("Serviços");
+				lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
+				lblServicos.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaServicos TelaServ = new TelaServicos();
+						TelaServ.setVisible(true);
+						TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+						dispose();
+					}
+				});
+				lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+				lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_9);
+		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
+		
+				JLabel lblAtividades = new JLabel("Atividades");
+				lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
+				lblAtividades.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TelaAtividades TelaAtiv = new TelaAtividades();
+						TelaAtiv.setVisible(true);
+						TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+						dispose();
+					}
+				});
+				lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+				lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
+
+		JLabel label = new JLabel("");
+		BarraLateral.add(label);
+
+		JLabel label_1 = new JLabel("");
+		BarraLateral.add(label_1);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel, "cell 0 10,growx,aligny baseline");
-		panel.setLayout(new MigLayout("", "[][]", "[][30.00][29.00][32.00]"));
+		BarraLateral.add(panel);
+		panel.setLayout(new MigLayout("", "[][167.00,grow,center]", "[32.00,grow,center]"));
 
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Avatar.jpg")));
-		panel.add(lblNewLabel_4, "cell 0 0 1 3,alignx center");
-
-		JLabel lblNome = new JLabel("Erik Roncaglio");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNome, "cell 1 1,aligny bottom");
-
-//		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
-//		JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
-//		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
-//		panel.add(lblNewLabel_3, "cell 1 2,aligny top");
+		// lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
+		// JLabel lblNewLabel_3 = new JLabel(Func.getEmailFunc());
+		// lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		// panel.add(lblNewLabel_3, "cell 1 2,aligny top");
 
 		JLabel lblNewLabel_5 = new JLabel("Sair");
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
@@ -212,49 +238,62 @@ public class DefaultScreen extends JFrame {
 			}
 		});
 		lblNewLabel_5.setForeground(new Color(0, 0, 0));
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_5.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		lblNewLabel_5.setBackground(new Color(255, 255, 255));
 		lblNewLabel_5.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Sair.png")));
-		panel.add(lblNewLabel_5, "cell 0 3 2 1,alignx center,aligny top");
+		panel.add(lblNewLabel_5, "cell 0 0 2 1,alignx center,aligny center");
 
 		JPanel BarraSuperior = new JPanel();
-		BarraSuperior.setBackground(new Color(255, 255, 255));
+		BarraSuperior.setBackground(new Color(203, 167, 58));
+		 
 		contentPane.add(BarraSuperior, "cell 0 0 2 1,grow");
-		BarraSuperior.setLayout(new MigLayout("",
-				"[40px:54.00px:40px][150.00][300px:360.00px:300px][grow][40px:40px:40px,right]", "[29.00px]"));
+		BarraSuperior.setLayout(new MigLayout("", "[200:209.00px:200][grow,center][50:40px:50,right]", "[29.00px,center]"));
+		ImageIcon logoIcon = new ImageIcon(Quartos2.class.getResource("/visao/logoMedia.png"));
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_3, "cell 0 0,grow");
-		panel_3.setLayout(null);
+		Image logoImage = logoIcon.getImage().getScaledInstance(190, 55, Image.SCALE_SMOOTH); // Ajuste o tamanho
+																								// conforme necessário
+		logoIcon = new ImageIcon(logoImage);
+				
+						JPanel panel_4 = new JPanel();
+						panel_4.setBackground(new Color(203, 167, 58));
+						BarraSuperior.add(panel_4, "cell 0 0,alignx left,aligny center");
+						panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
+						
+								JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+								lblNewLabel_1.setForeground(new Color(255, 255, 255));
+								panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
+								
+										JLabel lblNome = new JLabel(Func.getNome());
+										lblNome.setForeground(new Color(255, 255, 255));
+										panel_4.add(lblNome, "cell 0 1,alignx left,aligny top");
+										lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+				
+				JPanel panel_2 = new JPanel();
+				panel_2.setBackground(new Color(203, 167, 58));
+				BarraSuperior.add(panel_2, "flowx,cell 1 0,grow");
+				panel_2.setLayout(null);
+				JLabel lblLogo = new JLabel("");
+				lblLogo.setBounds(282, 0, 190, 66);
+				panel_2.add(lblLogo);
+				lblLogo.setIcon(logoIcon);
+		
+				JLabel lblNewLabel_2 = new JLabel("");
+				BarraSuperior.add(lblNewLabel_2, "cell 2 0,alignx center");
+				lblNewLabel_2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						Conta telaConta = new Conta();
+						telaConta.setVisible(true);
+						telaConta.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(10, 0, 33, 31);
-		lblNewLabel.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/logo.png")));
-		panel_3.add(lblNewLabel);
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_4, "cell 2 0,grow");
-		panel_4.setLayout(new MigLayout("", "[20px][251.00px]", "[21px]"));
-
-		JLabel lblNewLabel_6 = new JLabel("");
-		panel_4.add(lblNewLabel_6, "cell 0 0,alignx left,aligny top");
-		lblNewLabel_6.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/search.png")));
-
-		txtPesquisa = new JTextField();
-		panel_4.add(txtPesquisa, "cell 1 0,growx,aligny top");
-		txtPesquisa.setBackground(new Color(245, 245, 245));
-		txtPesquisa.setText("Search");
-		txtPesquisa.setColumns(10);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		BarraSuperior.add(panel_2, "cell 4 0,grow");
-
-		JLabel lblNewLabel_8 = new JLabel("");
-		panel_2.add(lblNewLabel_8);
-		lblNewLabel_8.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/SinoNotificacao.jpg")));
+						dispose();
+					}
+				});
+			 
+				ImageIcon contaIcon = new ImageIcon(Quartos2.class.getResource("/visao/contaAppBar.png"));
+				Image contaImage = contaIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH); // Ajuste o tamanho conforme necessário
+				contaIcon = new ImageIcon(contaImage);
+				lblNewLabel_2.setIcon(contaIcon);
 		JPanel BarraInferior = new JPanel();
 		BarraInferior.setBackground(new Color(255, 255, 255));
 		contentPane.add(BarraInferior, "cell 1 2,grow");
@@ -291,10 +330,6 @@ public class DefaultScreen extends JFrame {
 		JLabel lblFacebook = new JLabel("");
 		panel_1.add(lblFacebook, "cell 1 0");
 		lblFacebook.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Facebook.jpg")));
-
-		JLabel lblWhatsapp = new JLabel("");
-		panel_1.add(lblWhatsapp, "cell 2 0");
-		lblWhatsapp.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Whatsapp.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
 		lblTwitter.addMouseListener(new MouseAdapter() {

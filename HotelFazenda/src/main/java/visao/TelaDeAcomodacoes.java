@@ -96,7 +96,7 @@ public class TelaDeAcomodacoes extends DefaultScreen {
 		panel_12.setLayout(null);
 
 		JLabel lblQuartoMediano = new JLabel("");
-		lblQuartoMediano.setBounds(7, 7, 571, 408);
+		lblQuartoMediano.setBounds(7, 7, 426, 323);
 		lblQuartoMediano.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoMedio.jpg")));
 
 		panel_12.add(lblQuartoMediano);
