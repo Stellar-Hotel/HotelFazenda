@@ -44,6 +44,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
@@ -69,7 +71,7 @@ public class TelaDeQuartos extends JFrame {
 	private ArrayList<Quartos> ListaQuartos;
 	private DefaultTableModel model1;
 	private static final long serialVersionUID = 1L;
-
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	private JTable table;
 	private JTextField textCPF;
 	private JTextField textChecki;
@@ -304,7 +306,7 @@ public class TelaDeQuartos extends JFrame {
 
 				Object pos = comboBox.getSelectedItem();
 				String cpf = textCPF.getText();
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
 				Date checkin = null;
 				Date checkout = null;
 				Date reservacheckin = null;
@@ -325,7 +327,6 @@ public class TelaDeQuartos extends JFrame {
 					return;
 				}
 
-				
 				try {
 					checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
 					checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
@@ -340,18 +341,22 @@ public class TelaDeQuartos extends JFrame {
 
 					// Loop through existing reservations to check for overlaps
 					for (Hospedagens hg : ListaHospedagens) {
-						if(hg.getQuarto().getIdQuarto()==quarto.getIdQuarto()) {
-						reservacheckin = hg.getCheckin();
-						reservacheckout = hg.getCheckout();
+						if (hg.getQuarto().getIdQuarto() == quarto.getIdQuarto()) {
+							reservacheckin = hg.getCheckin();
+							reservacheckout = hg.getCheckout();
 
-						// Check for overlap
-						if (checkin.before(reservacheckout) && checkout.after(reservacheckin)) {
-							// Dates overlap
-							TelaErro erro = new TelaErro("Já existe uma reserva nas datas selecionadas.");
-							erro.setVisible(true);
-							return;
+							// Check for overlap
+							if ((checkin.before(reservacheckout) && checkin.after(reservacheckin))
+									|| (checkout.before(reservacheckout) && checkout.after(reservacheckin))
+									|| (checkin.equals(reservacheckin) || checkin.equals(reservacheckout)
+											|| checkout.equals(reservacheckin) || checkout.equals(reservacheckout))) {
+								// Overlap detected
+								TelaErro erro = new TelaErro("Já existe uma reserva nas datas selecionadas.");
+								erro.setVisible(true);
+								return;
+							}
+
 						}
-					}
 					}
 				} catch (ParseException e1) {
 					e1.printStackTrace();
@@ -409,7 +414,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.08;
@@ -433,7 +438,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.05;
@@ -457,7 +462,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.03;
@@ -481,7 +486,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.05;
@@ -505,7 +510,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.08;
@@ -521,6 +526,7 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_18.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				Object pos = comboBox.getSelectedItem();
 				if (pos == comboBox.getSelectedItem()) {
 					double subTotal = 0.0;
@@ -529,7 +535,7 @@ public class TelaDeQuartos extends JFrame {
 
 					for (int i = 0; i < ListaQuartos.size(); i++) {
 						Quartos quarto = ListaQuartos.get((int) pos);
-						subTotal = quarto.getPrecoDiaria();
+						subTotal = quarto.getPrecoDiaria()*obterDias();
 					}
 
 					desconto = subTotal * 0.03;
@@ -544,6 +550,31 @@ public class TelaDeQuartos extends JFrame {
 		contentPane.add(Principal, "cell 1 1,grow");
 
 	}
+
+	public Integer obterDias() {
+        Date checkin = null;
+        Date checkout = null;
+        Integer dias = null; // Use Integer ao invés de int para lidar com o retorno nulo
+
+        try {
+            // Parse the dates from text fields
+        	checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
+			checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
+
+            // Calculate the difference in milliseconds
+            long diffInMillis = checkout.getTime() - checkin.getTime();
+
+            // Convert milliseconds to days
+            dias = (int) TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+
+        } catch (ParseException e1) {
+            e1.printStackTrace();
+            TelaErro erro = new TelaErro("Ocorreu um erro inesperado");
+            erro.setVisible(true);
+        }
+
+        return dias;
+    }
 
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
