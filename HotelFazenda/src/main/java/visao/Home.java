@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.ValidarDia;
 import controle.Atividades.AtividadesDAO;
 import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospedagens.HospedagensDAO;
@@ -117,8 +118,12 @@ public class Home extends JFrame {
 screen();
 		loadAtividades();
 		loadInfos();
+		
+		LocalDate hoje = LocalDate.now();
+		if (ValidarDia.lerDia(hoje.toString())) {
 		HgDao.AtualizarSituacao();
-
+		ADao.AtualizarAtividades();
+		}
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		JPanel Principal = new JPanel();

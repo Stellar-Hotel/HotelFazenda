@@ -6,11 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controle.Conexao;
+import controle.ValidarDia;
+import controle.Hospedagens.HospedagensDAO;
+import controle.Quartos.QuartosDAO;
 import modelo.Atividades;
 import modelo.Funcionarios;
+import modelo.Hospedagens;
 import modelo.Usuarios;
 
 public class AtividadesDAO implements IAtividadesDAO
@@ -249,6 +254,28 @@ public class AtividadesDAO implements IAtividadesDAO
 		}
 
 		return ChavePrimariaGerada;
+	}
+	@Override
+	public void AtualizarAtividades() {
+		// TODO Auto-generated method stub
+		LocalDate hoje = LocalDate.now();
+		ArrayList<Atividades> ListaAtiv = new ArrayList<Atividades>();
+	 
+		 
+		ListaAtiv =  ListarAtividades();
+
+		 
+
+			for (Atividades ativ : ListaAtiv) {
+ 			 
+				if (hoje.isAfter(ativ.getData().toLocalDate())) {
+					RemoverAtividades(ativ);
+					 
+				} 
+
+			}
+		 
+
 	}
 
 }

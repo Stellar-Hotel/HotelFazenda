@@ -265,20 +265,17 @@ public class HospedagensDAO implements IHospedagenDAO {
 		QuartosDAO Qdao = QuartosDAO.getConexao();
 		ListaHospedagens = Hdao.ListarHospedagens();
 
-		if (ValidarDia.lerDia(hoje.toString())) {
-
-			for (Hospedagens hospedagem : ListaHospedagens) {
-				String checkin = hospedagem.getCheckin().toString();
-				String checkout = hospedagem.getCheckout().toString();
-				if (checkin.equals(hoje)) {
-					hospedagem.getQuarto().setSituacao(1);
-					Qdao.atualizarQuarto(hospedagem.getQuarto());
-				} else if (checkout.equals(hoje)) {
-					hospedagem.getQuarto().setSituacao(0);
-					Qdao.atualizarQuarto(hospedagem.getQuarto());
-				}
-
+		for (Hospedagens hospedagem : ListaHospedagens) {
+			String checkin = hospedagem.getCheckin().toString();
+			String checkout = hospedagem.getCheckout().toString();
+			if (checkin.equals(hoje)) {
+				hospedagem.getQuarto().setSituacao(1);
+				Qdao.atualizarQuarto(hospedagem.getQuarto());
+			} else if (checkout.equals(hoje)) {
+				hospedagem.getQuarto().setSituacao(0);
+				Qdao.atualizarQuarto(hospedagem.getQuarto());
 			}
+
 		}
 
 	}
