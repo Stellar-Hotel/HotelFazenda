@@ -39,6 +39,7 @@ import modelo.Funcionarios;
 import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
 import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
@@ -50,7 +51,7 @@ public class Quartos2 extends JFrame {
 	private ArrayList<Quartos> ListaQuartos;
 	private DefaultTableModel model1;
 	private static final long serialVersionUID = 1L;
- 
+
 	private JTable table;
 	private JTextField textCPF;
 	private JTextField textChecki;
@@ -69,8 +70,9 @@ public class Quartos2 extends JFrame {
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
- 
+
 	Funcionarios Func2 = CurrentFunc.getInstance().getLoggedInFuncionario();
+
 	protected void atualizarJTable() {
 
 		TableActionEvent event = new TableActionEvent() {
@@ -87,8 +89,9 @@ public class Quartos2 extends JFrame {
 
 		};
 
-		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "Tipo", "Situação",
-				"Capacidade", "Manutenção", "Cama", "Frigobar", "Ar Condicionado", "Banheira", "TV", "Diária" }));
+		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
+				new String[] { "Tipo", "Situação", "Capacidade", "Manutenção", "Cama", "Frigobar", "Ar Condicionado",
+						"Banheira", "TV", "Diária", "Ações" }));
 
 		model1.setRowCount(0);
 
@@ -98,17 +101,17 @@ public class Quartos2 extends JFrame {
 		for (int i = 0; i < ListaQuartos.size(); i++) {
 
 			Quartos p = ListaQuartos.get(i);
-			model1.addRow(new Object[] { p.getTipoQuarto(), p.getSituacao(), p.getMaxPessoas(), p.getManutencao(),
-					p.getTipoCama(), p.getFrigobar(), p.getArCondicionado(), p.getBanheira(), p.getTV(),
-					"R$" + p.getPrecoDiaria() });
+			model1.addRow(new Object[] { p.getTipoQuarto(), p.getSituacao() == 1 ? "Livre":"Ocupado", p.getMaxPessoas(), p.getManutencao().equals("1") ? "Sim" : "Não",
+					p.getTipoCama(), p.getFrigobar() ? "Sim" : "Não", p.getArCondicionado() ? "Sim" : "Não",
+					p.getBanheira() ? "Sim" : "Não", p.getTV() ? "Sim" : "Não", "R$" + p.getPrecoDiaria() });
 		}
 
 		table.setModel(model1);
 		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
-																					// selecionada
-		table.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+		// selecionada
+		table.getColumnModel().getColumn(10).setCellRenderer(cellRenderer);
 
-		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+// Adicionar um MouseListener à tabela para atualizar a linha selecionada
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -120,38 +123,39 @@ public class Quartos2 extends JFrame {
 			}
 		});
 
+		table.getColumnModel().getColumn(10).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(125);
+		table.getColumnModel().getColumn(10).setPreferredWidth(145);
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Quartos2() {
-	 
-		MaskFormatter Num1=null;
+
+		MaskFormatter Num1 = null;
 		try {
-			Num1=new MaskFormatter("#");
+			Num1 = new MaskFormatter("#");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		MaskFormatter Num2=null;
+
+		MaskFormatter Num2 = null;
 		try {
-			Num2=new MaskFormatter("##");
+			Num2 = new MaskFormatter("##");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MaskFormatter Num3=null;
+		MaskFormatter Num3 = null;
 		try {
-			Num3=new MaskFormatter("####.##");
+			Num3 = new MaskFormatter("####.##");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		screen();
 		setTitle("Tela de Quartos");
 
@@ -184,11 +188,10 @@ public class Quartos2 extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[201.00,grow][100px:n,grow][100px:74.00:150px,grow][:500.00:550px,grow]",
-				"[][322.00,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[400:201.00:400,grow][70:74.00:70,grow][500.00,grow]", "[][322.00,grow,fill]"));
 
 		JPanel panel_5 = new JPanel();
-		Principal.add(panel_5, "cell 0 1 2 1,grow");
+		Principal.add(panel_5, "cell 0 1,grow");
 		panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][grow]"));
 
 		JPanel panel_6 = new JPanel();
@@ -260,7 +263,7 @@ public class Quartos2 extends JFrame {
 		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing");
 
-		textAr =new JFormattedTextField(Num1);
+		textAr = new JFormattedTextField(Num1);
 		textAr.setBorder(new RoundedBorder(Color.black, 10));
 		panel_6.add(textAr, "cell 1 7 2 1,growx");
 		textAr.setColumns(10);
@@ -382,43 +385,34 @@ public class Quartos2 extends JFrame {
 						textManutencao.setText(String.valueOf(ListaQuartos.get(i).getManutencao()));
 						textSituacao.setText(String.valueOf(ListaQuartos.get(i).getSituacao()));
 						textTipo.setText(String.valueOf(ListaQuartos.get(i).getTipoQuarto()));
-						
-						//Frigobar
-						if(ListaQuartos.get(i).getFrigobar()==true)
-						{
-							textFrigobar.setText("1");
-						} else if(ListaQuartos.get(i).getFrigobar()==false)
-						{
-							textFrigobar.setText("0");
+
+						// Frigobar
+						if (ListaQuartos.get(i).getFrigobar() == true) {
+							textFrigobar.setText("Sim");
+						} else if (ListaQuartos.get(i).getFrigobar() == false) {
+							textFrigobar.setText("Não");
 						}
-						
-						//TV
-						if(ListaQuartos.get(i).getTV()==true)
-						{
-							textTv.setText("1");
-						} else if(ListaQuartos.get(i).getTV()==false)
-						{
-							textTv.setText("0");
+
+						// TV
+						if (ListaQuartos.get(i).getTV() == true) {
+							textTv.setText("Sim");
+						} else if (ListaQuartos.get(i).getTV() == false) {
+							textTv.setText("Não");
 						}
-						
-						//Ar condicionado
-						if(ListaQuartos.get(i).getArCondicionado()==true)
-						{
-							textAr.setText("1");
-						} else if(ListaQuartos.get(i).getArCondicionado()==false)
-						{
-							textAr.setText("0");
+
+						// Ar condicionado
+						if (ListaQuartos.get(i).getArCondicionado() == true) {
+							textAr.setText("Sim");
+						} else if (ListaQuartos.get(i).getArCondicionado() == false) {
+							textAr.setText("Não");
 						}
-						
-						//Banheira
-						if(ListaQuartos.get(i).getBanheira()==true)
-						{
-							textBanheira.setText("1");
-						} else if(ListaQuartos.get(i).getBanheira()==false)
-						{
-							textBanheira.setText("0");
+
+						// Banheira
+						if (ListaQuartos.get(i).getBanheira() == true) {
+							textBanheira.setText("Sim");
+						} else if (ListaQuartos.get(i).getBanheira() == false) {
+							textBanheira.setText("Não");
 						}
-						
 
 					}
 				}
@@ -427,9 +421,7 @@ public class Quartos2 extends JFrame {
 		});
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		atualizarJTable();
-		Principal.add(scrollPane1, "cell 3 1,grow");
-
-	 
+		Principal.add(scrollPane1, "cell 2 1,grow");
 
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent event) {
@@ -466,7 +458,8 @@ public class Quartos2 extends JFrame {
 		});
 		contentPane.add(Principal, "cell 1 1,grow");
 
- 	}
+	}
+
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1452, 756);
@@ -474,8 +467,8 @@ public class Quartos2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -636,13 +629,13 @@ public class Quartos2 extends JFrame {
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 
