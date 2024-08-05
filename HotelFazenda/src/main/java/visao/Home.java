@@ -69,7 +69,6 @@ public class Home extends JFrame {
 	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/logoGrande.png", "/visao/Whatsapp.jpg",
 			"/visao/Facebook.jpg", "/visao/instagram.png"));
 	int imageIndex = 0;
-	private JLabel lblNewLabel_9;
 	LocalDate hoje = LocalDate.now();
 	JPanel mostrarAtividades = new JPanel() {
 		@Override
@@ -97,7 +96,6 @@ public class Home extends JFrame {
 		}
 
 		atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
-		mostrarAtividades.setBounds(1313, 174, 272, 673);
 
 		mostrarAtividades.removeAll();
 
@@ -119,178 +117,196 @@ screen();
 		loadAtividades();
 		loadInfos();
 		
+		
+		
 		LocalDate hoje = LocalDate.now();
 		if (ValidarDia.lerDia(hoje.toString())) {
 		HgDao.AtualizarSituacao();
 
 		}
 		ADao.AtualizarAtividades();
-		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
+		Principal.setLayout(new MigLayout("", "[68.00px][:240:240][:30:30][:240.00px:240][:30:30][:240:240][116px,grow][155px,grow][][10px]", "[:100:100][94,grow][40][:180:180,grow][:38px:38px][:180:180,grow][105.00]"));
+		
+		JPanel panel_4 = new JPanel();
+		Principal.add(panel_4, "cell 7 3,growx,aligny center");
+		
+				JLabel lblNewLabel_21 = new JLabel("Atividades nos proximos ");
+				panel_4.add(lblNewLabel_21);
+				lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+				
+				JComboBox comboBoxDias = new JComboBox();
+				panel_4.add(comboBoxDias);
+				
 
-		JPanel panel_5 = new JPanel() {
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Graphics2D g2d = (Graphics2D) g.create();
-				g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-				g2d.dispose();
-			}
-		};
-		panel_5.setBounds(108, 41, 1096, 167);
+				
 
-		Principal.setLayout(null);
-		Principal.add(panel_5);
-		panel_5.setLayout(new GridLayout(0, 5, 0, 0));
+						
+								comboBoxDias.addItem("3 dias");
+								comboBoxDias.addItem("7 dias");
+								comboBoxDias.addItem("15 dias");
+								comboBoxDias.addItem("30 dias");
+								comboBoxDias.addItem("60 dias");
+								
+										comboBoxDias.addActionListener(e -> {
+											loadAtividades();
+										});
+		
+		
+				JPanel panel_3 = new JPanel();
+				Principal.add(panel_3, "cell 0 0,alignx center,aligny center");
+				panel_3.setLayout(new MigLayout("", "[43px,grow]", "[36px]"));
+				
+						JLabel lblNewLabel_10 = new JLabel(" ");
+						panel_3.add(lblNewLabel_10, "cell 0 0,alignx center,aligny top");
+						lblNewLabel_10.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
 
-		JLabel lblQuarto = new JLabel("0");
-		lblQuarto.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblQuarto.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		lblQuarto.setHorizontalAlignment(SwingConstants.CENTER);
+								if (imageIndex > 0) {
+									imageIndex -= 1;
+									updateImage();
 
-		JLabel lblAtividade = new JLabel("0");
-		lblAtividade.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblAtividade.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		lblAtividade.setHorizontalAlignment(SwingConstants.CENTER);
+								}
+							}
+						});
+						lblNewLabel_10.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack.png")));
+				
+				JPanel panel_6 = new JPanel();
+				Principal.add(panel_6, "cell 1 0 7 1,grow");
+				panel_6.setLayout(new GridLayout(0, 1, 0, 0));
+								
+										JLabel lblNewLabel_11 = new JLabel("seta direita");
+										lblNewLabel_11.addMouseListener(new MouseAdapter() {
+											@Override
+											public void mouseClicked(MouseEvent e) {
 
-		JLabel lblHospedes = new JLabel("0");
-		lblHospedes.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblHospedes.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		lblHospedes.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblFunc = new JLabel("");
-		lblFunc.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblFunc.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		lblFunc.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblHospedagem = new JLabel("");
-		lblHospedagem.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblHospedagem.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		lblHospedagem.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_7_2 = new JLabel("Quartos ");
-		lblNewLabel_7_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblNewLabel_7_2.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_7 = new JLabel("Atividades");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_7_4 = new JLabel("Hospedes");
-		lblNewLabel_7_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblNewLabel_7_4.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_7_3 = new JLabel("Funcionários");
-		lblNewLabel_7_3.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblNewLabel_7_3.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_7_1 = new JLabel("Hospedagens");
-		lblNewLabel_7_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_21 = new JLabel("Atividades nos proximos ");
-		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_21.setBounds(1307, 120, 177, 43);
-		Principal.add(lblNewLabel_21);
-
-		Principal.add(mostrarAtividades);
+												if (imageIndex < listaImagens.size()) {
+													imageIndex += 1;
+													updateImage();
+												}
+											}
+										});
+										Principal.add(lblNewLabel_11, "cell 8 0,alignx center,aligny center");
+								switch ((String) comboBoxDias.getSelectedItem()) {
+								case "3 dias":
+									diasSelecionados = 3;
+									break;
+								case "7 dias":
+									diasSelecionados = 7;
+									break;
+								case "15 dias":
+									diasSelecionados = 15;
+									break;
+								case "30 dias":
+									diasSelecionados = 30;
+									break;
+								case "60 dias":
+									diasSelecionados = 60;
+									break;
+								}
 
 		loadInfos();
-		lblQuarto.setText(String.valueOf(listaQuartos.size()));
-		lblAtividade.setText(String.valueOf(listaAtividades.size()));
-		lblHospedes.setText(String.valueOf(listaHospedes.size()));
-		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
-		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
-
-		panel_5.add(lblFunc);
-		panel_5.add(lblQuarto);
-		panel_5.add(lblAtividade);
-		panel_5.add(lblHospedagem);
-		panel_5.add(lblHospedes);
-		panel_5.add(lblNewLabel_7_3);
-		panel_5.add(lblNewLabel_7_2);
-		panel_5.add(lblNewLabel_7);
-		panel_5.add(lblNewLabel_7_1);
-		panel_5.add(lblNewLabel_7_4);
-
-		JLabel lblNewLabel_10 = new JLabel(" ");
-		lblNewLabel_10.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				if (imageIndex > 0) {
-					imageIndex -= 1;
-					updateImage();
-
-				}
-			}
-		});
-		lblNewLabel_10.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack.png")));
-		lblNewLabel_10.setBounds(119, 509, 57, 26);
-		Principal.add(lblNewLabel_10);
-
-		JLabel lblNewLabel_11 = new JLabel("seta direita");
-		lblNewLabel_11.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				if (imageIndex < listaImagens.size()) {
-					imageIndex += 1;
-					updateImage();
-				}
-			}
-		});
-		lblNewLabel_11.setBounds(1082, 524, 107, 20);
-		Principal.add(lblNewLabel_11);
-
-		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(186, 322, 863, 525);
-		Principal.add(panel_6);
-		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
-
-		lblNewLabel_9 = new JLabel("");
-		panel_6.add(lblNewLabel_9);
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JComboBox comboBoxDias = new JComboBox();
-		comboBoxDias.setBounds(1494, 126, 107, 34);
-		Principal.add(comboBoxDias);
 		updateImage();
-
-		comboBoxDias.addItem("3 dias");
-		comboBoxDias.addItem("7 dias");
-		comboBoxDias.addItem("15 dias");
-		comboBoxDias.addItem("30 dias");
-		comboBoxDias.addItem("60 dias");
-
-		comboBoxDias.addActionListener(e -> {
-			switch ((String) comboBoxDias.getSelectedItem()) {
-			case "3 dias":
-				diasSelecionados = 3;
-				break;
-			case "7 dias":
-				diasSelecionados = 7;
-				break;
-			case "15 dias":
-				diasSelecionados = 15;
-				break;
-			case "30 dias":
-				diasSelecionados = 30;
-				break;
-			case "60 dias":
-				diasSelecionados = 60;
-				break;
-			}
-			loadAtividades();
-		});
 		contentPane.add(Principal, "cell 1 1,grow");
+		
+		JPanel panel = new JPanel();
+		Principal.add(panel, "cell 1 3,grow");
+		panel.setLayout(new MigLayout("", "[141.00px,grow]", "[40px,grow][27px,grow]"));
+		
+		JLabel lblFunc = new JLabel("0");
+		panel.add(lblFunc, "cell 0 0,alignx center,aligny center");
+		lblFunc.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblFunc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFunc.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		
+		JLabel lblNewLabel_7_3 = new JLabel("Funcionários");
+		panel.add(lblNewLabel_7_3, "cell 0 1,alignx center,growy");
+		lblNewLabel_7_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_3.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		
+
+
+		
+		JPanel panel_1 = new JPanel();
+		Principal.add(panel_1, "cell 1 5,grow");
+		panel_1.setLayout(new MigLayout("", "[123.00px,grow]", "[40px,grow][grow]"));
+		
+		JLabel lblQuarto = new JLabel("0");
+		panel_1.add(lblQuarto, "cell 0 0,alignx center,aligny center");
+		lblQuarto.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblQuarto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuarto.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		
+		JLabel lblNewLabel_7_2 = new JLabel("Quartos ");
+		panel_1.add(lblNewLabel_7_2, "cell 0 1,alignx center,aligny center");
+		lblNewLabel_7_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		
+		JPanel panel_2 = new JPanel();
+		Principal.add(panel_2, "cell 3 3,grow");
+		panel_2.setLayout(new MigLayout("", "[191.00,grow]", "[grow][grow]"));
+		
+		JLabel lblAtividade = new JLabel("0");
+		panel_2.add(lblAtividade, "cell 0 0,alignx center,aligny center");
+		lblAtividade.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblAtividade.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAtividade.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		
+		JLabel lblNewLabel_7 = new JLabel("Atividades");
+		panel_2.add(lblNewLabel_7, "cell 0 1,alignx center,aligny center");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		
+		JPanel panel_2_1 = new JPanel();
+		Principal.add(panel_2_1, "cell 3 5,grow");
+		panel_2_1.setLayout(new MigLayout("", "[154.00,grow]", "[grow][grow]"));
+		
+		JLabel lblHospedagem = new JLabel("0");
+		panel_2_1.add(lblHospedagem, "cell 0 0,alignx center,aligny center");
+		lblHospedagem.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblHospedagem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedagem.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		
+		JLabel lblNewLabel_7_1 = new JLabel("Hospedagens");
+		panel_2_1.add(lblNewLabel_7_1, "cell 0 1,alignx center,aligny center");
+		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		
+		JPanel panel_2_2 = new JPanel();
+		Principal.add(panel_2_2, "cell 5 3,grow");
+		panel_2_2.setLayout(new MigLayout("", "[132.00,grow]", "[grow][grow]"));
+		
+		JLabel lblHospedes = new JLabel("0");
+		panel_2_2.add(lblHospedes, "cell 0 0,alignx center,aligny center");
+		lblHospedes.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblHospedes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedes.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		
+		JLabel lblNewLabel_7_4 = new JLabel("Hospedes");
+		panel_2_2.add(lblNewLabel_7_4, "cell 0 1,alignx center,aligny center");
+		lblNewLabel_7_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		
+		JPanel panel_2_2_1 = new JPanel();
+		Principal.add(panel_2_2_1, "cell 5 5,grow");
+		panel_2_2_1.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
+		
+		JLabel lblHospedes_1 = new JLabel("0");
+		lblHospedes_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblHospedes_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedes_1.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		panel_2_2_1.add(lblHospedes_1, "cell 0 0,alignx center");
+								mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+								
+										Principal.add(mostrarAtividades, "cell 7 4 3 2,grow");
 
  	}
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1452, 756);
+		setBounds(100, 100, 1502, 737);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -622,7 +638,6 @@ screen();
 	}
 
 	private void updateImage() {
-		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex))));
 	}
 
 }
