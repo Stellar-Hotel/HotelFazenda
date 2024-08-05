@@ -21,6 +21,7 @@ import controle.Arredondar.RoundedBorder;
 import controle.Usuarios.UsuariosDAO;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultIconButton;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -139,7 +140,7 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_6.setForeground(new Color(117, 187, 68));
 		contentPane.add(lblNewLabel_6, "cell 0 0");
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar");
 		btnCadastrar.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrar.setBackground(new Color(117, 187, 68));
 		btnCadastrar.addActionListener(new ActionListener() {

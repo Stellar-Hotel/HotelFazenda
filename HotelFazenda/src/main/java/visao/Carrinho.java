@@ -40,6 +40,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 
 public class Carrinho extends JFrame {
 	DecimalFormat formato = new DecimalFormat("#.##");
@@ -87,14 +88,14 @@ public class Carrinho extends JFrame {
 				"[10:n][35.00][26.00][29.00][13.00][][449.00,grow][42.00]"));
 
 		JLabel lblNewLabel = new JLabel("Carrinho");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 32));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
 		contentPane.add(lblNewLabel, "cell 1 1 3 1");
 
 		JSeparator separator = new JSeparator();
 		contentPane.add(separator, "cell 0 2 5 1,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Itens do Carrinho");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		lblNewLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		contentPane.add(lblNewLabel_2, "cell 1 3 3 1");
 
 		JPanel panel = new JPanel() {
@@ -113,11 +114,11 @@ public class Carrinho extends JFrame {
 				"[33px][36.00px][70px][34.00px][21.00px][32.00px][46.00px,grow][14px][14px][14px][18.00px][45.00px][21.00px][47.00px]"));
 
 		JLabel lblNewLabel_5 = new JLabel("Pagamento");
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		lblNewLabel_5.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		panel.add(lblNewLabel_5, "cell 0 0 2 1,alignx left,aligny top");
 
 		JLabel lblNewLabel_6 = new JLabel("Selecione o método de pagamento:");
-		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_6.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel.add(lblNewLabel_6, "cell 0 1 3 1,alignx left,growy");
 
 		JPanel panel_1 = new JPanel();
@@ -133,7 +134,7 @@ public class Carrinho extends JFrame {
 		panel_1.add(lblNewLabel_1, "cell 0 0,alignx center,aligny center");
 
 		JLabel lblNewLabel_7 = new JLabel("Dinheiro");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel.add(lblNewLabel_7, "cell 0 3,alignx center,aligny center");
 
 		JPanel panel_2 = new JPanel();
@@ -159,15 +160,15 @@ public class Carrinho extends JFrame {
 		panel_3.add(lblNewLabel_16, "cell 0 0,alignx center,aligny center");
 
 		JLabel lblNewLabel_8 = new JLabel("Pix");
-		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_8.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel.add(lblNewLabel_8, "cell 1 3,alignx center,aligny center");
 
 		JLabel lblNewLabel_9 = new JLabel("Cartão");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel.add(lblNewLabel_9, "cell 2 3,alignx center,aligny center");
 
 		JLabel lblNewLabel_10 = new JLabel("Total dos itens:");
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel.add(lblNewLabel_10, "cell 0 6 2 1,alignx left,aligny bottom");
 
 		JPanel panel_5 = new JPanel();
@@ -177,7 +178,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblNewLabel_11 = new JLabel("Subtotal");
 		panel_5.add(lblNewLabel_11, "cell 0 0,alignx left,aligny top");
-		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(0, 0, 0));
@@ -185,7 +186,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblSubtotal = new JLabel("R$");
 		panel_5.add(lblSubtotal, "cell 2 0,alignx left,aligny bottom");
-		lblSubtotal.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblSubtotal.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(204, 204, 255));
@@ -194,7 +195,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblNewLabel_11_1 = new JLabel("Desconto");
 		panel_6.add(lblNewLabel_11_1, "cell 0 0,alignx left,aligny center");
-		lblNewLabel_11_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_11_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setForeground(new Color(0, 0, 0));
@@ -202,7 +203,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblDesconto = new JLabel("R$");
 		panel_6.add(lblDesconto, "cell 2 0,alignx left,aligny bottom");
-		lblDesconto.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblDesconto.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 		JPanel panel_7 = new JPanel();
 		panel_7.setBackground(new Color(204, 204, 255));
@@ -211,7 +212,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblNewLabel_11_2 = new JLabel("Taxa");
 		panel_7.add(lblNewLabel_11_2, "cell 0 0,alignx left,aligny top");
-		lblNewLabel_11_2.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_11_2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setForeground(new Color(0, 0, 0));
@@ -219,7 +220,7 @@ public class Carrinho extends JFrame {
 
 		JLabel lblTaxa = new JLabel("R$");
 		panel_7.add(lblTaxa, "cell 2 0,alignx left,aligny bottom");
-		lblTaxa.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblTaxa.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setForeground(new Color(0, 0, 0));
@@ -227,7 +228,7 @@ public class Carrinho extends JFrame {
 		panel.add(separator_2, "cell 0 10 3 1,growx,aligny bottom");
 
 		JLabel lblTotal = new JLabel("Total:");
-		lblTotal.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		lblTotal.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel.add(lblTotal, "cell 0 11 2 1,grow");
 
 		JLabel lblInformacao = new JLabel("");
@@ -235,6 +236,7 @@ public class Carrinho extends JFrame {
 		panel.add(lblInformacao, "cell 0 12 3 1,grow");
 
 		JLabel lblNewLabel_4 = new JLabel("CPF do hospede:");
+		lblNewLabel_4.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel.add(lblNewLabel_4, "cell 0 4 2 1,alignx left,aligny bottom");
 
 		txtHospede = new JTextField();
@@ -249,7 +251,7 @@ public class Carrinho extends JFrame {
 		panel.add(panel_4, "cell 0 13 3 1,grow");
 		panel_4.setLayout(new MigLayout("", "[403.00px,grow]", "[89.00px,grow]"));
 
-		JButton btnNewButton_3 = new JButton("Finalizar compras");
+		DefaultIconButton btnNewButton_3 = new DefaultIconButton("Finalizar compras");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -307,7 +309,7 @@ public class Carrinho extends JFrame {
 		});
 		JScrollPane cTable = new JScrollPane();
 
-		JButton btnNewButton = new JButton("Voltar as Compras");
+		DefaultIconButton btnNewButton = new DefaultIconButton("Voltar as Compras");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBorder(new RoundedBorder(Color.black, 8));
 		btnNewButton.setBackground(new Color(117, 187, 68));
@@ -400,10 +402,11 @@ public class Carrinho extends JFrame {
 		atualizarJTable();
 		lblNewLabel_3 = new JLabel("Você tem " + listaServicos.size() + " itens no carrinho.");
 
-		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_3.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		contentPane.add(lblNewLabel_3, "cell 1 4 3 1");
 
-		JButton btnNewButton_2 = new JButton("Limpar carinho");
+		DefaultIconButton btnNewButton_2 = new DefaultIconButton("Limpar carinho");
+		btnNewButton_2.setBackgroundColor(Color.RED.darker());
 		contentPane.add(btnNewButton_2, "cell 3 7,growx");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

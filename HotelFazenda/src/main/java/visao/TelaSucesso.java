@@ -62,11 +62,11 @@ public class TelaSucesso extends JFrame {
 		contentPane.add(lblNewLabel, "cell 0 0,alignx center,aligny center");
 
 		JLabel lblNewLabel_1 = new JLabel("Tudo Certo!");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		contentPane.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 
 		JLabel lblNewLabel_2 = new JLabel(content);
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblNewLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		contentPane.add(lblNewLabel_2, "cell 0 2,alignx center,aligny top");
 		animarTela();
 	}

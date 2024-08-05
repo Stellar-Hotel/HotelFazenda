@@ -48,6 +48,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 import utils.DefaultModal;
 
 public class AdminFuncionarios extends JFrame implements Atualizavel {
@@ -133,11 +134,11 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_1, "cell 1 0 3 1,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_7 = new JLabel("Login:");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_7, "cell 0 1,alignx trailing");
 
 		txtLogin = new JTextField();
@@ -147,7 +148,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.add(txtLogin, "cell 1 1,growx");
 
 		JLabel lblNewLabel_9 = new JLabel("Senha:");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_9, "cell 2 1,alignx trailing");
 
 		txtSenha = new JPasswordField();
@@ -178,7 +179,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.add(lblNewLabel_2, "cell 5 1");
 
 		JLabel lblNewLabel_10 = new JLabel("Nome:");
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_10, "cell 0 2,alignx trailing");
 
 		textNome = new JTextField();
@@ -192,7 +193,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.add(scrollPane, "cell 6 1 2 11,grow");
 
 		JLabel lblNewLabel_11 = new JLabel("Sobrenome:");
-		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_11, "cell 0 3,alignx trailing");
 
 		textSobrenome = new JTextField();
@@ -202,7 +203,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textSobrenome.setColumns(10);
 
 		JLabel lblNewLabel_12 = new JLabel("Função:");
-		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_12, "cell 0 4,alignx trailing");
 
 		textFuncao = new JTextField();
@@ -216,7 +217,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 
 		JLabel lblNewLabel_13 = new JLabel("Salário:");
-		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_13, "cell 2 4,alignx right");
 		textSalario.setBorder(new RoundedBorder(Color.black, 10));
 		textSalario.setText("salario");
@@ -224,7 +225,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textSalario.setColumns(10);
 
 		JLabel lblNewLabel_14 = new JLabel("Email:");
-		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_14, "cell 0 5,alignx trailing");
 
 		txtEmail = new JTextField();
@@ -241,7 +242,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		});
 
 		JLabel lblNewLabel_15 = new JLabel("Nível:");
-		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_15, "cell 3 5,alignx trailing");
 		textNivel.setBorder(new RoundedBorder(Color.black, 10));
 		textNivel.setText("nivel");
@@ -249,7 +250,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textNivel.setColumns(10);
 
 		JLabel lblNewLabel_16 = new JLabel("CPF");
-		lblNewLabel_16.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_16, "cell 0 6,alignx trailing");
 
 		textCPF = new JFormattedTextField(MCpf);
@@ -259,7 +260,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textCPF.setColumns(10);
 
 		JLabel lblNewLabel_17 = new JLabel("Pronomes:");
-		lblNewLabel_17.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_17, "cell 2 6 2 1,alignx right");
 
 		txtPronome = new JFormattedTextField(mPron);
@@ -269,7 +270,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.add(txtPronome, "cell 4 6 2 1,growx");
 
 		JLabel lblNewLabel_18 = new JLabel("Telefone:");
-		lblNewLabel_18.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_18, "cell 0 7,alignx trailing");
 
 		txtTelefone = new JFormattedTextField(mNum);
@@ -279,7 +280,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.add(txtTelefone, "cell 1 7 2 1,growx");
 
 		JLabel lblNewLabel_19 = new JLabel("Setor:");
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_19, "cell 3 7,alignx trailing");
 
 		txtSetor = new JTextField();
@@ -292,7 +293,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				new String[] { "Nome", "Sobrenome", "Funcao", "CPF", "Salario", "Ações" }));
 		table = new CustomTable(model1);
 		scrollPane.setViewportView(table);
-		JButton btnCadastrarNovo = new JButton("Cadastrar Novo");
+		DefaultIconButton btnCadastrarNovo = new DefaultIconButton("Cadastrar Novo");
 		btnCadastrarNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FuncionariosDAO funcionariosDAO = FuncionariosDAO.getConexao();
@@ -363,7 +364,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
 		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
 		Principal.add(btnCadastrarNovo, "cell 0 10 2 1,alignx right");
-		JButton btnDeletarSelecionado = new JButton("Deletar Selecionado");
+		DefaultIconButton btnDeletarSelecionado = new DefaultIconButton("Deletar Selecionado");
 		btnDeletarSelecionado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Funcionarios funcD = new Funcionarios();
@@ -380,7 +381,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			}
 		});
 
-		JButton btnAtualizarSelecionado = new JButton("Atualizar Selecionado");
+		DefaultIconButton btnAtualizarSelecionado = new DefaultIconButton("Atualizar Selecionado");
 		btnAtualizarSelecionado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Funcionarios funcA = new Funcionarios();
@@ -752,6 +753,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

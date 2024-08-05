@@ -49,6 +49,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
 
@@ -121,7 +122,7 @@ public class TelaAtividades extends JFrame {
 				"[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Atividades");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
 
 		JScrollPane cTable = new JScrollPane();
@@ -133,7 +134,7 @@ public class TelaAtividades extends JFrame {
 		Principal.add(panel_6, "flowy,cell 1 2");
 
 		JLabel lblNewLabel_9 = new JLabel("Inscritos");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_6.add(lblNewLabel_9);
 
 		JSeparator separator_1 = new JSeparator();
@@ -152,20 +153,19 @@ public class TelaAtividades extends JFrame {
 		Principal.add(panel_5, "flowx,cell 0 2");
 
 		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_7);
 
 		JPanel panel_7 = new JPanel();
 		Principal.add(panel_7, "cell 0 15 5 1,grow");
-		panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:70][][:50:50][:90:90][]",
-				"[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
+		panel_7.setLayout(new MigLayout("", "[:110:110][:84.00:90][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 
 		JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel_7.add(lblNewLabel_10, "cell 0 0,alignx center,aligny top");
 
 		JLabel lblNewLabel_12_1_1_1_1_1_1 = new JLabel("Nome da Atividade");
-		lblNewLabel_12_1_1_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1_1_1_1, "cell 0 1");
 
 		textNomeatividade = new JTextField();
@@ -175,7 +175,7 @@ public class TelaAtividades extends JFrame {
 		((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());
 
 		JLabel lblNewLabel_12_1_1_1 = new JLabel("Idade");
-		lblNewLabel_12_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1, "cell 3 1,alignx center");
 
 		textIdade = new JFormattedTextField(Idade);
@@ -184,7 +184,7 @@ public class TelaAtividades extends JFrame {
 		textIdade.setBorder(new RoundedBorder(Color.black, 10));
 
 		JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
-		lblNewLabel_12_1_1_1_1_1_3.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1_1_1_3.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1_1_1_3, "cell 0 3,alignx center,aligny center");
 
 		textCapacidade = new JFormattedTextField(Num);
@@ -193,7 +193,7 @@ public class TelaAtividades extends JFrame {
 		textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
 
 		JLabel lblNewLabel_12_1_1_1_1_1_2 = new JLabel("Data");
-		lblNewLabel_12_1_1_1_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1_1_1_2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1_1_1_2, "cell 3 3,alignx center,aligny center");
 
 		textData = new JFormattedTextField(Data);
@@ -202,7 +202,7 @@ public class TelaAtividades extends JFrame {
 		textData.setBorder(new RoundedBorder(Color.black, 10));
 
 		JLabel lblNewLabel_12_1_1_1_1 = new JLabel("Horario");
-		lblNewLabel_12_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1_1, "cell 0 5,alignx center,aligny center");
 
 		textHorario = new JFormattedTextField(Horario);
@@ -211,7 +211,7 @@ public class TelaAtividades extends JFrame {
 		textHorario.setBorder(new RoundedBorder(Color.black, 10));
 
 		JLabel lblNewLabel_12_1_1_1_1_1 = new JLabel("Horario Fim");
-		lblNewLabel_12_1_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_12_1_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_12_1_1_1_1_1, "cell 2 5,alignx center");
 
 		TextHorarioFim = new JFormattedTextField(Horario);
@@ -219,7 +219,7 @@ public class TelaAtividades extends JFrame {
 		panel_7.add(TextHorarioFim, "cell 3 5 2 1,growx,aligny center");
 		TextHorarioFim.setBorder(new RoundedBorder(Color.black, 10));
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar");
 		btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
 
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -279,9 +279,9 @@ public class TelaAtividades extends JFrame {
 
 		btnCadastrar.setForeground(new Color(255, 255, 255));
 		btnCadastrar.setBackground(new Color(117, 187, 68));
-		panel_7.add(btnCadastrar, "cell 1 7");
+		panel_7.add(btnCadastrar, "cell 1 7,grow");
 
-		JButton btnAlterar = new JButton("Alterar");
+		DefaultIconButton btnAlterar = new DefaultIconButton("Alterar");
 		btnAlterar.setForeground(new Color(255, 255, 255));
 		btnAlterar.setBackground(new Color(117, 187, 68));
 		btnAlterar.setBorder(new RoundedBorder(Color.black, 8));
@@ -353,7 +353,7 @@ public class TelaAtividades extends JFrame {
 		});
 		panel_7.add(btnAlterar, "flowx,cell 2 7,growx");
 
-		JButton btnExcluir = new JButton("Excluir");
+		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
 		btnExcluir.setForeground(new Color(255, 255, 255));
 		btnExcluir.setBackground(new Color(117, 187, 68));
 		btnExcluir.setBorder(new RoundedBorder(Color.black, 8));
@@ -384,12 +384,12 @@ public class TelaAtividades extends JFrame {
 		panel_7.add(separator_2, "cell 0 8 6 1,growx");
 
 		JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
-		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblNewLabel_10_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
 		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
 		// LetterDocumentFilter());
 
-		JButton btnNewButton_1 = new JButton("Cadastrar");
+		DefaultIconButton btnNewButton_1 = new DefaultIconButton("Cadastrar");
 		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -658,6 +658,7 @@ public class TelaAtividades extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

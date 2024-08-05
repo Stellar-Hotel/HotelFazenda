@@ -88,11 +88,11 @@ public class Conta extends JFrame {
 				"[40px][:40px:120px,grow][40px][40px][40px][40px][40px][40px][40px][grow][40px]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Conta");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 
 		JLabel lblNewLabel_17 = new JLabel("Alterações");
-		lblNewLabel_17.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_17, "cell 1 0 3 1,alignx left,aligny bottom");
 
 		JPanel panel_5 = new JPanel();
@@ -105,38 +105,38 @@ public class Conta extends JFrame {
 				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
 
 		JLabel lblNewLabel_18 = new JLabel("Dados do Usuário");
-		lblNewLabel_18.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel_5.add(lblNewLabel_18, "cell 0 0 2 1");
 
 //		IC.setImage(IC.getImage().getScaledInstance(lblNewLabel_12.getWidth(), lblNewLabel_12.getHeight(), 100));
 
 		JLabel lblNome = new JLabel("Blbla");
-		lblNome.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblNome, "flowx,cell 0 7 2 1,alignx center");
 		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
 
 		JLabel lblNewLabel_15 = new JLabel("Email:");
-		lblNewLabel_15.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_15, "cell 0 8 2 1,alignx center,aligny top");
 		lblNewLabel_15.setText(Func.getUsuario().getLogin());
 
 		JLabel lblNewLabel_16 = new JLabel("Pronomes:");
-		lblNewLabel_16.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_16, "cell 0 9,alignx center");
 		lblNewLabel_16.setText(Func.getPronomeFunc());
 
 		JLabel lblTel = new JLabel("Telefone::");
-		lblTel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblTel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblTel, "cell 1 9,alignx center");
 		lblTel.setText(Func.getTelefone());
 
 		JLabel lblNewLabel_12 = new JLabel("Setor");
-		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_12, "cell 0 10,alignx center");
 		lblNewLabel_12.setText(Func.getSetor());
 
 		JLabel lblNewLabel_13 = new JLabel("Funcao");
-		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		panel_5.add(lblNewLabel_13, "cell 1 10,alignx center");
 		lblNewLabel_13.setText(Func.getFuncao());
 
@@ -146,7 +146,7 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_19, "cell 10 2 3 1");
 
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		Principal.add(lblNewLabel_7, "cell 4 2,alignx center,aligny center");
 
 		textUser = new JTextField();
@@ -181,7 +181,7 @@ public class Conta extends JFrame {
 
 			}
 		});
-		textUser.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		textUser.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textUser.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(textUser, "cell 5 2 5 1,growx,aligny center");
 		textUser.setColumns(10);
@@ -193,7 +193,7 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_20, "cell 10 4 3 1");
 
 		JLabel lblNewLabel_9 = new JLabel("Email:");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		Principal.add(lblNewLabel_9, "cell 4 4,alignx center");
 		textEm = new JTextField();
 		textEm.addFocusListener(new FocusAdapter() {
@@ -209,7 +209,7 @@ public class Conta extends JFrame {
 
 			}
 		});
-		textEm.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		textEm.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textEm.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(textEm, "cell 5 4 5 1,growx");
 		textEm.setColumns(10);
@@ -221,7 +221,7 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_21, "cell 1 6 3 1,alignx right,aligny center");
 
 		JLabel lblNewLabel_10 = new JLabel("Pronomes:");
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		Principal.add(lblNewLabel_10, "cell 4 6,alignx center");
 
 		textPron = new JFormattedTextField(mPron);
@@ -245,7 +245,7 @@ public class Conta extends JFrame {
 		textPron.setText(Func.getPronomeFunc());
 
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		Principal.add(lblTelefone, "cell 7 6,alignx trailing");
 
 		JLabel lblNewLabel_22 = new JLabel("");
@@ -278,7 +278,7 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_23, "cell 1 8 3 1,alignx right");
 
 		JLabel lblNewLabel_11 = new JLabel("Senha:");
-		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
 		Principal.add(lblNewLabel_11, "cell 4 8,alignx center,aligny center");
 
@@ -323,7 +323,7 @@ public class Conta extends JFrame {
 		btnDescartarMudanas.setBackgroundColor(new Color(255, 38, 38));
 		btnDescartarMudanas.setHoverColor(Color.RED.darker());
 
-		btnDescartarMudanas.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		btnDescartarMudanas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnDescartarMudanas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textUser.setText(Func.getUsuario().getLogin());
@@ -343,7 +343,7 @@ public class Conta extends JFrame {
 
 		DefaultIconButton btnSalvar = new DefaultIconButton("Cancelar");
 
-		btnSalvar.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		btnSalvar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String SenhaN = passwordField.getText();
@@ -615,6 +615,7 @@ public class Conta extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

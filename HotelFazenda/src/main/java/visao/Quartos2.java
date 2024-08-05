@@ -41,6 +41,7 @@ import net.miginfocom.swing.MigLayout;
 import raven.cell.CustomTable;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
 
@@ -196,6 +197,7 @@ public class Quartos2 extends JFrame {
 				"[][][][][][][][][][][][grow][]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_7, "cell 0 1,alignx trailing");
 
 		textCPF = new JTextField();
@@ -210,6 +212,7 @@ public class Quartos2 extends JFrame {
 		textTipo.setColumns(10);
 
 		JLabel lblNewLabel_9 = new JLabel("Situação: ");
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx trailing");
 
 		textSituacao = new JFormattedTextField(Num1);
@@ -218,6 +221,7 @@ public class Quartos2 extends JFrame {
 		textSituacao.setColumns(10);
 
 		JLabel lblNewLabel_10 = new JLabel("Capacidade: ");
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx trailing");
 
 		textCapacidade = new JFormattedTextField(Num2);
@@ -226,6 +230,7 @@ public class Quartos2 extends JFrame {
 		textCapacidade.setColumns(10);
 
 		JLabel lblNewLabel_11 = new JLabel("Manutenção: ");
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_11, "cell 0 4,alignx trailing");
 
 		textManutencao = new JTextField();
@@ -234,6 +239,7 @@ public class Quartos2 extends JFrame {
 		textManutencao.setColumns(10);
 
 		JLabel lblNewLabel_12 = new JLabel("Cama: ");
+		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_12, "cell 0 5,alignx trailing");
 
 		textCama = new JTextField();
@@ -242,6 +248,7 @@ public class Quartos2 extends JFrame {
 		textCama.setColumns(10);
 
 		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
+		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing");
 
 		textFrigobar = new JFormattedTextField(Num1);
@@ -250,6 +257,7 @@ public class Quartos2 extends JFrame {
 		textFrigobar.setColumns(10);
 
 		JLabel lblNewLabel_14 = new JLabel("Ar Condicionado: ");
+		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing");
 
 		textAr =new JFormattedTextField(Num1);
@@ -258,6 +266,7 @@ public class Quartos2 extends JFrame {
 		textAr.setColumns(10);
 
 		JLabel lblNewLabel_16 = new JLabel("Banheira: ");
+		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing");
 
 		textBanheira = new JFormattedTextField(Num1);
@@ -266,6 +275,7 @@ public class Quartos2 extends JFrame {
 		textBanheira.setColumns(10);
 
 		JLabel lblNewLabel_17 = new JLabel("Televisão: ");
+		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing");
 
 		textTv = new JFormattedTextField(Num1);
@@ -274,6 +284,7 @@ public class Quartos2 extends JFrame {
 		textTv.setColumns(10);
 
 		JLabel lblNewLabel_18 = new JLabel("Diária: ");
+		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing");
 
 		textDiaria = new JFormattedTextField(Num3);
@@ -281,7 +292,7 @@ public class Quartos2 extends JFrame {
 		panel_6.add(textDiaria, "cell 1 10 2 1,growx");
 		textDiaria.setColumns(10);
 
-		JButton btnSalvar = new JButton("Inserir");
+		DefaultIconButton btnSalvar = new DefaultIconButton("Inserir");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -301,13 +312,11 @@ public class Quartos2 extends JFrame {
 				atualizarJTable();
 			}
 		});
-		btnSalvar.setForeground(Color.BLACK);
-		btnSalvar.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
 		btnSalvar.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnSalvar, "cell 0 12,alignx right");
+		panel_6.add(btnSalvar, "cell 0 12,grow");
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
 		btnAtualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -334,7 +343,7 @@ public class Quartos2 extends JFrame {
 		btnAtualizar.setBackground(new Color(117, 187, 68));
 		panel_6.add(btnAtualizar, "cell 1 12,alignx center");
 
-		JButton btnExcluir = new JButton("Excluir");
+		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
 		btnExcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -352,7 +361,7 @@ public class Quartos2 extends JFrame {
 		panel_6.add(btnExcluir, "cell 2 12");
 
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
 
 		model1 = new DefaultTableModel(new Object[][] {},
@@ -680,6 +689,7 @@ public class Quartos2 extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

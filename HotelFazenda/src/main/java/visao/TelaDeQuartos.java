@@ -22,6 +22,7 @@ import modelo.Hospedes;
 import modelo.Quartos; 
 import modelo.Servicos; 
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
 
@@ -162,14 +163,14 @@ public class TelaDeQuartos extends JFrame {
 				new MigLayout("", "[grow][100px:74.00,grow][grow]", "[][grow][][][][][grow][grow][][][][][]")); 
  
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto"); 
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 22)); 
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 22)); 
 		panel_6.add(lblNewLabel_7, "cell 0 0,aligny top"); 
  
 		JPanel panel_12 = new JPanel(); 
 		panel_6.add(panel_12, "cell 0 1 2 1,grow"); 
  
 		JLabel lblNewLabel_9 = new JLabel("CPF do hóspede"); 
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 21)); 
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 21)); 
 		panel_6.add(lblNewLabel_9, "cell 0 2,alignx left,aligny bottom"); 
  
 		textCPF = new JTextField(); 
@@ -178,7 +179,7 @@ public class TelaDeQuartos extends JFrame {
 		textCPF.setColumns(10); 
  
 		JLabel lblNewLabel_10 = new JLabel("Data checkin"); 
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 21)); 
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 21)); 
 		panel_6.add(lblNewLabel_10, "cell 0 3,alignx left,aligny bottom"); 
  
 		textChecki = new JTextField(); 
@@ -187,7 +188,7 @@ public class TelaDeQuartos extends JFrame {
 		textChecki.setColumns(10); 
  
 		JLabel lblNewLabel_21 = new JLabel("Data checkout"); 
-		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 21)); 
+		lblNewLabel_21.setFont(new Font("Segoe UI", Font.PLAIN, 21)); 
 		panel_6.add(lblNewLabel_21, "cell 0 4,alignx left,aligny bottom"); 
  
 		textChecko = new JTextField(); 
@@ -196,7 +197,7 @@ public class TelaDeQuartos extends JFrame {
 		textChecko.setColumns(10); 
  
 		JLabel lblNewLabel_19 = new JLabel("Quartos disponíveis"); 
-		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 21)); 
+		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 21)); 
 		panel_6.add(lblNewLabel_19, "cell 0 5,alignx left"); 
  
 		atualizarJTable(x); 
@@ -212,7 +213,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(comboBox, "cell 1 5 2 1,growx"); 
  
 		JLabel lblNewLabel_13 = new JLabel("Forma de pagamento:"); 
-		lblNewLabel_13.setFont(new Font("Times New Roman", Font.PLAIN, 21)); 
+		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 21)); 
 		panel_6.add(lblNewLabel_13, "cell 0 6,alignx left,aligny bottom"); 
  
 		JPanel panel_8 = new JPanel(); 
@@ -267,7 +268,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]")); 
  
 		JLabel lblNewLabel_11 = new JLabel("Subtotal:"); 
-		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 19)); 
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 19)); 
 		panel_7.add(lblNewLabel_11, "cell 0 0,alignx left,aligny bottom"); 
  
 		JLabel lblsubtotal = new JLabel(""); 
@@ -288,7 +289,8 @@ public class TelaDeQuartos extends JFrame {
 		JPanel panel_9 = new JPanel(); 
 		panel_7.add(panel_9, "cell 2 3 3 2,alignx center,aligny bottom"); 
  
-		JButton btnNewButton_2 = new JButton("Cancelar"); 
+		DefaultIconButton btnNewButton_2 = new DefaultIconButton("Cancelar");
+		btnNewButton_2.setBackgroundColor(Color.RED.darker());
 		panel_9.add(btnNewButton_2); 
 		btnNewButton_2.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
@@ -298,7 +300,7 @@ public class TelaDeQuartos extends JFrame {
 		btnNewButton_2.setBorder(new RoundedBorder(Color.black, 8)); 
 		btnNewButton_2.setBackground(new Color(204, 0, 0)); 
  
-		JButton btnNewButton_3 = new JButton("Finalizar"); 
+		DefaultIconButton btnNewButton_3 = new DefaultIconButton("Finalizar"); 
 		panel_9.add(btnNewButton_3); 
 		btnNewButton_3.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
@@ -347,18 +349,18 @@ public class TelaDeQuartos extends JFrame {
 		btnNewButton_3.setBackground(new Color(117, 187, 68)); 
  
 		JLabel lblNewLabel_12 = new JLabel("Desconto:"); 
-		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 19)); 
+		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 19)); 
 		panel_7.add(lblNewLabel_12, "cell 0 1,alignx left,aligny top"); 
  
 		JLabel lblNewLabel_14 = new JLabel("Total:"); 
-		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 19)); 
+		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 19)); 
 		panel_7.add(lblNewLabel_14, "cell 0 2,alignx left,aligny top"); 
  
 		JPanel panel_10 = new JPanel(); 
 		panel_7.add(panel_10, "cell 0 3 1 2,grow"); 
  
 		JLabel lblNewLabel_1 = new JLabel("Quartos"); 
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36)); 
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36)); 
 		Principal.add(lblNewLabel_1, "cell 0 0"); 
  
 		JScrollPane scrollPane1 = new JScrollPane(table); 
@@ -736,6 +738,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

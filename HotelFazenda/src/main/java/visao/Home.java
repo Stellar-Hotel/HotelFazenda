@@ -171,23 +171,23 @@ screen();
 		lblHospedagem.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_7_2 = new JLabel("Quartos ");
-		lblNewLabel_7_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_2.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNewLabel_7_2.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_7 = new JLabel("Atividades");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_7_4 = new JLabel("Hospedes");
-		lblNewLabel_7_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_4.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNewLabel_7_4.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_7_3 = new JLabel("Funcionários");
-		lblNewLabel_7_3.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_3.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNewLabel_7_3.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_7_1 = new JLabel("Hospedagens");
-		lblNewLabel_7_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_1.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_21 = new JLabel("Atividades nos proximos ");
@@ -510,6 +510,7 @@ screen();
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 
