@@ -80,8 +80,7 @@ public class Carrinho extends JFrame {
 
 		listaServicos = new ArrayList<Servicos>();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+ 
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("",
 				"[::15][][375px:n,grow][375px:n,grow][::30,grow][::30,grow][331.00,grow][15:n:15,grow]",

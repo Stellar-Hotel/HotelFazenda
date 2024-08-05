@@ -122,8 +122,9 @@ screen();
 		LocalDate hoje = LocalDate.now();
 		if (ValidarDia.lerDia(hoje.toString())) {
 		HgDao.AtualizarSituacao();
-		ADao.AtualizarAtividades();
+
 		}
+		ADao.AtualizarAtividades();
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		JPanel Principal = new JPanel();

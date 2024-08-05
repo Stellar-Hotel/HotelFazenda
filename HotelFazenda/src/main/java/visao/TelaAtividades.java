@@ -59,7 +59,7 @@ public class TelaAtividades extends JFrame {
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
- 
+	AtividadesDAO ADao = AtividadesDAO.getInstancia();
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 	private JTable table;
 	private DefaultTableModel model1;
@@ -75,8 +75,8 @@ public class TelaAtividades extends JFrame {
 	private JTextField textCapacidade;
 
 	public TelaAtividades() {
-		 
-		 screen();
+		ADao.AtualizarAtividades();
+		screen();
 
 		MaskFormatter Data = null;
 		try {
@@ -434,7 +434,8 @@ public class TelaAtividades extends JFrame {
 		atualizarJTable();
 		contentPane.add(Principal, "cell 1 1,grow");
 
- 	}
+	}
+
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1452, 756);
@@ -442,8 +443,8 @@ public class TelaAtividades extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -604,13 +605,13 @@ public class TelaAtividades extends JFrame {
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 

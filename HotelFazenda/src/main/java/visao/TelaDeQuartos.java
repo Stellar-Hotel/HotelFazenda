@@ -152,7 +152,7 @@ public class TelaDeQuartos extends JFrame {
 		Principal.setLayout( 
 				new MigLayout("", "[201.00,grow][100px:74.00:150px,grow][:500.00:550px,grow]", "[][322.00,grow,fill]")); 
  
-		JPanel panel_5 = new JPanel(); 
+		DefaultModal panel_5 = new DefaultModal(); 
 		Principal.add(panel_5, "cell 0 1,grow"); 
 		panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][grow]")); 
  
@@ -216,44 +216,47 @@ public class TelaDeQuartos extends JFrame {
 		panel_6.add(lblNewLabel_13, "cell 0 6,alignx left,aligny bottom"); 
  
 		JPanel panel_8 = new JPanel(); 
-		panel_6.add(panel_8, "cell 0 7 3 4,growx,aligny top"); 
+		panel_6.add(panel_8, "cell 0 7 3 4,grow"); 
 		panel_8.setLayout(new MigLayout("", "[grow][grow][grow]", "[grow]")); 
  
 		JPanel panel_13 = new JPanel(); 
+		
+		panel_13.setBackground(new Color(255, 255, 255));
 		panel_13.setBorder(new LineBorder(Color.GREEN)); 
 		panel_8.add(panel_13, "cell 0 0,grow"); 
+		panel_13.setLayout(new MigLayout("", "[32px,grow]", "[32px,grow]"));
  
 		JLabel lblNewLabel_16 = new JLabel(""); 
  
 		lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
-		lblNewLabel_16.setIcon(new ImageIcon( 
-				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\nota.png")); 
-		panel_13.add(lblNewLabel_16); 
+		lblNewLabel_16.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/nota.png"))); 
+		panel_13.add(lblNewLabel_16, "cell 0 0,alignx center,aligny center"); 
  
 		JPanel panel_14 = new JPanel(); 
+		
+		panel_14.setBackground(new Color(255, 255, 255));
 		panel_14.setBorder(new LineBorder(Color.CYAN)); 
-		panel_8.add(panel_14, "cell 1 0,growx,aligny top"); 
+		panel_8.add(panel_14, "cell 1 0,grow"); 
  
 		JLabel lblNewLabel_17 = new JLabel(""); 
-		lblNewLabel_17.addMouseListener(new MouseAdapter() { 
-			@Override 
-			public void mouseClicked(MouseEvent e) { 
- 
-			} 
-		}); 
+		 
+		panel_14.setLayout(new MigLayout("", "[48px,grow]", "[48px,grow]"));
 		lblNewLabel_17.setIcon(new ImageIcon( 
-				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\pix.png")); 
-		panel_14.add(lblNewLabel_17); 
+				TelaDeQuartos.class.getResource("/visao/pix.png"))); 
+		panel_14.add(lblNewLabel_17, "cell 0 0,alignx center,aligny center"); 
  
 		JPanel panel_15 = new JPanel(); 
+		
+		panel_15.setBackground(new Color(255, 255, 255));
 		panel_15.setBorder(new LineBorder(Color.RED)); 
-		panel_8.add(panel_15, "cell 2 0,growx,aligny top"); 
+		panel_8.add(panel_15, "cell 2 0,grow"); 
+		panel_15.setLayout(new MigLayout("", "[50px,grow]", "[50px,grow]"));
  
 		JLabel lblNewLabel_18 = new JLabel(""); 
  
 		lblNewLabel_18.setIcon(new ImageIcon( 
-				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\cartao.png")); 
-		panel_15.add(lblNewLabel_18); 
+				TelaDeQuartos.class.getResource("/visao/cartao.png"))); 
+		panel_15.add(lblNewLabel_18, "cell 0 0,alignx center,aligny center"); 
  
 		JLabel label = new JLabel("New label"); 
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 13)); 
@@ -411,6 +414,80 @@ public class TelaDeQuartos extends JFrame {
 				} 
 			} 
 		}); 
+		
+		panel_15.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Object pos = comboBox.getSelectedItem(); 
+				if (pos == comboBox.getSelectedItem()) { 
+					double subTotal = 0.0; 
+					double desconto = 0.0; 
+					double total = 0.0; 
+ 
+					for (int i = 0; i < ListaQuartos.size(); i++) { 
+						Quartos quarto = ListaQuartos.get((int) pos); 
+						subTotal = quarto.getPrecoDiaria(); 
+					} 
+ 
+					desconto = subTotal * 0.03; 
+					total = subTotal - desconto; 
+ 
+					lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal))); 
+					lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto))); 
+					lbltotal.setText("R$ " + String.valueOf(formato.format(total))); 
+				} 	
+				
+				
+			}
+		});
+		panel_14.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Object pos = comboBox.getSelectedItem(); 
+				if (pos == comboBox.getSelectedItem()) { 
+					double subTotal = 0.0; 
+					double desconto = 0.0; 
+					double total = 0.0; 
+ 
+					for (int i = 0; i < ListaQuartos.size(); i++) { 
+						Quartos quarto = ListaQuartos.get((int) pos); 
+						subTotal = quarto.getPrecoDiaria(); 
+					} 
+ 
+					desconto = subTotal * 0.05; 
+					total = subTotal - desconto; 
+ 
+					lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal))); 
+					lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto))); 
+					lbltotal.setText("R$ " + String.valueOf(formato.format(total))); 
+				} 
+			} 
+			 
+		});
+		panel_13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Object pos = comboBox.getSelectedItem(); 
+				if (pos == comboBox.getSelectedItem()) { 
+					double subTotal = 0.0; 
+					double desconto = 0.0; 
+					double total = 0.0; 
+ 
+					for (int i = 0; i < ListaQuartos.size(); i++) { 
+						Quartos quarto = ListaQuartos.get((int) pos); 
+						subTotal = quarto.getPrecoDiaria(); 
+					} 
+ 
+					desconto = subTotal * 0.08; 
+					total = subTotal - desconto; 
+ 
+					lblsubtotal.setText("R$ " + String.valueOf(formato.format(subTotal))); 
+					lbldesconto.setText("R$ " + String.valueOf(formato.format(desconto))); 
+					lbltotal.setText("R$ " + String.valueOf(formato.format(total))); 
+				} 
+			
+			}
+		});
 		lblNewLabel_18.addMouseListener(new MouseAdapter() { 
 			@Override 
 			public void mouseClicked(MouseEvent e) { 
