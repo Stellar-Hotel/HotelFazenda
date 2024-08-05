@@ -124,7 +124,8 @@ public class ConfirmacaoADM extends JFrame {
 		btnNewButton.setBackground(new Color(117, 187, 68));
 
 		DefaultIconButton btnNewButton_1 = new DefaultIconButton("Cancelar");
-		btnNewButton_1.setBackgroundColor(Color.RED.darker());
+		btnNewButton_1.setBackgroundColor(Color.RED);
+		btnNewButton_1.setHoverColor(Color.RED.darker());
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

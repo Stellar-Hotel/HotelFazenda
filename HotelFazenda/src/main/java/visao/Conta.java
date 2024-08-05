@@ -321,6 +321,7 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_14, "cell 10 8,alignx center");
 		DefaultIconButton btnDescartarMudanas = new DefaultIconButton("Descartar Mudanças");
 		btnDescartarMudanas.setBackgroundColor(new Color(255, 38, 38));
+		btnDescartarMudanas.setHoverColor(Color.RED);
 		btnDescartarMudanas.setHoverColor(Color.RED.darker());
 
 		btnDescartarMudanas.setFont(new Font("Segoe UI", Font.PLAIN, 14));

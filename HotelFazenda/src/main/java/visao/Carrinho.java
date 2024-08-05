@@ -406,7 +406,8 @@ public class Carrinho extends JFrame {
 		contentPane.add(lblNewLabel_3, "cell 1 4 3 1");
 
 		DefaultIconButton btnNewButton_2 = new DefaultIconButton("Limpar carinho");
-		btnNewButton_2.setBackgroundColor(Color.RED.darker());
+		btnNewButton_2.setBackgroundColor(Color.RED );
+		btnNewButton_2.setHoverColor(Color.RED.darker());
 		contentPane.add(btnNewButton_2, "cell 3 7,growx");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
