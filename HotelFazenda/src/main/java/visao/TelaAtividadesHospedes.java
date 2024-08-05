@@ -32,6 +32,7 @@ import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
 import modelo.Hospedes;
+import utils.DefaultIconButton;
 
 public class TelaAtividadesHospedes extends JFrame {
 
@@ -71,7 +72,7 @@ public class TelaAtividadesHospedes extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Nome da Atividade");
 		lblNewLabel.setBounds(24, 13, 201, 31);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		panel.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -109,10 +110,11 @@ public class TelaAtividadesHospedes extends JFrame {
 		});
 
 		JLabel lblNewLabel_1 = new JLabel("Documento");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(24, 69, 76, 14);
 		panel.add(lblNewLabel_1);
 
-		JButton btnAdicionar = new JButton("Adicionar");
+		DefaultIconButton btnAdicionar = new DefaultIconButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -174,7 +176,7 @@ public class TelaAtividadesHospedes extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		JButton btnNewButton = new JButton("Excluir");
+		DefaultIconButton btnNewButton = new DefaultIconButton("Excluir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -193,7 +195,7 @@ public class TelaAtividadesHospedes extends JFrame {
 		btnNewButton.setBounds(360, 65, 89, 23);
 		panel.add(btnNewButton);
 
-		JButton btnSair = new JButton("Sair");
+		DefaultIconButton btnSair = new DefaultIconButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaAtividades chama = new TelaAtividades();

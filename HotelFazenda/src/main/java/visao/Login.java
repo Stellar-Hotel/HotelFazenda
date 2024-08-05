@@ -76,17 +76,18 @@ public class Login extends JFrame {
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, "cell 0 0,grow");
-		panel.setLayout(new MigLayout("", "[:84px:84px,grow][84px][210.00px,grow][:125px:125px][119px][143px,grow][115px][]", "[:1.00px:14px][:50px:50px][:125px:125px,grow][14.00px][38.00px][:30px:30px,grow][:70px:70px,grow][33.00px][:30px:30px,grow][93.00,grow][:45px:45px][:45px:45px][grow]"));
+		panel.setLayout(new MigLayout("", "[:84px:84px,grow][84px][210.00px,grow][:125px:125px][119px][143px,grow][115px][]", "[:1.00px:14px][:50px:70px][:125px:125px,grow][14.00px][38.00px][:30px:30px,grow][:70px:70px,grow][33.00px][:30px:30px,grow][93.00,grow][:45px:45px][:45px:45px][grow]"));
 
 		JLabel lblNewLabel = new JLabel("Bem vindo ao ");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		panel.add(lblNewLabel, "flowx,cell 0 0,growx,aligny top");
 
 		JLabel lblNewLabel_2_1_1 = new JLabel("Entrar");
-		lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 55));
+		lblNewLabel_2_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 55));
 		panel.add(lblNewLabel_2_1_1, "cell 0 1");
 
 		JLabel lblNewLabel_3 = new JLabel("Digite seu nome de usuario ou endereço de e-mail");
-		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		lblNewLabel_3.setFont(new Font("Segoe UI", Font.PLAIN, 24));
 		panel.add(lblNewLabel_3, "cell 0 4 4 1,growx,aligny top");
 
 		txtLogin = new JTextField();
@@ -104,7 +105,7 @@ public class Login extends JFrame {
 		txtLogin.setColumns(10);
 
 		JLabel lblNewLabel_3_1 = new JLabel("Digite sua senha");
-		lblNewLabel_3_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		lblNewLabel_3_1.setFont(new Font("Segoe UI", Font.PLAIN, 24));
 		panel.add(lblNewLabel_3_1, "cell 0 7,growx,aligny top");
 
 		passwordField = new JPasswordField(20);
@@ -124,7 +125,7 @@ public class Login extends JFrame {
 		panel.add(passwordField, "cell 0 8 7 1,grow");
 
 		JLabel lblNewLabel_1 = new JLabel("Hotel Fazenda");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		lblNewLabel_1.setForeground(new Color(117, 187, 68));
 		panel.add(lblNewLabel_1, "cell 0 0,alignx left,aligny top");
 		
@@ -148,6 +149,7 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_4, "cell 7 8");
 
 		JLabel lblNewLabel_2 = new JLabel("Esqueceu sua senha?");
+		lblNewLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblNewLabel_2.setForeground(new Color(0, 128, 255));
 		panel.add(lblNewLabel_2, "cell 6 9,alignx right,aligny top");
 

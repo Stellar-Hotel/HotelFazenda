@@ -48,6 +48,7 @@ import raven.cell.CustomTable;
 import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
 
@@ -114,7 +115,7 @@ public class TelaDeHospedes extends JFrame {
 				"[][][:50:50,grow][303.00][31.00][grow,fill]"));
 
 		JLabel lblNewLabel_9 = new JLabel("Hospede");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 38));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 38));
 		Principal.add(lblNewLabel_9, "cell 1 1 2 1");
 
 		JPanel panel_5 = new JPanel();
@@ -123,11 +124,11 @@ public class TelaDeHospedes extends JFrame {
 				"[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][grow]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel_5.add(lblNewLabel_7, "cell 3 0 2 1");
 
 		JLabel lblNewLabel_10 = new JLabel("Nome");
-		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10, "cell 0 2,alignx left");
 
 		textNome = new JTextField();
@@ -139,7 +140,7 @@ public class TelaDeHospedes extends JFrame {
 		textNome.setColumns(10);
 
 		JLabel lblNewLabel_10_1 = new JLabel("Sobrenome");
-		lblNewLabel_10_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_1, "cell 4 2,alignx left,aligny center");
 
 		textSobrenome = new JTextField();
@@ -152,7 +153,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textSobrenome, "cell 6 2 3 1,growx");
 
 		JLabel lblNewLabel_10_2 = new JLabel("data de nascimento");
-		lblNewLabel_10_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_2, "cell 0 4 2 1,alignx left,aligny center");
 
 		textNascimento = new JFormattedTextField(Data);
@@ -162,7 +163,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textNascimento, "cell 2 4 2 1,growx");
 
 		JLabel lblNewLabel_10_1_1 = new JLabel("Documento");
-		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_1_1, "cell 4 4,alignx left,aligny center");
 
 		textCPF = new JTextField();
@@ -172,7 +173,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textCPF, "cell 6 4 3 1,growx");
 
 		JLabel lblNewLabel_10_2_1 = new JLabel("Nacionalidade");
-		lblNewLabel_10_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_2_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_2_1, "cell 0 6 2 1,alignx left,aligny center");
 
 		textNacionalidade = new JTextField();
@@ -186,7 +187,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textNacionalidade, "cell 2 6 2 1,growx");
 
 		JLabel lblNewLabel_10_2_1_1 = new JLabel("Pronome");
-		lblNewLabel_10_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_2_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_2_1_1, "cell 4 6,alignx left,aligny center");
 
 		textPronome = new JFormattedTextField(mPron);
@@ -199,7 +200,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(textPronome, "cell 6 6 3 1,growx");
 
 		JLabel lblNewLabel_10_2_1_1_1 = new JLabel("Email");
-		lblNewLabel_10_2_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblNewLabel_10_2_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_5.add(lblNewLabel_10_2_1_1_1, "cell 0 8,alignx left");
 
 		textEmail = new JTextField();
@@ -211,7 +212,7 @@ public class TelaDeHospedes extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 7 3,grow");
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar");
 		btnCadastrar.setBackground(new Color(117, 187, 68));
 		btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -267,7 +268,7 @@ public class TelaDeHospedes extends JFrame {
 
 		panel_5.add(btnCadastrar, "cell 1 10,alignx center");
 
-		JButton btnExcluir = new JButton("Excluir");
+		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
 		btnExcluir.setBackground(new Color(117, 187, 68));
 		btnExcluir.setBorder(new RoundedBorder(Color.BLACK, 8));
 
@@ -292,7 +293,7 @@ public class TelaDeHospedes extends JFrame {
 			}
 		});
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
 		btnAtualizar.setBackground(new Color(117, 187, 68));
 		btnAtualizar.setBorder(new RoundedBorder(Color.BLACK, 8));
 		btnAtualizar.addActionListener(new ActionListener() {
@@ -591,6 +592,7 @@ public class TelaDeHospedes extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 

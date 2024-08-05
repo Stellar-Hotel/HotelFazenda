@@ -21,6 +21,7 @@ import controle.Arredondar.RoundedBorder;
 import controle.Atualizavel.Atualizavel;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
+import utils.DefaultIconButton;
 
 public class ConfirmacaoConta extends JFrame {
 
@@ -65,7 +66,7 @@ public class ConfirmacaoConta extends JFrame {
 						"[36px][36px][36px][36px][36px][36px,grow][10px]"));
 
 		JLabel lblNewLabel = new JLabel("Para prosseguir insira sua senha:");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		contentPane.add(lblNewLabel, "cell 0 1 11 1,alignx center,growy");
 
 		JLabel lblErro = new JLabel("");
@@ -85,7 +86,7 @@ public class ConfirmacaoConta extends JFrame {
 		textSenha.setBorder(new RoundedBorder(Color.black, 10));
 		contentPane.add(textSenha, "cell 0 3 11 1,growx");
 
-		JButton btnNewButton = new JButton("Confirmar");
+		DefaultIconButton btnNewButton = new DefaultIconButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -95,7 +96,9 @@ public class ConfirmacaoConta extends JFrame {
 		btnNewButton.setBorder(new RoundedBorder(Color.black, 10));
 		btnNewButton.setBackground(new Color(117, 187, 68));
 
-		JButton btnNewButton_1 = new JButton("Cancelar");
+		DefaultIconButton btnNewButton_1 = new DefaultIconButton("Cancelar");
+		btnNewButton_1.setBackgroundColor(Color.RED);
+		btnNewButton_1.setHoverColor(Color.RED.darker());
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

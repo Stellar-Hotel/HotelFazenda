@@ -191,7 +191,7 @@ public class HospedagensDAO implements IHospedagenDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "DELETE FROM Hospedagens Where IdHospedagen = ?";
+		String SQL = "DELETE FROM Hospedagens Where IdHospedagem = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando
