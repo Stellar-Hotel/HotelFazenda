@@ -134,10 +134,9 @@ screen();
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
-		Principal.setLayout(new MigLayout("", "[125][140,grow][100][55][140][100][55][140][100][55][117.25][:117.25:117.25,grow][125][10px]", "[188][94,grow][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
+		Principal.setLayout(new MigLayout("", "[100px:100px:100px][140,grow][100,grow][55][140,grow][100,grow][55][140,grow][100,grow][100px:100px:100px][117.25][:117.25:117.25,grow][100px:100px:100px][10px]", "[188,grow][94,grow][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
 		
 		lblNewLabel_9 = new JLabel();
-	    lblNewLabel_9.setBounds(0, 0, 1009, 149);
 	    
 	     
 		JComboBox comboBoxDias = new JComboBox();
@@ -179,10 +178,10 @@ screen();
 				
 				JPanel panel_6 = new JPanel();
 				Principal.add(panel_6, "cell 1 0 11 1,grow");
-				panel_6.setLayout(null);
+				panel_6.setLayout(new MigLayout("", "[1009px,grow]", "[149px,grow]"));
 				
 
-				panel_6.add(lblNewLabel_9);
+				panel_6.add(lblNewLabel_9, "cell 0 0,grow");
 								
 										JLabel lblNewLabel_11 = new JLabel("");
 										lblNewLabel_11.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack - Copia.png")));
@@ -692,6 +691,26 @@ screen();
 	}
 
 	private void updateImage() {
-		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex))));
+	    // Obtém o tamanho atual do painel
+	    int width = lblNewLabel_9.getWidth();
+	    int height = lblNewLabel_9.getHeight();
+
+	    // Carrega a imagem
+	    ImageIcon originalIcon = new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex)));
+	    Image originalImage = originalIcon.getImage();
+
+	    // Redimensiona a imagem para ajustar ao tamanho do painel
+	    Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+	    // Atualiza o ícone do JLabel com a imagem redimensionada
+	    lblNewLabel_9.setIcon(new ImageIcon(resizedImage));
 	}
 }
+
+//Principal.addComponentListener(new java.awt.event.ComponentAdapter() {
+//    @Override
+//    public void componentResized(java.awt.event.ComponentEvent e) {
+//        updateImage(); // Atualiza a imagem quando o painel é redimensionado
+//    }
+//});
+//
