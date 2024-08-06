@@ -116,6 +116,7 @@ public class Home extends JFrame {
 	}
 
 	public Home() {
+		
 		 
 		 
 screen();
@@ -135,9 +136,9 @@ screen();
 		Principal.setBackground(new Color(250, 250, 250));
 		Principal.setLayout(new MigLayout("", "[125][140,grow][100][55][140][100][55][140][100][55][117.25][:117.25:117.25,grow][125][10px]", "[188][94,grow][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
 		
-		 lblNewLabel_9 = new JLabel();
-	     lblNewLabel_9.setBounds(0, 0, 1009, 149);
-
+		lblNewLabel_9 = new JLabel();
+	    lblNewLabel_9.setBounds(0, 0, 1009, 149);
+	    
 	     
 		JComboBox comboBoxDias = new JComboBox();
 		Principal.add(comboBoxDias, "cell 11 3");
@@ -345,6 +346,13 @@ screen();
 		lblHospedes_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHospedes_1.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
 		panel_2_2_1.add(lblHospedes_1, "cell 0 0,alignx center");
+		
+//		lblQuarto.setText(String.valueOf(listaQuartos.size()));
+//		lblAtividade.setText(String.valueOf(listaAtividades.size()));
+//		lblHospedes.setText(String.valueOf(listaHospedes.size()));
+//		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
+//		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
+		
 								mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 								
 										Principal.add(mostrarAtividades, "cell 10 4 2 5,grow");
