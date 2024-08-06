@@ -44,6 +44,9 @@ import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
 import utils.DefaultScreen;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Home extends JFrame {
 
@@ -66,7 +69,7 @@ public class Home extends JFrame {
 	ArrayList<Funcionarios> listaFuncionarios;
 	private int diasSelecionados = 3; // Valor padrão inicial
 
-	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/logoGrande.png", "/visao/Whatsapp.jpg",
+	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/BannerStellar.png","/visao/logoGrande.png", "/visao/Whatsapp.jpg",
 			"/visao/Facebook.jpg", "/visao/instagram.png"));
 	int imageIndex = 0;
 	LocalDate hoje = LocalDate.now();
@@ -128,31 +131,30 @@ screen();
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
-		Principal.setLayout(new MigLayout("", "[68.00px][:240:240][:30:30][:240.00px:240][:30:30][:240:240][116px,grow][155px,grow][][10px]", "[:100:100][94,grow][40][:180:180,grow][:38px:38px][:180:180,grow][105.00]"));
-		
-		JPanel panel_4 = new JPanel();
-		Principal.add(panel_4, "cell 7 3,growx,aligny center");
-		
-				JLabel lblNewLabel_21 = new JLabel("Atividades nos proximos ");
-				panel_4.add(lblNewLabel_21);
-				lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		Principal.setLayout(new MigLayout("", "[34][34][:240:240][:30:30][:240.00px:240][:30:30][:240:240][65][116px,grow][:129:129,grow][][10px]", "[188][94,grow][40][:90:90,grow][:90:90,grow][:94:94][90,grow][90,grow][94]"));
 				
-				JComboBox comboBoxDias = new JComboBox();
-				panel_4.add(comboBoxDias);
-				
+		
+		JComboBox comboBoxDias = new JComboBox();
+		Principal.add(comboBoxDias, "cell 9 3");
+		
+
+		
 
 				
-
+						comboBoxDias.addItem("3 dias");
+						comboBoxDias.addItem("7 dias");
+						comboBoxDias.addItem("15 dias");
+						comboBoxDias.addItem("30 dias");
+						comboBoxDias.addItem("60 dias");
 						
-								comboBoxDias.addItem("3 dias");
-								comboBoxDias.addItem("7 dias");
-								comboBoxDias.addItem("15 dias");
-								comboBoxDias.addItem("30 dias");
-								comboBoxDias.addItem("60 dias");
-								
-										comboBoxDias.addActionListener(e -> {
-											loadAtividades();
-										});
+								comboBoxDias.addActionListener(e -> {
+									loadAtividades();
+								});
+		
+
+						JLabel lblNewLabel_21 = new JLabel("Atividades nos proximos ");
+						Principal.add(lblNewLabel_21, "cell 8 3");
+						lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		
 		
 				JPanel panel_3 = new JPanel();
@@ -175,8 +177,13 @@ screen();
 						lblNewLabel_10.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack.png")));
 				
 				JPanel panel_6 = new JPanel();
-				Principal.add(panel_6, "cell 1 0 7 1,grow");
-				panel_6.setLayout(new GridLayout(0, 1, 0, 0));
+				Principal.add(panel_6, "cell 2 0 8 1,grow");
+				panel_6.setLayout(null);
+				
+				JLabel lblNewLabel_9 = new JLabel("");
+				lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource("/visao/BannerStellar.png")));
+				lblNewLabel_9.setBounds(0, 0, 1009, 149);
+				panel_6.add(lblNewLabel_9);
 								
 										JLabel lblNewLabel_11 = new JLabel("seta direita");
 										lblNewLabel_11.addMouseListener(new MouseAdapter() {
@@ -189,7 +196,7 @@ screen();
 												}
 											}
 										});
-										Principal.add(lblNewLabel_11, "cell 8 0,alignx center,aligny center");
+										Principal.add(lblNewLabel_11, "cell 10 0,alignx center,aligny center");
 								switch ((String) comboBoxDias.getSelectedItem()) {
 								case "3 dias":
 									diasSelecionados = 3;
@@ -213,7 +220,7 @@ screen();
 		contentPane.add(Principal, "cell 1 1,grow");
 		
 		JPanel panel = new JPanel();
-		Principal.add(panel, "cell 1 3,grow");
+		Principal.add(panel, "cell 2 3 1 2,grow");
 		panel.setLayout(new MigLayout("", "[141.00px,grow]", "[40px,grow][27px,grow]"));
 		
 		JLabel lblFunc = new JLabel("0");
@@ -226,12 +233,22 @@ screen();
 		panel.add(lblNewLabel_7_3, "cell 0 1,alignx center,growy");
 		lblNewLabel_7_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7_3.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		
 
 
 		
-		JPanel panel_1 = new JPanel();
-		Principal.add(panel_1, "cell 1 5,grow");
+		JPanel panel_1 = new JPanel(){
+			
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+				g2d.dispose();
+			}
+		};;
+		
+		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		Principal.add(panel_1, "cell 2 6 1 2,grow");
 		panel_1.setLayout(new MigLayout("", "[123.00px,grow]", "[40px,grow][grow]"));
 		
 		JLabel lblQuarto = new JLabel("0");
@@ -246,7 +263,7 @@ screen();
 		lblNewLabel_7_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
 		JPanel panel_2 = new JPanel();
-		Principal.add(panel_2, "cell 3 3,grow");
+		Principal.add(panel_2, "cell 4 3 1 2,grow");
 		panel_2.setLayout(new MigLayout("", "[191.00,grow]", "[grow][grow]"));
 		
 		JLabel lblAtividade = new JLabel("0");
@@ -261,7 +278,7 @@ screen();
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
 		JPanel panel_2_1 = new JPanel();
-		Principal.add(panel_2_1, "cell 3 5,grow");
+		Principal.add(panel_2_1, "cell 4 6 1 2,grow");
 		panel_2_1.setLayout(new MigLayout("", "[154.00,grow]", "[grow][grow]"));
 		
 		JLabel lblHospedagem = new JLabel("0");
@@ -276,7 +293,7 @@ screen();
 		lblNewLabel_7_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
 		JPanel panel_2_2 = new JPanel();
-		Principal.add(panel_2_2, "cell 5 3,grow");
+		Principal.add(panel_2_2, "cell 6 3 1 2,grow");
 		panel_2_2.setLayout(new MigLayout("", "[132.00,grow]", "[grow][grow]"));
 		
 		JLabel lblHospedes = new JLabel("0");
@@ -291,7 +308,7 @@ screen();
 		lblNewLabel_7_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		
 		JPanel panel_2_2_1 = new JPanel();
-		Principal.add(panel_2_2_1, "cell 5 5,grow");
+		Principal.add(panel_2_2_1, "cell 6 6 1 2,grow");
 		panel_2_2_1.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
 		
 		JLabel lblHospedes_1 = new JLabel("0");
@@ -301,7 +318,7 @@ screen();
 		panel_2_2_1.add(lblHospedes_1, "cell 0 0,alignx center");
 								mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 								
-										Principal.add(mostrarAtividades, "cell 7 4 3 2,grow");
+										Principal.add(mostrarAtividades, "cell 8 4 2 4,grow");
 
  	}
 	public void screen() {
@@ -638,6 +655,6 @@ screen();
 	}
 
 	private void updateImage() {
+		
 	}
-
 }
