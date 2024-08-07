@@ -169,7 +169,10 @@ public class TelaDeAcomodacoes extends JFrame {
 
 		JPanel panel_7 = new JPanel();
 		Principal.add(panel_7, "cell 0 5,grow");
-		panel_7.setLayout(new MigLayout("", "[]", "[]"));
+		panel_7.setLayout(new MigLayout("", "[][]", "[]"));
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		panel_7.add(lblNewLabel_6, "cell 1 0");
 
 		JPanel panel_6 = new JPanel();
 		Principal.add(panel_6, "cell 1 5,grow");

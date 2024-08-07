@@ -686,7 +686,43 @@ public class TelaAtividades extends JFrame {
 
 			@Override
 			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
+				
+				Atividades ativ = ListaAtividades.get(row);
+				textNomeatividade.setText(ativ.getNomeAtividade());
+				textCapacidade.setText(String.valueOf(ativ.getCapacidade()));
+				textHorario.setText(ativ.getHorario());
+				TextHorarioFim.setText(ativ.getHorarioFim());
+				textIdade.setText(String.valueOf(ativ.getIdadeMinima()));
+				textData.setText(String.valueOf(ativ.getData()));
+				
+				
+				
+//				String nome = Lista.get(i).getNome();
+//				String sobrenome = Lista.get(i).getSobrenome();
+//				String funcao = Lista.get(i).getFuncao();
+//				String cpf = Lista.get(i).getCPF();
+//				String salario = String.valueOf(Lista.get(i).getSalario());
+//				String nivel = String.valueOf(Lista.get(i).getNivelDeAcesso());
+//				String email = Lista.get(i).getEmailFunc();
+//				String pronome = Lista.get(i).getPronomeFunc();
+//				String telefone = Lista.get(i).getTelefone();
+//				String setor = Lista.get(i).getSetor();
+//				String login = Lista.get(i).getUsuario().getLogin();
+//				String senha = Lista.get(i).getUsuario().getSenha();
+//
+//				// Preenche os textfields com os dados recuperados
+//				textNome.setText(nome);
+//				textSobrenome.setText(sobrenome);
+//				textFuncao.setText(funcao);
+//				textCPF.setText(cpf);
+//				textSalario.setText(salario);
+//				textNivel.setText(nivel);
+//				txtEmail.setText(email);
+//				txtPronome.setText(pronome);
+//				txtTelefone.setText(telefone);
+//				txtSetor.setText(setor);
+//				txtLogin.setText(login);
+//				txtSenha.setText(senha);
 			}
 
 			@Override
