@@ -117,48 +117,36 @@ public class TelaAtividades extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("",
-				"[:100px:100px][74.00][92.00][][][:45px:45px,grow][grow][-47.00][36.00,grow][121px]",
-				"[7.00][24.00][:29.00px:50px][][][][][][][][-21.00][][42.00][:-32.00px:10px,grow][-41.00][][-25.00][:300px:300px][:90px:90px,grow][:75.00:75]"));
+		Principal.setLayout(new MigLayout("", "[:100px:100px][74.00][92.00][][][:45px:45px,grow][grow][-47.00][70:121px:70]", "[7.00][24.00][:29.00px:50px][][][][-21.00][42.00,grow][-41.00][-25.00]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Atividades");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 1,alignx center,aligny top");
+		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
+		// LetterDocumentFilter());
+
+		DefaultIconButton btnNewButton_1 = new DefaultIconButton("Adicionar hospedes");
+		Principal.add(btnNewButton_1, "cell 6 2,alignx right,aligny center");
+		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
+				chama.setVisible(true);
+
+			}
+		});
+		
+				btnNewButton_1.setForeground(new Color(255, 255, 255));
+				btnNewButton_1.setBackground(new Color(117, 187, 68));
 
 		JScrollPane cTable = new JScrollPane();
-		Principal.add(cTable, "cell 6 14 4 5,grow");
-
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(255, 255, 255));
-
-		Principal.add(panel_6, "flowy,cell 1 2");
-
-		JLabel lblNewLabel_9 = new JLabel("Inscritos");
-		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_6.add(lblNewLabel_9);
-
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setForeground(Color.LIGHT_GRAY);
-		separator_1.setBackground(Color.LIGHT_GRAY);
-		Principal.add(separator_1, "cell 1 6,growx,aligny top");
-
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(192, 192, 192));
-		separator.setBackground(new Color(192, 192, 192));
-		Principal.add(separator, "cell 0 6,growx,aligny top");
-
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(255, 255, 255));
-
-		Principal.add(panel_5, "flowx,cell 0 2");
-
-		JLabel lblNewLabel_7 = new JLabel("Todas as atividades");
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_7);
+		Principal.add(cTable, "cell 6 3 1 5,grow");
 
 		JPanel panel_7 = new JPanel();
-		Principal.add(panel_7, "cell 0 15 5 1,grow");
-		panel_7.setLayout(new MigLayout("", "[:110:110][:84.00:90][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
+		Principal.add(panel_7, "cell 0 4 5 2,grow");
+		panel_7.setLayout(new MigLayout("", "[:110:110][:84.00:90][][:50:50][:90:90][]",
+				"[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 
 		JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 16));
@@ -280,129 +268,78 @@ public class TelaAtividades extends JFrame {
 		btnCadastrar.setForeground(new Color(255, 255, 255));
 		btnCadastrar.setBackground(new Color(117, 187, 68));
 		panel_7.add(btnCadastrar, "cell 1 7,grow");
+				
+						DefaultIconButton btnAlterar = new DefaultIconButton("Alterar");
+						btnAlterar.setForeground(new Color(255, 255, 255));
+						btnAlterar.setBackground(new Color(117, 187, 68));
+						btnAlterar.setBorder(new RoundedBorder(Color.black, 8));
+						btnAlterar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
 
-		DefaultIconButton btnAlterar = new DefaultIconButton("Alterar");
-		btnAlterar.setForeground(new Color(255, 255, 255));
-		btnAlterar.setBackground(new Color(117, 187, 68));
-		btnAlterar.setBorder(new RoundedBorder(Color.black, 8));
-		btnAlterar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+								if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
+										|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
+										|| (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
+									JOptionPane.showMessageDialog(null, "Textos vazios insira algo para atualizar");
+								} else {
 
-				if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
-						|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
-						|| (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "Textos vazios insira algo para atualizar");
-				} else {
+									Integer Idade = Integer.valueOf(textIdade.getText());
+									String Horario = textHorario.getText();
+									String HorarioFim = TextHorarioFim.getText();
+									String NomeAtividade = textNomeatividade.getText();
+									int Capacidade = Integer.valueOf(textCapacidade.getText());
 
-					Integer Idade = Integer.valueOf(textIdade.getText());
-					String Horario = textHorario.getText();
-					String HorarioFim = TextHorarioFim.getText();
-					String NomeAtividade = textNomeatividade.getText();
-					int Capacidade = Integer.valueOf(textCapacidade.getText());
+									SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+									dateFormat.setLenient(false);
+									Date data = null;
 
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					dateFormat.setLenient(false);
-					Date data = null;
+									try {
+										data = new Date(dateFormat.parse(textData.getText()).getTime());
+									} catch (ParseException e1) {
+										JOptionPane.showMessageDialog(null, "Data invalida.");
+										return;
+									}
+									String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
+									if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
+										JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
+									} else {
 
-					try {
-						data = new Date(dateFormat.parse(textData.getText()).getTime());
-					} catch (ParseException e1) {
-						JOptionPane.showMessageDialog(null, "Data invalida.");
-						return;
-					}
-					String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
-					if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-						JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
-					} else {
+										int linha = table.getSelectedRow();
 
-						int linha = table.getSelectedRow();
+										Atividades ativ = new Atividades();
 
-						Atividades ativ = new Atividades();
+										ativ.setIdadeMinima(Idade);
+										ativ.setHorario(Horario);
+										ativ.setHorarioFim(HorarioFim);
+										ativ.setNomeAtividade(NomeAtividade);
+										ativ.setData(data);
+										ativ.setCapacidade(Capacidade);
+										ativ.setFuncionario(Func);
+										ativ.setIdAtividade(ListaAtividades.get(linha).getIdAtividade());
 
-						ativ.setIdadeMinima(Idade);
-						ativ.setHorario(Horario);
-						ativ.setHorarioFim(HorarioFim);
-						ativ.setNomeAtividade(NomeAtividade);
-						ativ.setData(data);
-						ativ.setCapacidade(Capacidade);
-						ativ.setFuncionario(Func);
-						ativ.setIdAtividade(ListaAtividades.get(linha).getIdAtividade());
+										AtividadesDAO DAO = AtividadesDAO.getInstancia();
+										DAO.AtualizarAtividades(ativ);
+										if (linha < 0) {
+											JOptionPane.showMessageDialog(null, "selecione uma linha");
+										} else if (linha >= 0) {
+											DefaultTableModel model1 = (DefaultTableModel) table.getModel();
+											// model1.setValueAt(Idade, linha, 0);
+											model1.setValueAt(Idade, linha, 1);
+											model1.setValueAt(Horario, linha, 2);
+											model1.setValueAt(HorarioFim, linha, 3);
+											model1.setValueAt(NomeAtividade, linha, 4);
+											model1.setValueAt(data, linha, 5);
+											model1.setValueAt(Capacidade, linha, 6);
 
-						AtividadesDAO DAO = AtividadesDAO.getInstancia();
-						DAO.AtualizarAtividades(ativ);
-						if (linha < 0) {
-							JOptionPane.showMessageDialog(null, "selecione uma linha");
-						} else if (linha >= 0) {
-							DefaultTableModel model1 = (DefaultTableModel) table.getModel();
-							// model1.setValueAt(Idade, linha, 0);
-							model1.setValueAt(Idade, linha, 1);
-							model1.setValueAt(Horario, linha, 2);
-							model1.setValueAt(HorarioFim, linha, 3);
-							model1.setValueAt(NomeAtividade, linha, 4);
-							model1.setValueAt(data, linha, 5);
-							model1.setValueAt(Capacidade, linha, 6);
+											TelaSucesso c = new TelaSucesso("Sucesso");
+											c.setVisible(true);
 
-							TelaSucesso c = new TelaSucesso("Sucesso");
-							c.setVisible(true);
+										}
+									}
 
-						}
-					}
-
-				}
-			}
-		});
-		panel_7.add(btnAlterar, "flowx,cell 2 7,growx");
-
-		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
-		btnExcluir.setForeground(new Color(255, 255, 255));
-		btnExcluir.setBackground(new Color(117, 187, 68));
-		btnExcluir.setBorder(new RoundedBorder(Color.black, 8));
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				AtividadesDAO DAO = AtividadesDAO.getInstancia();
-				int linha = table.getSelectedRow();
-				Atividades ativ = new Atividades();
-
-				if (linha >= 0) {
-					ativ = ListaAtividades.get(linha);
-					DAO.RemoverAtividades(ativ);
-					atualizarJTable();
-					TelaSucesso c = new TelaSucesso("Atividade Exluída!");
-					c.setVisible(true);
-				} else if (linha <= 0) {
-					JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
-				}
-
-			}
-		});
-		panel_7.add(btnExcluir, "cell 3 7,growx");
-
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setForeground(Color.LIGHT_GRAY);
-		separator_2.setBackground(Color.LIGHT_GRAY);
-		panel_7.add(separator_2, "cell 0 8 6 1,growx");
-
-		JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
-		lblNewLabel_10_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
-		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
-		// LetterDocumentFilter());
-
-		DefaultIconButton btnNewButton_1 = new DefaultIconButton("Cadastrar");
-		btnNewButton_1.setBorder(new RoundedBorder(Color.BLACK, 8));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				TelaAtividadesHospedes chama = new TelaAtividadesHospedes(Func, ListaAtividades);
-				chama.setVisible(true);
-
-			}
-		});
-
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(117, 187, 68));
-		panel_7.add(btnNewButton_1, "cell 2 11");
+								}
+							}
+						});
+						panel_7.add(btnAlterar, "flowx,cell 2 7,growx");
 
 		table = new CustomTable(model1);
 		cTable.setViewportView(table);
@@ -412,24 +349,6 @@ public class TelaAtividades extends JFrame {
 
 		model2 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "IdAtividade", "Funcionario", "NomeAtividade" }));
-
-		panel_5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				cTable.setViewportView(table);
-				atualizarJTable();
-			}
-		});
-
-		panel_6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				cTable.setViewportView(new JTable(model2));
-				atualizarJTable();
-			}
-		});
 
 		atualizarJTable();
 		contentPane.add(Principal, "cell 1 1,grow");
@@ -772,20 +691,21 @@ public class TelaAtividades extends JFrame {
 
 			@Override
 			public void onDelete(int row) {
-				int linhaSelecionada = table.getSelectedRow();
 				AtividadesDAO DAO = AtividadesDAO.getInstancia();
-				int linha = table.getSelectedRow();
+			 
 				Atividades ativ = new Atividades();
 
-				if (linha >= 0) {
-					ativ = ListaAtividades.get(linha);
+				 
+					ativ = ListaAtividades.get(row);
 					DAO.RemoverAtividades(ativ);
 					atualizarJTable();
 					TelaSucesso c = new TelaSucesso("Atividade Exluída!");
 					c.setVisible(true);
-				} else if (linha <= 0) {
-					JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
-				}
+			 
+				
+		
+				 
+			 
 			}
 
 		};

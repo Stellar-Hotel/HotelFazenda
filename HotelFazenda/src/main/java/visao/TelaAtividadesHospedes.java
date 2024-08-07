@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
@@ -32,13 +34,18 @@ import modelo.Atividades;
 import modelo.AtividadesHospedes;
 import modelo.Funcionarios;
 import modelo.Hospedes;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
+import java.awt.Color;
 
 public class TelaAtividadesHospedes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
+	private CustomTable table;
 	private DefaultTableModel model;
 	private ArrayList<AtividadesHospedes> ListaatividadesHospedes;
 	private JComboBox<Atividades> comboBox;
@@ -47,7 +54,7 @@ public class TelaAtividadesHospedes extends JFrame {
 	public TelaAtividadesHospedes(Funcionarios Func, ArrayList<Atividades> ListaAtividades) {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700, 600);
+		setSize(700, 500);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel() {
 			@Override
@@ -66,22 +73,22 @@ public class TelaAtividadesHospedes extends JFrame {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 643, 670);
+		panel.setBounds(10, 11, 672, 471);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Nome da Atividade");
+		JLabel lblNewLabel = new JLabel("Selecione a Atividade");
 		lblNewLabel.setBounds(24, 13, 201, 31);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 26));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		panel.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 120, 590, 543);
+		scrollPane.setBounds(270, 12, 369, 435);
 		panel.add(scrollPane);
 
 		// Configurar o modelo da tabela
-		model = new DefaultTableModel(new Object[][] {}, new String[] { "Atividade", "Hospede" });
-		table = new JTable(model);
+		model = new DefaultTableModel(new Object[][] {}, new String[] { "Atividade", "Hospede", "Ações" });
+		table = new CustomTable(model);
 		scrollPane.setViewportView(table);
 
 		// Configurar o modelo do JComboBox e o renderizador
@@ -91,7 +98,7 @@ public class TelaAtividadesHospedes extends JFrame {
 		}
 
 		comboBox = new JComboBox<>(comboBoxModel);
-		comboBox.setBounds(250, 22, 300, 22); // Ajuste o tamanho conforme necessário
+		comboBox.setBounds(24, 55, 201, 22); // Ajuste o tamanho conforme necessário
 		panel.add(comboBox);
 
 		// Defina um renderizador personalizado para mostrar apenas o atributo desejado
@@ -109,12 +116,13 @@ public class TelaAtividadesHospedes extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel_1 = new JLabel("Documento");
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(24, 69, 76, 14);
+		JLabel lblNewLabel_1 = new JLabel("CPF do hospede");
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(24, 95, 201, 18);
 		panel.add(lblNewLabel_1);
 
 		DefaultIconButton btnAdicionar = new DefaultIconButton("Adicionar");
+		btnAdicionar.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -127,13 +135,14 @@ public class TelaAtividadesHospedes extends JFrame {
 				Hospedes hospede = daoHospede.buscarHospedePorCPF(documento);
 				if (hospede == null) {
 					JOptionPane.showMessageDialog(null, "CPF não encontrado.");
+					return;
 
 				}
 
 				Atividades ativ = (Atividades) comboBox.getSelectedItem();
 				if (ativ == null) {
 					JOptionPane.showMessageDialog(null, "Nenhuma atividade selecionada.");
-
+					return;
 				}
 
 				int capacidade = ativ.getCapacidade();
@@ -141,7 +150,7 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				if (countHospedes >= capacidade) {
 					JOptionPane.showMessageDialog(null, "Capacidade máxima atingida para esta atividade.");
-
+					return;
 				}
 
 				LocalDate dataNascimento = convertToLocalDate(hospede.getDataNasc());
@@ -150,12 +159,14 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				if (idade < ativ.getIdadeMinima()) {
 					JOptionPane.showMessageDialog(null, "Idade do hóspede menor que a idade mínima necessária.");
-
+					return;
+					
 				}
 
 				if (daoAtividadesHospedes.isHospedeRegisteredForActivity(hospede.getDocumento(),
 						ativ.getIdAtividade())) {
 					JOptionPane.showMessageDialog(null, "CPF já está vinculado a esta atividade.");
+					return;
 
 				}
 
@@ -168,42 +179,28 @@ public class TelaAtividadesHospedes extends JFrame {
 			}
 
 		});
-		btnAdicionar.setBounds(250, 65, 89, 23);
+		btnAdicionar.setBounds(123, 165, 117, 31);
 		panel.add(btnAdicionar);
 
 		textField = new JTextField();
-		textField.setBounds(94, 66, 131, 20);
+		textField.setBounds(24, 124, 201, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 
-		DefaultIconButton btnNewButton = new DefaultIconButton("Excluir");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		 
 
-				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();
-				int linha = table.getSelectedRow();
-				AtividadesHospedes ativ = new AtividadesHospedes();
-
-				if (linha >= 0) {
-					ativ = ListaatividadesHospedes.get(linha);
-					DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
-					atualizarJTable();
-				}
-
-			}
-		});
-		btnNewButton.setBounds(360, 65, 89, 23);
-		panel.add(btnNewButton);
-
-		DefaultIconButton btnSair = new DefaultIconButton("Sair");
+		DefaultIconButton btnSair = new DefaultIconButton("Voltar");
+		btnSair.setBackgroundColor(Color.RED);
+		btnSair.setHoverColor( Color.RED.darker());
+		btnSair.setFont(new Font("Segoe UI", Font.BOLD, 15));
+	 
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaAtividades chama = new TelaAtividades();
-				chama.setVisible(true);
+			 
 				dispose();
 			}
 		});
-		btnSair.setBounds(560, 22, 54, 23);
+		btnSair.setBounds(10, 165, 103, 31);
 		panel.add(btnSair);
 
 		// Atualizar a tabela
@@ -211,6 +208,28 @@ public class TelaAtividadesHospedes extends JFrame {
 	}
 
 	protected void atualizarJTable() {
+		TableActionEvent event = new TableActionEvent() {
+
+			@Override
+			public void onEdit(int row) {
+				System.out.println("Edit row : " + row);
+			}
+
+			@Override
+			public void onDelete(int row) {
+				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();
+		 
+				AtividadesHospedes ativ = new AtividadesHospedes();
+
+			 
+					ativ = ListaatividadesHospedes.get(row);
+					DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
+					atualizarJTable();
+			 
+
+			}
+
+		};
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		model.setRowCount(0);
@@ -221,6 +240,27 @@ public class TelaAtividadesHospedes extends JFrame {
 		for (AtividadesHospedes p : ListaatividadesHospedes) {
 			model.addRow(new Object[] { p.getAtividade().getNomeAtividade(), p.getHospede().getNome() });
 		}
+
+		TableActionCellRender cellRenderer = new TableActionCellRender(false, true); // Inicialmente nenhuma linha
+		// selecionada
+		table.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+
+// Adicionar um MouseListener à tabela para atualizar a linha selecionada
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				if (row >= 0) {
+					cellRenderer.setSelectedRow(row);
+					table.repaint(); // Repaint to apply the new row color
+				}
+			}
+		});
+
+		table.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event, false, true));
+		table.setRowHeight(50);
+		table.getColumnModel().getColumn(2).setPreferredWidth(130);
+
 	}
 
 	private int calcularIdade(LocalDate dataNascimento) {

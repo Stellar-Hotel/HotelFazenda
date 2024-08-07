@@ -750,7 +750,7 @@ public class TelaDeHospedes extends JFrame {
 
 		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(145);
+		table.getColumnModel().getColumn(7).setPreferredWidth(155);
 	}
 
 	class LetterDocumentFilter extends DocumentFilter {
