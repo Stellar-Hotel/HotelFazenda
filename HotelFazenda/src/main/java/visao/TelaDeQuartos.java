@@ -202,7 +202,7 @@ public class TelaDeQuartos extends JFrame {
 
 		DefaultModal panel_5 = new DefaultModal();
 		Principal.add(panel_5, "cell 0 1,grow");
-		panel_5.setLayout(new MigLayout("", "[grow][grow]", "[grow][grow][grow]"));
+		panel_5.setLayout(new MigLayout("", "[grow][grow]", "[grow][grow][grow][40px]"));
 
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0 2 1,grow");
@@ -351,6 +351,20 @@ public class TelaDeQuartos extends JFrame {
 		
 				DefaultIconButton btnNewButton_3 = new DefaultIconButton("Efetuar reserva");
 				panel_5.add(btnNewButton_3, "cell 1 2,growx,aligny center");
+				
+				DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+				dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						textChecki.setText(null);
+						textChecko.setText(null);
+						textCPF.setText(null);
+					}
+				});
+				dfltcnbtnLimpar.setText("Limpar");
+				dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
+				dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
+				panel_5.add(dfltcnbtnLimpar, "cell 0 3 2 1,alignx center");
 				btnNewButton_3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 

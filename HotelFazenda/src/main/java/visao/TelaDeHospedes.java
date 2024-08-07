@@ -120,8 +120,7 @@ public class TelaDeHospedes extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		Principal.add(panel_5, "cell 1 3 3 1,grow");
-		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]",
-				"[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][grow]"));
+		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]", "[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][][grow]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 16));
@@ -357,6 +356,25 @@ public class TelaDeHospedes extends JFrame {
 		panel_5.add(btnAtualizar, "cell 4 10 2 1,alignx center");
 		btnExcluir.setToolTipText("");
 		panel_5.add(btnExcluir, "cell 8 10,alignx center");
+		
+		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
+		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textNome.setText("");
+				textSobrenome.setText(null);
+				textCPF.setText(null);
+				textNacionalidade.setText(null);
+				textNascimento.setText(null);
+				textEmail.setText(null);
+				textPronome.setText(null);
+			}
+		});
+		dfltcnbtnLimpar_1.setText("Limpar");
+		dfltcnbtnLimpar_1.setBorder(new RoundedBorder(Color.BLACK, 8));
+		dfltcnbtnLimpar_1.setBackground(new Color(117, 187, 68));
+		panel_5.add(dfltcnbtnLimpar_1, "cell 4 11 2 1,alignx center");
+		
+		
 
 		Model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Sobrenome", "Data de Nascimento",
 				"Documento", "Nacionalidade", "Pronome", "Email", "Acoes" });
@@ -693,6 +711,33 @@ public class TelaDeHospedes extends JFrame {
 		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/twitter.jpg")));
+		
+		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
+		dfltcnbtnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textCPF.setText(null);
+				textEmail.setText(null);
+				textNacionalidade.setText(null);
+				textNascimento.setText(null);
+				textNome.setText(null);
+				textPronome.setText(null);
+				textSobrenome.setText(null);
+			}
+		});
+		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textCPF.setText(null);
+				textEmail.setText(null);
+				textNacionalidade.setText(null);
+				textNascimento.setText(null);
+				textNome.setText(null);
+				textPronome.setText(null);
+				textSobrenome.setText(null);
+			}
+		});
+
+		
 	}
 
 	protected void atualizarJTable() {

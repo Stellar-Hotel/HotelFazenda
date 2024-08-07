@@ -340,6 +340,23 @@ public class TelaAtividades extends JFrame {
 							}
 						});
 						panel_7.add(btnAlterar, "flowx,cell 2 7,growx");
+						
+						DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+						dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								textCapacidade.setText(null);
+								textData.setText(null);
+								textHorario.setText(null);
+								textIdade.setText(null);
+								textNomeatividade.setText(null);
+								TextHorarioFim.setText(null);
+							}
+						});
+						dfltcnbtnLimpar.setText("Limpar");
+						dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.black, 10));
+						dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
+						panel_7.add(dfltcnbtnLimpar, "cell 2 8");
 
 		table = new CustomTable(model1);
 		cTable.setViewportView(table);

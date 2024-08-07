@@ -131,7 +131,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill]"));
+		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill][40px]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
@@ -190,7 +190,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		textNome.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 6 1 2 11,grow");
+		Principal.add(scrollPane, "cell 6 1 2 12,grow");
 
 		JLabel lblNewLabel_11 = new JLabel("Sobrenome:");
 		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -431,6 +431,29 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
 		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
 		Principal.add(btnDeletarSelecionado, "cell 3 10 3 1,alignx left");
+		
+		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton("Atualizar Selecionado");
+		dfltcnbtnLimparCampos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtEmail.setText(null);
+				txtLogin.setText(null);
+				txtPronome.setText(null);
+				txtSenha.setText(null);
+				txtSetor.setText(null);
+				txtTelefone.setText(null);
+				textCPF.setText(null);
+				textFuncao.setText(null);
+				textNivel.setText(null);
+				textNome.setText(null);
+				textSalario.setText(null);
+				textSobrenome.setText(null);
+			}
+		});
+		dfltcnbtnLimparCampos.setText("Limpar campos");
+		dfltcnbtnLimparCampos.setBorder(new RoundedBorder(Color.black, 10));
+		dfltcnbtnLimparCampos.setBackground(new Color(117, 187, 68));
+		Principal.add(dfltcnbtnLimparCampos, "cell 2 11,alignx center");
 
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent event) {
