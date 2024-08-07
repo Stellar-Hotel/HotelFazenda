@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -47,17 +50,19 @@ import utils.DefaultScreen;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Home extends JFrame {
-	
-    private JLabel lblNewLabel_9;
+
+	private JLabel lblNewLabel_9;
 
 	private static final long serialVersionUID = 1L;
 	protected JPanel contentPane;
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
- 
+
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 	HospedagensDAO HgDao = HospedagensDAO.getInstancia();
 	HospedeDAO HDao = HospedeDAO.getInstancia();
@@ -71,19 +76,11 @@ public class Home extends JFrame {
 	ArrayList<Funcionarios> listaFuncionarios;
 	private int diasSelecionados = 3; // Valor padrão inicial
 
-	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/BannerStellar.png","/visao/logoGrande.png", "/visao/Whatsapp.jpg",
-			"/visao/Facebook.jpg", "/visao/instagram.png"));
+	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/BannerStellar.png",
+			"/visao/logoGrande.png", "/visao/Whatsapp.jpg", "/visao/Facebook.jpg", "/visao/instagram.png"));
 	int imageIndex = 0;
 	LocalDate hoje = LocalDate.now();
-	JPanel mostrarAtividades = new JPanel() {
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			Graphics2D g2d = (Graphics2D) g.create();
-			g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-			g2d.dispose();
-		}
-	};
+	JPanel mostrarAtividades=new JPanel(){@Override protected void paintComponent(Graphics g){super.paintComponent(g);Graphics2D g2d=(Graphics2D)g.create();g2d.drawRoundRect(0,0,getWidth()-1,getHeight()-1,20,20);g2d.dispose();}};
 
 	public void loadAtividades() {
 
@@ -137,7 +134,9 @@ screen();
 		Principal.setLayout(new MigLayout("", "[100px:100px:100px][140,grow][100,grow][55][140,grow][100,grow][55][140,grow][100,grow][100px:100px:100px][117.25][:117.25:117.25,grow][100px:100px:100px][10px]", "[188,grow][94,grow][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
 		
 		lblNewLabel_9 = new JLabel();
-	    
+
+    
+	
 	     
 		JComboBox comboBoxDias = new JComboBox();
 		Principal.add(comboBoxDias, "cell 11 3");
@@ -176,7 +175,12 @@ screen();
 						});
 						lblNewLabel_10.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack.png")));
 				
-				JPanel panel_6 = new JPanel();
+				JPanel panel_6 = new JPanel() {
+					
+				};
+
+
+
 				Principal.add(panel_6, "cell 1 0 11 1,grow");
 				panel_6.setLayout(new MigLayout("", "[1009px,grow]", "[149px,grow]"));
 				
@@ -192,9 +196,31 @@ screen();
 												if (imageIndex < listaImagens.size()) {
 													imageIndex += 1;
 													updateImage();
+													
+													if (imageIndex < listaImagens.size()) {
+                    try {
+                        String imagePath = listaImagens.get(imageIndex);
+                        BufferedImage originalImage = ImageIO.read(new File("/visao/BannerStellar.png"));
+
+                        // Escala a imagem para o tamanho do JLabel lblImage
+                        Image scaledImage = originalImage.getScaledInstance(
+                                lblNewLabel_9.getWidth(), lblNewLabel_9.getHeight(), Image.SCALE_SMOOTH);
+
+                        lblNewLabel_9.setIcon(new ImageIcon(scaledImage));
+
+                        imageIndex++; // Avança para a próxima imagem na lista
+                        if (imageIndex >= listaImagens.size()) {
+                            imageIndex = 0; // Reinicia se atingir o final da lista
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+													
 												}
 											}
+											}
 										});
+										
 										Principal.add(lblNewLabel_11, "cell 12 0,alignx center,aligny center");
 								switch ((String) comboBoxDias.getSelectedItem()) {
 								case "3 dias":
@@ -274,11 +300,11 @@ screen();
 		Principal.add(panel_2_1_1, "cell 1 6 2 2,grow");
 		panel_2_1_1.setLayout(new MigLayout("", "[141,grow]", "[40,grow][27,grow]"));
 		
-		JLabel lblHospedagem_1 = new JLabel("0");
-		lblHospedagem_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblHospedagem_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHospedagem_1.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		panel_2_1_1.add(lblHospedagem_1, "cell 0 0,alignx center");
+		JLabel lblQuarto = new JLabel("0");
+		lblQuarto.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblQuarto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuarto.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		panel_2_1_1.add(lblQuarto, "cell 0 0,alignx center");
 		
 		JLabel lblNewLabel_7_1_1 = new JLabel("Hospedagens");
 		lblNewLabel_7_1_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -340,23 +366,30 @@ screen();
 		Principal.add(panel_2_2_1, "cell 7 6 2 2,grow");
 		panel_2_2_1.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
 		
-		JLabel lblHospedes_1 = new JLabel("0");
-		lblHospedes_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblHospedes_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHospedes_1.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		panel_2_2_1.add(lblHospedes_1, "cell 0 0,alignx center");
+		JLabel lblReservas = new JLabel("0");
+		lblReservas.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblReservas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReservas.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		panel_2_2_1.add(lblReservas, "flowy,cell 0 0,alignx center");
 		
-//		lblQuarto.setText(String.valueOf(listaQuartos.size()));
-//		lblAtividade.setText(String.valueOf(listaAtividades.size()));
-//		lblHospedes.setText(String.valueOf(listaHospedes.size()));
-//		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
-//		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
+		JLabel lblNewLabel_7_1_2 = new JLabel("Serviços");
+		lblNewLabel_7_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		panel_2_2_1.add(lblNewLabel_7_1_2, "cell 0 1,alignx center");
+		
+		lblQuarto.setText(String.valueOf(listaQuartos.size()));
+		lblAtividade.setText(String.valueOf(listaAtividades.size()));
+		lblHospedes.setText(String.valueOf(listaHospedes.size()));
+		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
+		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
+		
 		
 								mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 								
 										Principal.add(mostrarAtividades, "cell 10 4 2 5,grow");
 
  	}
+
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1502, 737);
@@ -364,8 +397,8 @@ screen();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -526,13 +559,13 @@ screen();
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 
@@ -679,6 +712,7 @@ screen();
 		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/twitter.jpg")));
+
 	}
 
 	public void loadInfos() {
@@ -687,30 +721,25 @@ screen();
 		listaAtividades = ADao.ListarAtividades();
 		listaQuartos = QDao.ListarQuartos();
 		listaFuncionarios = FDao.ListarFuncionarios();
+		
+		
+		
+		
+		
 
 	}
 
 	private void updateImage() {
-	    // Obtém o tamanho atual do painel
-	    int width = lblNewLabel_9.getWidth();
-	    int height = lblNewLabel_9.getHeight();
 
-	    // Carrega a imagem
-	    ImageIcon originalIcon = new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex)));
-	    Image originalImage = originalIcon.getImage();
+		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex))));
+	}
 
-	    // Redimensiona a imagem para ajustar ao tamanho do painel
-	    Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-	    // Atualiza o ícone do JLabel com a imagem redimensionada
-	    lblNewLabel_9.setIcon(new ImageIcon(resizedImage));
+	private Image scaleImage(BufferedImage image, int width, int height) {
+		Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		BufferedImage bufferedScaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = bufferedScaledImage.createGraphics();
+		g2.drawImage(scaledImage, 0, 0, null);
+		g2.dispose();
+		return bufferedScaledImage;
 	}
 }
-
-//Principal.addComponentListener(new java.awt.event.ComponentAdapter() {
-//    @Override
-//    public void componentResized(java.awt.event.ComponentEvent e) {
-//        updateImage(); // Atualiza a imagem quando o painel é redimensionado
-//    }
-//});
-//
