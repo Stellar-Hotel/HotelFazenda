@@ -178,6 +178,7 @@ screen();
 				JPanel panel_6 = new JPanel() {
 					
 				};
+				panel_6.setBackground(new Color(250, 250, 250));
 
 
 
@@ -185,7 +186,7 @@ screen();
 				panel_6.setLayout(new MigLayout("", "[1009px,grow]", "[149px,grow]"));
 				
 
-				panel_6.add(lblNewLabel_9, "cell 0 0,grow");
+				panel_6.add(lblNewLabel_9, "cell 0 0,alignx center,aligny center");
 								
 										JLabel lblNewLabel_11 = new JLabel("");
 										lblNewLabel_11.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack - Copia.png")));
@@ -731,7 +732,7 @@ screen();
 
 	private void updateImage() {
 
-		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex))));
+		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource("/visao/BannerStellar.png")));
 	}
 
 	private Image scaleImage(BufferedImage image, int width, int height) {
