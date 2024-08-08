@@ -226,6 +226,7 @@ public class AtividadesModal extends JFrame {
 			TextHorarioFim.setText(atividade.getHorarioFim());
 			textIdade.setText(String.valueOf(atividade.getIdadeMinima()));
 			textData.setText(String.valueOf(atividade.getData()));
+			
 			DefaultIconButton btnAlterar = new DefaultIconButton("Alterar");
 			btnAlterar.setBounds(236, 405, 203, 40);
 			btnAlterar.setBackgroundColor(Color.ORANGE);

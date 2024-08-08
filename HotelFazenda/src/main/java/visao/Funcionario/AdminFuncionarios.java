@@ -87,31 +87,27 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][70:50,grow][15:30px:15][30px][:49.00px:50,grow][-2.00][256.00,grow][70:253.00:70,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill][40px]"));
+		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][70:50,grow][15:30px:15][30px][:49.00px:50,grow][-2.00][256.00,grow][70:253.00:70,grow]", "[70:40px:70][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill][40px]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Funcionários");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_1, "cell 1 0 3 1,alignx left,aligny bottom");
-		
+
 		JButton btnNewButton = new DefaultIconButton("Cadastrar funcionário");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
- 
-			
-				
+
 				FuncionarioModal modal;
-				 
-					modal = new FuncionarioModal(  telaPrincipal, null);
-					modal.setLocationRelativeTo(null);
-					modal.setVisible(true);
-				 
-				
+
+				modal = new FuncionarioModal(telaPrincipal, null);
+				modal.setLocationRelativeTo(null);
+				modal.setVisible(true);
+
 			}
 		});
-	 
-		Principal.add(btnNewButton, "cell 6 0,alignx right");
+
+		Principal.add(btnNewButton, "cell 6 0,alignx right,aligny bottom");
 
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 1 1 6 12,grow");
@@ -120,6 +116,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				new String[] { "Nome", "Sobrenome", "Funcao", "CPF", "Salario", "Ações" }));
 		table = new CustomTable(model1);
 		scrollPane.setViewportView(table);
+		atualizarJTable();
 
 	}
 
@@ -129,10 +126,9 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 			@Override
 			public void onEdit(int row) {
 				FuncionarioModal modal = new FuncionarioModal(telaPrincipal, Lista.get(row));
+modal.setLocationRelativeTo(null);
+				modal.setVisible(true);
 
-			
-
-			 
 			}
 
 			@Override
@@ -185,8 +181,8 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 		table.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(5).setPreferredWidth(155);
-
+		table.getColumnModel().getColumn(5).setMaxWidth(220);
+		table.getColumnModel().getColumn(5).setMinWidth(220);
 	}
 
 	@Override
