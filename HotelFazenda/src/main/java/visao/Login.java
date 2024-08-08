@@ -41,7 +41,32 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	ArrayList<Usuarios> Lista;
 	private JTable table;
- 
+
+	/**
+	 * Launch the application.
+	 */
+
+	public static void main(String[] args) {
+		DefaultJOptionPane.test();
+		EventQueue.invokeLater(new Runnable() {
+			
+			public void run() {
+				try {
+					Login frame = new Login();
+//				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+	}
+
+	/**
+	 * Create the frame.
+	 */
 	public Login() {
 
 		Lista = new ArrayList<Usuarios>();

@@ -34,6 +34,7 @@ import modelo.Usuarios;
 import utils.DefaultIconButton;
 import visao.ConfirmacaoADM;
 import visao.Conta;
+import visao.Home;
 import visao.Atividade.TelaAtividades;
 import visao.ModaisDeAvisos.TelaSucesso;
 
@@ -64,7 +65,7 @@ public class FuncionarioModal extends JFrame {
 
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600, 700);
+		setSize(600, 610);
 
 		Principal = new JPanel() {
 			@Override
@@ -451,8 +452,12 @@ public class FuncionarioModal extends JFrame {
 			Principal.add(btnAtualizarSelecionado);
 		}
 
-		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton("Atualizar Selecionado");
-		dfltcnbtnLimparCampos.setBounds(525, 13, 44, 38);
+		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton(
+				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
+		 
+		dfltcnbtnLimparCampos.setBackgroundColor(Color.cyan.darker());
+		dfltcnbtnLimparCampos.setHoverColor(Color.cyan);
+		dfltcnbtnLimparCampos.setBounds(548, 11, 42, 33);
 		dfltcnbtnLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -470,7 +475,7 @@ public class FuncionarioModal extends JFrame {
 				textSobrenome.setText(null);
 			}
 		});
-		dfltcnbtnLimparCampos.setText(" ");
+		 
 		dfltcnbtnLimparCampos.setBorder(new RoundedBorder(Color.black, 10));
 		dfltcnbtnLimparCampos.setBackground(new Color(117, 187, 68));
 		Principal.add(dfltcnbtnLimparCampos);
@@ -485,7 +490,7 @@ public class FuncionarioModal extends JFrame {
 		btnNewButton.setBackgroundColor(Color.RED);
 		btnNewButton.setHoverColor(Color.RED.darker());
 		 
-		btnNewButton.setBounds(19, 547, 254, 40);
+		btnNewButton.setBounds(19, 547, 254, 44);
 		 
 		Principal.add(btnNewButton);
 
