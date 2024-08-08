@@ -65,7 +65,7 @@ public class FuncionarioModal extends JFrame {
 
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600, 610);
+		setSize(600, 620);
 
 		Principal = new JPanel() {
 			@Override
@@ -154,7 +154,7 @@ public class FuncionarioModal extends JFrame {
 		ImageIcon NaoVer = new ImageIcon(Conta.class.getResource("/visao/NaoVer.png"));
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(561, 154, 29, 44);
+		lblNewLabel_2.setBounds(561, 141, 29, 44);
 		lblNewLabel_2.setIcon(Ver);
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -490,7 +490,7 @@ public class FuncionarioModal extends JFrame {
 		btnNewButton.setBackgroundColor(Color.RED);
 		btnNewButton.setHoverColor(Color.RED.darker());
 		 
-		btnNewButton.setBounds(19, 547, 254, 44);
+		btnNewButton.setBounds(19, 565, 254, 44);
 		 
 		Principal.add(btnNewButton);
 

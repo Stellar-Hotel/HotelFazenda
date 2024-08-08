@@ -84,6 +84,9 @@ public class TelaAtividades extends JFrame {
 	private JTextField textData;
 	private JTextField textCapacidade;
 	 private TelaAtividades telaAtividades=this;
+	 
+	 
+	 
 	public TelaAtividades() {
 		ADao.AtualizarAtividades();
 		screen();

@@ -23,6 +23,7 @@ import controle.Funcionarios.FuncionariosDAO;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
+import visao.ModaisDeAvisos.TelaSucesso;
 
 public class ConfirmacaoADM extends JFrame {
 
@@ -101,11 +102,15 @@ public class ConfirmacaoADM extends JFrame {
 							boolean foi = DAO.RemoverFuncionario(FuncD);
 							if (foi) {
 								atualizavel.atualizarTabela();
+								TelaSucesso s = new TelaSucesso("Operação concluida com sucesso!");
+								s.setVisible(true);
 								dispose();
 							}
 						} else if (op == 2) {
 							boolean foi = DAO.AtualizarFuncionarios(FuncD);
 							if (foi) {
+								TelaSucesso s = new TelaSucesso("Operação concluida com sucesso!");
+								s.setVisible(true);
 								atualizavel.atualizarTabela();
 								dispose();
 							}
