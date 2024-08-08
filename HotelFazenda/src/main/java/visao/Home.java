@@ -48,6 +48,10 @@ import modelo.Quartos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
 import utils.DefaultScreen;
+import visao.Atividade.TelaAtividades;
+import visao.Reserva.TelaDeAcomodacoes;
+import visao.Servico.TelaServicos;
+
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -1,4 +1,4 @@
-package visao;
+package visao.ModaisDeAvisos;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

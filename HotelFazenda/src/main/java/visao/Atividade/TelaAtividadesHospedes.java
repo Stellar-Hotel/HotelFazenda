@@ -1,4 +1,4 @@
-package visao;
+package visao.Atividade;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -104,7 +104,7 @@ public class TelaAtividadesHospedes extends JFrame {
 		comboBox = new JComboBox<>(comboBoxModel);
 		comboBox.setUI(new RoundedComboBoxUI(comboBox)); // Use RoundedComboBoxUI com a instância de JComboBox
 
-		comboBox.setBounds(250, 22, 300, 22); // Ajuste o tamanho conforme necessário
+		comboBox.setBounds(24, 55, 201, 22); // Ajuste o tamanho conforme necessário
 		panel.add(comboBox);
 
 		// Defina um renderizador personalizado para mostrar apenas o atributo desejado

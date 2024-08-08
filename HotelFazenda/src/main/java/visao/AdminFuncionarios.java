@@ -50,6 +50,9 @@ import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
+import visao.Atividade.TelaAtividades;
+import visao.Reserva.TelaDeAcomodacoes;
+import visao.Servico.TelaServicos;
 
 public class AdminFuncionarios extends JFrame implements Atualizavel {
 

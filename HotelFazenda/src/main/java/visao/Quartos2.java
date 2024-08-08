@@ -45,6 +45,9 @@ import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
+import visao.Atividade.TelaAtividades;
+import visao.Reserva.TelaDeAcomodacoes;
+import visao.Servico.TelaServicos;
 
 public class Quartos2 extends JFrame {
 

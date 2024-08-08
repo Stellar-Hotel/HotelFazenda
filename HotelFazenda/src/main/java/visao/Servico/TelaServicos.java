@@ -1,4 +1,4 @@
-package visao;
+package visao.Servico;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -30,6 +30,15 @@ import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
+import visao.AdminFuncionarios;
+import visao.Conta;
+import visao.Home;
+import visao.Login;
+import visao.Quartos2;
+import visao.TelaDeHospedes;
+import visao.Atividade.TelaAtividades;
+import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Reserva.TelaDeAcomodacoes;
 
 public class TelaServicos extends JFrame {
 

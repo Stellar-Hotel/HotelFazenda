@@ -25,10 +25,11 @@ import visao.Conta;
 import visao.Home;
 import visao.Login;
 import visao.Quartos2;
-import visao.TelaAtividades;
-import visao.TelaDeAcomodacoes;
 import visao.TelaDeHospedes;
-import visao.TelaServicos;
+import visao.Atividade.TelaAtividades;
+import visao.Reserva.TelaDeAcomodacoes;
+import visao.Servico.TelaServicos;
+
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;

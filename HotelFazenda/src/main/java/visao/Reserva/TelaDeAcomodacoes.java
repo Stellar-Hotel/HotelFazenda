@@ -1,4 +1,4 @@
-package visao;
+package visao.Reserva;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -26,6 +26,14 @@ import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
 import utils.DefaultScreen;
+import visao.AdminFuncionarios;
+import visao.Conta;
+import visao.Home;
+import visao.Login;
+import visao.Quartos2;
+import visao.TelaDeHospedes;
+import visao.Atividade.TelaAtividades;
+import visao.Servico.TelaServicos;
 
 public class TelaDeAcomodacoes extends JFrame {
 
@@ -36,20 +44,11 @@ public class TelaDeAcomodacoes extends JFrame {
 	protected JPanel BarraInferior;
 	protected JPanel Principal;
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
-	
 
- 	
- 
 	public TelaDeAcomodacoes() {
- 
-	
+
 		screen();
-		
-	
-		
-		
-		
-		
+
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		Principal.setLayout(new MigLayout("", "[420.00px:n][177.00px:n,grow][50px:n]",
@@ -89,8 +88,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		JLabel lblQuartoSimples = new JLabel("");
 		lblQuartoSimples.setBounds(7, 7, 626, 408);
 		lblQuartoSimples.setHorizontalAlignment(SwingConstants.LEFT);
-		lblQuartoSimples.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoSimples.jpg")));
-
+ 
 		panel_11.add(lblQuartoSimples);
 
 		JLabel lblNewLabel_16 = new JLabel("Apartamento Standard");
@@ -121,8 +119,7 @@ public class TelaDeAcomodacoes extends JFrame {
 
 		JLabel lblQuartoMediano = new JLabel("");
 		lblQuartoMediano.setBounds(7, 7, 426, 323);
-		lblQuartoMediano.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoMedio.jpg")));
-
+ 
 		panel_12.add(lblQuartoMediano);
 
 		JLabel lblNewLabel_17 = new JLabel("Apartamento Master");
@@ -155,8 +152,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		JLabel lblQuartoBom = new JLabel("");
 		lblQuartoBom.setBounds(7, 7, 627, 408);
 		lblQuartoBom.setHorizontalAlignment(SwingConstants.LEFT);
-		lblQuartoBom.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/Imagens/QuartoBom.jpg")));
-		panel_13.add(lblQuartoBom);
+ 		panel_13.add(lblQuartoBom);
 
 		JLabel lblNewLabel_18 = new JLabel("Apartamento Deluxe");
 		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 23));
@@ -170,7 +166,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		JPanel panel_7 = new JPanel();
 		Principal.add(panel_7, "cell 0 5,grow");
 		panel_7.setLayout(new MigLayout("", "[][]", "[]"));
-		
+
 		JLabel lblNewLabel_6 = new JLabel("");
 		panel_7.add(lblNewLabel_6, "cell 1 0");
 
@@ -183,7 +179,8 @@ public class TelaDeAcomodacoes extends JFrame {
 		panel_5.setLayout(new MigLayout("", "[]", "[]"));
 		contentPane.add(Principal, "cell 1 1,grow");
 
- 	}
+	}
+
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1452, 756);
@@ -191,8 +188,8 @@ public class TelaDeAcomodacoes extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -353,13 +350,13 @@ public class TelaDeAcomodacoes extends JFrame {
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 

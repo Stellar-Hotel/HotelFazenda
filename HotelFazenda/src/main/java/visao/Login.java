@@ -24,6 +24,10 @@ import modelo.Funcionarios;
 import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
+import utils.DefaultJOptionPane;
+import visao.ModaisDeAvisos.TelaErro;
+import visao.ModaisDeAvisos.TelaSucesso;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
@@ -43,8 +47,9 @@ public class Login extends JFrame {
 	 */
 
 	public static void main(String[] args) {
+		DefaultJOptionPane.test();
 		EventQueue.invokeLater(new Runnable() {
-
+			
 			public void run() {
 				try {
 					Login frame = new Login();
