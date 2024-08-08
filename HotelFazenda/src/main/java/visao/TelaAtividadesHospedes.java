@@ -1,5 +1,6 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -27,6 +28,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import controle.Combobox.RoundedComboBoxUI;
+//import controle.Combobox.CustomArrowButton;
 
 import controle.AtividadesHospedes.AtividadesHospedesDAO;
 import controle.Hospede.HospedeDAO;
@@ -98,7 +102,9 @@ public class TelaAtividadesHospedes extends JFrame {
 		}
 
 		comboBox = new JComboBox<>(comboBoxModel);
-		comboBox.setBounds(24, 55, 201, 22); // Ajuste o tamanho conforme necessário
+		comboBox.setUI(new RoundedComboBoxUI(comboBox)); // Use RoundedComboBoxUI com a instância de JComboBox
+
+		comboBox.setBounds(250, 22, 300, 22); // Ajuste o tamanho conforme necessário
 		panel.add(comboBox);
 
 		// Defina um renderizador personalizado para mostrar apenas o atributo desejado

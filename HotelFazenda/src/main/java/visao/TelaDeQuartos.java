@@ -3,6 +3,18 @@ package visao;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
+import javax.swing.JFrame; 
+import javax.swing.JPanel; 
+import javax.swing.border.EmptyBorder; 
+import javax.swing.table.DefaultTableModel; 
+import javax.swing.text.MaskFormatter; 
+ 
+import controle.Arredondar.RoundedBorder; 
+import controle.Atividades.AtividadesDAO;
+import controle.Combobox.RoundedComboBoxUI;
+import controle.Hospedagens.HospedagensDAO; 
+import controle.Hospede.HospedeDAO; 
+import controle.Quartos.QuartosDAO; 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -254,7 +266,6 @@ public class TelaDeQuartos extends JFrame {
 			model.addElement(valor);
 
 		}
-		JComboBox comboBox = new JComboBox<>(model);
 
 		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		panel_6.add(comboBox, "cell 1 5 2 1,growx");
@@ -269,6 +280,8 @@ public class TelaDeQuartos extends JFrame {
 
 		JPanel panel_13 = new JPanel();
 
+		JComboBox comboBox = new JComboBox<>(model); 
+		comboBox.setUI(new RoundedComboBoxUI(comboBox));
 		panel_13.setBackground(new Color(255, 255, 255));
 		panel_13.setBorder(new LineBorder(Color.GREEN));
 		panel_8.add(panel_13, "cell 0 0,grow");

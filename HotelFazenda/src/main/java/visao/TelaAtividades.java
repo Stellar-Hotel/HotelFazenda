@@ -144,9 +144,8 @@ public class TelaAtividades extends JFrame {
 		Principal.add(cTable, "cell 6 3 1 5,grow");
 
 		JPanel panel_7 = new JPanel();
-		Principal.add(panel_7, "cell 0 4 5 2,grow");
-		panel_7.setLayout(new MigLayout("", "[:110:110][:84.00:90][][:50:50][:90:90][]",
-				"[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
+		Principal.add(panel_7, "cell 0 15 5 1,grow");
+		panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:93.00][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 
 		JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 16));
