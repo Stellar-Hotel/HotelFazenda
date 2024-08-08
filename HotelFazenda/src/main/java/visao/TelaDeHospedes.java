@@ -53,6 +53,7 @@ import utils.DefaultModal;
 import utils.DefaultScreen;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
+import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
@@ -225,8 +226,8 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "Erro adicione textos para cadastrar um hospede");
-
+					 TelaErro telaErro = new TelaErro("Campos vazios");
+					 telaErro.setVisible(true);
 					// TelaErro telaErro = new TelaErro();
 					// telaErro.setVisible(true);
 				} else {
@@ -244,8 +245,9 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						JOptionPane.showMessageDialog(null, "Data invalida.");
-						return;
+						 TelaErro telaErro = new TelaErro("Data invalida");
+						 telaErro.setVisible(true);
+						 return;
 					}
 
 					Hospedes hospede = new Hospedes();
@@ -281,7 +283,8 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "insira algo");
+					 TelaErro telaErro = new TelaErro("Campos vazios");
+					 telaErro.setVisible(true);
 				} else {
 					String Nome = textNome.getText().trim();
 					String Sobrenome = textSobrenome.getText().trim();
@@ -297,7 +300,8 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						JOptionPane.showMessageDialog(null, "Data invalida.");
+						 TelaErro telaErro = new TelaErro("Data invalida");
+						 telaErro.setVisible(true);
 						return;
 					}
 					int linha = table.getSelectedRow();
