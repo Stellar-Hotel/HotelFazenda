@@ -76,8 +76,8 @@ public class Home extends JFrame {
 	ArrayList<Funcionarios> listaFuncionarios;
 	private int diasSelecionados = 3; // Valor padrão inicial
 
-	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/BannerStellar.png",
-			"/visao/logoGrande.png", "/visao/Whatsapp.jpg", "/visao/Facebook.jpg", "/visao/instagram.png"));
+	ArrayList<String> listaImagens = new ArrayList<String>(Arrays.asList("/visao/1.png",
+			"/visao/2.png", "3.png", "/visao/4.png", "/visao/5.png"));
 	int imageIndex = 0;
 	LocalDate hoje = LocalDate.now();
 	JPanel mostrarAtividades=new JPanel(){@Override protected void paintComponent(Graphics g){super.paintComponent(g);Graphics2D g2d=(Graphics2D)g.create();g2d.drawRoundRect(0,0,getWidth()-1,getHeight()-1,20,20);g2d.dispose();}};
@@ -137,7 +137,6 @@ screen();
 
     
 	
-	     
 		JComboBox comboBoxDias = new JComboBox();
 		Principal.add(comboBoxDias, "cell 11 3");
 		
@@ -198,28 +197,11 @@ screen();
 													imageIndex += 1;
 													updateImage();
 													
-													if (imageIndex < listaImagens.size()) {
-                    try {
-                        String imagePath = listaImagens.get(imageIndex);
-                        BufferedImage originalImage = ImageIO.read(new File("/visao/BannerStellar.png"));
-
-                        // Escala a imagem para o tamanho do JLabel lblImage
-                        Image scaledImage = originalImage.getScaledInstance(
-                                lblNewLabel_9.getWidth(), lblNewLabel_9.getHeight(), Image.SCALE_SMOOTH);
-
-                        lblNewLabel_9.setIcon(new ImageIcon(scaledImage));
-
-                        imageIndex++; // Avança para a próxima imagem na lista
-                        if (imageIndex >= listaImagens.size()) {
-                            imageIndex = 0; // Reinicia se atingir o final da lista
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+					
 													
 												}
 											}
-											}
+											
 										});
 										
 										Principal.add(lblNewLabel_11, "cell 12 0,alignx center,aligny center");
@@ -732,15 +714,8 @@ screen();
 
 	private void updateImage() {
 
-		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource("/visao/BannerStellar.png")));
-	}
+		lblNewLabel_9.setIcon(new ImageIcon(Home.class.getResource(listaImagens.get(imageIndex)))); 	
+		}
 
-	private Image scaleImage(BufferedImage image, int width, int height) {
-		Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		BufferedImage bufferedScaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = bufferedScaledImage.createGraphics();
-		g2.drawImage(scaledImage, 0, 0, null);
-		g2.dispose();
-		return bufferedScaledImage;
-	}
+
 }
