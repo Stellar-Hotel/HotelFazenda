@@ -1,4 +1,4 @@
-package visao;
+package visao.Funcionario;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -50,6 +50,13 @@ import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
+import visao.ConfirmacaoADM;
+import visao.Conta;
+import visao.Home;
+import visao.Login;
+import visao.Quartos2;
+import visao.TelaDeHospedes;
+import visao.Atividade.AtividadesModal;
 import visao.Atividade.TelaAtividades;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
@@ -58,23 +65,12 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtPesquisa;
 	private JTable table;
-	private JTextField textNome;
-	private JTextField textSobrenome;
-	private JTextField textFuncao;
-	private JTextField textCPF;
-	private JTextField textSalario;
-	private JTextField textNivel;
+
 	private DefaultTableModel model1;
 	private ArrayList<Funcionarios> Lista = new ArrayList<Funcionarios>();
-	private JTextField txtEmail;
-	private JTextField txtPronome;
-	private JTextField txtTelefone;
-	private JTextField txtSetor;
-	private JTextField txtLogin;
-	private JPasswordField txtSenha;
 
+	private AdminFuncionarios telaPrincipal;
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
@@ -82,294 +78,65 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 	public AdminFuncionarios() {
+		telaPrincipal = this;
 		screen();
 
-		MaskFormatter mNum = null, mPron = null;
-
-		try {
-			mPron = new MaskFormatter("UUU/UUUU");
-			mPron.setPlaceholderCharacter('_');
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			mNum = new MaskFormatter("+## ## #####-####");
-			mNum.setAllowsInvalid(false);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		MaskFormatter MCpf = null;
-		MaskFormatter Num = null;
-		MaskFormatter Num1 = null;
-
-		try {
-			Num = new MaskFormatter("####.##");
-			Num.setAllowsInvalid(false);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // 9 indica que aceita apenas números
-
-		try {
-			MCpf = new MaskFormatter("###.###.###-##");
-			MCpf.setPlaceholderCharacter('_');
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Num1 = new MaskFormatter("#");
-			Num1.setAllowsInvalid(false);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		JPanel Principal = new JPanel();
-		setTitle("AdminFuncionários");
+		setTitle("Funcionários");
 		setBackground(new Color(250, 250, 250));
 		Principal.setBorder(null);
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][:50:50,grow][30px,grow][30px][:49.00px:50,grow][-2.00][256.00,grow][253.00,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill][40px]"));
+		Principal.setLayout(new MigLayout("", "[:79.00:60,grow][70:50,grow][15:30px:15][30px][:49.00px:50,grow][-2.00][256.00,grow][70:253.00:70,grow]", "[40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px][40px,grow,fill][40px]"));
 
-		JLabel lblNewLabel_1 = new JLabel("Admin Funcionários");
+		JLabel lblNewLabel_1 = new JLabel("Funcionários");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 		Principal.add(lblNewLabel_1, "cell 1 0 3 1,alignx left,aligny bottom");
-
-		JLabel lblNewLabel_7 = new JLabel("Login:");
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_7, "cell 0 1,alignx trailing");
-
-		txtLogin = new JTextField();
-//		txtLogin.setText("Login");
-		txtLogin.setColumns(10);
-		txtLogin.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtLogin, "cell 1 1,growx");
-
-		JLabel lblNewLabel_9 = new JLabel("Senha:");
-		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_9, "cell 2 1,alignx trailing");
-
-		txtSenha = new JPasswordField();
-		txtSenha.setToolTipText("");
-//		txtSenha.setText("senha");
-		txtSenha.setEchoChar('*');
-		txtSenha.setColumns(10);
-		txtSenha.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtSenha, "cell 3 1 2 1,alignx center");
-
-		ImageIcon Ver = new ImageIcon(Conta.class.getResource("/visao/Ver.png"));
-		ImageIcon NaoVer = new ImageIcon(Conta.class.getResource("/visao/NaoVer.png"));
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(Ver);
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		
+		JButton btnNewButton = new DefaultIconButton("Cadastrar funcionário");
+		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (lblNewLabel_2.getIcon() == Ver) {
-					lblNewLabel_2.setIcon(NaoVer);
-					txtSenha.setEchoChar((char) 0);
-				} else if (lblNewLabel_2.getIcon() == NaoVer) {
-					lblNewLabel_2.setIcon(Ver);
-					txtSenha.setEchoChar('*');
-				}
+				
+ 
+			
+				
+				FuncionarioModal modal;
+				 
+					modal = new FuncionarioModal(  telaPrincipal, null);
+					modal.setLocationRelativeTo(null);
+					modal.setVisible(true);
+				 
+				
 			}
 		});
-		Principal.add(lblNewLabel_2, "cell 5 1");
-
-		JLabel lblNewLabel_10 = new JLabel("Nome:");
-		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_10, "cell 0 2,alignx trailing");
-
-		textNome = new JTextField();
-		textNome.setBorder(new RoundedBorder(Color.black, 10));
-//		textNome.setText("nome");
-		textNome.setToolTipText("");
-		Principal.add(textNome, "cell 1 2 5 1,growx");
-		textNome.setColumns(10);
+	 
+		Principal.add(btnNewButton, "cell 6 0,alignx right");
 
 		JScrollPane scrollPane = new JScrollPane();
-		Principal.add(scrollPane, "cell 6 1 2 12,grow");
-
-		JLabel lblNewLabel_11 = new JLabel("Sobrenome:");
-		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_11, "cell 0 3,alignx trailing");
-
-		textSobrenome = new JTextField();
-		textSobrenome.setBorder(new RoundedBorder(Color.black, 10));
-//		textSobrenome.setText("sobrenome");
-		Principal.add(textSobrenome, "cell 1 3 5 1,growx");
-		textSobrenome.setColumns(10);
-
-		JLabel lblNewLabel_12 = new JLabel("Função:");
-		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_12, "cell 0 4,alignx trailing");
-
-		textFuncao = new JTextField();
-		textFuncao.setBorder(new RoundedBorder(Color.black, 10));
-//		textFuncao.setText("funcao");
-		Principal.add(textFuncao, "cell 1 4,growx");
-		textFuncao.setColumns(10);
-
-		textSalario = new JFormattedTextField(Num);
-		textSalario.addFocusListener(new FocusAdapter() {
-		});
-
-		JLabel lblNewLabel_13 = new JLabel("Salário:");
-		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_13, "cell 2 4,alignx right");
-		textSalario.setBorder(new RoundedBorder(Color.black, 10));
-		textSalario.setText("salario");
-		Principal.add(textSalario, "cell 3 4 3 1,growx");
-		textSalario.setColumns(10);
-
-		JLabel lblNewLabel_14 = new JLabel("Email:");
-		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_14, "cell 0 5,alignx trailing");
-
-		txtEmail = new JTextField();
-		// txtEmail.setText("email");
-		txtEmail.setColumns(10);
-		txtEmail.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtEmail, "cell 1 5 2 1,growx");
-
-		AdminFuncionarios telaPrincipal = this;
-
-		textNivel = new JFormattedTextField(Num1);
-		textNivel.addFocusListener(new FocusAdapter() {
-
-		});
-
-		JLabel lblNewLabel_15 = new JLabel("Nível:");
-		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_15, "cell 3 5,alignx trailing");
-		textNivel.setBorder(new RoundedBorder(Color.black, 10));
-		textNivel.setText("nivel");
-		Principal.add(textNivel, "cell 4 5 2 1,growx");
-		textNivel.setColumns(10);
-
-		JLabel lblNewLabel_16 = new JLabel("CPF");
-		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_16, "cell 0 6,alignx trailing");
-
-		textCPF = new JFormattedTextField(MCpf);
-		textCPF.setBorder(new RoundedBorder(Color.black, 10));
-
-		Principal.add(textCPF, "cell 1 6,growx");
-		textCPF.setColumns(10);
-
-		JLabel lblNewLabel_17 = new JLabel("Pronomes:");
-		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_17, "cell 2 6 2 1,alignx right");
-
-		txtPronome = new JFormattedTextField(mPron);
-		txtPronome.setText("");
-		txtPronome.setColumns(10);
-		txtPronome.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtPronome, "cell 4 6 2 1,growx");
-
-		JLabel lblNewLabel_18 = new JLabel("Telefone:");
-		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_18, "cell 0 7,alignx trailing");
-
-		txtTelefone = new JFormattedTextField(mNum);
-		txtTelefone.setText("telefone");
-		txtTelefone.setColumns(10);
-		txtTelefone.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtTelefone, "cell 1 7 2 1,growx");
-
-		JLabel lblNewLabel_19 = new JLabel("Setor:");
-		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		Principal.add(lblNewLabel_19, "cell 3 7,alignx trailing");
-
-		txtSetor = new JTextField();
-//		txtSetor.setText("setor");
-		txtSetor.setColumns(10);
-		txtSetor.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(txtSetor, "cell 4 7 2 1,growx");
+		Principal.add(scrollPane, "cell 1 1 6 12,grow");
 
 		model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "Sobrenome", "Funcao", "CPF", "Salario", "Ações" }));
 		table = new CustomTable(model1);
 		scrollPane.setViewportView(table);
-		DefaultIconButton btnCadastrarNovo = new DefaultIconButton("Cadastrar Novo");
-		btnCadastrarNovo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FuncionariosDAO funcionariosDAO = FuncionariosDAO.getConexao();
-				UsuariosDAO usuariosDAO = UsuariosDAO.getInstancia();
 
-				// Criação do funcionário
-				if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty()) || (textNivel.getText().isEmpty())
-						|| (textNome.getText().isEmpty()) || (textSobrenome.getText().isEmpty())
-						|| (textSalario.getText().isEmpty()) || (txtEmail.getText().isEmpty())
-						|| (txtLogin.getText().isEmpty()) || (txtPronome.getText().isEmpty())
-						|| (txtSenha.getText().isEmpty()) || (txtSetor.getText().isEmpty())
-						|| (txtTelefone.getText().isEmpty())) {
-					JOptionPane.showMessageDialog(null, "Algo está vazio");
-					textCPF.setBorder(new RoundedBorder(Color.RED, 10));
+	}
 
-					textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
+	public void atualizarJTable() {
+		TableActionEvent event = new TableActionEvent() {
 
-					textNivel.setBorder(new RoundedBorder(Color.RED, 10));
+			@Override
+			public void onEdit(int row) {
+				FuncionarioModal modal = new FuncionarioModal(telaPrincipal, Lista.get(row));
 
-					textNome.setBorder(new RoundedBorder(Color.RED, 10));
+			
 
-					textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textSalario.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtEmail.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtLogin.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtPronome.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtSenha.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtSetor.setBorder(new RoundedBorder(Color.RED, 10));
-
-					txtTelefone.setBorder(new RoundedBorder(Color.RED, 10));
-				} else {
-					Usuarios user = new Usuarios();
-					user.setLogin(txtLogin.getText());
-					user.setSenha(txtSenha.getText());
-					user.setTipo(true);
-					user.setIdUsuario(usuariosDAO.inserirUsuario(user));
-
-					Funcionarios funcionario = new Funcionarios();
-					funcionario.setCPF(textCPF.getText());
-					funcionario.setFuncao(textFuncao.getText());
-					funcionario.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
-					funcionario.setNome(textNome.getText());
-					funcionario.setSobrenome(textSobrenome.getText());
-					funcionario.setSalario(Float.valueOf(textSalario.getText()));
-					funcionario.setPronomeFunc(txtPronome.getText());
-					funcionario.setEmailFunc(txtEmail.getText());
-					funcionario.setTelefone(txtTelefone.getText());
-					funcionario.setSetor(txtSetor.getText());
-
-					funcionario.setUsuario(user); // Associa o usuário ao funcionário
-
-					// Insere o funcionário
-					int i = funcionariosDAO.InserirFuncionario(funcionario);
-
-					if (i > 0) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-					}
-					atualizarJTable();
-				}
+			 
 			}
-		});
-		btnCadastrarNovo.setBorder(new RoundedBorder(Color.black, 10));
-		btnCadastrarNovo.setBackground(new Color(117, 187, 68));
-		Principal.add(btnCadastrarNovo, "cell 0 10 2 1,alignx right");
-		DefaultIconButton btnDeletarSelecionado = new DefaultIconButton("Deletar Selecionado");
-		btnDeletarSelecionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+			@Override
+			public void onDelete(int row) {
 				Funcionarios funcD = new Funcionarios();
 
 				int linha = table.getSelectedRow();
@@ -380,135 +147,6 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 				telinha.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 				atualizarJTable();
-
-			}
-		});
-
-		DefaultIconButton btnAtualizarSelecionado = new DefaultIconButton("Atualizar Selecionado");
-		btnAtualizarSelecionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Funcionarios funcA = new Funcionarios();
-
-				if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty()) || (textNivel.getText().isEmpty())
-						|| (textNome.getText().isEmpty()) || (textSobrenome.getText().isEmpty())
-						|| (textSalario.getText().isEmpty())) {
-					JOptionPane.showMessageDialog(null, "Algo está vazio");
-					textCPF.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textNivel.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textNome.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textSobrenome.setBorder(new RoundedBorder(Color.RED, 10));
-
-					textSalario.setBorder(new RoundedBorder(Color.RED, 10));
-				} else {
-					int linha = table.getSelectedRow();
-					funcA = Lista.get(linha);
-					funcA.setCPF(textCPF.getText());
-					funcA.setFuncao(textFuncao.getText());
-					funcA.setNivelDeAcesso(Integer.valueOf(textNivel.getText()));
-					funcA.setNome(textNome.getText());
-					funcA.setSobrenome(textSobrenome.getText());
-					funcA.setSalario(Float.valueOf(textSalario.getText()));
-
-					ConfirmacaoADM telinha = new ConfirmacaoADM(Func, funcA, telaPrincipal, 2);
-					telinha.setVisible(true);
-					telinha.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//						Boolean foi=DAO.AtualizarFuncionarios(func);
-//						
-//						if(foi==true) {
-//							JOptionPane.showMessageDialog(null,"Atualizado com sucesso!");
-//						}
-
-					atualizarJTable();
-				}
-
-			}
-		});
-		btnAtualizarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
-		btnAtualizarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnAtualizarSelecionado, "cell 2 10,alignx center");
-		btnDeletarSelecionado.setBorder(new RoundedBorder(Color.black, 10));
-		btnDeletarSelecionado.setBackground(new Color(117, 187, 68));
-		Principal.add(btnDeletarSelecionado, "cell 3 10 3 1,alignx left");
-		
-		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton("Atualizar Selecionado");
-		dfltcnbtnLimparCampos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				txtEmail.setText(null);
-				txtLogin.setText(null);
-				txtPronome.setText(null);
-				txtSenha.setText(null);
-				txtSetor.setText(null);
-				txtTelefone.setText(null);
-				textCPF.setText(null);
-				textFuncao.setText(null);
-				textNivel.setText(null);
-				textNome.setText(null);
-				textSalario.setText(null);
-				textSobrenome.setText(null);
-			}
-		});
-		dfltcnbtnLimparCampos.setText("Limpar campos");
-		dfltcnbtnLimparCampos.setBorder(new RoundedBorder(Color.black, 10));
-		dfltcnbtnLimparCampos.setBackground(new Color(117, 187, 68));
-		Principal.add(dfltcnbtnLimparCampos, "cell 2 11,alignx center");
-
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent event) {
-				if (!event.getValueIsAdjusting()) {
-					int i = table.getSelectedRow();
-					if (i != -1) { // Verifica se alguma linha foi selecionada
-						// Recupera os dados da linha selecionada
-						String nome = Lista.get(i).getNome();
-						String sobrenome = Lista.get(i).getSobrenome();
-						String funcao = Lista.get(i).getFuncao();
-						String cpf = Lista.get(i).getCPF();
-						String salario = String.valueOf(Lista.get(i).getSalario());
-						String nivel = String.valueOf(Lista.get(i).getNivelDeAcesso());
-						String email = Lista.get(i).getEmailFunc();
-						String pronome = Lista.get(i).getPronomeFunc();
-						String telefone = Lista.get(i).getTelefone();
-						String setor = Lista.get(i).getSetor();
-						String login = Lista.get(i).getUsuario().getLogin();
-						String senha = Lista.get(i).getUsuario().getSenha();
-
-						// Preenche os textfields com os dados recuperados
-						textNome.setText(nome);
-						textSobrenome.setText(sobrenome);
-						textFuncao.setText(funcao);
-						textCPF.setText(cpf);
-						textSalario.setText(salario);
-						textNivel.setText(nivel);
-						txtEmail.setText(email);
-						txtPronome.setText(pronome);
-						txtTelefone.setText(telefone);
-						txtSetor.setText(setor);
-						txtLogin.setText(login);
-						txtSenha.setText(senha);
-					}
-				}
-			}
-		});
-
-		atualizarJTable();
-	}
-
-	protected void atualizarJTable() {
-		TableActionEvent event = new TableActionEvent() {
-
-			@Override
-			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
-			}
-
-			@Override
-			public void onDelete(int row) {
-				int linhaSelecionada = table.getSelectedRow();
 
 			}
 
@@ -547,7 +185,7 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 		table.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(5).setPreferredWidth(135);
+		table.getColumnModel().getColumn(5).setPreferredWidth(155);
 
 	}
 
@@ -564,8 +202,8 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -726,13 +364,13 @@ public class AdminFuncionarios extends JFrame implements Atualizavel {
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 

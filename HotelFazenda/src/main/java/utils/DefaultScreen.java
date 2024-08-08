@@ -20,13 +20,13 @@ import javax.swing.border.EmptyBorder;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import net.miginfocom.swing.MigLayout;
-import visao.AdminFuncionarios;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
 import visao.Quartos2;
 import visao.TelaDeHospedes;
 import visao.Atividade.TelaAtividades;
+import visao.Funcionario.AdminFuncionarios;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 

@@ -52,6 +52,7 @@ import utils.DefaultIconButton;
 import utils.DefaultModal;
 import utils.DefaultScreen;
 import visao.Atividade.TelaAtividades;
+import visao.Funcionario.AdminFuncionarios;
 import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
