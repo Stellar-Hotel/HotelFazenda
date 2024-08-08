@@ -53,6 +53,7 @@ import utils.DefaultModal;
 import utils.DefaultScreen;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
+import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
@@ -225,15 +226,15 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "Erro adicione textos para cadastrar um hospede");
-
+					 TelaErro telaErro = new TelaErro("Campos vazios");
+					 telaErro.setVisible(true);
 					// TelaErro telaErro = new TelaErro();
 					// telaErro.setVisible(true);
 				} else {
-					String Nome = textNome.getText();
-					String Sobrenome = textSobrenome.getText();
+					String Nome = textNome.getText().trim();
+					String Sobrenome = textSobrenome.getText().trim();
 					String Documento = textCPF.getText();
-					String Nacionalidade = textNacionalidade.getText();
+					String Nacionalidade = textNacionalidade.getText().trim();
 					String Pronome = textPronome.getText();
 					String Email = textEmail.getText();
 
@@ -244,8 +245,9 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						JOptionPane.showMessageDialog(null, "Data invalida.");
-						return;
+						 TelaErro telaErro = new TelaErro("Data invalida");
+						 telaErro.setVisible(true);
+						 return;
 					}
 
 					Hospedes hospede = new Hospedes();
@@ -272,31 +274,6 @@ public class TelaDeHospedes extends JFrame {
 
 		panel_5.add(btnCadastrar, "cell 1 10,alignx center");
 
-		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
-		btnExcluir.setBackground(new Color(117, 187, 68));
-		btnExcluir.setBorder(new RoundedBorder(Color.BLACK, 8));
-
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				// excluir
-				HospedeDAO DAO = HospedeDAO.getInstancia();
-				Hospedes hosp = new Hospedes();
-
-				int linha = table.getSelectedRow();
-				if (linha >= 0) {
-					hosp = listahospedes.get(linha);
-					DAO.removerHospede(hosp);
-					atualizarJTable();
-					TelaSucesso c = new TelaSucesso("Excluído com sucesso!");
-					c.setVisible(true);
-				} else if (linha <= 0) {
-					JOptionPane.showMessageDialog(null, "selecione uma linha para excluir");
-				}
-
-			}
-		});
-
 		DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
 		btnAtualizar.setBackground(new Color(117, 187, 68));
 		btnAtualizar.setBorder(new RoundedBorder(Color.BLACK, 8));
@@ -306,12 +283,13 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					JOptionPane.showMessageDialog(null, "insira algo");
+					 TelaErro telaErro = new TelaErro("Campos vazios");
+					 telaErro.setVisible(true);
 				} else {
-					String Nome = textNome.getText();
-					String Sobrenome = textSobrenome.getText();
+					String Nome = textNome.getText().trim();
+					String Sobrenome = textSobrenome.getText().trim();
 					String Documento = textCPF.getText();
-					String Nacionalidade = textNacionalidade.getText();
+					String Nacionalidade = textNacionalidade.getText().trim();
 					String Pronome = textPronome.getText();
 					String Email = textEmail.getText();
 
@@ -322,7 +300,8 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						JOptionPane.showMessageDialog(null, "Data invalida.");
+						 TelaErro telaErro = new TelaErro("Data invalida");
+						 telaErro.setVisible(true);
 						return;
 					}
 					int linha = table.getSelectedRow();
@@ -359,25 +338,25 @@ public class TelaDeHospedes extends JFrame {
 		});
 
 		panel_5.add(btnAtualizar, "cell 4 10 2 1,alignx center");
-		btnExcluir.setToolTipText("");
-		panel_5.add(btnExcluir, "cell 8 10,alignx center");
 		
 		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textNome.setText("");
-				textSobrenome.setText(null);
+				textNome.setText(" ");
+				textSobrenome.setText(" ");
 				textCPF.setText(null);
-				textNacionalidade.setText(null);
+				textNacionalidade.setText(" ");
 				textNascimento.setText(null);
 				textEmail.setText(null);
 				textPronome.setText(null);
+
+
 			}
 		});
 		dfltcnbtnLimpar_1.setText("Limpar");
 		dfltcnbtnLimpar_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		dfltcnbtnLimpar_1.setBackground(new Color(117, 187, 68));
-		panel_5.add(dfltcnbtnLimpar_1, "cell 4 11 2 1,alignx center");
+		panel_5.add(dfltcnbtnLimpar_1, "cell 7 10 2 1,alignx center");
 		
 		
 
@@ -725,22 +704,15 @@ public class TelaDeHospedes extends JFrame {
 				textNacionalidade.setText(null);
 				textNascimento.setText(null);
 				textNome.setText(null);
+				textNome.setText("");
+
+				textNome.setText(" ");
+
 				textPronome.setText(null);
 				textSobrenome.setText(null);
 			}
 		});
-		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textCPF.setText(null);
-				textEmail.setText(null);
-				textNacionalidade.setText(null);
-				textNascimento.setText(null);
-				textNome.setText(null);
-				textPronome.setText(null);
-				textSobrenome.setText(null);
-			}
-		});
+
 
 		
 	}
@@ -751,7 +723,27 @@ public class TelaDeHospedes extends JFrame {
 
 			@Override
 			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
+				Hospedes hospede = listahospedes.get(row);
+
+				textNome.setText(hospede.getNome());
+				textSobrenome.setText(hospede.getSobrenome());
+				textPronome.setText(hospede.getPronome());
+				textNacionalidade.setText(hospede.getNacionalidade());
+				textCPF.setText(hospede.getDocumento());
+				textEmail.setText(hospede.getEmail());
+
+		        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		        dateFormat.setLenient(false);
+
+		        
+		        Date nascimento = hospede.getDataNasc();
+		        
+		        
+	        
+		        String nascimentoStr = dateFormat.format(nascimento);
+				textNascimento.setText(nascimentoStr);
+
+
 			}
 
 			@Override
@@ -763,6 +755,9 @@ public class TelaDeHospedes extends JFrame {
 				// Excluir o hospede do banco de dados
 				HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
 				hospedeDAO.removerHospede(hospede);
+				
+				TelaSucesso c = new TelaSucesso("Excluído com sucesso!");
+				c.setVisible(true);
 
 				// Atualizar a tabela
 				atualizarJTable();
@@ -809,7 +804,7 @@ public class TelaDeHospedes extends JFrame {
 				throws BadLocationException { // insertString: Este método é chamado quando uma inserção de texto é
 												// feita em um documento de texto.
 
-			if (string != null && string.matches("[a-zA-Z]+")) {
+			if (string.matches("[a-zA-Z]*")) {
 				super.insertString(fb, offset, string, attr);
 			}
 		}
@@ -818,7 +813,7 @@ public class TelaDeHospedes extends JFrame {
 		public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
 				throws BadLocationException { // Este método é chamado quando uma substituição de texto é feita em um
 												// documento de texto.
-			if (text != null && text.matches("[a-zA-Z]+")) {
+			if (text != null && text.matches("[a-zA-Z ]+")) {
 				super.replace(fb, offset, length, text, attrs);
 			}
 		}
