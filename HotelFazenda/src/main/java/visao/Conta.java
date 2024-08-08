@@ -61,6 +61,7 @@ public class Conta extends JFrame {
  
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 	public Conta() {
+		setTitle("Configurações de Conta");
 
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 		screen();

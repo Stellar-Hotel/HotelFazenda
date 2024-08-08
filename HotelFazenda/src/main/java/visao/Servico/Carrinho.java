@@ -53,7 +53,7 @@ public class Carrinho extends JFrame {
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
 	JLabel lblNewLabel_3;
-
+  
 	public Carrinho() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 

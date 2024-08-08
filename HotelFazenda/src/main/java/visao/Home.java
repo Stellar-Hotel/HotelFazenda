@@ -127,7 +127,7 @@ public class Home extends JFrame {
 	}
 
 	public Home() {
-		setTitle("Tela Home");
+		setTitle("Tela Inicial");
 
 		screen();
 		loadAtividades();

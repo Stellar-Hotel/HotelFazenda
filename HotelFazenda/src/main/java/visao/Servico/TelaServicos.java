@@ -60,6 +60,7 @@ public class TelaServicos extends JFrame {
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 	 
 	public TelaServicos() {
+		setTitle("Tela de Serviços");
 		 screen();
 
 		ServicosDAO dao = ServicosDAO.getInstancia();

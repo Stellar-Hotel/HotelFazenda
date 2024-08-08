@@ -79,6 +79,7 @@ public class TelaDeHospedes extends JFrame {
 	private ArrayList<Hospedes> listahospedes = new ArrayList<Hospedes>();
 
 	public TelaDeHospedes() {
+		setTitle("Tela de Hospedes");
 		screen();
 
 		MaskFormatter Data = null;
@@ -316,23 +317,13 @@ public class TelaDeHospedes extends JFrame {
 					hospede.setDocumento(Documento);
 					hospede.setIdHospede(listahospedes.get(linha).getIdHospede());
 					HospedeDAO DAO = HospedeDAO.getInstancia();
-
-					if (linha < 0) {
-						JOptionPane.showMessageDialog(null, "Selecione uma linha");
-					} else if (linha >= 0) {
-						DefaultTableModel Model = (DefaultTableModel) table.getModel();
-						Model.setValueAt(Nome, linha, 0);
-						Model.setValueAt(Sobrenome, linha, 1);
-						Model.setValueAt(Nascimento, linha, 2);
-						Model.setValueAt(Documento, linha, 3);
-						Model.setValueAt(Nacionalidade, linha, 4);
-						Model.setValueAt(Pronome, linha, 5);
-						Model.setValueAt(Email, linha, 6);
-						DAO.atualizarHospede(hospede);
-						TelaSucesso c = new TelaSucesso("Atualizado com sucesso!");
-						c.setVisible(true);
-
-					}
+					DAO.atualizarHospede(hospede);
+					
+					TelaSucesso c = new TelaSucesso("Sucesso");
+					c.setVisible(true);
+					atualizarJTable();
+					
+					
 				}
 			}
 		});
@@ -731,15 +722,9 @@ public class TelaDeHospedes extends JFrame {
 				textNacionalidade.setText(hospede.getNacionalidade());
 				textCPF.setText(hospede.getDocumento());
 				textEmail.setText(hospede.getEmail());
-
 		        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		        dateFormat.setLenient(false);
-
-		        
-		        Date nascimento = hospede.getDataNasc();
-		        
-		        
-	        
+		        dateFormat.setLenient(false);		        
+		        Date nascimento = hospede.getDataNasc();		        
 		        String nascimentoStr = dateFormat.format(nascimento);
 				textNascimento.setText(nascimentoStr);
 
