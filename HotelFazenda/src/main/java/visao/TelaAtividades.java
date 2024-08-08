@@ -157,8 +157,7 @@ public class TelaAtividades extends JFrame {
 
 		JPanel panel_7 = new JPanel();
 		Principal.add(panel_7, "cell 0 15 5 1,grow");
-		panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:70][][:50:50][:90:90][]",
-				"[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
+		panel_7.setLayout(new MigLayout("", "[:110:110][:93.00:93.00][][:50:50][:90:90][]", "[14px,grow][20px,grow][20px,grow][][20px,grow][][][grow][][grow][grow][grow]"));
 
 		JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -382,10 +381,6 @@ public class TelaAtividades extends JFrame {
 		separator_2.setForeground(Color.LIGHT_GRAY);
 		separator_2.setBackground(Color.LIGHT_GRAY);
 		panel_7.add(separator_2, "cell 0 8 6 1,growx");
-
-		JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
-		lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		panel_7.add(lblNewLabel_10_1_1, "cell 2 9 2 1");
 		// ((AbstractDocument) textHorario.getDocument()).setDocumentFilter(new
 		// LetterDocumentFilter());
 
@@ -399,6 +394,10 @@ public class TelaAtividades extends JFrame {
 
 			}
 		});
+		
+				JLabel lblNewLabel_10_1_1 = new JLabel("Cadastrar Hospede");
+				lblNewLabel_10_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+				panel_7.add(lblNewLabel_10_1_1, "cell 2 9");
 
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(117, 187, 68));

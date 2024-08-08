@@ -26,10 +26,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import controle.Combobox.RoundedComboBox; 
-import controle.CustomArrowButton;
 
-import controle.Arredondar.RoundedBorder;
+import controle.Combobox.RoundedComboBoxUI;
+//import controle.Combobox.CustomArrowButton;
+
 import controle.AtividadesHospedes.AtividadesHospedesDAO;
 import controle.Hospede.HospedeDAO;
 import modelo.Atividades;
@@ -93,7 +93,9 @@ public class TelaAtividadesHospedes extends JFrame {
 			comboBoxModel.addElement(atividade);
 		}
 
-        comboBox = new RoundedComboBox<>(comboBoxModel); // Usar RoundedComboBox com generics
+		comboBox = new JComboBox<>(comboBoxModel);
+		comboBox.setUI(new RoundedComboBoxUI(comboBox)); // Use RoundedComboBoxUI com a instância de JComboBox
+
 		comboBox.setBounds(250, 22, 300, 22); // Ajuste o tamanho conforme necessário
 		panel.add(comboBox);
 

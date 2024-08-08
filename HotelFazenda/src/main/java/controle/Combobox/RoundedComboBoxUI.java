@@ -17,10 +17,7 @@ public class RoundedComboBoxUI extends BasicComboBoxUI {
         c.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
     }
 
-    @Override
-    protected JButton createArrowButton() {
-        return new CustomArrowButton(); // Use o botão personalizado
-    }
+   
 
     @Override
     public void paint(Graphics g, JComponent c) {
@@ -32,7 +29,7 @@ public class RoundedComboBoxUI extends BasicComboBoxUI {
         g2.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), 15, 15);
 
         // Desenhar a borda arredondada
-        g2.setColor(Color.GRAY.darker()); // Cor da borda
+        g2.setColor(Color.GRAY); // Cor da borda
         g2.setStroke(new BasicStroke(1));
         g2.drawRoundRect(0, 0, comboBox.getWidth() - 1, comboBox.getHeight() - 1, 15, 15);
 

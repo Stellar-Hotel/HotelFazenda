@@ -10,7 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter; 
  
 import controle.Arredondar.RoundedBorder; 
-import controle.Atividades.AtividadesDAO; 
+import controle.Atividades.AtividadesDAO;
+import controle.Combobox.RoundedComboBoxUI;
 import controle.Hospedagens.HospedagensDAO; 
 import controle.Hospede.HospedeDAO; 
 import controle.Quartos.QuartosDAO; 
@@ -207,6 +208,8 @@ public class TelaDeQuartos extends JFrame {
  
 		} 
 		JComboBox comboBox = new JComboBox<>(model); 
+		comboBox.setUI(new RoundedComboBoxUI(comboBox));
+
  
 		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 14)); 
 		panel_6.add(comboBox, "cell 1 5 2 1,growx"); 

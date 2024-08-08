@@ -34,6 +34,7 @@ import javax.swing.border.EmptyBorder;
 
 import controle.ValidarDia;
 import controle.Atividades.AtividadesDAO;
+import controle.Combobox.RoundedComboBoxUI;
 import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
@@ -138,6 +139,7 @@ screen();
     
 	
 		JComboBox comboBoxDias = new JComboBox();
+		comboBoxDias.setUI(new RoundedComboBoxUI(comboBoxDias));
 		Principal.add(comboBoxDias, "cell 11 3");
 		
 
