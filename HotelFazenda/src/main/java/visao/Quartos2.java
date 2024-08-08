@@ -49,6 +49,8 @@ import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Quartos2 extends JFrame {
 
@@ -320,6 +322,10 @@ public class Quartos2 extends JFrame {
 		});
 		
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+		dfltcnbtnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -347,6 +353,10 @@ public class Quartos2 extends JFrame {
 		panel_6.add(btnSalvar, "cell 0 12,grow");
 
 		DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAtualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
