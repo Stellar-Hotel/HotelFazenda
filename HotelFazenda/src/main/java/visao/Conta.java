@@ -89,9 +89,7 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("",
-				"[40:40:40][:70:70,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][80:80:80][353.00:353.00:353.00,grow][40px,grow]",
-				"[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][40px][40:40:40][grow][40px]"));
+		Principal.setLayout(new MigLayout("", "[40:40:40][:70:70,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][80:80:80][353.00:353.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][40px][40:40:40][grow][40px]"));
 
 		ImageIcon IC = new ImageIcon(
 				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
@@ -107,6 +105,11 @@ public class Conta extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Principal.add(lblNewLabel_7, "cell 1 2,alignx center,aligny center");
+		
+		JLabel lblNewLabel_19 = new JLabel("");
+		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_19.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_19, "cell 3 2 5 1,growx");
 
 		textUser = new JTextField();
 		textUser.addKeyListener(new KeyAdapter() {
@@ -142,13 +145,47 @@ public class Conta extends JFrame {
 		});
 		textUser.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textUser.setBorder(new RoundedBorder(Color.black, 10));
-		Principal.add(textUser, "cell 2 2 6 1,growx,aligny center");
+		Principal.add(textUser, "cell 2 2 6 1,grow");
 		textUser.setColumns(10);
 		textUser.setText(Func.getUsuario().getLogin());
 
 		JLabel lblNewLabel_9 = new JLabel("Email:");
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		Principal.add(lblNewLabel_9, "cell 1 4,alignx center");
+		
+				JLabel lblTelefone = new JLabel("Telefone:");
+				lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+				Principal.add(lblTelefone, "cell 3 6,alignx center");
+		
+				JLabel lblNewLabel_22 = new JLabel("");
+				lblNewLabel_22.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+				lblNewLabel_22.setForeground(new Color(255, 38, 38));
+				Principal.add(lblNewLabel_22, "cell 4 6 4 1,growx");
+				
+		textTel = new JFormattedTextField(mNum);
+		textTel.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textTel.getText().equals(Func.getTelefone())) {
+					textTel.setBorder(bordaPreta);
+					lblNewLabel_22.setText("");
+				} else {
+					textTel.setBorder(bordaVermelha);
+					lblNewLabel_22.setText("Este Dado será alterado!");
+				}
+			}
+		});
+		textTel.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+		textTel.setBorder(new RoundedBorder(Color.black, 10));
+		textTel.setText(Func.getTelefone());
+		Principal.add(textTel, "cell 4 6 4 1,growx");
+		textTel.setColumns(10);
+		
+		JLabel lblNewLabel_20 = new JLabel("");
+		lblNewLabel_20.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_20.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_20, "cell 2 7,growx");
+		
 		textEm = new JTextField();
 		textEm.addFocusListener(new FocusAdapter() {
 			@Override
@@ -260,31 +297,25 @@ public class Conta extends JFrame {
 		lblNewLabel_21.setForeground(new Color(255, 38, 38));
 		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		Principal.add(lblNewLabel_21, "flowx,cell 2 6,alignx right,aligny center");
-
-		textTel = new JFormattedTextField(mNum);
-		textTel.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (textTel.getText().equals(Func.getTelefone())) {
-					textTel.setBorder(bordaPreta);
-					lblNewLabel_22.setText("");
-				} else {
-					textTel.setBorder(bordaVermelha);
-					lblNewLabel_22.setText("Este Dado será alterado!");
-				}
-			}
-		});
-		textTel.setFont(new Font("Times New Roman", Font.PLAIN, 10));
-		textTel.setBorder(new RoundedBorder(Color.black, 10));
-		textTel.setText(Func.getTelefone());
-		Principal.add(textTel, "cell 4 6 4 1,growx");
-		textTel.setColumns(10);
-
+		
+		
+		JLabel lblNewLabel_22 = new JLabel("");
+		lblNewLabel_22.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_22.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_22, "cell 4 7,growx,alignx center");
+		
+		
+		
 		JLabel lblNewLabel_11 = new JLabel("Senha:");
 		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
 		Principal.add(lblNewLabel_11, "cell 1 8,alignx center,aligny center");
-
+		
+		JLabel lblNewLabel_23 = new JLabel("");
+		lblNewLabel_23.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_23.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_23, "cell 2 8 5 1,alignx right");
+		
 		passwordField = new JPasswordField();
 		passwordField.addFocusListener(new FocusAdapter() {
 			@Override
@@ -304,10 +335,7 @@ public class Conta extends JFrame {
 		passwordField.setEchoChar('*');
 		passwordField.setText(Func.getUsuario().getSenha());
 
-		JLabel lblNewLabel_23 = new JLabel("");
-		lblNewLabel_23.setFont(new Font("Times New Roman", Font.PLAIN, 11));
-		lblNewLabel_23.setForeground(new Color(255, 38, 38));
-		Principal.add(lblNewLabel_23, "cell 2 8 5 1,alignx right");
+		
 
 		ImageIcon Ver = new ImageIcon(Conta.class.getResource("/visao/Ver.png"));
 		ImageIcon NaoVer = new ImageIcon(Conta.class.getResource("/visao/NaoVer.png"));
@@ -330,10 +358,6 @@ public class Conta extends JFrame {
 
 		Conta Tela = this;
 		contentPane.add(Principal, "cell 1 1,grow");
-
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		Principal.add(lblTelefone, "cell 3 6,alignx center");
 
 		DefaultIconButton btnSalvar = new DefaultIconButton("Cancelar");
 		btnSalvar.setText("Alterar dados");
