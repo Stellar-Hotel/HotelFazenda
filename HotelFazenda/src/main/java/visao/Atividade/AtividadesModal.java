@@ -289,6 +289,7 @@ public class AtividadesModal extends JFrame {
 		}
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton(
 				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
+		dfltcnbtnLimpar.setIcon(new ImageIcon(AtividadesModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 		dfltcnbtnLimpar.setBounds(392, 61, 47, 40);
 		dfltcnbtnLimpar.setBackgroundColor(Color.cyan.darker());
 		dfltcnbtnLimpar.setHoverColor(Color.cyan);

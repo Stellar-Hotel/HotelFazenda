@@ -207,6 +207,26 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		panel_6.add(lblNewLabel_7, "cell 0 0,aligny top");
+		
+				DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+				panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx center");
+				dfltcnbtnLimpar.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+				dfltcnbtnLimpar.setBackgroundColor(new Color(0, 178, 178));
+				dfltcnbtnLimpar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						textChecki.setText(null);
+						textChecko.setText(null);
+						textCPF.setText(null);
+					}
+				});
+				dfltcnbtnLimpar.setText("");
+				dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
+				dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
 
 		JPanel panel_12 = new JPanel();
 		panel_6.add(panel_12, "cell 0 1 2 1,grow");
@@ -425,24 +445,6 @@ public class TelaDeQuartos extends JFrame {
 							}
 
 						});
-						
-								DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
-								dfltcnbtnLimpar.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-									}
-								});
-								panel_5.add(dfltcnbtnLimpar, "cell 2 2,growx,aligny center");
-								dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent e) {
-										textChecki.setText(null);
-										textChecko.setText(null);
-										textCPF.setText(null);
-									}
-								});
-								dfltcnbtnLimpar.setText("Limpar");
-								dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
-								dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
 
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));

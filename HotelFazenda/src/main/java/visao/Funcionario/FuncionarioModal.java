@@ -450,6 +450,7 @@ public class FuncionarioModal extends JFrame {
 
 		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton(
 				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
+		dfltcnbtnLimparCampos.setIcon(new ImageIcon(FuncionarioModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 
 		dfltcnbtnLimparCampos.setBackgroundColor(Color.cyan.darker());
 		dfltcnbtnLimparCampos.setHoverColor(Color.cyan);
