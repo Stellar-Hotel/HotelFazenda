@@ -40,6 +40,7 @@ import visao.ModaisDeAvisos.TelaSucesso;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
 
 public class HospedeModal extends JFrame {
 
@@ -198,7 +199,10 @@ public class HospedeModal extends JFrame {
 		textEmail.setColumns(10);
 
 		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar_1.setBounds(443, 32, 73, 40);
+		dfltcnbtnLimpar_1.setIcon(new ImageIcon(HospedeModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+		dfltcnbtnLimpar_1.setBackgroundColor(new Color(0, 255, 255));
+		dfltcnbtnLimpar_1.setHoverColor(Color.cyan);
+		dfltcnbtnLimpar_1.setBounds(461, 32, 55, 40);
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textNome.setText(" ");
@@ -344,9 +348,9 @@ public class HospedeModal extends JFrame {
 			});
 		}
 
-		dfltcnbtnLimpar_1.setText("Limpar");
+		dfltcnbtnLimpar_1.setText("");
 		dfltcnbtnLimpar_1.setBorder(new RoundedBorder(Color.BLACK, 8));
-		dfltcnbtnLimpar_1.setBackground(new Color(117, 187, 68));
+		dfltcnbtnLimpar_1.setBackground(new Color(0, 255, 255));
 		panel_5.setLayout(null);
 		panel_5.add(lblNewLabel_7);
 		panel_5.add(dfltcnbtnLimpar_1);
