@@ -452,7 +452,7 @@ public class FuncionarioModal extends JFrame {
 				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
 		dfltcnbtnLimparCampos.setIcon(new ImageIcon(FuncionarioModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 
-		dfltcnbtnLimparCampos.setBackgroundColor(Color.cyan.darker());
+		dfltcnbtnLimparCampos.setBackgroundColor(new Color(0, 255, 255));
 		dfltcnbtnLimparCampos.setHoverColor(Color.cyan);
 		dfltcnbtnLimparCampos.setBounds(548, 11, 42, 33);
 		dfltcnbtnLimparCampos.addMouseListener(new MouseAdapter() {

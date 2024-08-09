@@ -200,7 +200,7 @@ public class HospedeModal extends JFrame {
 
 		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
 		dfltcnbtnLimpar_1.setIcon(new ImageIcon(HospedeModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-		dfltcnbtnLimpar_1.setBackgroundColor(Color.cyan.darker());
+		dfltcnbtnLimpar_1.setBackgroundColor(new Color(0, 255, 255));
 		dfltcnbtnLimpar_1.setHoverColor(Color.cyan);
 		dfltcnbtnLimpar_1.setBounds(461, 32, 55, 40);
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {

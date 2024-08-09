@@ -374,7 +374,7 @@ public class Quartos2 extends JFrame {
 		});
 
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 178, 178));
+		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
 		dfltcnbtnLimpar.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -398,8 +398,8 @@ public class Quartos2 extends JFrame {
 		});
 		dfltcnbtnLimpar.setText("");
 		dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.black, 10));
-		dfltcnbtnLimpar.setBackground(Color.cyan.darker());
-		dfltcnbtnLimpar.setHoverColor(Color.cyan.darker());
+		dfltcnbtnLimpar.setBackground(new Color(0, 255, 255));
+		dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
 		panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx right");
 		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
 		btnSalvar.setBackground(new Color(117, 187, 68));
