@@ -1,7 +1,6 @@
 package visao.Funcionario;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,12 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
- 
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
@@ -35,11 +31,8 @@ import utils.DefaultIconButton;
 import visao.ConfirmacaoADM;
 import visao.Conta;
 import visao.Home;
-import visao.Atividade.TelaAtividades;
+import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
-
-import java.awt.GridLayout;
-import javax.swing.JButton;
 
 public class FuncionarioModal extends JFrame {
 
@@ -307,7 +300,10 @@ public class FuncionarioModal extends JFrame {
 							|| (txtEmail.getText().isEmpty()) || (txtLogin.getText().isEmpty())
 							|| (txtPronome.getText().isEmpty()) || (txtSenha.getText().isEmpty())
 							|| (txtSetor.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
-						JOptionPane.showMessageDialog(null, "Algo está vazio");
+						
+						TelaErro telaErro = new TelaErro("Campos vazios");
+						 telaErro.setVisible(true);
+																		
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
 
 						textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
@@ -410,7 +406,9 @@ public class FuncionarioModal extends JFrame {
 					if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty())
 							|| (textNivel.getText().isEmpty()) || (textNome.getText().isEmpty())
 							|| (textSobrenome.getText().isEmpty()) || (textSalario.getText().isEmpty())) {
-						JOptionPane.showMessageDialog(null, "Algo está vazio");
+						TelaErro telaErro = new TelaErro("Campos vazios");
+						 telaErro.setVisible(true);
+						
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
 
 						textFuncao.setBorder(new RoundedBorder(Color.RED, 10));

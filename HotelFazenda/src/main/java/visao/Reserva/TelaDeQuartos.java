@@ -1,80 +1,13 @@
 package visao.Reserva;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
-
-import controle.Arredondar.RoundedBorder;
-import controle.Atividades.AtividadesDAO;
-import controle.Combobox.RoundedComboBoxUI;
-import controle.Hospedagens.HospedagensDAO;
-import controle.Hospede.HospedeDAO;
-import controle.Quartos.QuartosDAO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
-
-import controle.Arredondar.RoundedBorder;
-import controle.Atividades.AtividadesDAO;
-import controle.Hospedagens.HospedagensDAO;
-import controle.Hospede.HospedeDAO;
-import controle.Quartos.QuartosDAO;
-import modelo.Atividades;
-import modelo.CurrentFunc;
-import modelo.Funcionarios;
-import modelo.Hospedagens;
-import modelo.Hospedes;
-import modelo.Quartos;
-import modelo.Servicos;
-import net.miginfocom.swing.MigLayout;
-import raven.cell.CustomTable;
-import raven.cell.TableActionCellEditor;
-import raven.cell.TableActionCellRender;
-import raven.cell.TableActionEvent;
-import utils.DefaultIconButton;
-import utils.DefaultModal;
-import utils.DefaultScreen;
-import visao.Conta;
-import visao.Home;
-import visao.Login;
-import visao.Quartos2;
-import visao.TelaDeHospedes;
-import visao.Atividade.TelaAtividades;
-import visao.Funcionario.AdminFuncionarios;
-import visao.ModaisDeAvisos.TelaErro;
-import visao.ModaisDeAvisos.TelaSucesso;
-import visao.Servico.TelaServicos;
-
-import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Desktop;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -85,11 +18,51 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
+import controle.Arredondar.RoundedBorder;
+import controle.Combobox.RoundedComboBoxUI;
+import controle.Hospedagens.HospedagensDAO;
+import controle.Hospede.HospedeDAO;
+import controle.Quartos.QuartosDAO;
+import modelo.CurrentFunc;
+import modelo.Funcionarios;
+import modelo.Hospedagens;
+import modelo.Hospedes;
+import modelo.Quartos;
+import net.miginfocom.swing.MigLayout;
+import raven.cell.CustomTable;
+import raven.cell.TableActionCellEditor;
+import raven.cell.TableActionCellRender;
+import raven.cell.TableActionEvent;
+import utils.DefaultIconButton;
+import utils.DefaultModal;
+import visao.Conta;
+import visao.Home;
+import visao.Login;
+import visao.Quartos2;
+import visao.TelaDeHospedes;
+import visao.Atividade.TelaAtividades;
+import visao.Funcionario.AdminFuncionarios;
+import visao.ModaisDeAvisos.TelaErro;
+import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Servico.TelaServicos;
 
 public class TelaDeQuartos extends JFrame {
 
@@ -402,13 +375,15 @@ public class TelaDeQuartos extends JFrame {
 				Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
 
 				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
-
-					JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente");
+					
+					TelaErro telaErro = new TelaErro("Campos vazios");
+					 telaErro.setVisible(true);
 					return;
 				}
 
 				if (hospede == null) {
-					JOptionPane.showMessageDialog(null, "Hóspede não encontrado.");
+					TelaErro telaErro = new TelaErro("Hospede não encontrado");
+					 telaErro.setVisible(true);
 					return;
 				}
 

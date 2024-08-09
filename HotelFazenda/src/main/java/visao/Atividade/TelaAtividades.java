@@ -78,7 +78,7 @@ public class TelaAtividades extends JFrame {
 	private ArrayList<Atividades> ListaAtividades;
 	private ArrayList<Atividades> ListaAtividadesinscritas;
 	private JTextField textIdade;
-	private JTextField textHorario;
+	private JTextField textHorario;  
 	private JTextField textNomeatividade;
 	private JTextField TextHorarioFim;
 	private JTextField textData;
@@ -88,6 +88,7 @@ public class TelaAtividades extends JFrame {
 	 
 	 
 	public TelaAtividades() {
+		setTitle("Tela de Atividades");
 		ADao.AtualizarAtividades();
 		screen();
 

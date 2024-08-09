@@ -43,6 +43,9 @@ import raven.cell.TableActionCellEditor;
 import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
+import visao.ModaisDeAvisos.TelaErro;
+import visao.ModaisDeAvisos.TelaSucesso;
+
 import java.awt.Color;
 
 public class TelaAtividadesHospedes extends JFrame {
@@ -140,14 +143,16 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				Hospedes hospede = daoHospede.buscarHospedePorCPF(documento);
 				if (hospede == null) {
-					JOptionPane.showMessageDialog(null, "CPF não encontrado.");
+					TelaErro telaErro = new TelaErro("CPF não encontrado");
+					telaErro.setVisible(true);
 					return;
 
 				}
 
 				Atividades ativ = (Atividades) comboBox.getSelectedItem();
 				if (ativ == null) {
-					JOptionPane.showMessageDialog(null, "Nenhuma atividade selecionada.");
+					TelaErro telaErro = new TelaErro("Nenhuma atividade selecionada");
+					 telaErro.setVisible(true);
 					return;
 				}
 
@@ -155,7 +160,8 @@ public class TelaAtividadesHospedes extends JFrame {
 				int countHospedes = daoAtividadesHospedes.contarHospedesNaAtividade(ativ.getIdAtividade());
 
 				if (countHospedes >= capacidade) {
-					JOptionPane.showMessageDialog(null, "Capacidade máxima atingida para esta atividade.");
+					TelaErro telaErro = new TelaErro("Capacidade maxima atingida");
+					 telaErro.setVisible(true);
 					return;
 				}
 
@@ -164,23 +170,31 @@ public class TelaAtividadesHospedes extends JFrame {
 				System.out.println("Idade do hóspede: " + idade);
 
 				if (idade < ativ.getIdadeMinima()) {
-					JOptionPane.showMessageDialog(null, "Idade do hóspede menor que a idade mínima necessária.");
+					TelaErro telaErro = new TelaErro("Idade do hóspede menor que a idade mínima necessária");
+					 telaErro.setVisible(true);
 					return;
-					
+
 				}
 
 				if (daoAtividadesHospedes.isHospedeRegisteredForActivity(hospede.getDocumento(),
 						ativ.getIdAtividade())) {
-					JOptionPane.showMessageDialog(null, "CPF já está vinculado a esta atividade.");
+					TelaErro telaErro = new TelaErro("CPF ja esta vinculado nesta atividade");
+					 telaErro.setVisible(true);
 					return;
 
 				}
+				else {
+	
+					// Adicionar atividade para o hóspede
+					atividadesHospedes.setHospede(hospede);
+					atividadesHospedes.setAtividade(ativ);
+					daoAtividadesHospedes.InserirAtividadesHospedes(atividadesHospedes);
+					TelaSucesso c = new TelaSucesso("Hospede inserido na atividade");
+					c.setVisible(true);
+					atualizarJTable();
+				}
 
-				// Adicionar atividade para o hóspede
-				atividadesHospedes.setHospede(hospede);
-				atividadesHospedes.setAtividade(ativ);
-				daoAtividadesHospedes.InserirAtividadesHospedes(atividadesHospedes);
-				atualizarJTable();
+				
 
 			}
 
@@ -193,16 +207,14 @@ public class TelaAtividadesHospedes extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		 
-
 		DefaultIconButton btnSair = new DefaultIconButton("Voltar");
 		btnSair.setBackgroundColor(Color.RED);
-		btnSair.setHoverColor( Color.RED.darker());
+		btnSair.setHoverColor(Color.RED.darker());
 		btnSair.setFont(new Font("Segoe UI", Font.BOLD, 15));
-	 
+
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 
+
 				dispose();
 			}
 		});
@@ -224,14 +236,12 @@ public class TelaAtividadesHospedes extends JFrame {
 			@Override
 			public void onDelete(int row) {
 				AtividadesHospedesDAO DAO = AtividadesHospedesDAO.getInstancia();
-		 
+
 				AtividadesHospedes ativ = new AtividadesHospedes();
 
-			 
-					ativ = ListaatividadesHospedes.get(row);
-					DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
-					atualizarJTable();
-			 
+				ativ = ListaatividadesHospedes.get(row);
+				DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
+				atualizarJTable();
 
 			}
 

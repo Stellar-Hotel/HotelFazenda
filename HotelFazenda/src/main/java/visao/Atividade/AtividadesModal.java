@@ -1,7 +1,6 @@
 package visao.Atividade;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,21 +10,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.MaskFormatter;
+
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import javax.swing.text.DocumentFilter.FilterBypass;
+import javax.swing.text.MaskFormatter;
 
 import com.google.protobuf.TextFormat.ParseException;
 
@@ -34,15 +31,10 @@ import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
-import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import visao.Home;
+import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
 
 public class AtividadesModal extends JFrame {
 
@@ -164,7 +156,10 @@ public class AtividadesModal extends JFrame {
 					if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
 							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
 							|| (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
-						JOptionPane.showMessageDialog(null, "Textos vazios insira algo para adicionar!");
+						
+						TelaErro telaErro = new TelaErro("Textos vazios");
+						 telaErro.setVisible(true);
+						 
 					} else {
 						Integer Idade = Integer.valueOf(textIdade.getText());
 						String Horario = textHorario.getText();
@@ -185,8 +180,9 @@ public class AtividadesModal extends JFrame {
 
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 						if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-							JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
-						} else {
+							 TelaErro telaErro = new TelaErro("Data invalida insira no formato HH:MM");
+							 telaErro.setVisible(true);						
+							 } else {
 							Atividades ativ = new Atividades();
 
 							ativ.setIdadeMinima(Idade);
@@ -237,7 +233,9 @@ public class AtividadesModal extends JFrame {
 					if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
 							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
 							|| (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
-						JOptionPane.showMessageDialog(null, "Textos vazios insira algo para atualizar");
+						TelaErro telaErro = new TelaErro("Campos vazios");
+						 telaErro.setVisible(true);					
+						 
 					} else {
 
 						Integer Idade = Integer.valueOf(textIdade.getText());
@@ -258,8 +256,11 @@ public class AtividadesModal extends JFrame {
 						}
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 						if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-							JOptionPane.showMessageDialog(null, "Horário inválido. Insira no formato HH:mm");
-						} else {
+							
+							TelaErro telaErro = new TelaErro("Horario Invalido insira no formato HH:MM");
+							 telaErro.setVisible(true);			
+							 
+							} else {
 
 							Atividades ativ = new Atividades();
 

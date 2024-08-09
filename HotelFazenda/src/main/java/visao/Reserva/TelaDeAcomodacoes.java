@@ -46,6 +46,7 @@ public class TelaDeAcomodacoes extends JFrame {
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
 	public TelaDeAcomodacoes() {
+		setTitle("Tela de Acomodações");
 
 		screen();
 
