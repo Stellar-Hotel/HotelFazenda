@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controle.Conexao;
-import controle.ValidarDia;
 import controle.Quartos.QuartosDAO;
 import modelo.Hospedagens;
 import modelo.Hospedes;

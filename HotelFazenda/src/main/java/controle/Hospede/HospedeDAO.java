@@ -147,7 +147,7 @@ public class HospedeDAO implements IHospedeDAO {
 		// TODO Auto-generated method stub
 
 		// Comando SQL a ser executado
-		String SQL = "UPDATE Hospedes Set Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNasc=  ?  where IdHospede = ?";
+		String SQL = "UPDATE Hospedes SET Nome = ?, Documento = ?, Sobrenome = ?, Email = ?, Nacionalidade = ?, Pronome = ?, DataNasc=  ?  where IdHospede = ?";
 
 		// Abre a conexao e cria a "ponte de conexao" com o MYSQL
 		Conexao con = Conexao.getConexao();// Instanciando

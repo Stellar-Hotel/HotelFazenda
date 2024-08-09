@@ -16,23 +16,19 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.AtividadesHospedes.AtividadesHospedesDAO;
 import controle.Combobox.RoundedComboBoxUI;
 //import controle.Combobox.CustomArrowButton;
-
-import controle.AtividadesHospedes.AtividadesHospedesDAO;
 import controle.Hospede.HospedeDAO;
 import modelo.Atividades;
 import modelo.AtividadesHospedes;
@@ -45,8 +41,6 @@ import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
-
-import java.awt.Color;
 
 public class TelaAtividadesHospedes extends JFrame {
 
@@ -152,7 +146,7 @@ public class TelaAtividadesHospedes extends JFrame {
 				Atividades ativ = (Atividades) comboBox.getSelectedItem();
 				if (ativ == null) {
 					TelaErro telaErro = new TelaErro("Nenhuma atividade selecionada");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 				}
 
@@ -161,7 +155,7 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				if (countHospedes >= capacidade) {
 					TelaErro telaErro = new TelaErro("Capacidade maxima atingida");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 				}
 
@@ -171,7 +165,7 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				if (idade < ativ.getIdadeMinima()) {
 					TelaErro telaErro = new TelaErro("Idade do hóspede menor que a idade mínima necessária");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 
 				}
@@ -179,12 +173,11 @@ public class TelaAtividadesHospedes extends JFrame {
 				if (daoAtividadesHospedes.isHospedeRegisteredForActivity(hospede.getDocumento(),
 						ativ.getIdAtividade())) {
 					TelaErro telaErro = new TelaErro("CPF ja esta vinculado nesta atividade");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 
-				}
-				else {
-	
+				} else {
+
 					// Adicionar atividade para o hóspede
 					atividadesHospedes.setHospede(hospede);
 					atividadesHospedes.setAtividade(ativ);
@@ -193,8 +186,6 @@ public class TelaAtividadesHospedes extends JFrame {
 					c.setVisible(true);
 					atualizarJTable();
 				}
-
-				
 
 			}
 

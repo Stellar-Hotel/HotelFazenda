@@ -8,6 +8,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -19,7 +26,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Funcionarios.FuncionariosDAO;
@@ -27,20 +33,10 @@ import controle.Usuarios.UsuariosDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Usuarios;
-import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import utils.DefaultJOptionPane;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
-import java.io.IOException;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.JButton;
 
 public class Login extends JFrame {
 
@@ -92,12 +88,10 @@ public class Login extends JFrame {
 			}
 		};
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		
+
 		Lista = new ArrayList<Usuarios>();
 
-		 
 		contentPane_1 = new JPanel();
-	 
 
 		setContentPane(contentPane_1);
 		contentPane_1.setLayout(null);
@@ -121,17 +115,18 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(7, 7, 190, 41);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		panel.add(lblNewLabel);
-		DefaultIconButton btnNewButton_1 = new DefaultIconButton(new ImageIcon(getClass().getResource("/visao/arrowBack.png")));
+		DefaultIconButton btnNewButton_1 = new DefaultIconButton(
+				new ImageIcon(getClass().getResource("/visao/arrowBack.png")));
 		btnNewButton_1.setBackgroundColor(new Color(203, 167, 58));
 		btnNewButton_1.setHoverColor(new Color(203, 167, 58).darker());
 		btnNewButton_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-		
-						dispose();
-					}
-				});
-	btnNewButton_1.setBounds(10, 11, 44, 40);
-			contentPane_1.add(btnNewButton_1);
+			public void actionPerformed(ActionEvent e) {
+
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(10, 11, 44, 40);
+		contentPane_1.add(btnNewButton_1);
 		JLabel lblNewLabel_2_1_1 = new JLabel("Entrar");
 		lblNewLabel_2_1_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2_1_1.setBounds(7, 28, 144, 70);
@@ -186,41 +181,41 @@ public class Login extends JFrame {
 		lblNewLabel_1.setForeground(new Color(203, 167, 58));
 		panel.add(lblNewLabel_1);
 
-		 ImageIcon Ver = createWhiteIcon("/visao/Ver.png");
-	        ImageIcon NaoVer = createWhiteIcon("/visao/NaoVer.png");
+		ImageIcon Ver = createWhiteIcon("/visao/Ver.png");
+		ImageIcon NaoVer = createWhiteIcon("/visao/NaoVer.png");
 
 		ImageIcon icon = new ImageIcon(getClass().getResource("/visao/Sair.png"));
-		
-				JLabel lblNewLabel_4 = new JLabel("");
-				lblNewLabel_4.setBounds(597, 276, 24, 24);
-				lblNewLabel_4.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if (lblNewLabel_4.getIcon() == Ver) {
-							lblNewLabel_4.setIcon(NaoVer);
-							passwordField.setEchoChar((char) 0);
-						} else if (lblNewLabel_4.getIcon() == NaoVer) {
-							lblNewLabel_4.setIcon(Ver);
-							passwordField.setEchoChar('*');
-						}
-					}
-				});
-				lblNewLabel_4.setIcon(Ver);
-				panel.add(lblNewLabel_4);
+
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setBounds(597, 276, 24, 24);
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (lblNewLabel_4.getIcon() == Ver) {
+					lblNewLabel_4.setIcon(NaoVer);
+					passwordField.setEchoChar((char) 0);
+				} else if (lblNewLabel_4.getIcon() == NaoVer) {
+					lblNewLabel_4.setIcon(Ver);
+					passwordField.setEchoChar('*');
+				}
+			}
+		});
+		lblNewLabel_4.setIcon(Ver);
+		panel.add(lblNewLabel_4);
 		DefaultIconButton btnNewButton = new DefaultIconButton("Entrar", icon);
 		btnNewButton.setBounds(389, 318, 199, 44);
 		btnNewButton.setHoverColor(new Color(203, 167, 58).darker());
 		btnNewButton.setBackgroundColor(new Color(203, 167, 58));
-		 
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-		
-						FazLogin();
-		
-					}
-				});
-				
-						panel.add(btnNewButton);
+
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				FazLogin();
+
+			}
+		});
+
+		panel.add(btnNewButton);
 
 //		ImageIcon logo = new ImageIcon(getClass().getResource("/visao/logoLogin.png"));
 //
@@ -242,17 +237,14 @@ public class Login extends JFrame {
 			// Criar um JLabel e definir o ImageIcon
 			JLabel lblNewLabel_5 = new JLabel(logo);
 			lblNewLabel_5.setBounds(0, 0, 1200, 700);
-			 
+
 			contentPane_1.add(lblNewLabel_5);
-			
-			
-		
+
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	
+
 	}
 
 	private void FazLogin() {
@@ -283,25 +275,27 @@ public class Login extends JFrame {
 			passwordField.setBorder(new RoundedBorder(Color.RED, 10));
 		}
 	}
-	  private static ImageIcon createWhiteIcon(String path) {
-	        try {
-	            BufferedImage image = ImageIO.read(Login.class.getResource(path));
-	            BufferedImage whiteImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
-	            
-	            Graphics2D g2d = whiteImage.createGraphics();
-	            g2d.drawImage(image, 0, 0, null);
-	            
-	            // Alterar a cor da imagem para branco
-	            RescaleOp rescaleOp = new RescaleOp(new float[]{1f, 1f, 1f, 1f}, new float[]{255f, 255f, 255f, 0f}, null);
-	            g2d.drawImage(image, rescaleOp, 0, 0);
-	            g2d.dispose();
-	            
-	            return new ImageIcon(whiteImage);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return null;
-	        }
-	    }
 
+	private static ImageIcon createWhiteIcon(String path) {
+		try {
+			BufferedImage image = ImageIO.read(Login.class.getResource(path));
+			BufferedImage whiteImage = new BufferedImage(image.getWidth(), image.getHeight(),
+					BufferedImage.TYPE_INT_ARGB);
+
+			Graphics2D g2d = whiteImage.createGraphics();
+			g2d.drawImage(image, 0, 0, null);
+
+			// Alterar a cor da imagem para branco
+			RescaleOp rescaleOp = new RescaleOp(new float[] { 1f, 1f, 1f, 1f }, new float[] { 255f, 255f, 255f, 0f },
+					null);
+			g2d.drawImage(image, rescaleOp, 0, 0);
+			g2d.dispose();
+
+			return new ImageIcon(whiteImage);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

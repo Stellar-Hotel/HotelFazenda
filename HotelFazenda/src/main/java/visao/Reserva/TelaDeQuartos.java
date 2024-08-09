@@ -57,9 +57,9 @@ import visao.Conta;
 import visao.Home;
 import visao.Login;
 import visao.Quartos2;
-import visao.TelaDeHospedes;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
+import visao.Hospede.TelaDeHospedes;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Servico.TelaServicos;
@@ -375,15 +375,15 @@ public class TelaDeQuartos extends JFrame {
 				Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
 
 				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
-					
+
 					TelaErro telaErro = new TelaErro("Campos vazios");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 				}
 
 				if (hospede == null) {
 					TelaErro telaErro = new TelaErro("Hospede não encontrado");
-					 telaErro.setVisible(true);
+					telaErro.setVisible(true);
 					return;
 				}
 
