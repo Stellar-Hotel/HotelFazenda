@@ -83,6 +83,11 @@ public class TelaDeAcomodacoes extends JFrame {
 
 		panel_8.add(panel_11, "cell 0 0,grow");
 		panel_11.setLayout(null);
+		
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/11.png")));
+		lblNewLabel_8.setBounds(22, -45, 870, 389);
+		panel_11.add(lblNewLabel_8);
 
 		JLabel lblQuartoSimples = new JLabel("");
 		lblQuartoSimples.setBounds(7, 7, 626, 408);
@@ -115,6 +120,11 @@ public class TelaDeAcomodacoes extends JFrame {
 		});
 		panel_9.add(panel_12, "cell 0 0,grow");
 		panel_12.setLayout(null);
+		
+		JLabel lblNewLabel_11 = new JLabel("");
+		lblNewLabel_11.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/12.png")));
+		lblNewLabel_11.setBounds(20, 0, 631, 304);
+		panel_12.add(lblNewLabel_11);
 
 		JLabel lblQuartoMediano = new JLabel("");
 		lblQuartoMediano.setBounds(7, 7, 426, 323);
@@ -147,6 +157,11 @@ public class TelaDeAcomodacoes extends JFrame {
 		});
 		panel_10.add(panel_13, "cell 0 0,grow");
 		panel_13.setLayout(null);
+		
+		JLabel lblNewLabel_13 = new JLabel("");
+		lblNewLabel_13.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/13.png")));
+		lblNewLabel_13.setBounds(0, 0, 641, 315);
+		panel_13.add(lblNewLabel_13);
 
 		JLabel lblQuartoBom = new JLabel("");
 		lblQuartoBom.setBounds(7, 7, 627, 408);
@@ -164,25 +179,73 @@ public class TelaDeAcomodacoes extends JFrame {
 
 		JPanel panel_7 = new JPanel();
 		Principal.add(panel_7, "cell 0 5,grow");
-		panel_7.setLayout(new MigLayout("", "[][]", "[]"));
-
+		panel_7.setLayout(new MigLayout("", "[608px]", "[356px][]"));
+		
+		JPanel panel = new JPanel();
+		panel_7.add(panel, "cell 0 0,grow");
+		panel.setLayout(null);
+		
 		JLabel lblNewLabel_6 = new JLabel("");
-		panel_7.add(lblNewLabel_6, "cell 1 0");
+		lblNewLabel_6.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/14.png")));
+		lblNewLabel_6.setBounds(28, -48, 648, 364);
+		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_20 = new JLabel("Apartamento Premium");
+		lblNewLabel_20.setFont(new Font("Segoe UI", Font.PLAIN, 23));
+		panel_7.add(lblNewLabel_20, "flowy,cell 0 1,aligny bottom");
+		
+		JLabel lblNewLabel_21 = new JLabel("2-6 hóspedes . TV . Frigobar . Ar-condicionado\r\n . 2 cama casal . 2 cama solteiro . 2 banheiro");
+		lblNewLabel_21.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		panel_7.add(lblNewLabel_21, "cell 0 1");
 
 		JPanel panel_6 = new JPanel();
 		Principal.add(panel_6, "cell 1 5,grow");
-		panel_6.setLayout(new MigLayout("", "[]", "[]"));
+		panel_6.setLayout(new MigLayout("", "[grow]", "[grow][][]"));
+		
+		JPanel panel_1 = new JPanel();
+		panel_6.add(panel_1, "cell 0 0,grow");
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_22 = new JLabel("");
+		lblNewLabel_22.setBounds(10, 11, 621, 270);
+		lblNewLabel_22.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/15.png")));
+		panel_1.add(lblNewLabel_22);
+		
+		JLabel lblNewLabel_23 = new JLabel("Apartamento Executivo");
+		lblNewLabel_23.setFont(new Font("Segoe UI", Font.PLAIN, 23));
+		panel_6.add(lblNewLabel_23, "cell 0 1");
+		
+		JLabel lblNewLabel_24 = new JLabel("2-3 hóspedes . TV . Frigobar . Ar-condicionado\r\n . 1 cama solteiro\n . 1 banheiro ");
+		lblNewLabel_24.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		panel_6.add(lblNewLabel_24, "cell 0 2");
 
 		JPanel panel_5 = new JPanel();
 		Principal.add(panel_5, "cell 2 5,grow");
-		panel_5.setLayout(new MigLayout("", "[]", "[]"));
+		panel_5.setLayout(new MigLayout("", "[grow]", "[grow][][]"));
+		
+		JPanel panel_2 = new JPanel();
+		panel_5.add(panel_2, "cell 0 0,grow");
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_25 = new JLabel("");
+		lblNewLabel_25.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/16.png")));
+		lblNewLabel_25.setBounds(50, -36, 621, 346);
+		panel_2.add(lblNewLabel_25);
+		
+		JLabel lblNewLabel_26 = new JLabel("Apartamento Luxuoso");
+		lblNewLabel_26.setFont(new Font("Segoe UI", Font.PLAIN, 23));
+		panel_5.add(lblNewLabel_26, "cell 0 1");
+		
+		JLabel lblNewLabel_27 = new JLabel("1-3 hóspedes . TV . Frigobar . Ar-condicionado\r\n . 1 cama casal . 1 cama solteiro . 1 banheiro");
+		lblNewLabel_27.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		panel_5.add(lblNewLabel_27, "cell 0 2");
 		contentPane.add(Principal, "cell 1 1,grow");
 
 	}
 
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1452, 756);
+		setBounds(100, 100, 2218, 875);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
