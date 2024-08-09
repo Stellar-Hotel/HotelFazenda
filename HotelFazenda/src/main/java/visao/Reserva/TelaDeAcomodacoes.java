@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -66,7 +68,14 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		Principal.add(lblNewLabel_9, "cell 0 2,alignx left,aligny top");
 
-		JPanel panel_8 = new JPanel();
+		JPanel panel_8 = new JPanel() {
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+			g2d.dispose();
+		}
+	};
 		Principal.add(panel_8, "cell 0 4,grow");
 		panel_8.setLayout(new MigLayout("", "[640px]", "[422px][25px][14px]"));
 
@@ -86,7 +95,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JLabel lblNewLabel_8 = new JLabel("");
 		lblNewLabel_8.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/11.png")));
-		lblNewLabel_8.setBounds(22, -45, 870, 389);
+		lblNewLabel_8.setBounds(27, -42, 870, 389);
 		panel_11.add(lblNewLabel_8);
 
 		JLabel lblQuartoSimples = new JLabel("");
@@ -104,7 +113,15 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_8.add(lblNewLabel_10, "cell 0 2,alignx left,aligny top");
 
-		JPanel panel_9 = new JPanel();
+		JPanel panel_9 = new JPanel() {
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+				g2d.dispose();
+			}
+		};
+		
 		Principal.add(panel_9, "cell 1 4,grow");
 		panel_9.setLayout(new MigLayout("", "[641px]", "[422px][25px][14px]"));
 
@@ -123,7 +140,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JLabel lblNewLabel_11 = new JLabel("");
 		lblNewLabel_11.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/12.png")));
-		lblNewLabel_11.setBounds(20, 0, 631, 304);
+		lblNewLabel_11.setBounds(32, 0, 631, 304);
 		panel_12.add(lblNewLabel_11);
 
 		JLabel lblQuartoMediano = new JLabel("");
@@ -140,7 +157,15 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_9.add(lblNewLabel_12, "cell 0 2,alignx left,aligny top");
 
-		JPanel panel_10 = new JPanel();
+		JPanel panel_10 = new JPanel(){
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+				g2d.dispose();
+			}
+		};
+		
 		Principal.add(panel_10, "cell 2 4,grow");
 		panel_10.setLayout(new MigLayout("", "[641px]", "[422px][25px][14px]"));
 
@@ -160,7 +185,7 @@ public class TelaDeAcomodacoes extends JFrame {
 		
 		JLabel lblNewLabel_13 = new JLabel("");
 		lblNewLabel_13.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/13.png")));
-		lblNewLabel_13.setBounds(0, 0, 641, 315);
+		lblNewLabel_13.setBounds(25, -5, 641, 315);
 		panel_13.add(lblNewLabel_13);
 
 		JLabel lblQuartoBom = new JLabel("");
@@ -177,17 +202,34 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_10.add(lblNewLabel_14, "cell 0 2,alignx left,aligny top");
 
-		JPanel panel_7 = new JPanel();
+		JPanel panel_7 = new JPanel() {
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+			g2d.dispose();
+		}
+	};
 		Principal.add(panel_7, "cell 0 5,grow");
 		panel_7.setLayout(new MigLayout("", "[608px]", "[356px][]"));
 		
 		JPanel panel = new JPanel();
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(4);
+				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaDeQuartos.setVisible(true);
+				dispose();
+			}
+		});
+		
 		panel_7.add(panel, "cell 0 0,grow");
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/14.png")));
-		lblNewLabel_6.setBounds(28, -48, 648, 364);
+		lblNewLabel_6.setBounds(26, -42, 648, 364);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_20 = new JLabel("Apartamento Premium");
@@ -198,16 +240,32 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_21.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_7.add(lblNewLabel_21, "cell 0 1");
 
-		JPanel panel_6 = new JPanel();
+		JPanel panel_6 = new JPanel() {
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+			g2d.dispose();
+		}
+	};
 		Principal.add(panel_6, "cell 1 5,grow");
 		panel_6.setLayout(new MigLayout("", "[grow]", "[grow][][]"));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(5);
+				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaDeQuartos.setVisible(true);
+				dispose();
+			}
+		});
 		panel_6.add(panel_1, "cell 0 0,grow");
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_22 = new JLabel("");
-		lblNewLabel_22.setBounds(10, 11, 621, 270);
+		lblNewLabel_22.setBounds(30, 0, 621, 281);
 		lblNewLabel_22.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/15.png")));
 		panel_1.add(lblNewLabel_22);
 		
@@ -219,17 +277,33 @@ public class TelaDeAcomodacoes extends JFrame {
 		lblNewLabel_24.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		panel_6.add(lblNewLabel_24, "cell 0 2");
 
-		JPanel panel_5 = new JPanel();
+		JPanel panel_5 = new JPanel() {
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+			g2d.dispose();
+		}
+	};
 		Principal.add(panel_5, "cell 2 5,grow");
 		panel_5.setLayout(new MigLayout("", "[grow]", "[grow][][]"));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaDeQuartos telaDeQuartos = new TelaDeQuartos(6);
+				telaDeQuartos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				telaDeQuartos.setVisible(true);
+				dispose();
+			}
+		});
 		panel_5.add(panel_2, "cell 0 0,grow");
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_25 = new JLabel("");
 		lblNewLabel_25.setIcon(new ImageIcon(TelaDeAcomodacoes.class.getResource("/visao/16.png")));
-		lblNewLabel_25.setBounds(50, -36, 621, 346);
+		lblNewLabel_25.setBounds(22, -38, 621, 346);
 		panel_2.add(lblNewLabel_25);
 		
 		JLabel lblNewLabel_26 = new JLabel("Apartamento Luxuoso");
