@@ -233,7 +233,7 @@ public class AtividadesModal extends JFrame {
 					if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
 							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
 							|| (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
-						TelaErro telaErro = new TelaErro("Textos vazios");
+						TelaErro telaErro = new TelaErro("Campos vazios");
 						 telaErro.setVisible(true);					
 						 
 					} else {

@@ -301,7 +301,7 @@ public class FuncionarioModal extends JFrame {
 							|| (txtPronome.getText().isEmpty()) || (txtSenha.getText().isEmpty())
 							|| (txtSetor.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
 						
-						TelaErro telaErro = new TelaErro("Textos vazios");
+						TelaErro telaErro = new TelaErro("Campos vazios");
 						 telaErro.setVisible(true);
 																		
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
@@ -406,7 +406,7 @@ public class FuncionarioModal extends JFrame {
 					if ((textCPF.getText().isEmpty()) || (textFuncao.getText().isEmpty())
 							|| (textNivel.getText().isEmpty()) || (textNome.getText().isEmpty())
 							|| (textSobrenome.getText().isEmpty()) || (textSalario.getText().isEmpty())) {
-						TelaErro telaErro = new TelaErro("Textos vazios");
+						TelaErro telaErro = new TelaErro("Campos vazios");
 						 telaErro.setVisible(true);
 						
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
