@@ -27,9 +27,9 @@ import visao.Conta;
 import visao.Home;
 import visao.Login;
 import visao.Quartos2;
-import visao.TelaDeHospedes;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
+import visao.Hospede.TelaDeHospedes;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 

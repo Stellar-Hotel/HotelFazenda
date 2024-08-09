@@ -45,6 +45,7 @@ import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
+import visao.Hospede.TelaDeHospedes;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 
