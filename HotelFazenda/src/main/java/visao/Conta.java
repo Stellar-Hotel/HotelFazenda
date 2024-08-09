@@ -89,7 +89,7 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[40:40:40][:70:70,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][80:80:80][353.00:353.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][40px][40:40:40][grow][40px]"));
+		Principal.setLayout(new MigLayout("", "[60:60:60,grow][:70:70,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][209.00:209.00:209.00,grow][353.00:449.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][40:40:40][grow][40px]"));
 
 		ImageIcon IC = new ImageIcon(
 				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
@@ -97,10 +97,6 @@ public class Conta extends JFrame {
 		JLabel lblNewLabel_17 = new JLabel("Alterações");
 		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 28));
 		Principal.add(lblNewLabel_17, "cell 1 0 2 2,alignx left");
-
-		JLabel lblNewLabel_18_1 = new JLabel("Dados do Usuário");
-		Principal.add(lblNewLabel_18_1, "cell 9 0 1 2,alignx left");
-		lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -208,65 +204,68 @@ public class Conta extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(235, 235, 235));
-		Principal.add(panel_5, "cell 9 2 1 6,grow");
-		panel_5.setLayout(new MigLayout("", "[116.00:116.00:116.00,grow][240:240:240,grow]",
-				"[40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow]"));
+		Principal.add(panel_5, "cell 9 2 1 7,grow");
+		panel_5.setLayout(new MigLayout("", "[116.00:116.00:116.00,grow][240:240:240,grow]", "[][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow]"));
+		
+				JLabel lblNewLabel_18_1 = new JLabel("Dados do Usuário");
+				panel_5.add(lblNewLabel_18_1, "cell 0 0 2 1,alignx center");
+				lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
 
 		JLabel lblNewLabel_6 = new JLabel("Nome");
 		lblNewLabel_6.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6, "cell 0 0,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6, "cell 0 1,alignx left,aligny center");
 
 		// IC.setImage(IC.getImage().getScaledInstance(lblNewLabel_12.getWidth(),
 		// lblNewLabel_12.getHeight(), 100));
 
 		JLabel lblNome = new JLabel("Blbla");
 		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNome, "flowx,cell 1 0,alignx center");
+		panel_5.add(lblNome, "flowx,cell 1 1,alignx center");
 		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
 
 		JLabel lblNewLabel_6_1 = new JLabel("Nome do Usuario");
 		lblNewLabel_6_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6_1, "cell 0 1,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6_1, "cell 0 2,alignx left,aligny center");
 
 		JLabel lblNewLabel_15 = new JLabel("Email:");
 		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_15, "cell 1 1,alignx center");
+		panel_5.add(lblNewLabel_15, "cell 1 2,alignx center");
 		lblNewLabel_15.setText(Func.getUsuario().getLogin());
 
 		JLabel lblNewLabel_6_1_1 = new JLabel("Telefone");
 		lblNewLabel_6_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6_1_1, "cell 0 2,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6_1_1, "cell 0 3,alignx left,aligny center");
 
 		JLabel lblTel = new JLabel("Telefone::");
 		lblTel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblTel, "cell 1 2,alignx center");
+		panel_5.add(lblTel, "cell 1 3,alignx center");
 		lblTel.setText(Func.getTelefone());
 
 		JLabel lblNewLabel_6_1_1_1 = new JLabel("Pronome");
 		lblNewLabel_6_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6_1_1_1, "cell 0 3,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6_1_1_1, "cell 0 4,alignx left,aligny center");
 
 		JLabel lblNewLabel_16 = new JLabel("Pronomes:");
 		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_16, "cell 1 3,alignx center");
+		panel_5.add(lblNewLabel_16, "cell 1 4,alignx center");
 		lblNewLabel_16.setText(Func.getPronomeFunc());
 
 		JLabel lblNewLabel_6_1_1_1_1 = new JLabel("Cargo");
 		lblNewLabel_6_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6_1_1_1_1, "cell 0 4,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6_1_1_1_1, "cell 0 5,alignx left,aligny center");
 
 		JLabel lblNewLabel_12 = new JLabel("Setor");
 		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_12, "cell 1 4,alignx center");
+		panel_5.add(lblNewLabel_12, "cell 1 5,alignx center");
 		lblNewLabel_12.setText(Func.getSetor());
 
 		JLabel lblNewLabel_6_1_1_1_1_1 = new JLabel("Função");
 		lblNewLabel_6_1_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_6_1_1_1_1_1, "cell 0 5,alignx left,aligny center");
+		panel_5.add(lblNewLabel_6_1_1_1_1_1, "cell 0 6,alignx left,aligny center");
 
 		JLabel lblNewLabel_13 = new JLabel("Funcao");
 		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_13, "cell 1 5,alignx center");
+		panel_5.add(lblNewLabel_13, "cell 1 6,alignx center");
 		lblNewLabel_13.setText(Func.getFuncao());
 
 		JLabel lblNewLabel_10 = new JLabel("Pronomes:");
@@ -299,10 +298,10 @@ public class Conta extends JFrame {
 		Principal.add(lblNewLabel_21, "flowx,cell 2 6,alignx right,aligny center");
 		
 		
-		JLabel lblNewLabel_22 = new JLabel("");
-		lblNewLabel_22.setFont(new Font("Times New Roman", Font.PLAIN, 11));
-		lblNewLabel_22.setForeground(new Color(255, 38, 38));
-		Principal.add(lblNewLabel_22, "cell 4 7,growx,alignx center");
+		JLabel lblNewLabel_221 = new JLabel("");
+		lblNewLabel_221.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_221.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_221, "cell 4 7,growx,alignx center");
 		
 		
 		
@@ -390,7 +389,7 @@ public class Conta extends JFrame {
 					lblNewLabel_19.setText("");
 					lblNewLabel_20.setText("");
 					lblNewLabel_21.setText("");
-					lblNewLabel_22.setText("");
+					lblNewLabel_221.setText("");
 					lblNewLabel_23.setText("");
 				}
 
