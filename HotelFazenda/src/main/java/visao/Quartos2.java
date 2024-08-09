@@ -264,10 +264,12 @@ public class Quartos2 extends JFrame {
 		panel.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 		
 		JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
+		rdbtnFrigoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup.add(rdbtnFrigoTem);
 		panel.add(rdbtnFrigoTem, "cell 0 0");
 		
 		JRadioButton rdbtnFrigoNaoTem = new JRadioButton("Não possui");
+		rdbtnFrigoNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup.add(rdbtnFrigoNaoTem);
 		panel.add(rdbtnFrigoNaoTem, "cell 1 0");
 
@@ -280,10 +282,12 @@ public class Quartos2 extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 		
 		JRadioButton rdbtnArTem = new JRadioButton("Possui");
+		rdbtnArTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_1.add(rdbtnArTem);
 		panel_1.add(rdbtnArTem, "cell 0 0");
 		
 		JRadioButton rdbtnArNaoTem = new JRadioButton("Não possui");
+		rdbtnArNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_1.add(rdbtnArNaoTem);
 		panel_1.add(rdbtnArNaoTem, "cell 1 0");
 
@@ -296,10 +300,12 @@ public class Quartos2 extends JFrame {
 		panel_2.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 		
 		JRadioButton rdbtnBanTem = new JRadioButton("Possui");
+		rdbtnBanTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_2.add(rdbtnBanTem);
 		panel_2.add(rdbtnBanTem, "cell 0 0");
 		
 		JRadioButton rdbtnBanNaoTem = new JRadioButton("Não possui");
+		rdbtnBanNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_2.add(rdbtnBanNaoTem);
 		panel_2.add(rdbtnBanNaoTem, "cell 1 0");
 
@@ -312,10 +318,12 @@ public class Quartos2 extends JFrame {
 		panel_3.setLayout(new MigLayout("", "[40px][40px][grow]", "[]"));
 		
 		JRadioButton rdbtnTvTem = new JRadioButton("Possui");
+		rdbtnTvTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_3.add(rdbtnTvTem);
 		panel_3.add(rdbtnTvTem, "cell 0 0");
 		
 		JRadioButton rdbtnTvNaoTem = new JRadioButton("Não possui");
+		rdbtnTvNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		buttonGroup_3.add(rdbtnTvNaoTem);
 		panel_3.add(rdbtnTvNaoTem, "cell 1 0");
 
@@ -356,7 +364,7 @@ public class Quartos2 extends JFrame {
 				}
 				
 				q.setManutencao(textManutencao.getText());
-				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText()));
+				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
 				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
@@ -405,7 +413,7 @@ public class Quartos2 extends JFrame {
 
 				q.setIdQuarto(ListaQuartos.get(linha).getIdQuarto());
 				q.setManutencao(textManutencao.getText());
-				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText()));
+				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
 				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
@@ -417,15 +425,15 @@ public class Quartos2 extends JFrame {
 				}
 				if(rdbtnBanTem.isSelected()||rdbtnBanNaoTem.isSelected())
 				{
-					q.setArCondicionado(rdbtnBanTem.isSelected()?true:false);
+					q.setBanheira(rdbtnBanTem.isSelected()?true:false);
 				}
 				if(rdbtnFrigoTem.isSelected()||rdbtnFrigoNaoTem.isSelected())
 				{
-					q.setArCondicionado(rdbtnFrigoTem.isSelected()?true:false);
+					q.setFrigobar(rdbtnFrigoTem.isSelected()?true:false);
 				}
 				if(rdbtnTvTem.isSelected()||rdbtnTvNaoTem.isSelected())
 				{
-					q.setArCondicionado(rdbtnTvTem.isSelected()?true:false);
+					q.setTV(rdbtnTvTem.isSelected()?true:false);
 				}
 				
 				
