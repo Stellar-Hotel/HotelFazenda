@@ -317,17 +317,17 @@ public class HospedeModal extends JFrame {
 							return;
 						}
 
-						Hospedes hospede = new Hospedes();
-						hospede.setNome(Nome);
-						hospede.setSobrenome(Sobrenome);
-						hospede.setDataNasc(Nascimento);
-						hospede.setNacionalidade(Nacionalidade);
-						hospede.setEmail(Email);
-						hospede.setPronome(Pronome);
-						hospede.setDocumento(Documento);
-						hospede.setIdHospede(hospede.getIdHospede());
+						Hospedes hospede1 = new Hospedes();
+						hospede1.setNome(Nome);
+						hospede1.setSobrenome(Sobrenome);
+						hospede1.setDataNasc(Nascimento);
+						hospede1.setNacionalidade(Nacionalidade);
+						hospede1.setEmail(Email);
+						hospede1.setPronome(Pronome);
+						hospede1.setDocumento(Documento);
+						hospede1.setIdHospede(hospede.getIdHospede());
 						HospedeDAO DAO = HospedeDAO.getInstancia();
-						boolean result = DAO.atualizarHospede(hospede);
+						boolean result = DAO.atualizarHospede(hospede1);
 						if (result) {
 							TelaSucesso c = new TelaSucesso("Hospede atualizado com sucesso!");
 							c.setVisible(true);
