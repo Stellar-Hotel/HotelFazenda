@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,7 +52,7 @@ public class Carrinho extends JFrame {
 	private ArrayList<Servicos> listaServicos;
 	private JTextField txtHospede;
 	JLabel lblNewLabel_3;
-  
+
 	public Carrinho() {
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
 
@@ -83,7 +82,6 @@ public class Carrinho extends JFrame {
 
 		listaServicos = new ArrayList<Servicos>();
 
- 
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("",
 				"[::15][][375px:n,grow][375px:n,grow][::30,grow][::30,grow][331.00,grow][15:n:15,grow]",
@@ -408,7 +406,7 @@ public class Carrinho extends JFrame {
 		contentPane.add(lblNewLabel_3, "cell 1 4 3 1");
 
 		DefaultIconButton btnNewButton_2 = new DefaultIconButton("Limpar carinho");
-		btnNewButton_2.setBackgroundColor(Color.RED );
+		btnNewButton_2.setBackgroundColor(Color.RED);
 		btnNewButton_2.setHoverColor(Color.RED.darker());
 		contentPane.add(btnNewButton_2, "cell 3 7,growx");
 		btnNewButton_2.addActionListener(new ActionListener() {

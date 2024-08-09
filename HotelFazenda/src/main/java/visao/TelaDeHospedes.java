@@ -20,11 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,7 +48,6 @@ import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
-import utils.DefaultScreen;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.ModaisDeAvisos.TelaErro;
@@ -127,7 +124,8 @@ public class TelaDeHospedes extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		Principal.add(panel_5, "cell 1 3 3 1,grow");
-		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]", "[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][][grow]"));
+		panel_5.setLayout(new MigLayout("", "[:40:40][][56.00][32.00][:30:30][][82.00][44.00][:126.00px:100px]",
+				"[][:15:15][29.00][11.00][:28.00px:100px][11.00][][11][][grow][][][grow]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 16));
@@ -227,8 +225,8 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					 TelaErro telaErro = new TelaErro("Campos vazios");
-					 telaErro.setVisible(true);
+					TelaErro telaErro = new TelaErro("Campos vazios");
+					telaErro.setVisible(true);
 					// TelaErro telaErro = new TelaErro();
 					// telaErro.setVisible(true);
 				} else {
@@ -246,9 +244,9 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						 TelaErro telaErro = new TelaErro("Data invalida");
-						 telaErro.setVisible(true);
-						 return;
+						TelaErro telaErro = new TelaErro("Data invalida");
+						telaErro.setVisible(true);
+						return;
 					}
 
 					Hospedes hospede = new Hospedes();
@@ -284,8 +282,8 @@ public class TelaDeHospedes extends JFrame {
 						|| (textSobrenome.getText().isEmpty() || textNascimento.getText().isEmpty()
 								|| textCPF.getText().isEmpty() || textNacionalidade.getText().isEmpty()
 								|| textPronome.getText().isEmpty() || textEmail.getText().isEmpty()))) {
-					 TelaErro telaErro = new TelaErro("Campos vazios");
-					 telaErro.setVisible(true);
+					TelaErro telaErro = new TelaErro("Campos vazios");
+					telaErro.setVisible(true);
 				} else {
 					String Nome = textNome.getText().trim();
 					String Sobrenome = textSobrenome.getText().trim();
@@ -301,8 +299,8 @@ public class TelaDeHospedes extends JFrame {
 					try {
 						Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
 					} catch (ParseException e1) {
-						 TelaErro telaErro = new TelaErro("Data invalida");
-						 telaErro.setVisible(true);
+						TelaErro telaErro = new TelaErro("Data invalida");
+						telaErro.setVisible(true);
 						return;
 					}
 					int linha = table.getSelectedRow();
@@ -318,18 +316,17 @@ public class TelaDeHospedes extends JFrame {
 					hospede.setIdHospede(listahospedes.get(linha).getIdHospede());
 					HospedeDAO DAO = HospedeDAO.getInstancia();
 					DAO.atualizarHospede(hospede);
-					
+
 					TelaSucesso c = new TelaSucesso("Sucesso");
 					c.setVisible(true);
 					atualizarJTable();
-					
-					
+
 				}
 			}
 		});
 
 		panel_5.add(btnAtualizar, "cell 4 10 2 1,alignx center");
-		
+
 		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -341,15 +338,12 @@ public class TelaDeHospedes extends JFrame {
 				textEmail.setText(null);
 				textPronome.setText(null);
 
-
 			}
 		});
 		dfltcnbtnLimpar_1.setText("Limpar");
 		dfltcnbtnLimpar_1.setBorder(new RoundedBorder(Color.BLACK, 8));
 		dfltcnbtnLimpar_1.setBackground(new Color(117, 187, 68));
 		panel_5.add(dfltcnbtnLimpar_1, "cell 7 10 2 1,alignx center");
-		
-		
 
 		Model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Sobrenome", "Data de Nascimento",
 				"Documento", "Nacionalidade", "Pronome", "Email", "Acoes" });
@@ -370,8 +364,8 @@ public class TelaDeHospedes extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -396,53 +390,72 @@ public class TelaDeHospedes extends JFrame {
 				dispose();
 			}
 		});
-		lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Home.jpg")));
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_3);
-		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_9);
+		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
 
-		JLabel lblNewLabel_15 = new JLabel("Funcionários");
-		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
-		lblNewLabel_15.addMouseListener(new MouseAdapter() {
+		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
+		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios();
-				TelaAdm.setVisible(true);
-				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaAtividades TelaAtiv = new TelaAtividades();
+				TelaAtiv.setVisible(true);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
-
 			}
 		});
-		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
-		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_5);
-		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_7);
+		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
 
-		JLabel lblHospede = new JLabel("Hospede");
-		lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
-		lblHospede.addMouseListener(new MouseAdapter() {
+		JLabel lblQuartos = new JLabel("Reservas");
+		lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
+		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes();
-				Chama.setVisible(true);
-				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
+				TelaAco.setVisible(true);
+				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
-
 			}
 		});
-		lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
+		lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_8);
+		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+
+		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
+		lblServicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaServicos TelaServ = new TelaServicos();
+				TelaServ.setVisible(true);
+				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255, 255, 255));
@@ -465,80 +478,61 @@ public class TelaDeHospedes extends JFrame {
 			}
 		});
 		lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
-		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_7);
-		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_5);
+		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
 
-		JLabel lblQuartos = new JLabel("Reservas");
-		lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
-		lblQuartos.addMouseListener(new MouseAdapter() {
+		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
+		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
-				TelaAco.setVisible(true);
-				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaDeHospedes Chama = new TelaDeHospedes();
+				Chama.setVisible(true);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
+
 			}
 		});
-		lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+		lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
 
-		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_8);
-		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_3);
+		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
 
-		JLabel lblServicos = new JLabel("Serviços");
-		lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
-		lblServicos.addMouseListener(new MouseAdapter() {
+		JLabel lblNewLabel_15 = new JLabel("Funcionários");
+		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
+		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos();
-				TelaServ.setVisible(true);
-				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios();
+				TelaAdm.setVisible(true);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
+
 			}
 		});
-		lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
-
-		JPanel panel_9 = new JPanel();
-		panel_9.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_9);
-		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
-
-		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
-		lblAtividades.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades();
-				TelaAtiv.setVisible(true);
-				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
+		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 
@@ -555,7 +549,7 @@ public class TelaDeHospedes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin = new Login();
-				novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				novoLogin.setLocationRelativeTo(null);
 				novoLogin.setVisible(true);
 				dispose();
 
@@ -585,7 +579,6 @@ public class TelaDeHospedes extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 
@@ -661,10 +654,6 @@ public class TelaDeHospedes extends JFrame {
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/instagram.png")));
 
-		JLabel lblFacebook = new JLabel("");
-		panel_1.add(lblFacebook, "cell 1 0");
-		lblFacebook.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Facebook.jpg")));
-
 		JLabel lblTwitter = new JLabel("");
 		lblTwitter.addMouseListener(new MouseAdapter() {
 			@Override
@@ -686,26 +675,6 @@ public class TelaDeHospedes extends JFrame {
 		});
 		panel_1.add(lblTwitter, "cell 3 0");
 		lblTwitter.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/twitter.jpg")));
-		
-		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textCPF.setText(null);
-				textEmail.setText(null);
-				textNacionalidade.setText(null);
-				textNascimento.setText(null);
-				textNome.setText(null);
-				textNome.setText("");
-
-				textNome.setText(" ");
-
-				textPronome.setText(null);
-				textSobrenome.setText(null);
-			}
-		});
-
-
-		
 	}
 
 	protected void atualizarJTable() {
@@ -722,12 +691,11 @@ public class TelaDeHospedes extends JFrame {
 				textNacionalidade.setText(hospede.getNacionalidade());
 				textCPF.setText(hospede.getDocumento());
 				textEmail.setText(hospede.getEmail());
-		        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		        dateFormat.setLenient(false);		        
-		        Date nascimento = hospede.getDataNasc();		        
-		        String nascimentoStr = dateFormat.format(nascimento);
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				dateFormat.setLenient(false);
+				Date nascimento = hospede.getDataNasc();
+				String nascimentoStr = dateFormat.format(nascimento);
 				textNascimento.setText(nascimentoStr);
-
 
 			}
 
@@ -740,7 +708,7 @@ public class TelaDeHospedes extends JFrame {
 				// Excluir o hospede do banco de dados
 				HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
 				hospedeDAO.removerHospede(hospede);
-				
+
 				TelaSucesso c = new TelaSucesso("Excluído com sucesso!");
 				c.setVisible(true);
 

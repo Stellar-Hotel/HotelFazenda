@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -29,7 +28,6 @@ import modelo.Servicos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
-import utils.DefaultScreen;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
@@ -43,8 +41,8 @@ import visao.Reserva.TelaDeAcomodacoes;
 public class TelaServicos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
- 
- 	JLabel lblQuantMassagem;
+
+	JLabel lblQuantMassagem;
 	JLabel lblQuantAlmoco;
 	JLabel lblQuantFrigobar;
 	JLabel lblQuantSauna;
@@ -56,12 +54,12 @@ public class TelaServicos extends JFrame {
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
- 
+
 	Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
-	 
+
 	public TelaServicos() {
 		setTitle("Tela de Serviços");
-		 screen();
+		screen();
 
 		ServicosDAO dao = ServicosDAO.getInstancia();
 
@@ -106,7 +104,7 @@ public class TelaServicos extends JFrame {
 
 			}
 		});
-		
+
 		Principal.add(panel_5, "cell 4 1,growx,aligny center");
 
 		JPanel panel_8 = new JPanel();
@@ -675,7 +673,8 @@ public class TelaServicos extends JFrame {
 		});
 		contentPane.add(Principal, "cell 1 1,grow");
 
- 	}
+	}
+
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1452, 756);
@@ -683,8 +682,8 @@ public class TelaServicos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(
-				new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]", "[73:69px:73,grow,center][560px,grow][52px]"));
+		contentPane.setLayout(new MigLayout("insets 0, gap 0", "[200px:1064px:200][grow]",
+				"[73:69px:73,grow,center][560px,grow][52px]"));
 
 		DefaultModal BarraLateral = new DefaultModal();
 		BarraLateral.setBackground(new Color(255, 255, 255));
@@ -709,53 +708,72 @@ public class TelaServicos extends JFrame {
 				dispose();
 			}
 		});
-		lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblHome.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 		lblHome.setBackground(new Color(0, 204, 0));
 		lblHome.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Home.jpg")));
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_3);
-		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_9);
+		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
 
-		JLabel lblNewLabel_15 = new JLabel("Funcionários");
-		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
-		lblNewLabel_15.addMouseListener(new MouseAdapter() {
+		JLabel lblAtividades = new JLabel("Atividades");
+		lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
+		lblAtividades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminFuncionarios TelaAdm = new AdminFuncionarios();
-				TelaAdm.setVisible(true);
-				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaAtividades TelaAtiv = new TelaAtividades();
+				TelaAtiv.setVisible(true);
+				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
-
 			}
 		});
-		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
-		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_5);
-		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_7);
+		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
 
-		JLabel lblHospede = new JLabel("Hospede");
-		lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
-		lblHospede.addMouseListener(new MouseAdapter() {
+		JLabel lblQuartos = new JLabel("Reservas");
+		lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
+		lblQuartos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeHospedes Chama = new TelaDeHospedes();
-				Chama.setVisible(true);
-				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
+				TelaAco.setVisible(true);
+				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
-
 			}
 		});
-		lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
+		lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_8);
+		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+
+		JLabel lblServicos = new JLabel("Serviços");
+		lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
+		lblServicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaServicos TelaServ = new TelaServicos();
+				TelaServ.setVisible(true);
+				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				dispose();
+			}
+		});
+		lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255, 255, 255));
@@ -778,80 +796,61 @@ public class TelaServicos extends JFrame {
 			}
 		});
 		lblNewLabel_19.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Quartos.jpg")));
-		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		lblNewLabel_19.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_7);
-		panel_7.setLayout(new MigLayout("", "[120px,grow]", "[32px,grow]"));
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_5);
+		panel_5.setLayout(new MigLayout("", "[123px,grow]", "[32px,grow]"));
 
-		JLabel lblQuartos = new JLabel("Reservas");
-		lblQuartos.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_7.add(lblQuartos, "cell 0 0,alignx left,aligny center");
-		lblQuartos.addMouseListener(new MouseAdapter() {
+		JLabel lblHospede = new JLabel("Hospede");
+		lblHospede.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_5.add(lblHospede, "cell 0 0,alignx left,aligny center");
+		lblHospede.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes TelaAco = new TelaDeAcomodacoes();
-				TelaAco.setVisible(true);
-				TelaAco.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaDeHospedes Chama = new TelaDeHospedes();
+				Chama.setVisible(true);
+				Chama.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
+
 			}
 		});
-		lblQuartos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblQuartos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/reserva.png")));
+		lblHospede.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+		lblHospede.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Hospede.jpg")));
 
-		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_8);
-		panel_8.setLayout(new MigLayout("", "[115px,grow]", "[32px,grow]"));
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		BarraLateral.add(panel_3);
+		panel_3.setLayout(new MigLayout("", "[163px,grow,fill]", "[32px,grow,fill]"));
 
-		JLabel lblServicos = new JLabel("Serviços");
-		lblServicos.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_8.add(lblServicos, "cell 0 0,alignx left,aligny center");
-		lblServicos.addMouseListener(new MouseAdapter() {
+		JLabel lblNewLabel_15 = new JLabel("Funcionários");
+		lblNewLabel_15.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.add(lblNewLabel_15, "cell 0 0,alignx left,aligny center");
+		lblNewLabel_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaServicos TelaServ = new TelaServicos();
-				TelaServ.setVisible(true);
-				TelaServ.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				AdminFuncionarios TelaAdm = new AdminFuncionarios();
+				TelaAdm.setVisible(true);
+				TelaAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				dispose();
+
 			}
 		});
-		lblServicos.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblServicos.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Servicos.jpg")));
-
-		JPanel panel_9 = new JPanel();
-		panel_9.setBackground(new Color(255, 255, 255));
-		BarraLateral.add(panel_9);
-		panel_9.setLayout(new MigLayout("", "[138px,grow]", "[32px,grow]"));
-
-		JLabel lblAtividades = new JLabel("Atividades");
-		lblAtividades.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_9.add(lblAtividades, "cell 0 0,alignx left,aligny center");
-		lblAtividades.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaAtividades TelaAtiv = new TelaAtividades();
-				TelaAtiv.setVisible(true);
-				TelaAtiv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-				dispose();
-			}
-		});
-		lblAtividades.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-		lblAtividades.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Atividades.jpg")));
+		lblNewLabel_15.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/funcionarios.png")));
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 
 		JLabel label = new JLabel("");
 		BarraLateral.add(label);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		BarraLateral.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		BarraLateral.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		BarraLateral.add(lblNewLabel);
 
@@ -868,7 +867,7 @@ public class TelaServicos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Login novoLogin = new Login();
-				novoLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				novoLogin.setLocationRelativeTo(null);
 				novoLogin.setVisible(true);
 				dispose();
 
@@ -898,7 +897,6 @@ public class TelaServicos extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[251.00px]", "[15][25]"));
 
 		JLabel lblNewLabel_1 = new JLabel("Bem-Vindo(a),");
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_4.add(lblNewLabel_1, "cell 0 0,alignx left,aligny bottom");
 
@@ -973,10 +971,6 @@ public class TelaServicos extends JFrame {
 		});
 		panel_1.add(lblInstagram, "cell 0 0");
 		lblInstagram.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/instagram.png")));
-
-		JLabel lblFacebook = new JLabel("");
-		panel_1.add(lblFacebook, "cell 1 0");
-		lblFacebook.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/Facebook.jpg")));
 
 		JLabel lblTwitter = new JLabel("");
 		lblTwitter.addMouseListener(new MouseAdapter() {

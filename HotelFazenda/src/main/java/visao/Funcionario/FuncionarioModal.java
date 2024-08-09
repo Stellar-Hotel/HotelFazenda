@@ -300,10 +300,10 @@ public class FuncionarioModal extends JFrame {
 							|| (txtEmail.getText().isEmpty()) || (txtLogin.getText().isEmpty())
 							|| (txtPronome.getText().isEmpty()) || (txtSenha.getText().isEmpty())
 							|| (txtSetor.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
-						
+
 						TelaErro telaErro = new TelaErro("Campos vazios");
-						 telaErro.setVisible(true);
-																		
+						telaErro.setVisible(true);
+
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
 
 						textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
@@ -328,7 +328,7 @@ public class FuncionarioModal extends JFrame {
 
 						txtTelefone.setBorder(new RoundedBorder(Color.RED, 10));
 					} else {
-						
+
 						Usuarios user = new Usuarios();
 						user.setLogin(txtLogin.getText());
 						user.setSenha(txtSenha.getText());
@@ -355,9 +355,7 @@ public class FuncionarioModal extends JFrame {
 						if (i > 0) {
 							TelaSucesso c = new TelaSucesso("Sucesso");
 							c.setVisible(true);
-							 
 
-							 
 							dispose();
 						}
 						telaFunc.atualizarJTable();
@@ -368,7 +366,7 @@ public class FuncionarioModal extends JFrame {
 			Principal.add(btnCadastrarNovo);
 
 		} else {
-			
+
 			String nome = funcionario.getNome();
 			String sobrenome = funcionario.getSobrenome();
 			String funcao = funcionario.getFuncao();
@@ -398,7 +396,7 @@ public class FuncionarioModal extends JFrame {
 
 			DefaultIconButton btnAtualizarSelecionado = new DefaultIconButton("Atualizar");
 			btnAtualizarSelecionado.setBounds(303, 558, 254, 44);
-	 
+
 			btnAtualizarSelecionado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Funcionarios funcA = new Funcionarios();
@@ -407,8 +405,8 @@ public class FuncionarioModal extends JFrame {
 							|| (textNivel.getText().isEmpty()) || (textNome.getText().isEmpty())
 							|| (textSobrenome.getText().isEmpty()) || (textSalario.getText().isEmpty())) {
 						TelaErro telaErro = new TelaErro("Campos vazios");
-						 telaErro.setVisible(true);
-						
+						telaErro.setVisible(true);
+
 						textCPF.setBorder(new RoundedBorder(Color.RED, 10));
 
 						textFuncao.setBorder(new RoundedBorder(Color.RED, 10));
@@ -421,7 +419,7 @@ public class FuncionarioModal extends JFrame {
 
 						textSalario.setBorder(new RoundedBorder(Color.RED, 10));
 					} else {
-						 
+
 						funcA = funcionario;
 						funcA.setCPF(textCPF.getText());
 						funcA.setFuncao(textFuncao.getText());
@@ -452,7 +450,7 @@ public class FuncionarioModal extends JFrame {
 
 		DefaultIconButton dfltcnbtnLimparCampos = new DefaultIconButton(
 				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
-		 
+
 		dfltcnbtnLimparCampos.setBackgroundColor(Color.cyan.darker());
 		dfltcnbtnLimparCampos.setHoverColor(Color.cyan);
 		dfltcnbtnLimparCampos.setBounds(548, 11, 42, 33);
@@ -473,11 +471,11 @@ public class FuncionarioModal extends JFrame {
 				textSobrenome.setText(null);
 			}
 		});
-		 
+
 		dfltcnbtnLimparCampos.setBorder(new RoundedBorder(Color.black, 10));
 		dfltcnbtnLimparCampos.setBackground(new Color(117, 187, 68));
 		Principal.add(dfltcnbtnLimparCampos);
-		
+
 		DefaultIconButton btnNewButton = new DefaultIconButton("Voltar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -487,9 +485,9 @@ public class FuncionarioModal extends JFrame {
 		});
 		btnNewButton.setBackgroundColor(Color.RED);
 		btnNewButton.setHoverColor(Color.RED.darker());
-		 
+
 		btnNewButton.setBounds(19, 565, 254, 44);
-		 
+
 		Principal.add(btnNewButton);
 
 	}

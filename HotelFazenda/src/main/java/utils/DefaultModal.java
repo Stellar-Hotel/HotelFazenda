@@ -1,13 +1,10 @@
 package utils;
 
-import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class DefaultModal extends JPanel {
 
@@ -15,8 +12,6 @@ public class DefaultModal extends JPanel {
 	private JPanel contentPane;
 
 	public DefaultModal() {
-	 
-	
 
 		contentPane = new JPanel() {
 			@Override
@@ -28,7 +23,7 @@ public class DefaultModal extends JPanel {
 			}
 		};
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-	 
+
 	}
 
 }

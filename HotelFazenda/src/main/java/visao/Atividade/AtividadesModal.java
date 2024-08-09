@@ -52,11 +52,11 @@ public class AtividadesModal extends JFrame {
 			throws java.text.ParseException, ParseException {
 		this.telaAtividades = telaAtividades;
 		Funcionarios Func = CurrentFunc.getInstance().getLoggedInFuncionario();
- 
+
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(550, 550);
-	
+
 		contentPane = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -145,7 +145,7 @@ public class AtividadesModal extends JFrame {
 		TextHorarioFim.setBorder(new RoundedBorder(Color.black, 10));
 
 		if (atividade == null) {
-			
+
 			DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar");
 			btnCadastrar.setBounds(236, 405, 203, 40);
 			btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
@@ -156,10 +156,10 @@ public class AtividadesModal extends JFrame {
 					if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
 							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
 							|| (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
-						
+
 						TelaErro telaErro = new TelaErro("Textos vazios");
-						 telaErro.setVisible(true);
-						 
+						telaErro.setVisible(true);
+
 					} else {
 						Integer Idade = Integer.valueOf(textIdade.getText());
 						String Horario = textHorario.getText();
@@ -180,9 +180,9 @@ public class AtividadesModal extends JFrame {
 
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 						if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-							 TelaErro telaErro = new TelaErro("Data invalida insira no formato HH:MM");
-							 telaErro.setVisible(true);						
-							 } else {
+							TelaErro telaErro = new TelaErro("Data invalida insira no formato HH:MM");
+							telaErro.setVisible(true);
+						} else {
 							Atividades ativ = new Atividades();
 
 							ativ.setIdadeMinima(Idade);
@@ -191,7 +191,7 @@ public class AtividadesModal extends JFrame {
 							ativ.setNomeAtividade(NomeAtividade);
 							ativ.setData(data);
 							ativ.setCapacidade(Capacidade);
-							 
+
 							ativ.setFuncionario(Func);
 
 							AtividadesDAO DAO = AtividadesDAO.getInstancia();
@@ -222,7 +222,7 @@ public class AtividadesModal extends JFrame {
 			TextHorarioFim.setText(atividade.getHorarioFim());
 			textIdade.setText(String.valueOf(atividade.getIdadeMinima()));
 			textData.setText(String.valueOf(atividade.getData()));
-			
+
 			DefaultIconButton btnAlterar = new DefaultIconButton("Alterar");
 			btnAlterar.setBounds(236, 405, 203, 40);
 			btnAlterar.setBackgroundColor(Color.ORANGE);
@@ -234,8 +234,8 @@ public class AtividadesModal extends JFrame {
 							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
 							|| (textData.getText().isEmpty() || (textCapacidade.getText().isEmpty()))) {
 						TelaErro telaErro = new TelaErro("Campos vazios");
-						 telaErro.setVisible(true);					
-						 
+						telaErro.setVisible(true);
+
 					} else {
 
 						Integer Idade = Integer.valueOf(textIdade.getText());
@@ -256,11 +256,11 @@ public class AtividadesModal extends JFrame {
 						}
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
 						if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-							
+
 							TelaErro telaErro = new TelaErro("Horario Invalido insira no formato HH:MM");
-							 telaErro.setVisible(true);			
-							 
-							} else {
+							telaErro.setVisible(true);
+
+						} else {
 
 							Atividades ativ = new Atividades();
 
@@ -295,7 +295,7 @@ public class AtividadesModal extends JFrame {
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				textCapacidade.setText("");
 				textData.setText("");
 				textHorario.setText("");
@@ -315,9 +315,9 @@ public class AtividadesModal extends JFrame {
 		panel_7.add(lblNewLabel_12_1_1_1);
 		panel_7.add(textIdade);
 		panel_7.add(dfltcnbtnLimpar);
-		
+
 		panel_7.add(textData);
-		
+
 		panel_7.add(lblNewLabel_12_1_1_1_1_1_2);
 		panel_7.add(textHorario);
 		panel_7.add(lblNewLabel_12_1_1_1_1);
