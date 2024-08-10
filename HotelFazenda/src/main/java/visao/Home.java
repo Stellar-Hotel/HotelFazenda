@@ -81,25 +81,7 @@ public class Home extends JFrame {
 	ArrayList <Funcionarios> listaFuncionarios;
 	ArrayList <ServicosConsumidos> listaServicos;
 	ServicosConsumidosDAO SDAO= ServicosConsumidosDAO.getInstancia();
-	
-	ArrayList<Hospedagens> listaHospedagens;
-	ArrayList<Hospedes> listaHospedes;
-	ArrayList<Atividades> listaAtividades;
-	ArrayList<Quartos> listaQuartos;
-	ArrayList<Funcionarios> listaFuncionarios;
-	ArrayList<ServicosConsumidos> listaServ;
-	
-	
-	ServicosConsumidosDAO SDAO= ServicosConsumidosDAO.getInstancia();
-	
-	ArrayList<Hospedagens> listaHospedagens;
-	ArrayList<Hospedes> listaHospedes;
-	ArrayList<Atividades> listaAtividades;
-	ArrayList<Quartos> listaQuartos;
-	ArrayList<Funcionarios> listaFuncionarios;
-	ArrayList<ServicosConsumidos> listaServ;
-	
-	
+
 	ArrayList <ServicosConsumidos> listaServicosC;
 	ArrayList <Servicos> listaServs;
 	
@@ -381,12 +363,6 @@ public class Home extends JFrame {
 		};
 		Principal.add(panel_2_2_1, "cell 7 6 2 2,grow");
 		panel_2_2_1.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
-
-		JLabel lblsevicos = new JLabel("0");
-		lblsevicos.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblsevicos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblsevicos.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		panel_2_2_1.add(lblsevicos, "flowy,cell 0 0,alignx center");
 		JLabel lblServs = new JLabel("0");
 		lblServs.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblServs.setHorizontalAlignment(SwingConstants.CENTER);
@@ -403,9 +379,11 @@ public class Home extends JFrame {
 		lblHospedes.setText(String.valueOf(listaHospedes.size()));
 		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
 		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
-		lblsevicos.setText(String.valueOf(listaServicosC.size()));
 
-		lblServs.setText(String.valueOf(listaServ.size()));
+		ServicosConsumidos s=new ServicosConsumidos();
+
+		listaServicosC.add(s);
+		lblServs.setText(String.valueOf(listaServicosC.size()));
 		
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -742,7 +720,8 @@ public class Home extends JFrame {
 		listaFuncionarios = FDao.ListarFuncionarios();
 		listaServicos = SDao.ListarServicos();
 
-		listaServ=SDAO.ListarServicos();
+		listaServs=SSDao.ListarServicos();
+		listaServicosC=SDao.ListarServicos();
 	}
 
 	private void updateImage() {
