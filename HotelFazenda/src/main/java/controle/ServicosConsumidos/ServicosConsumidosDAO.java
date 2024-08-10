@@ -69,11 +69,8 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ArrayList<ServicosConsumidos> ListarServicos() {
 
 		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
-		String SQL = "SELECT *\r\n"
-				+ "FROM ServicosConsumidos\r\n"
-				+ "INNER JOIN Hospedes ON Hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos\r\n"
-				+ "INNER JOIN Servicos ON Servicos.IdServico = ServicosConsumidos.IdServicoServicos;\r\n"
-				;
+		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN Hospedes on hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos"
+				+ " inner join Servicos on servicos.IdServico=ServicosConsumidos.IdServicoServicos";// tem que checar esse
 																									// inner join dps
 		
 		
