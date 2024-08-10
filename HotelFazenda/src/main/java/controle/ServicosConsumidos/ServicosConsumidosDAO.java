@@ -69,13 +69,16 @@ public class ServicosConsumidosDAO implements IServicosConsumidosDAO {
 	public ArrayList<ServicosConsumidos> ListarServicos() {
 
 		ArrayList<ServicosConsumidos> Lista = new ArrayList<ServicosConsumidos>();
-		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos"
-				+ " inner join servicos.IdServico=ServicosConsumidos.IdServicoServicos"
-				+ " inner join Hospedagens.IdHospedagem=ServicosConsumidos.IdHospedagemServicos";// tem que checar esse
+		String SQL = "SELECT * FROM ServicosConsumidos INNER JOIN Hospedes on hospedes.IdHospede = ServicosConsumidos.IdHospedeServicos"
+				+ " inner join Servicos on servicos.IdServico=ServicosConsumidos.IdServicoServicos";// tem que checar esse
 																									// inner join dps
+		
+		
+		
+		
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.Conectar();
-
+System.out.println(SQL);
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();

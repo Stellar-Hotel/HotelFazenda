@@ -35,12 +35,18 @@ import controle.Funcionarios.FuncionariosDAO;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
+import controle.Servicos.ServicosDAO;
+import controle.ServicosConsumidos.ServicosConsumidosDAO;
+import controle.ServicosConsumidos.ServicosConsumidosDAO;
 import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
+import modelo.Servicos;
+import modelo.ServicosConsumidos;
+import modelo.ServicosConsumidos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
 import visao.Atividade.TelaAtividades;
@@ -65,11 +71,20 @@ public class Home extends JFrame {
 	AtividadesDAO ADao = AtividadesDAO.getInstancia();
 	QuartosDAO QDao = QuartosDAO.getConexao();
 	FuncionariosDAO FDao = FuncionariosDAO.getConexao();
-	ArrayList<Hospedagens> listaHospedagens;
-	ArrayList<Hospedes> listaHospedes;
-	ArrayList<Atividades> listaAtividades;
-	ArrayList<Quartos> listaQuartos;
-	ArrayList<Funcionarios> listaFuncionarios;
+	ServicosConsumidosDAO SDao = ServicosConsumidosDAO.getInstancia();
+	ServicosDAO SSDao=ServicosDAO.getInstancia();
+	
+	ArrayList <Hospedagens> listaHospedagens;
+	ArrayList <Hospedes> listaHospedes;
+	ArrayList <Atividades> listaAtividades;
+	ArrayList <Quartos> listaQuartos;
+	ArrayList <Funcionarios> listaFuncionarios;
+	ArrayList <ServicosConsumidos> listaServicos;
+	ServicosConsumidosDAO SDAO= ServicosConsumidosDAO.getInstancia();
+
+	ArrayList <ServicosConsumidos> listaServicosC;
+	ArrayList <Servicos> listaServs;
+	
 	private int diasSelecionados = 3; // Valor padrão inicial
 
 	ArrayList<String> listaImagens = new ArrayList<String>(
@@ -348,12 +363,11 @@ public class Home extends JFrame {
 		};
 		Principal.add(panel_2_2_1, "cell 7 6 2 2,grow");
 		panel_2_2_1.setLayout(new MigLayout("", "[grow]", "[grow][grow]"));
-
-		JLabel lblReservas = new JLabel("0");
-		lblReservas.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblReservas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblReservas.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
-		panel_2_2_1.add(lblReservas, "flowy,cell 0 0,alignx center");
+		JLabel lblServs = new JLabel("0");
+		lblServs.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblServs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblServs.setFont(new Font("Trebuchet MS", Font.PLAIN, 34));
+		panel_2_2_1.add(lblServs, "flowy,cell 0 0,alignx center");
 
 		JLabel lblNewLabel_7_1_2 = new JLabel("Serviços");
 		lblNewLabel_7_1_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -366,6 +380,11 @@ public class Home extends JFrame {
 		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
 		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
 
+		ServicosConsumidos s=new ServicosConsumidos();
+
+		listaServicosC.add(s);
+		lblServs.setText(String.valueOf(listaServicosC.size()));
+		
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		Principal.add(mostrarAtividades, "cell 10 3 2 6,grow");
@@ -699,7 +718,10 @@ public class Home extends JFrame {
 		listaAtividades = ADao.ListarAtividades();
 		listaQuartos = QDao.ListarQuartos();
 		listaFuncionarios = FDao.ListarFuncionarios();
+		listaServicos = SDao.ListarServicos();
 
+		listaServs=SSDao.ListarServicos();
+		listaServicosC=SDao.ListarServicos();
 	}
 
 	private void updateImage() {

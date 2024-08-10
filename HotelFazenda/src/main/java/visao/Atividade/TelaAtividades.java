@@ -584,7 +584,7 @@ public class TelaAtividades extends JFrame {
 				throws BadLocationException { // insertString: Este método é chamado quando uma inserção de texto é
 												// feita em um documento de texto.
 
-			if (string != null && string.matches("[a-zA-Z]+")) {
+			if (string.matches("[a-zA-Z]*")) {
 				super.insertString(fb, offset, string, attr);
 			}
 		}
@@ -593,7 +593,7 @@ public class TelaAtividades extends JFrame {
 		public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
 				throws BadLocationException { // Este método é chamado quando uma substituição de texto é feita em um
 												// documento de texto.
-			if (text != null && text.matches("[a-zA-Z]+")) {
+			if (text != null && text.matches("[a-zA-Z ]+")) {
 				super.replace(fb, offset, length, text, attrs);
 			}
 		}
