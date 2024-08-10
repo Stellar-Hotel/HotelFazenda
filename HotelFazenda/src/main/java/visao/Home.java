@@ -70,12 +70,16 @@ public class Home extends JFrame {
 	QuartosDAO QDao = QuartosDAO.getConexao();
 	FuncionariosDAO FDao = FuncionariosDAO.getConexao();
 	ServicosConsumidosDAO SDao = ServicosConsumidosDAO.getInstancia();
+	ServicosDAO SSDao=ServicosDAO.getInstancia();
+	
 	ArrayList <Hospedagens> listaHospedagens;
 	ArrayList <Hospedes> listaHospedes;
 	ArrayList <Atividades> listaAtividades;
 	ArrayList <Quartos> listaQuartos;
 	ArrayList <Funcionarios> listaFuncionarios;
-	ArrayList <ServicosConsumidos> listaServicos;
+	ArrayList <ServicosConsumidos> listaServicosC;
+	ArrayList <Servicos> listaServs;
+	
 	private int diasSelecionados = 3; // Valor padrão inicial
 
 	ArrayList<String> listaImagens = new ArrayList<String>(
@@ -371,7 +375,7 @@ public class Home extends JFrame {
 		lblHospedes.setText(String.valueOf(listaHospedes.size()));
 		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
 		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
-		lblsevicos.setText(String.valueOf(listaServicos.size()));
+		lblsevicos.setText(String.valueOf(listaServicosC.size()));
 
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -706,8 +710,8 @@ public class Home extends JFrame {
 		listaAtividades = ADao.ListarAtividades();
 		listaQuartos = QDao.ListarQuartos();
 		listaFuncionarios = FDao.ListarFuncionarios();
-		listaServicos = SDao.ListarServicos();
-
+		listaServicosC = SDao.ListarServicos();
+		listaServs = SSDao.ListarServicos();
 	}
 
 	private void updateImage() {
