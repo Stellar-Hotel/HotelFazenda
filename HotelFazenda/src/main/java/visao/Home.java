@@ -90,6 +90,16 @@ public class Home extends JFrame {
 	ArrayList<ServicosConsumidos> listaServ;
 	
 	
+	ServicosConsumidosDAO SDAO= ServicosConsumidosDAO.getInstancia();
+	
+	ArrayList<Hospedagens> listaHospedagens;
+	ArrayList<Hospedes> listaHospedes;
+	ArrayList<Atividades> listaAtividades;
+	ArrayList<Quartos> listaQuartos;
+	ArrayList<Funcionarios> listaFuncionarios;
+	ArrayList<ServicosConsumidos> listaServ;
+	
+	
 	ArrayList <ServicosConsumidos> listaServicosC;
 	ArrayList <Servicos> listaServs;
 	
