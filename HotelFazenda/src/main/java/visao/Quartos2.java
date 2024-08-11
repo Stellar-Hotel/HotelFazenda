@@ -65,9 +65,7 @@ public class Quartos2 extends JFrame {
 	private JTextField textChecki;
 	private JTextField textChecko;
 	private JTextField textTipo;
-	private JTextField textSituacao;
 	private JTextField textCapacidade;
-	private JTextField textManutencao;
 	private JTextField textCama;
 	private JTextField textDiaria;
 	protected JPanel contentPane;
@@ -80,6 +78,8 @@ public class Quartos2 extends JFrame {
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
+	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
+	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
 
 	protected void atualizarJTable() {
 
@@ -206,7 +206,7 @@ public class Quartos2 extends JFrame {
 
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0 2 2,grow");
-		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][][][][grow][grow][grow][grow][][][]"));
+		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][grow][grow][grow][grow][grow][grow][grow][][][]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -225,38 +225,56 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_9 = new JLabel("Situação: ");
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_9, "cell 0 2,alignx trailing");
-
-		textSituacao = new JFormattedTextField(Num1);
-		textSituacao.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textSituacao, "cell 1 2 2 1,growx");
-		textSituacao.setColumns(10);
+		panel_6.add(lblNewLabel_9, "cell 0 4,alignx trailing");
+		
+		JPanel panel_7 = new JPanel();
+		panel_6.add(panel_7, "cell 1 4 2 1,grow");
+		panel_7.setLayout(new MigLayout("", "[40px][10px][40px][grow]", "[]"));
+		
+		JRadioButton rdbtnSituTem = new JRadioButton("Ocupado");
+		buttonGroup_5.add(rdbtnSituTem);
+		rdbtnSituTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		panel_7.add(rdbtnSituTem, "cell 0 0");
+		
+		JRadioButton rdbtnSituNaoTem = new JRadioButton("Livre");
+		buttonGroup_5.add(rdbtnSituNaoTem);
+		rdbtnSituNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		panel_7.add(rdbtnSituNaoTem, "cell 2 0");
 
 		JLabel lblNewLabel_10 = new JLabel("Capacidade: ");
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_10, "cell 0 3,alignx trailing");
+		panel_6.add(lblNewLabel_10, "cell 0 2,alignx trailing");
 
 		textCapacidade = new JFormattedTextField(Num2);
 		textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCapacidade, "cell 1 3 2 1,growx");
+		panel_6.add(textCapacidade, "cell 1 2 2 1,growx");
 		textCapacidade.setColumns(10);
 
 		JLabel lblNewLabel_11 = new JLabel("Manutenção: ");
 		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_11, "cell 0 4,alignx trailing");
-
-		textManutencao = new JTextField();
-		textManutencao.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textManutencao, "cell 1 4 2 1,growx");
-		textManutencao.setColumns(10);
+		panel_6.add(lblNewLabel_11, "cell 0 5,alignx trailing");
+		
+		JPanel panel_4 = new JPanel();
+		panel_6.add(panel_4, "cell 1 5 2 1,grow");
+		panel_4.setLayout(new MigLayout("", "[40px][10px][40px][grow]", "[40px]"));
+		
+		JRadioButton rdbtnManuTem = new JRadioButton("Feita");
+		buttonGroup_4.add(rdbtnManuTem);
+		rdbtnManuTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		panel_4.add(rdbtnManuTem, "cell 0 0");
+		
+		JRadioButton rdbtnManuNaoTem = new JRadioButton("Não feita");
+		buttonGroup_4.add(rdbtnManuNaoTem);
+		rdbtnManuNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		panel_4.add(rdbtnManuNaoTem, "cell 2 0");
 
 		JLabel lblNewLabel_12 = new JLabel("Cama: ");
 		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_12, "cell 0 5,alignx trailing");
+		panel_6.add(lblNewLabel_12, "cell 0 3,alignx trailing");
 
 		textCama = new JTextField();
 		textCama.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCama, "cell 1 5 2 1,growx");
+		panel_6.add(textCama, "cell 1 3 2 1,growx");
 		textCama.setColumns(10);
 
 		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
@@ -346,11 +364,19 @@ public class Quartos2 extends JFrame {
 				if (rdbtnTvTem.isSelected() || rdbtnTvNaoTem.isSelected()) {
 					q.setTV(rdbtnTvTem.isSelected() ? true : false);
 				}
+				
+				if(rdbtnManuTem.isSelected()|| rdbtnManuNaoTem.isSelected())
+				{
+					q.setManutencao(String.valueOf(rdbtnManuTem.isSelected()?1:0));
+				}
 
-				q.setManutencao(textManutencao.getText());
+				if(rdbtnSituTem.isSelected()||rdbtnSituNaoTem.isSelected())
+				{
+					q.setSituacao(rdbtnSituTem.isSelected()?2:1);
+				}
+				
 				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
-				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
 				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 				dao.inserirQuarto(q);
@@ -379,15 +405,14 @@ public class Quartos2 extends JFrame {
 				textChecko.setText(null);
 				textCPF.setText(null);
 				textDiaria.setText(null);
-				textManutencao.setText(null);
-				textSituacao.setText(null);
 				textTipo.setText(null);
 
 				buttonGroup.clearSelection();
 				buttonGroup_1.clearSelection();
 				buttonGroup_2.clearSelection();
 				buttonGroup_3.clearSelection();
-
+				buttonGroup_4.clearSelection();
+				buttonGroup_5.clearSelection();
 			}
 		});
 		dfltcnbtnLimpar.setText("");
@@ -412,10 +437,8 @@ public class Quartos2 extends JFrame {
 				int linha = table.getSelectedRow();
 
 				q.setIdQuarto(ListaQuartos.get(linha).getIdQuarto());
-				q.setManutencao(textManutencao.getText());
 				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
 				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
-				q.setSituacao(Integer.valueOf(textSituacao.getText()));
 				q.setTipoCama(textCama.getText());
 				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 
@@ -431,7 +454,14 @@ public class Quartos2 extends JFrame {
 				if (rdbtnTvTem.isSelected() || rdbtnTvNaoTem.isSelected()) {
 					q.setTV(rdbtnTvTem.isSelected() ? true : false);
 				}
-
+				if(rdbtnManuTem.isSelected()|| rdbtnManuNaoTem.isSelected())
+				{
+					q.setManutencao(String.valueOf(rdbtnManuTem.isSelected()?1: 0));
+				}
+				if(rdbtnSituTem.isSelected()||rdbtnSituNaoTem.isSelected())
+				{
+					q.setSituacao(rdbtnSituTem.isSelected()?2:1);
+				}
 //				q.setArCondicionado(Boolean.valueOf(textAr.getText()));
 //				q.setBanheira(Boolean.valueOf(textBanheira.getText()));
 //				q.setFrigobar(Boolean.valueOf(textFrigobar.getText()));
@@ -482,8 +512,6 @@ public class Quartos2 extends JFrame {
 						textCama.setText(ListaQuartos.get(i).getTipoCama());
 						textCapacidade.setText(String.valueOf(ListaQuartos.get(i).getMaxPessoas()));
 						textDiaria.setText(String.valueOf(ListaQuartos.get(i).getPrecoDiaria()));
-						textManutencao.setText(String.valueOf(ListaQuartos.get(i).getManutencao()));
-						textSituacao.setText(String.valueOf(ListaQuartos.get(i).getSituacao()));
 						textTipo.setText(String.valueOf(ListaQuartos.get(i).getTipoQuarto()));
 
 						// Frigobar
@@ -513,7 +541,21 @@ public class Quartos2 extends JFrame {
 						} else if (ListaQuartos.get(i).getBanheira() == false) {
 							rdbtnBanNaoTem.setSelected(true);
 						}
-
+						
+						if(ListaQuartos.get(i).getManutencao().equals("1"))
+						{
+							rdbtnManuTem.setSelected(true);
+						} else if(ListaQuartos.get(i).getManutencao().equals("0"))
+						{
+							rdbtnManuNaoTem.setSelected(true);
+						}
+						if(ListaQuartos.get(i).getSituacao()==2)
+						{
+							rdbtnSituTem.setSelected(true);
+						} else if(ListaQuartos.get(i).getSituacao()==1)
+						{
+							rdbtnSituNaoTem.setSelected(true);
+						}
 					}
 				}
 			}
