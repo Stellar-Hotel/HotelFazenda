@@ -205,12 +205,11 @@ public class Quartos2 extends JFrame {
 
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0 2 2,grow");
-		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]",
-				"[][][][][][grow][grow][grow][grow][][][grow][]"));
+		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][][][grow][grow][grow][grow][grow][][][]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_7, "cell 0 0,alignx trailing");
+		panel_6.add(lblNewLabel_7, "cell 0 1,alignx trailing");
 
 		textCPF = new JTextField();
 
@@ -220,51 +219,51 @@ public class Quartos2 extends JFrame {
 
 		textTipo = new JFormattedTextField(Num1);
 		textTipo.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textTipo, "cell 1 0 2 1,growx");
+		panel_6.add(textTipo, "cell 1 1 2 1,growx");
 		textTipo.setColumns(10);
 
 		JLabel lblNewLabel_9 = new JLabel("Situação: ");
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_9, "cell 0 1,alignx trailing");
+		panel_6.add(lblNewLabel_9, "cell 0 2,alignx trailing");
 
 		textSituacao = new JFormattedTextField(Num1);
 		textSituacao.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textSituacao, "cell 1 1 2 1,growx");
+		panel_6.add(textSituacao, "cell 1 2 2 1,growx");
 		textSituacao.setColumns(10);
 
 		JLabel lblNewLabel_10 = new JLabel("Capacidade: ");
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_10, "cell 0 2,alignx trailing");
+		panel_6.add(lblNewLabel_10, "cell 0 3,alignx trailing");
 
 		textCapacidade = new JFormattedTextField(Num2);
 		textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCapacidade, "cell 1 2 2 1,growx");
+		panel_6.add(textCapacidade, "cell 1 3 2 1,growx");
 		textCapacidade.setColumns(10);
 
 		JLabel lblNewLabel_11 = new JLabel("Manutenção: ");
 		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_11, "cell 0 3,alignx trailing");
+		panel_6.add(lblNewLabel_11, "cell 0 4,alignx trailing");
 
 		textManutencao = new JTextField();
 		textManutencao.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textManutencao, "cell 1 3 2 1,growx");
+		panel_6.add(textManutencao, "cell 1 4 2 1,growx");
 		textManutencao.setColumns(10);
 
 		JLabel lblNewLabel_12 = new JLabel("Cama: ");
 		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_12, "cell 0 4,alignx trailing");
+		panel_6.add(lblNewLabel_12, "cell 0 5,alignx trailing");
 
 		textCama = new JTextField();
 		textCama.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCama, "cell 1 4 2 1,growx");
+		panel_6.add(textCama, "cell 1 5 2 1,growx");
 		textCama.setColumns(10);
 
 		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
 		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_13, "cell 0 5,alignx trailing");
+		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing");
 
 		JPanel panel = new JPanel();
-		panel_6.add(panel, "cell 1 5 2 1,growx,aligny center");
+		panel_6.add(panel, "cell 1 6 2 1,growx,aligny center");
 		panel.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 
 		JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
@@ -279,10 +278,10 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_14 = new JLabel("Ar Condicionado: ");
 		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_14, "cell 0 6,alignx trailing");
+		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing");
 
 		JPanel panel_1 = new JPanel();
-		panel_6.add(panel_1, "cell 1 6 2 1,grow");
+		panel_6.add(panel_1, "cell 1 7 2 1,grow");
 		panel_1.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 
 		JRadioButton rdbtnArTem = new JRadioButton("Possui");
@@ -297,10 +296,10 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_16 = new JLabel("Banheira: ");
 		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_16, "cell 0 7,alignx trailing");
+		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing");
 
 		JPanel panel_2 = new JPanel();
-		panel_6.add(panel_2, "cell 1 7 2 1,grow");
+		panel_6.add(panel_2, "cell 1 8 2 1,grow");
 		panel_2.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
 
 		JRadioButton rdbtnBanTem = new JRadioButton("Possui");
@@ -315,10 +314,10 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_17 = new JLabel("Televisão: ");
 		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_17, "cell 0 8,alignx trailing");
+		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing");
 
 		JPanel panel_3 = new JPanel();
-		panel_6.add(panel_3, "cell 1 8 2 1,grow");
+		panel_6.add(panel_3, "cell 1 9 2 1,grow");
 		panel_3.setLayout(new MigLayout("", "[40px][40px][grow]", "[]"));
 
 		JRadioButton rdbtnTvTem = new JRadioButton("Possui");
@@ -333,11 +332,11 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_18 = new JLabel("Diária: ");
 		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_18, "cell 0 9,alignx trailing");
+		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing");
 
 		textDiaria = new JFormattedTextField(Num3);
 		textDiaria.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textDiaria, "cell 1 9 2 1,growx");
+		panel_6.add(textDiaria, "cell 1 10 2 1,growx");
 		textDiaria.setColumns(10);
 
 		DefaultIconButton btnSalvar = new DefaultIconButton("Inserir");
@@ -375,6 +374,8 @@ public class Quartos2 extends JFrame {
 		});
 
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
+		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
+		dfltcnbtnLimpar.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -395,10 +396,11 @@ public class Quartos2 extends JFrame {
 
 			}
 		});
-		dfltcnbtnLimpar.setText("Limpar");
+		dfltcnbtnLimpar.setText("");
 		dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.black, 10));
-		dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
-		panel_6.add(dfltcnbtnLimpar, "cell 1 11,alignx center");
+		dfltcnbtnLimpar.setBackground(new Color(0, 255, 255));
+		dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
+		panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx right");
 		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
 		btnSalvar.setBackground(new Color(117, 187, 68));
 		panel_6.add(btnSalvar, "cell 0 12,grow");

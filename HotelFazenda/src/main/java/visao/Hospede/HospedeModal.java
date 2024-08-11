@@ -40,6 +40,7 @@ import visao.ModaisDeAvisos.TelaSucesso;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
 
 public class HospedeModal extends JFrame {
 
@@ -198,7 +199,10 @@ public class HospedeModal extends JFrame {
 		textEmail.setColumns(10);
 
 		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar_1.setBounds(443, 32, 73, 40);
+		dfltcnbtnLimpar_1.setIcon(new ImageIcon(HospedeModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+		dfltcnbtnLimpar_1.setBackgroundColor(new Color(0, 255, 255));
+		dfltcnbtnLimpar_1.setHoverColor(Color.cyan);
+		dfltcnbtnLimpar_1.setBounds(461, 32, 55, 40);
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textNome.setText(" ");
@@ -317,17 +321,17 @@ public class HospedeModal extends JFrame {
 							return;
 						}
 
-						Hospedes hospede = new Hospedes();
-						hospede.setNome(Nome);
-						hospede.setSobrenome(Sobrenome);
-						hospede.setDataNasc(Nascimento);
-						hospede.setNacionalidade(Nacionalidade);
-						hospede.setEmail(Email);
-						hospede.setPronome(Pronome);
-						hospede.setDocumento(Documento);
-						hospede.setIdHospede(hospede.getIdHospede());
+						Hospedes hospede1 = new Hospedes();
+						hospede1.setNome(Nome);
+						hospede1.setSobrenome(Sobrenome);
+						hospede1.setDataNasc(Nascimento);
+						hospede1.setNacionalidade(Nacionalidade);
+						hospede1.setEmail(Email);
+						hospede1.setPronome(Pronome);
+						hospede1.setDocumento(Documento);
+						hospede1.setIdHospede(hospede.getIdHospede());
 						HospedeDAO DAO = HospedeDAO.getInstancia();
-						boolean result = DAO.atualizarHospede(hospede);
+						boolean result = DAO.atualizarHospede(hospede1);
 						if (result) {
 							TelaSucesso c = new TelaSucesso("Hospede atualizado com sucesso!");
 							c.setVisible(true);
@@ -344,9 +348,9 @@ public class HospedeModal extends JFrame {
 			});
 		}
 
-		dfltcnbtnLimpar_1.setText("Limpar");
+		dfltcnbtnLimpar_1.setText("");
 		dfltcnbtnLimpar_1.setBorder(new RoundedBorder(Color.BLACK, 8));
-		dfltcnbtnLimpar_1.setBackground(new Color(117, 187, 68));
+		dfltcnbtnLimpar_1.setBackground(new Color(0, 255, 255));
 		panel_5.setLayout(null);
 		panel_5.add(lblNewLabel_7);
 		panel_5.add(dfltcnbtnLimpar_1);

@@ -197,16 +197,36 @@ public class TelaDeQuartos extends JFrame {
 
 		DefaultModal panel_5 = new DefaultModal();
 		Principal.add(panel_5, "cell 0 1,grow");
-		panel_5.setLayout(new MigLayout("", "[grow][grow]", "[grow][grow][grow][40px]"));
+		panel_5.setLayout(new MigLayout("", "[100px,grow][100px,grow][100px,grow]", "[grow][grow][100px,grow][40px]"));
 
 		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6, "cell 0 0 2 1,grow");
+		panel_5.add(panel_6, "cell 0 0 3 1,grow");
 		panel_6.setLayout(
 				new MigLayout("", "[grow][100px:74.00,grow][grow]", "[][grow][][][][][grow][grow][][][][][]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Reservar Quarto");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		panel_6.add(lblNewLabel_7, "cell 0 0,aligny top");
+		
+				DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+				panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx center");
+				dfltcnbtnLimpar.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+				dfltcnbtnLimpar.setBackgroundColor(new Color(0, 178, 178));
+				dfltcnbtnLimpar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						textChecki.setText(null);
+						textChecko.setText(null);
+						textCPF.setText(null);
+					}
+				});
+				dfltcnbtnLimpar.setText("");
+				dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
+				dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
 
 		JPanel panel_12 = new JPanel();
 		panel_6.add(panel_12, "cell 0 1 2 1,grow");
@@ -300,7 +320,7 @@ public class TelaDeQuartos extends JFrame {
 		panel_15.add(lblNewLabel_18, "cell 0 0,alignx center,aligny center");
 
 		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7, "cell 0 1 2 1,alignx left,growy");
+		panel_5.add(panel_7, "cell 0 1 3 1,alignx left,growy");
 		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]"));
 
 		JLabel lblNewLabel_11 = new JLabel("Subtotal:");
@@ -341,104 +361,90 @@ public class TelaDeQuartos extends JFrame {
 		});
 		btnNewButton.setHoverColor(Color.RED.darker());
 		btnNewButton.setBackgroundColor(Color.RED);
-		panel_5.add(btnNewButton, "cell 0 2,growx,aligny center");
+		panel_5.add(btnNewButton, "cell 0 2,growx");
+				
+						DefaultIconButton btnNewButton_3 = new DefaultIconButton("Efetuar reserva");
+						panel_5.add(btnNewButton_3, "cell 1 2,growx");
+						btnNewButton_3.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
 
-		DefaultIconButton btnNewButton_3 = new DefaultIconButton("Efetuar reserva");
-		panel_5.add(btnNewButton_3, "cell 1 2,growx,aligny center");
+								Object pos = comboBox.getSelectedItem();
+								String cpf = textCPF.getText();
 
-		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
-		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textChecki.setText(null);
-				textChecko.setText(null);
-				textCPF.setText(null);
-			}
-		});
-		dfltcnbtnLimpar.setText("Limpar");
-		dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
-		dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
-		panel_5.add(dfltcnbtnLimpar, "cell 0 3 2 1,alignx center");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+								Date checkin = null;
+								Date checkout = null;
+								Date reservacheckin = null;
+								Date reservacheckout = null;
+								QuartosDAO qDao = QuartosDAO.getConexao();
+								Quartos quarto = qDao.buscarQuartoPorId((Integer) comboBox.getSelectedItem());
+								HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
+								Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
 
-				Object pos = comboBox.getSelectedItem();
-				String cpf = textCPF.getText();
+								if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
 
-				Date checkin = null;
-				Date checkout = null;
-				Date reservacheckin = null;
-				Date reservacheckout = null;
-				QuartosDAO qDao = QuartosDAO.getConexao();
-				Quartos quarto = qDao.buscarQuartoPorId((Integer) comboBox.getSelectedItem());
-				HospedeDAO hospedeDAO = HospedeDAO.getInstancia();
-				Hospedes hospede = hospedeDAO.buscarHospedePorCPF(cpf);
+									TelaErro telaErro = new TelaErro("Campos vazios");
+									telaErro.setVisible(true);
+									return;
+								}
 
-				if (textCPF.getText().isEmpty() || textChecki.getText().isEmpty() || textChecko.getText().isEmpty()) {
+								if (hospede == null) {
+									TelaErro telaErro = new TelaErro("Hospede não encontrado");
+									telaErro.setVisible(true);
+									return;
+								}
 
-					TelaErro telaErro = new TelaErro("Campos vazios");
-					telaErro.setVisible(true);
-					return;
-				}
+								try {
+									checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
+									checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
 
-				if (hospede == null) {
-					TelaErro telaErro = new TelaErro("Hospede não encontrado");
-					telaErro.setVisible(true);
-					return;
-				}
+									// Check if the provided check-in and check-out dates are valid
+									if (checkin.after(checkout)) {
+										// Handle invalid dates (check-in should be before check-out)
+										TelaErro erro = new TelaErro("Data de check-in deve ser anterior à data de check-out.");
+										erro.setVisible(true);
+										return;
+									}
 
-				try {
-					checkin = new Date(dateFormat.parse(textChecki.getText()).getTime());
-					checkout = new Date(dateFormat.parse(textChecko.getText()).getTime());
+									// Loop through existing reservations to check for overlaps
+									for (Hospedagens hg : ListaHospedagens) {
+										if (hg.getQuarto().getIdQuarto() == quarto.getIdQuarto()) {
+											reservacheckin = hg.getCheckin();
+											reservacheckout = hg.getCheckout();
 
-					// Check if the provided check-in and check-out dates are valid
-					if (checkin.after(checkout)) {
-						// Handle invalid dates (check-in should be before check-out)
-						TelaErro erro = new TelaErro("Data de check-in deve ser anterior à data de check-out.");
-						erro.setVisible(true);
-						return;
-					}
+											// Check for overlap
+											if ((checkin.before(reservacheckout) && checkin.after(reservacheckin))
+													|| (checkout.before(reservacheckout) && checkout.after(reservacheckin))
+													|| (checkin.equals(reservacheckin) || checkin.equals(reservacheckout)
+															|| checkout.equals(reservacheckin) || checkout.equals(reservacheckout))) {
+												// Overlap detected
+												TelaErro erro = new TelaErro("Já existe uma reserva nas datas selecionadas.");
+												erro.setVisible(true);
+												return;
+											}
 
-					// Loop through existing reservations to check for overlaps
-					for (Hospedagens hg : ListaHospedagens) {
-						if (hg.getQuarto().getIdQuarto() == quarto.getIdQuarto()) {
-							reservacheckin = hg.getCheckin();
-							reservacheckout = hg.getCheckout();
+										}
+									}
+								} catch (ParseException e1) {
+									e1.printStackTrace();
+									TelaErro erro = new TelaErro("ocorreu um erro inesperado");
+									erro.setVisible(true);
+									return;
+								}
 
-							// Check for overlap
-							if ((checkin.before(reservacheckout) && checkin.after(reservacheckin))
-									|| (checkout.before(reservacheckout) && checkout.after(reservacheckin))
-									|| (checkin.equals(reservacheckin) || checkin.equals(reservacheckout)
-											|| checkout.equals(reservacheckin) || checkout.equals(reservacheckout))) {
-								// Overlap detected
-								TelaErro erro = new TelaErro("Já existe uma reserva nas datas selecionadas.");
-								erro.setVisible(true);
-								return;
+								HospedagensDAO hospedagensDAO = HospedagensDAO.getInstancia();
+								Hospedagens hospedagem = new Hospedagens();
+								hospedagem.setCheckin(checkin);
+								hospedagem.setCheckout(checkout);
+								hospedagem.setHospde(hospede);
+								hospedagem.setQuarto(quarto);
+								hospedagensDAO.InserirHospedagem(hospedagem);
+								atualizarJTable(x);
+								TelaSucesso s = new TelaSucesso("Reserva efetuada com sucesso!");
+								s.setVisible(true);
+
 							}
 
-						}
-					}
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-					TelaErro erro = new TelaErro("ocorreu um erro inesperado");
-					erro.setVisible(true);
-					return;
-				}
-
-				HospedagensDAO hospedagensDAO = HospedagensDAO.getInstancia();
-				Hospedagens hospedagem = new Hospedagens();
-				hospedagem.setCheckin(checkin);
-				hospedagem.setCheckout(checkout);
-				hospedagem.setHospde(hospede);
-				hospedagem.setQuarto(quarto);
-				hospedagensDAO.InserirHospedagem(hospedagem);
-				atualizarJTable(x);
-				TelaSucesso s = new TelaSucesso("Reserva efetuada com sucesso!");
-				s.setVisible(true);
-
-			}
-
-		});
+						});
 
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 36));
