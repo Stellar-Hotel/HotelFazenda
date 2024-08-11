@@ -232,6 +232,8 @@ public class TelaAtividadesHospedes extends JFrame {
 
 				ativ = ListaatividadesHospedes.get(row);
 				DAO.RemoverAtividadeHospede(ativ.getIdHospedeAtividade());
+				TelaSucesso c = new TelaSucesso("Hospede exluido da atividade");
+				c.setVisible(true);
 				atualizarJTable();
 
 			}

@@ -50,6 +50,7 @@ import utils.DefaultModal;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Hospede.TelaDeHospedes;
+import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 
@@ -197,7 +198,7 @@ public class Quartos2 extends JFrame {
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
 		Principal.setLayout(
-				new MigLayout("", "[400:201.00:400,grow][70:74.00:70,grow][500.00,grow]", "[][322.00,grow,fill]"));
+				new MigLayout("", "[338.00:338.00:338.00,grow][10:10:10,grow][500.00,grow]", "[][322.00,grow,fill]"));
 
 		JPanel panel_5 = new JPanel();
 		Principal.add(panel_5, "cell 0 1,grow");
@@ -205,7 +206,7 @@ public class Quartos2 extends JFrame {
 
 		JPanel panel_6 = new JPanel();
 		panel_5.add(panel_6, "cell 0 0 2 2,grow");
-		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][][][grow][grow][grow][grow][grow][][][]"));
+		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][][][][grow][grow][grow][grow][][][]"));
 
 		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -260,79 +261,59 @@ public class Quartos2 extends JFrame {
 
 		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
 		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing");
-
-		JPanel panel = new JPanel();
-		panel_6.add(panel, "cell 1 6 2 1,growx,aligny center");
-		panel.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
-
-		JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
-		rdbtnFrigoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup.add(rdbtnFrigoTem);
-		panel.add(rdbtnFrigoTem, "cell 0 0");
-
+		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing,aligny center");
+		
+				JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
+				panel_6.add(rdbtnFrigoTem, "cell 1 6,alignx center");
+				rdbtnFrigoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+				buttonGroup.add(rdbtnFrigoTem);
+		
 		JRadioButton rdbtnFrigoNaoTem = new JRadioButton("Não possui");
 		rdbtnFrigoNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup.add(rdbtnFrigoNaoTem);
-		panel.add(rdbtnFrigoNaoTem, "cell 1 0");
+		panel_6.add(rdbtnFrigoNaoTem, "cell 2 6,alignx center");
 
 		JLabel lblNewLabel_14 = new JLabel("Ar Condicionado: ");
 		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing");
-
-		JPanel panel_1 = new JPanel();
-		panel_6.add(panel_1, "cell 1 7 2 1,grow");
-		panel_1.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
-
-		JRadioButton rdbtnArTem = new JRadioButton("Possui");
-		rdbtnArTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_1.add(rdbtnArTem);
-		panel_1.add(rdbtnArTem, "cell 0 0");
-
+		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing,aligny center");
+		
+				JRadioButton rdbtnArTem = new JRadioButton("Possui");
+				panel_6.add(rdbtnArTem, "flowx,cell 1 7,alignx center");
+				rdbtnArTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+				buttonGroup_1.add(rdbtnArTem);
+		
 		JRadioButton rdbtnArNaoTem = new JRadioButton("Não possui");
 		rdbtnArNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_1.add(rdbtnArNaoTem);
-		panel_1.add(rdbtnArNaoTem, "cell 1 0");
+		panel_6.add(rdbtnArNaoTem, "cell 2 7,alignx center");
 
 		JLabel lblNewLabel_16 = new JLabel("Banheira: ");
 		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing");
-
-		JPanel panel_2 = new JPanel();
-		panel_6.add(panel_2, "cell 1 8 2 1,grow");
-		panel_2.setLayout(new MigLayout("", "[40px][40px][grow]", "[40px]"));
-
-		JRadioButton rdbtnBanTem = new JRadioButton("Possui");
-		rdbtnBanTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_2.add(rdbtnBanTem);
-		panel_2.add(rdbtnBanTem, "cell 0 0");
-
+		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing,aligny center");
+		
+				JRadioButton rdbtnBanTem = new JRadioButton("Possui");
+				panel_6.add(rdbtnBanTem, "cell 1 8,alignx center");
+				rdbtnBanTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+				buttonGroup_2.add(rdbtnBanTem);
+		
 		JRadioButton rdbtnBanNaoTem = new JRadioButton("Não possui");
 		rdbtnBanNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_2.add(rdbtnBanNaoTem);
-		panel_2.add(rdbtnBanNaoTem, "cell 1 0");
+		panel_6.add(rdbtnBanNaoTem, "cell 2 8,alignx center");
 
 		JLabel lblNewLabel_17 = new JLabel("Televisão: ");
 		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing");
-
-		JPanel panel_3 = new JPanel();
-		panel_6.add(panel_3, "cell 1 9 2 1,grow");
-		panel_3.setLayout(new MigLayout("", "[40px][40px][grow]", "[]"));
-
-		JRadioButton rdbtnTvTem = new JRadioButton("Possui");
-		rdbtnTvTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_3.add(rdbtnTvTem);
-		panel_3.add(rdbtnTvTem, "cell 0 0");
-
+		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing,aligny center");
+		
+				JRadioButton rdbtnTvTem = new JRadioButton("Possui");
+				panel_6.add(rdbtnTvTem, "cell 1 9,alignx center");
+				rdbtnTvTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+				buttonGroup_3.add(rdbtnTvTem);
+		
 		JRadioButton rdbtnTvNaoTem = new JRadioButton("Não possui");
 		rdbtnTvNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_3.add(rdbtnTvNaoTem);
-		panel_3.add(rdbtnTvNaoTem, "cell 1 0");
+		panel_6.add(rdbtnTvNaoTem, "cell 2 9,alignx center");
 
 		JLabel lblNewLabel_18 = new JLabel("Diária: ");
 		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing");
+		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing,aligny center");
 
 		textDiaria = new JFormattedTextField(Num3);
 		textDiaria.setBorder(new RoundedBorder(Color.black, 10));
@@ -340,6 +321,10 @@ public class Quartos2 extends JFrame {
 		textDiaria.setColumns(10);
 
 		DefaultIconButton btnSalvar = new DefaultIconButton("Inserir");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -369,13 +354,22 @@ public class Quartos2 extends JFrame {
 				q.setTipoCama(textCama.getText());
 				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 				dao.inserirQuarto(q);
+				
+				TelaSucesso s = new TelaSucesso("Quarto reservado com sucesso");
+				s.setVisible(true);
+				
 				atualizarJTable();
 			}
 		});
 
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
+		dfltcnbtnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
 		dfltcnbtnLimpar.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+		dfltcnbtnLimpar.setHoverColor(new Color(0,255,255));
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -448,7 +442,7 @@ public class Quartos2 extends JFrame {
 		});
 		btnAtualizar.setBorder(new RoundedBorder(Color.black, 10));
 		btnAtualizar.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnAtualizar, "cell 1 12,alignx center");
+		panel_6.add(btnAtualizar, "cell 1 12,alignx center,growy");
 
 		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
 		btnExcluir.addMouseListener(new MouseAdapter() {
@@ -465,7 +459,9 @@ public class Quartos2 extends JFrame {
 		});
 		btnExcluir.setBorder(new RoundedBorder(Color.black, 10));
 		btnExcluir.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnExcluir, "cell 2 12");
+		panel_6.add(btnExcluir, "cell 2 12,alignx center,growy");
+		
+
 
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36));

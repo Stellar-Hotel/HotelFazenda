@@ -174,8 +174,9 @@ public class AtividadesModal extends JFrame {
 						try {
 							data = new Date(dateFormat.parse(textData.getText()).getTime());
 						} catch (java.text.ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							 TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+					         telaErro.setVisible(true);
+					         return; // Impede a continuação							
 						}
 
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
@@ -249,7 +250,7 @@ public class AtividadesModal extends JFrame {
 					        try {
 					            data = new Date(dateFormat.parse(textData.getText().trim()).getTime());
 					        } catch (java.text.ParseException e1) {
-					            TelaErro telaErro = new TelaErro("Data inválida. Por favor, insira no formato dd/MM/yyyy.");
+					            TelaErro telaErro = new TelaErro("Data inválida. Insira no formato dd/MM/yyyy.");
 					            telaErro.setVisible(true);
 					            return; // Impede a continuação do processamento em caso de erro na data
 					        }
