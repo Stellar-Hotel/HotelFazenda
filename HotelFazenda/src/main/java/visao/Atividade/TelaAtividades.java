@@ -34,6 +34,7 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
 
 import controle.Atividades.AtividadesDAO;
+import controle.Data.DateCellRenderer;
 import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -172,7 +173,7 @@ public class TelaAtividades extends JFrame {
 		table = new CustomTable(model1);
 		cTable.setViewportView(table);
 
-		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade", "IdadeMinima", "Horario",
+		model1 = (new DefaultTableModel(new Object[][] {}, new String[] {"IdadeMinima", "Horario",
 				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
 
 		model2 = (new DefaultTableModel(new Object[][] {},
@@ -542,23 +543,25 @@ public class TelaAtividades extends JFrame {
 			}
 
 		};
-		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdAtividade",
-				"IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade", "Ações" });
+		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade", "Ações" });
 
 		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
 		ListaAtividades = AtivDAO.ListarAtividades();
 
 		for (int i = 0; i < ListaAtividades.size(); i++) {
 			Atividades p = ListaAtividades.get(i);
-			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
+			modelo1.addRow(new Object[] {p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
 					p.getNomeAtividade(), p.getData(), p.getCapacidade() });
 		}
 
 		table.setModel(modelo1);
+		
+		 table.getColumnModel().getColumn(4).setCellRenderer(new DateCellRenderer());
+
 
 		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
 																					// selecionada
-		table.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
+		table.getColumnModel().getColumn(6).setCellRenderer(cellRenderer);
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
 		table.addMouseListener(new MouseAdapter() {
@@ -572,9 +575,9 @@ public class TelaAtividades extends JFrame {
 			}
 		});
 
-		table.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event, true, true));
+		table.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(7).setPreferredWidth(145);
+		table.getColumnModel().getColumn(6).setPreferredWidth(120);
 
 	}
 

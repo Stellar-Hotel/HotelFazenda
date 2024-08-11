@@ -89,17 +89,17 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[60:60:60,grow][:70:70,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][209.00:209.00:209.00,grow][353.00:449.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][40:40:40][grow][40px]"));
+		Principal.setLayout(new MigLayout("", "[60:60:60,grow][:95.00:95.00,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][279.00:279.00:279.00][353.00:449.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][83.00:83.00:83.00][][40px,grow]"));
 
 		ImageIcon IC = new ImageIcon(
 				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
 
 		JLabel lblNewLabel_17 = new JLabel("Alterações");
-		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 32));
 		Principal.add(lblNewLabel_17, "cell 1 0 2 2,alignx left");
 
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Principal.add(lblNewLabel_7, "cell 1 2,alignx center,aligny center");
 		
 		JLabel lblNewLabel_19 = new JLabel("");
@@ -139,14 +139,14 @@ public class Conta extends JFrame {
 
 			}
 		});
-		textUser.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		textUser.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		textUser.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(textUser, "cell 2 2 6 1,grow");
 		textUser.setColumns(10);
 		textUser.setText(Func.getUsuario().getLogin());
 
 		JLabel lblNewLabel_9 = new JLabel("Email:");
-		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Principal.add(lblNewLabel_9, "cell 1 4,alignx center");
 		
 				JLabel lblTelefone = new JLabel("Telefone:");
@@ -171,7 +171,7 @@ public class Conta extends JFrame {
 				}
 			}
 		});
-		textTel.setFont(new Font("Times New Roman", Font.PLAIN, 10));
+		textTel.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		textTel.setBorder(new RoundedBorder(Color.black, 10));
 		textTel.setText(Func.getTelefone());
 		Principal.add(textTel, "cell 4 6 4 1,growx");
@@ -196,7 +196,7 @@ public class Conta extends JFrame {
 
 			}
 		});
-		textEm.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		textEm.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		textEm.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(textEm, "cell 2 4 6 1,growx");
 		textEm.setColumns(10);
@@ -205,71 +205,70 @@ public class Conta extends JFrame {
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(235, 235, 235));
 		Principal.add(panel_5, "cell 9 2 1 7,grow");
-		panel_5.setLayout(new MigLayout("", "[116.00:116.00:116.00,grow][240:240:240,grow]", "[][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow][40:40:40,grow]"));
+		panel_5.setLayout(new MigLayout("", "[grow][grow][grow]", "[][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow]"));
 		
 				JLabel lblNewLabel_18_1 = new JLabel("Dados do Usuário");
-				panel_5.add(lblNewLabel_18_1, "cell 0 0 2 1,alignx center");
-				lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 26));
+				panel_5.add(lblNewLabel_18_1, "cell 0 0 3 1,alignx center");
+				lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 28));
 
 		JLabel lblNewLabel_6 = new JLabel("Nome");
-		lblNewLabel_6.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6, "cell 0 1,alignx left,aligny center");
 
 		// IC.setImage(IC.getImage().getScaledInstance(lblNewLabel_12.getWidth(),
 		// lblNewLabel_12.getHeight(), 100));
 
 		JLabel lblNome = new JLabel("Blbla");
-		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNome, "flowx,cell 1 1,alignx center");
+		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblNome, "flowx,cell 1 1 2 1,alignx center");
 		lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
-
 		JLabel lblNewLabel_6_1 = new JLabel("Nome do Usuario");
-		lblNewLabel_6_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6_1, "cell 0 2,alignx left,aligny center");
 
 		JLabel lblNewLabel_15 = new JLabel("Email:");
-		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_15, "cell 1 2,alignx center");
+		lblNewLabel_15.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblNewLabel_15, "cell 1 2 2 1,alignx center");
 		lblNewLabel_15.setText(Func.getUsuario().getLogin());
 
 		JLabel lblNewLabel_6_1_1 = new JLabel("Telefone");
-		lblNewLabel_6_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6_1_1, "cell 0 3,alignx left,aligny center");
 
 		JLabel lblTel = new JLabel("Telefone::");
-		lblTel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblTel, "cell 1 3,alignx center");
+		lblTel.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblTel, "cell 1 3 2 1,alignx center");
 		lblTel.setText(Func.getTelefone());
 
 		JLabel lblNewLabel_6_1_1_1 = new JLabel("Pronome");
-		lblNewLabel_6_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6_1_1_1, "cell 0 4,alignx left,aligny center");
 
 		JLabel lblNewLabel_16 = new JLabel("Pronomes:");
-		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_16, "cell 1 4,alignx center");
+		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblNewLabel_16, "cell 1 4 2 1,alignx center");
 		lblNewLabel_16.setText(Func.getPronomeFunc());
 
 		JLabel lblNewLabel_6_1_1_1_1 = new JLabel("Cargo");
-		lblNewLabel_6_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6_1_1_1_1, "cell 0 5,alignx left,aligny center");
 
 		JLabel lblNewLabel_12 = new JLabel("Setor");
-		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_12, "cell 1 5,alignx center");
+		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblNewLabel_12, "cell 1 5 2 1,alignx center");
 		lblNewLabel_12.setText(Func.getSetor());
 
 		JLabel lblNewLabel_6_1_1_1_1_1 = new JLabel("Função");
-		lblNewLabel_6_1_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		lblNewLabel_6_1_1_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		panel_5.add(lblNewLabel_6_1_1_1_1_1, "cell 0 6,alignx left,aligny center");
 
 		JLabel lblNewLabel_13 = new JLabel("Funcao");
-		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		panel_5.add(lblNewLabel_13, "cell 1 6,alignx center");
+		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		panel_5.add(lblNewLabel_13, "cell 1 6 2 1,alignx center");
 		lblNewLabel_13.setText(Func.getFuncao());
 
 		JLabel lblNewLabel_10 = new JLabel("Pronomes:");
-		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Principal.add(lblNewLabel_10, "cell 1 6,alignx center");
 
 		textPron = new JFormattedTextField(mPron);
@@ -286,7 +285,7 @@ public class Conta extends JFrame {
 
 			}
 		});
-		textPron.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		textPron.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		textPron.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(textPron, "flowx,cell 2 6,growx");
 		textPron.setColumns(10);
@@ -306,7 +305,7 @@ public class Conta extends JFrame {
 		
 		
 		JLabel lblNewLabel_11 = new JLabel("Senha:");
-		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
 		Principal.add(lblNewLabel_11, "cell 1 8,alignx center,aligny center");
 		
@@ -328,7 +327,7 @@ public class Conta extends JFrame {
 				}
 			}
 		});
-		passwordField.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		passwordField.setBorder(new RoundedBorder(Color.black, 10));
 		Principal.add(passwordField, "flowx,cell 2 8 5 1,growx");
 		passwordField.setEchoChar('*');
@@ -361,7 +360,7 @@ public class Conta extends JFrame {
 		DefaultIconButton btnSalvar = new DefaultIconButton("Cancelar");
 		btnSalvar.setText("Alterar dados");
 
-		btnSalvar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnSalvar.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String SenhaN = passwordField.getText();
@@ -393,7 +392,7 @@ public class Conta extends JFrame {
 					lblNewLabel_23.setText("");
 				}
 
-				lblNome.setText(Func.getNome() + "" + Func.getSobrenome());
+				lblNome.setText(Func.getNome() + " " + Func.getSobrenome());
 				lblNewLabel_15.setText(Func.getUsuario().getLogin());
 				lblNewLabel_16.setText(Func.getPronomeFunc());
 				lblTel.setText(Func.getTelefone());
@@ -412,7 +411,7 @@ public class Conta extends JFrame {
 		btnDescartarMudanas.setHoverColor(Color.RED);
 		btnDescartarMudanas.setHoverColor(Color.RED.darker());
 
-		btnDescartarMudanas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnDescartarMudanas.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		btnDescartarMudanas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textUser.setText(Func.getUsuario().getLogin());

@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -38,6 +39,7 @@ import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Combobox.RoundedComboBoxUI;
+import controle.Data.DateCellRenderer;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
@@ -137,6 +139,11 @@ public class TelaDeQuartos extends JFrame {
 		TableActionCellRender cellRenderer = new TableActionCellRender(false, true); // Inicialmente nenhuma linha
 		// selecionada
 		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+		
+	    table.getColumnModel().getColumn(2).setCellRenderer(new DateCellRenderer());
+
+	    table.getColumnModel().getColumn(3).setCellRenderer(new DateCellRenderer());
+
 
 // Adicionar um MouseListener à tabela para atualizar a linha selecionada
 		table.addMouseListener(new MouseAdapter() {
@@ -208,26 +215,26 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		panel_6.add(lblNewLabel_7, "cell 0 0,aligny top");
 		
-				DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
-				panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx center");
-				dfltcnbtnLimpar.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-				dfltcnbtnLimpar.setBackgroundColor(new Color(0, 178, 178));
-				dfltcnbtnLimpar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						textChecki.setText(null);
-						textChecko.setText(null);
-						textCPF.setText(null);
-					}
-				});
-				dfltcnbtnLimpar.setText("");
-				dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
-				dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
+		JPanel panel_7 = new JPanel();
+		panel_5.add(panel_7, "cell 0 1 3 1,alignx left,growy");
+		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]"));
+		
+		JLabel lblsubtotal = new JLabel("");
+		lblsubtotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_7.add(lblsubtotal, "cell 1 0");
+		
+		JLabel lbldesconto = new JLabel("");
+		lbldesconto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_7.add(lbldesconto, "cell 1 1");
+		
+		
+		JLabel lbltotal = new JLabel("");
+		lbltotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_7.add(lbltotal, "cell 1 2");
 
+		
+			
+				
 		JPanel panel_12 = new JPanel();
 		panel_6.add(panel_12, "cell 0 1 2 1,grow");
 
@@ -319,28 +326,20 @@ public class TelaDeQuartos extends JFrame {
 		lblNewLabel_18.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/cartao.png")));
 		panel_15.add(lblNewLabel_18, "cell 0 0,alignx center,aligny center");
 
-		JPanel panel_7 = new JPanel();
-		panel_5.add(panel_7, "cell 0 1 3 1,alignx left,growy");
-		panel_7.setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][][grow][][grow]"));
+		
 
 		JLabel lblNewLabel_11 = new JLabel("Subtotal:");
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		panel_7.add(lblNewLabel_11, "cell 0 0,alignx left,aligny bottom");
 
-		JLabel lblsubtotal = new JLabel("");
-		lblsubtotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_7.add(lblsubtotal, "cell 1 0");
+		
 
 		JPanel panel_11 = new JPanel();
 		panel_7.add(panel_11, "cell 2 0 3 3,grow");
 
-		JLabel lbldesconto = new JLabel("");
-		lbldesconto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_7.add(lbldesconto, "cell 1 1");
+	
 
-		JLabel lbltotal = new JLabel("");
-		lbltotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_7.add(lbltotal, "cell 1 2");
+		
 
 		JLabel lblNewLabel_12 = new JLabel("Desconto:");
 		lblNewLabel_12.setFont(new Font("Times New Roman", Font.PLAIN, 19));
@@ -349,22 +348,53 @@ public class TelaDeQuartos extends JFrame {
 		JLabel lblNewLabel_14 = new JLabel("Total:");
 		lblNewLabel_14.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		panel_7.add(lblNewLabel_14, "cell 0 2,alignx left,aligny top");
-
-		DefaultIconButton btnNewButton = new DefaultIconButton("Voltar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaDeAcomodacoes t = new TelaDeAcomodacoes();
-				t.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton.setHoverColor(Color.RED.darker());
-		btnNewButton.setBackgroundColor(Color.RED);
-		panel_5.add(btnNewButton, "cell 0 2,growx");
-				
-						DefaultIconButton btnNewButton_3 = new DefaultIconButton("Efetuar reserva");
-						panel_5.add(btnNewButton_3, "cell 1 2,growx");
+						
+								DefaultIconButton btnNewButton = new DefaultIconButton("Voltar");
+								btnNewButton.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+									}
+								});
+								btnNewButton.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseClicked(MouseEvent e) {
+										TelaDeAcomodacoes t = new TelaDeAcomodacoes();
+										t.setVisible(true);
+										dispose();
+									}
+								});
+								btnNewButton.setHoverColor(Color.RED.darker());
+								btnNewButton.setBackgroundColor(Color.RED);
+								panel_5.add(btnNewButton, "cell 0 2,growx");
+						
+								DefaultIconButton btnNewButton_3 = new DefaultIconButton("Efetuar reserva");
+								panel_5.add(btnNewButton_3, "cell 1 2,growx");
+								
+										DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Atualizar");
+										panel_5.add(dfltcnbtnLimpar, "cell 2 2,growx");
+										dfltcnbtnLimpar.setIcon(new ImageIcon(TelaDeQuartos.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
+										dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
+										dfltcnbtnLimpar.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+											}
+										});
+										dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
+											@Override
+											public void mouseClicked(MouseEvent e) {
+												textChecki.setText(null);
+												textChecko.setText(null);
+												textCPF.setText(null);
+												lblsubtotal.setText(null);
+												lbldesconto.setText(null);
+												lbltotal.setText(null);
+												
+												
+											}
+										});
+										dfltcnbtnLimpar.setText("");
+										dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.BLACK, 8));
+										dfltcnbtnLimpar.setBackground(new Color(117, 187, 68));
+										dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
+										
 						btnNewButton_3.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 
@@ -404,7 +434,6 @@ public class TelaDeQuartos extends JFrame {
 										erro.setVisible(true);
 										return;
 									}
-
 									// Loop through existing reservations to check for overlaps
 									for (Hospedagens hg : ListaHospedagens) {
 										if (hg.getQuarto().getIdQuarto() == quarto.getIdQuarto()) {
@@ -458,6 +487,7 @@ public class TelaDeQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object pos = comboBox.getSelectedItem();
+				boolean lableclicked = true;
 				if (pos == comboBox.getSelectedItem()) {
 					double subTotal = 0.0;
 					double desconto = 0.0;
