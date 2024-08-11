@@ -32,6 +32,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controle.Atividades.AtividadesDAO;
 import controle.Data.DateCellRenderer;

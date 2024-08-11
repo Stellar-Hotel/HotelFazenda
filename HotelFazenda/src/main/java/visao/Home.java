@@ -2,6 +2,7 @@ package visao;
 
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,11 +16,14 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -91,6 +95,7 @@ public class Home extends JFrame {
 			Arrays.asList("/visao/1.png", "3.png", "/visao/4.png", "/visao/2.png"));
 	int imageIndex = 0;
 	LocalDate hoje = LocalDate.now();
+
 	JPanel mostrarAtividades = new JPanel() {
 		@Override
 		protected void paintComponent(Graphics g) {
@@ -102,34 +107,47 @@ public class Home extends JFrame {
 	};
 
 	public void loadAtividades() {
+	    ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
+	    ArrayList<Atividades> atividadesProximas = new ArrayList<>();
 
-		ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
-		ArrayList<Atividades> atividadesProximas = new ArrayList<>();
+	    LocalDate limite = hoje.plusDays(diasSelecionados);
 
-		LocalDate limite = hoje.plusDays(diasSelecionados); // Usa diasSelecionados
+	    for (Atividades atividade : listaAtividades) {
+	        LocalDate dataAtividade = atividade.getData().toLocalDate();
+	        if (!dataAtividade.isBefore(hoje) && !dataAtividade.isAfter(limite)) {
+	            atividadesProximas.add(atividade);
+	        }
+	    }
 
-		for (Atividades atividade : listaAtividades) {
-			LocalDate dataAtividade = atividade.getData().toLocalDate();
+	    atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
 
-			if (!dataAtividade.isBefore(hoje) && !dataAtividade.isAfter(limite)) {
-				atividadesProximas.add(atividade);
-			}
-		}
+	    mostrarAtividades.removeAll(); // Remove todos os componentes existentes
 
-		atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-		mostrarAtividades.removeAll();
+	    for (Atividades atividade : atividadesProximas) {
+	        String dataFormatada = atividade.getData().toLocalDate().format(formatter);
+	        String texto = atividade.getNomeAtividade() + " - " + dataFormatada + " - " + atividade.getHorario();
 
-		for (Atividades atividade : atividadesProximas) {
-			JLabel labelAtividade = new JLabel(
-					atividade.getNomeAtividade() + " - " + atividade.getData() + " - " + atividade.getHorario());
-			labelAtividade.setFont(new Font("Arial", Font.BOLD, 14));
-			mostrarAtividades.add(labelAtividade);
-		}
+	        JLabel labelAtividade = new JLabel(texto);
+	        labelAtividade.setFont(new Font("Arial", Font.PLAIN, 14));
+	        labelAtividade.setForeground(new Color(0, 102, 204)); // Azul
+	        labelAtividade.setOpaque(true); // Para a cor de fundo ser visível
+	        labelAtividade.setBackground(Color.WHITE);
+	        labelAtividade.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+	        labelAtividade.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		mostrarAtividades.revalidate();
-		mostrarAtividades.repaint();
+	        mostrarAtividades.add(labelAtividade);
+	        mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo
+	    }
+
+	    // Adiciona um divisor final para garantir que o último label tenha um divisor
+	    mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo final
+
+	    mostrarAtividades.revalidate(); // Revalida o layout do painel
+	    mostrarAtividades.repaint(); // Repaint o painel para aplicar as mudanças
 	}
+
 
 	public Home() {
 		setTitle("Tela Inicial");
@@ -152,7 +170,12 @@ public class Home extends JFrame {
 				"[188,grow][94][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
 
 		lblNewLabel_9 = new JLabel();
+		
+		
+	    mostrarAtividades = new JPanel();
+	    mostrarAtividades.setLayout(new BoxLayout(mostrarAtividades, BoxLayout.Y_AXIS));
 
+		
 		JLabel lblNewLabel_11 = new JLabel("");
 		lblNewLabel_11.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack - Copia.png")));
 		lblNewLabel_11.addMouseListener(new MouseAdapter() {
@@ -219,23 +242,27 @@ public class Home extends JFrame {
 		});
 
 		panel_6.add(lblNewLabel_9, "cell 0 0,alignx center,aligny center");
-		switch ((String) comboBoxDias.getSelectedItem()) {
-		case "3 dias":
-			diasSelecionados = 3;
-			break;
-		case "7 dias":
-			diasSelecionados = 7;
-			break;
-		case "15 dias":
-			diasSelecionados = 15;
-			break;
-		case "30 dias":
-			diasSelecionados = 30;
-			break;
-		case "60 dias":
-			diasSelecionados = 60;
-			break;
-		}
+		comboBoxDias.addActionListener(e -> {
+		    switch ((String) comboBoxDias.getSelectedItem()) {
+		        case "3 dias":
+		            diasSelecionados = 3;
+		            break;
+		        case "7 dias":
+		            diasSelecionados = 7;
+		            break;
+		        case "15 dias":
+		            diasSelecionados = 15;
+		            break;
+		        case "30 dias":
+		            diasSelecionados = 30;
+		            break;
+		        case "60 dias":
+		            diasSelecionados = 60;
+		            break;
+		    }
+		    loadAtividades();
+		});
+
 
 		loadInfos();
 		updateImage();
@@ -261,7 +288,7 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7_3 = new JLabel("Funcionários");
 		panel.add(lblNewLabel_7_3, "cell 0 1,alignx center,aligny top");
 		lblNewLabel_7_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_3.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblNewLabel_7_3.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		;
 
 		JPanel panel_2 = new JPanel() {
@@ -285,7 +312,7 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Atividades");
 		panel_2.add(lblNewLabel_7, "cell 0 1,alignx center,aligny top");
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 
 		JPanel panel_2_1_1 = new JPanel() {
 			protected void paintComponent(Graphics g) {
@@ -306,7 +333,7 @@ public class Home extends JFrame {
 
 		JLabel lblNewLabel_7_1_1 = new JLabel("Hospedagens");
 		lblNewLabel_7_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel_2_1_1.add(lblNewLabel_7_1_1, "cell 0 1,alignx center,aligny top");
 
 		JPanel panel_2_1 = new JPanel() {
@@ -329,7 +356,7 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7_1 = new JLabel("Hospedagens");
 		panel_2_1.add(lblNewLabel_7_1, "cell 0 1,alignx center,aligny top");
 		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 
 		JPanel panel_2_2 = new JPanel() {
 			protected void paintComponent(Graphics g) {
@@ -351,7 +378,7 @@ public class Home extends JFrame {
 		JLabel lblNewLabel_7_4 = new JLabel("Hospedes");
 		panel_2_2.add(lblNewLabel_7_4, "cell 0 1,alignx center,aligny top");
 		lblNewLabel_7_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_4.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_4.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 
 		JPanel panel_2_2_1 = new JPanel() {
 			protected void paintComponent(Graphics g) {
@@ -371,7 +398,7 @@ public class Home extends JFrame {
 
 		JLabel lblNewLabel_7_1_2 = new JLabel("Serviços");
 		lblNewLabel_7_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_7_1_2.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		panel_2_2_1.add(lblNewLabel_7_1_2, "cell 0 1,alignx center,aligny top");
 
 		lblQuarto.setText(String.valueOf(listaQuartos.size()));
