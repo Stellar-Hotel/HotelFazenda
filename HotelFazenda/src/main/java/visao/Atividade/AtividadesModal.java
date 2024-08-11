@@ -107,7 +107,7 @@ public class AtividadesModal extends JFrame {
 		textNomeatividade.setBounds(27, 112, 412, 34);
 		textNomeatividade.setColumns(10);
 		textNomeatividade.setBorder(new RoundedBorder(Color.black, 10));
-		((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());
+		((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());// filtra para
 		JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
 		lblNewLabel_12_1_1_1_1_1_3.setBounds(27, 158, 359, 20);
 		lblNewLabel_12_1_1_1_1_1_3.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -174,8 +174,9 @@ public class AtividadesModal extends JFrame {
 						try {
 							data = new Date(dateFormat.parse(textData.getText()).getTime());
 						} catch (java.text.ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							 TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+					         telaErro.setVisible(true);
+					         return; // Impede a continuação							
 						}
 
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
@@ -191,7 +192,7 @@ public class AtividadesModal extends JFrame {
 							ativ.setNomeAtividade(NomeAtividade);
 							ativ.setData(data);
 							ativ.setCapacidade(Capacidade);
-
+							   
 							ativ.setFuncionario(Func);
 
 							AtividadesDAO DAO = AtividadesDAO.getInstancia();
@@ -249,7 +250,7 @@ public class AtividadesModal extends JFrame {
 					        try {
 					            data = new Date(dateFormat.parse(textData.getText().trim()).getTime());
 					        } catch (java.text.ParseException e1) {
-					            TelaErro telaErro = new TelaErro("Data inválida. Por favor, insira no formato dd/MM/yyyy.");
+					            TelaErro telaErro = new TelaErro("Data inválida. Insira no formato dd/MM/yyyy.");
 					            telaErro.setVisible(true);
 					            return; // Impede a continuação do processamento em caso de erro na data
 					        }
@@ -286,10 +287,6 @@ public class AtividadesModal extends JFrame {
 		}
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton(
 				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
-		dfltcnbtnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		dfltcnbtnLimpar.setIcon(new ImageIcon(AtividadesModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
 		dfltcnbtnLimpar.setBounds(392, 61, 47, 40);
 		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
@@ -298,12 +295,12 @@ public class AtividadesModal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				textCapacidade.setText(null);
-				textData.setText(null);
-				textHorario.setText(null);
-				textIdade.setText(null);
-				textNomeatividade.setText(" ");
-				TextHorarioFim.setText(null);
+				textCapacidade.setText("");
+				textData.setText("");
+				textHorario.setText("");
+				textIdade.setText("");
+				textNomeatividade.setText("");
+				TextHorarioFim.setText("");
 			}
 		});
 		dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.black, 10));
@@ -346,7 +343,7 @@ public class AtividadesModal extends JFrame {
 				throws BadLocationException { // insertString: Este método é chamado quando uma inserção de texto é
 												// feita em um documento de texto.
 
-			if (string != null && string.matches("[a-zA-Z]+")) {
+			if (string.matches("[a-zA-Z]*")) {
 				super.insertString(fb, offset, string, attr);
 			}
 		}
@@ -355,7 +352,7 @@ public class AtividadesModal extends JFrame {
 		public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
 				throws BadLocationException { // Este método é chamado quando uma substituição de texto é feita em um
 												// documento de texto.
-			if (text != null && text.matches("[a-zA-Z]+")) {
+			if (text != null && text.matches("[a-zA-Z ]+")) {
 				super.replace(fb, offset, length, text, attrs);
 			}
 		}

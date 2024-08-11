@@ -37,7 +37,6 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
-import controle.Data.DateCellRenderer;
 import controle.Hospede.HospedeDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -479,8 +478,14 @@ public class TelaDeHospedes extends JFrame {
 		listahospedes = hospedeDAO.ListarHospedes();
 
 		for (int i = 0; i < listahospedes.size(); i++) {
+            String[] brDate;
+            String date;
+
 			Hospedes h = listahospedes.get(i);
-			Model.addRow(new Object[] { h.getNome(), h.getSobrenome(), h.getDataNasc(), h.getDocumento(),
+			
+			brDate = h.getDataNasc().toString().split("-");
+			date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
+			Model.addRow(new Object[] { h.getNome(), h.getSobrenome(), date, h.getDocumento(),
 					h.getNacionalidade(), h.getPronome(), h.getEmail() });
 		}
 		table.setModel(Model);
@@ -488,9 +493,6 @@ public class TelaDeHospedes extends JFrame {
 		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
 																					// selecionada
 		table.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
-		
-	    table.getColumnModel().getColumn(2).setCellRenderer(new DateCellRenderer());
-
 
 		// Adicionar um MouseListener à tabela para atualizar a linha selecionada
 		table.addMouseListener(new MouseAdapter() {

@@ -35,7 +35,6 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controle.Atividades.AtividadesDAO;
-import controle.Data.DateCellRenderer;
 import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -550,14 +549,19 @@ public class TelaAtividades extends JFrame {
 		ListaAtividades = AtivDAO.ListarAtividades();
 
 		for (int i = 0; i < ListaAtividades.size(); i++) {
-			Atividades p = ListaAtividades.get(i);
-			modelo1.addRow(new Object[] {p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
-					p.getNomeAtividade(), p.getData(), p.getCapacidade() });
-		}
+            String[] brDate;
+            String date;
+            Atividades p = ListaAtividades.get(i);
 
+
+            brDate = p.getData().toString().split("-");
+            date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
+
+            modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
+                    p.getNomeAtividade(), date, p.getCapacidade() });
+        }
 		table.setModel(modelo1);
 		
-		 table.getColumnModel().getColumn(4).setCellRenderer(new DateCellRenderer());
 
 
 		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha

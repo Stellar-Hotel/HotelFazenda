@@ -27,7 +27,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -39,7 +38,6 @@ import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Combobox.RoundedComboBoxUI;
-import controle.Data.DateCellRenderer;
 import controle.Hospedagens.HospedagensDAO;
 import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
@@ -119,6 +117,8 @@ public class TelaDeQuartos extends JFrame {
 				listaCombobox.add(q.getIdQuarto());
 			}
 		}
+		
+
 
 		DefaultTableModel model1 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "Número do quarto", "Hospede", "Checkin", "Checkout", "Ações" }));
@@ -129,9 +129,19 @@ public class TelaDeQuartos extends JFrame {
 		ListaHospedagens = HospedagenDAO.ListarHospedagens();
 
 		for (Hospedagens p : ListaHospedagens) {
-
-			model1.addRow(new Object[] { p.getQuarto().getIdQuarto(), p.getHospede().getNome(), p.getCheckin(),
-					p.getCheckout() });
+            
+			String[] brDate;
+			String[] brDate2;
+            String date;
+            String date2;
+            
+            brDate = p.getCheckin().toString().split("-");
+            date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
+            
+            brDate2 = p.getCheckout().toString().split("-");
+            date2 = brDate2[2] + "/" + brDate2[1] + "/" + brDate2[0];
+            
+			model1.addRow(new Object[] { p.getQuarto().getIdQuarto(), p.getHospede().getNome(), date, date2});
 		}
 
 		table.setModel(model1);
@@ -140,9 +150,6 @@ public class TelaDeQuartos extends JFrame {
 		// selecionada
 		table.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
 		
-	    table.getColumnModel().getColumn(2).setCellRenderer(new DateCellRenderer());
-
-	    table.getColumnModel().getColumn(3).setCellRenderer(new DateCellRenderer());
 
 
 // Adicionar um MouseListener à tabela para atualizar a linha selecionada

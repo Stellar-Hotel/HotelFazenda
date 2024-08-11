@@ -241,21 +241,21 @@ public class HospedeModal extends JFrame {
 						String Email = textEmail.getText();
 
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						Date Nascimento = null;
-						dateFormat.setLenient(false);
+                        dateFormat.setLenient(false);
+                        Date data = null;
 
-						try {
-							Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
-						} catch (ParseException e1) {
-							TelaErro telaErro = new TelaErro("Data invalida");
-							telaErro.setVisible(true);
-							return;
-						}
+                        try {
+                            data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
+                        } catch (ParseException e1) {
+                            TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+                            telaErro.setVisible(true);
+                            return;
+                        }
 
 						Hospedes hospede = new Hospedes();
 						hospede.setNome(Nome);
 						hospede.setSobrenome(Sobrenome);
-						hospede.setDataNasc(Nascimento);
+						hospede.setDataNasc(data);
 						hospede.setNacionalidade(Nacionalidade);
 						hospede.setEmail(Email);
 						hospede.setPronome(Pronome);
@@ -309,22 +309,24 @@ public class HospedeModal extends JFrame {
 						String Pronome = textPronome.getText();
 						String Email = textEmail.getText();
 
-						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						Date Nascimento = null;
-						dateFormat.setLenient(false);
 
-						try {
-							Nascimento = new Date(dateFormat.parse(textNascimento.getText()).getTime());
-						} catch (ParseException e1) {
-							TelaErro telaErro = new TelaErro("Data invalida");
-							telaErro.setVisible(true);
-							return;
-						}
+						 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						    dateFormat.setLenient(false);
+						    Date data = null;
+
+						    try {
+	                            data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
+						    } catch (ParseException e1) {
+						        TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+						        telaErro.setVisible(true);
+						        return; // Sai do método após mostrar o erro
+						    }
+
 
 						Hospedes hospede1 = new Hospedes();
 						hospede1.setNome(Nome);
 						hospede1.setSobrenome(Sobrenome);
-						hospede1.setDataNasc(Nascimento);
+						hospede1.setDataNasc(data);
 						hospede1.setNacionalidade(Nacionalidade);
 						hospede1.setEmail(Email);
 						hospede1.setPronome(Pronome);
