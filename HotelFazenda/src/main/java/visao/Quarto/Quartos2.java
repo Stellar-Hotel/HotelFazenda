@@ -1,4 +1,4 @@
-package visao;
+package visao.Quarto;
 
 import java.awt.Color;
 import java.awt.Desktop;

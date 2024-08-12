@@ -40,9 +40,9 @@ import visao.ConfirmacaoADM;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
-import visao.Quartos2;
 import visao.Atividade.TelaAtividades;
 import visao.Hospede.TelaDeHospedes;
+import visao.Quarto.Quartos2;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 

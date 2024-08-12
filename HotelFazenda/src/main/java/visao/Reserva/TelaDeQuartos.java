@@ -56,12 +56,12 @@ import utils.DefaultModal;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
-import visao.Quartos2;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Hospede.TelaDeHospedes;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Quarto.Quartos2;
 import visao.Servico.TelaServicos;
 
 public class TelaDeQuartos extends JFrame {
