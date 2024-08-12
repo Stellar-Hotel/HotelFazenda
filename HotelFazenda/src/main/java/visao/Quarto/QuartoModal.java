@@ -183,12 +183,13 @@ public class QuartoModal extends JFrame {
 		panel_6.add(lblNewLabel_13);
 
 		JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
+		buttonGroup.add(rdbtnFrigoTem);
 		rdbtnFrigoTem.setBounds(10, 334, 65, 29);
 		panel_6.add(rdbtnFrigoTem);
 		rdbtnFrigoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup.add(rdbtnFrigoTem);
 
 		JRadioButton rdbtnFrigoNaoTem = new JRadioButton("Não possui");
+		buttonGroup.add(rdbtnFrigoNaoTem);
 		rdbtnFrigoNaoTem.setBounds(97, 334, 93, 29);
 		rdbtnFrigoNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(rdbtnFrigoNaoTem);
@@ -199,12 +200,13 @@ public class QuartoModal extends JFrame {
 		panel_6.add(lblNewLabel_14);
 
 		JRadioButton rdbtnArTem = new JRadioButton("Possui");
+		buttonGroup_2.add(rdbtnArTem);
 		rdbtnArTem.setBounds(10, 479, 65, 29);
 		panel_6.add(rdbtnArTem);
 		rdbtnArTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_1.add(rdbtnArTem);
 
 		JRadioButton rdbtnArNaoTem = new JRadioButton("Não possui");
+		buttonGroup_2.add(rdbtnArNaoTem);
 		rdbtnArNaoTem.setBounds(97, 479, 93, 29);
 		rdbtnArNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(rdbtnArNaoTem);
@@ -215,12 +217,13 @@ public class QuartoModal extends JFrame {
 		panel_6.add(lblNewLabel_16);
 
 		JRadioButton rdbtnBanTem = new JRadioButton("Possui");
+		buttonGroup_3.add(rdbtnBanTem);
 		rdbtnBanTem.setBounds(10, 554, 65, 29);
 		panel_6.add(rdbtnBanTem);
 		rdbtnBanTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_2.add(rdbtnBanTem);
 
 		JRadioButton rdbtnBanNaoTem = new JRadioButton("Não possui");
+		buttonGroup_3.add(rdbtnBanNaoTem);
 		rdbtnBanNaoTem.setBounds(97, 554, 93, 29);
 		rdbtnBanNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(rdbtnBanNaoTem);
@@ -231,12 +234,13 @@ public class QuartoModal extends JFrame {
 		panel_6.add(lblNewLabel_17);
 
 		JRadioButton rdbtnTvTem = new JRadioButton("Possui");
+		buttonGroup_1.add(rdbtnTvTem);
 		rdbtnTvTem.setBounds(10, 408, 65, 29);
 		panel_6.add(rdbtnTvTem);
 		rdbtnTvTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		buttonGroup_3.add(rdbtnTvTem);
 
 		JRadioButton rdbtnTvNaoTem = new JRadioButton("Não possui");
+		buttonGroup_1.add(rdbtnTvNaoTem);
 		rdbtnTvNaoTem.setBounds(97, 408, 93, 29);
 		rdbtnTvNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		panel_6.add(rdbtnTvNaoTem);
@@ -253,15 +257,15 @@ public class QuartoModal extends JFrame {
 		textDiaria.setColumns(10);
 
 		JRadioButton rdbtnManuNaoTem = new JRadioButton("Não feita");
+		buttonGroup_4.add(rdbtnManuNaoTem);
 		rdbtnManuNaoTem.setBounds(97, 265, 81, 29);
 		panel_6.add(rdbtnManuNaoTem);
-		buttonGroup_4.add(rdbtnManuNaoTem);
 		rdbtnManuNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
 		JRadioButton rdbtnManuTem = new JRadioButton("Feita");
+		buttonGroup_4.add(rdbtnManuTem);
 		rdbtnManuTem.setBounds(10, 265, 55, 29);
 		panel_6.add(rdbtnManuTem);
-		buttonGroup_4.add(rdbtnManuTem);
 		rdbtnManuTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
 		JRadioButton rdbtnSituNaoTem = new JRadioButton("Livre");
