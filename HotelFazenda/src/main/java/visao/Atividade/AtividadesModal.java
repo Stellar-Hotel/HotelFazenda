@@ -32,9 +32,9 @@ import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import utils.DefaultIconButton;
-import visao.Home;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Quarto.Quartos2;
 
 public class AtividadesModal extends JFrame {
 
@@ -87,7 +87,7 @@ public class AtividadesModal extends JFrame {
 		panel_7.setBounds(42, 34, 455, 484);
 		contentPane.add(panel_7);
 
-		JLabel lblNewLabel_10 = new JLabel("Cadastrar Atividade");
+		JLabel lblNewLabel_10 = new JLabel(atividade == null ? "Cadastrar atividade" : "Atualizar atividade");
 		lblNewLabel_10.setBounds(10, 11, 209, 34);
 		lblNewLabel_10.setFont(new Font("Segoe UI", Font.BOLD, 22));
 
@@ -107,7 +107,8 @@ public class AtividadesModal extends JFrame {
 		textNomeatividade.setBounds(27, 112, 412, 34);
 		textNomeatividade.setColumns(10);
 		textNomeatividade.setBorder(new RoundedBorder(Color.black, 10));
-		((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());// filtra para
+		((AbstractDocument) textNomeatividade.getDocument()).setDocumentFilter(new LetterDocumentFilter());// filtra
+																											// para
 		JLabel lblNewLabel_12_1_1_1_1_1_3 = new JLabel("Capacidade");
 		lblNewLabel_12_1_1_1_1_1_3.setBounds(27, 158, 359, 20);
 		lblNewLabel_12_1_1_1_1_1_3.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -174,9 +175,9 @@ public class AtividadesModal extends JFrame {
 						try {
 							data = new Date(dateFormat.parse(textData.getText()).getTime());
 						} catch (java.text.ParseException e1) {
-							 TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
-					         telaErro.setVisible(true);
-					         return; // Impede a continuação							
+							TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+							telaErro.setVisible(true);
+							return; // Impede a continuação
 						}
 
 						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
@@ -192,7 +193,7 @@ public class AtividadesModal extends JFrame {
 							ativ.setNomeAtividade(NomeAtividade);
 							ativ.setData(data);
 							ativ.setCapacidade(Capacidade);
-							   
+
 							ativ.setFuncionario(Func);
 
 							AtividadesDAO DAO = AtividadesDAO.getInstancia();
@@ -231,66 +232,68 @@ public class AtividadesModal extends JFrame {
 			btnAlterar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					 if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
-					            || (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
-					            || (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
-					        TelaErro telaErro = new TelaErro("Campos vazios");
-					        telaErro.setVisible(true);
-					    } else {
-					        Integer Idade = Integer.valueOf(textIdade.getText());
-					        String Horario = textHorario.getText();
-					        String HorarioFim = TextHorarioFim.getText();
-					        String NomeAtividade = textNomeatividade.getText();
-					        int Capacidade = Integer.valueOf(textCapacidade.getText());
+					if ((textIdade.getText().isEmpty()) || (textHorario.getText().isEmpty())
+							|| (TextHorarioFim.getText().isEmpty()) || (textNomeatividade.getText().isEmpty())
+							|| (textData.getText().isEmpty()) || (textCapacidade.getText().isEmpty())) {
+						TelaErro telaErro = new TelaErro("Campos vazios");
+						telaErro.setVisible(true);
+					} else {
+						Integer Idade = Integer.valueOf(textIdade.getText());
+						String Horario = textHorario.getText();
+						String HorarioFim = TextHorarioFim.getText();
+						String NomeAtividade = textNomeatividade.getText();
+						int Capacidade = Integer.valueOf(textCapacidade.getText());
 
-					        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					        dateFormat.setLenient(false);
-					        Date data = null;
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						dateFormat.setLenient(false);
+						Date data = null;
 
-					        try {
-					            data = new Date(dateFormat.parse(textData.getText().trim()).getTime());
-					        } catch (java.text.ParseException e1) {
-					            TelaErro telaErro = new TelaErro("Data inválida. Insira no formato dd/MM/yyyy.");
-					            telaErro.setVisible(true);
-					            return; // Impede a continuação do processamento em caso de erro na data
-					        }
+						try {
+							data = new Date(dateFormat.parse(textData.getText().trim()).getTime());
+						} catch (java.text.ParseException e1) {
+							TelaErro telaErro = new TelaErro("Data inválida. Insira no formato dd/MM/yyyy.");
+							telaErro.setVisible(true);
+							return; // Impede a continuação do processamento em caso de erro na data
+						}
 
-					        String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
-					        if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
-					            TelaErro telaErro = new TelaErro("Horário inválido. Insira no formato HH:MM");
-					            telaErro.setVisible(true);
-					        } else {
-					            Atividades ativ = new Atividades();
+						String horarioPattern = "(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]";
+						if (!Horario.matches(horarioPattern) || !HorarioFim.matches(horarioPattern)) {
+							TelaErro telaErro = new TelaErro("Horário inválido. Insira no formato HH:MM");
+							telaErro.setVisible(true);
+						} else {
+							Atividades ativ = new Atividades();
 
-					            ativ.setIdadeMinima(Idade);
-					            ativ.setHorario(Horario);
-					            ativ.setHorarioFim(HorarioFim);
-					            ativ.setNomeAtividade(NomeAtividade);
-					            ativ.setData(data);
-					            ativ.setCapacidade(Capacidade);
-					            ativ.setFuncionario(Func);
-					            ativ.setIdAtividade(atividade.getIdAtividade());
+							ativ.setIdadeMinima(Idade);
+							ativ.setHorario(Horario);
+							ativ.setHorarioFim(HorarioFim);
+							ativ.setNomeAtividade(NomeAtividade);
+							ativ.setData(data);
+							ativ.setCapacidade(Capacidade);
+							ativ.setFuncionario(Func);
+							ativ.setIdAtividade(atividade.getIdAtividade());
 
-					            AtividadesDAO DAO = AtividadesDAO.getInstancia();
-					            DAO.AtualizarAtividades(ativ);
+							AtividadesDAO DAO = AtividadesDAO.getInstancia();
+							DAO.AtualizarAtividades(ativ);
 
-					            TelaSucesso c = new TelaSucesso("Sucesso");
-					            c.setVisible(true);
-					            telaAtividades.atualizarJTable();
-					            dispose();
-					        }
-					    }
+							TelaSucesso c = new TelaSucesso("Sucesso");
+							c.setVisible(true);
+							telaAtividades.atualizarJTable();
+							dispose();
+						}
+					}
 				}
-				
+
 			});
 			panel_7.add(btnAlterar);
 		}
 		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton(
-				new ImageIcon(Home.class.getResource("/visao/NaoVer.png")));
-		dfltcnbtnLimpar.setIcon(new ImageIcon(AtividadesModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-		dfltcnbtnLimpar.setBounds(392, 61, 47, 40);
-		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
-		dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
+				new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")), 15);
+
+		dfltcnbtnLimpar.setBackgroundColor(new Color(255, 204, 153));
+		dfltcnbtnLimpar.setHoverColor(new Color(255, 204, 153));
+
+		dfltcnbtnLimpar.setBounds(409, 71, 47, 40);
+		dfltcnbtnLimpar.setSize(30, 30);
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

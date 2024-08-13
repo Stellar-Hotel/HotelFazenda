@@ -1,7 +1,6 @@
 package visao.Quarto;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
@@ -29,10 +27,8 @@ import controle.Quartos.QuartosDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Quartos;
-import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
 import visao.ModaisDeAvisos.TelaSucesso;
-import javax.swing.JButton;
 
 public class QuartoModal extends JFrame {
 
@@ -59,7 +55,7 @@ public class QuartoModal extends JFrame {
 
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(370, 690);
+		setSize(360, 700);
 
 		Principal = new JPanel() {
 			@Override
@@ -71,11 +67,8 @@ public class QuartoModal extends JFrame {
 			}
 		};
 		Principal.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
- 
 
 		DecimalFormat formato = new DecimalFormat("#.##");
-
-	 
 
 		MaskFormatter formatoCpf = null;
 		setContentPane(Principal);
@@ -119,25 +112,26 @@ public class QuartoModal extends JFrame {
 		}
 		Principal.setLayout(null);
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 11, 350, 669);
-		Principal.add(panel_5);
-		panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][grow]"));
+		textCPF = new JTextField();
+
+		textChecki = new JTextField();
+
+		textChecko = new JTextField();
+
+		JLabel lblNewLabel = new JLabel(quartoAtual == null ? "Cadastrar quarto" : "Atualizar quarto");
+		lblNewLabel.setBounds(10, 11, 139, 22);
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		Principal.add(lblNewLabel);
 
 		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6, "cell 0 0 2 2,grow");
+		panel_6.setBounds(10, 27, 338, 655);
+		Principal.add(panel_6);
 		panel_6.setLayout(null);
 
 		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
 		lblNewLabel_7.setBounds(10, 26, 143, 20);
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		panel_6.add(lblNewLabel_7);
-
-		textCPF = new JTextField();
-
-		textChecki = new JTextField();
-
-		textChecko = new JTextField();
 
 		textTipo = new JFormattedTextField(Num1);
 		textTipo.setBounds(10, 52, 143, 34);
@@ -167,7 +161,7 @@ public class QuartoModal extends JFrame {
 		panel_6.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_12 = new JLabel("Cama: ");
-		lblNewLabel_12.setBounds(173, 26, 153, 20);
+		lblNewLabel_12.setBounds(173, 26, 101, 20);
 		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		panel_6.add(lblNewLabel_12);
 
@@ -280,16 +274,15 @@ public class QuartoModal extends JFrame {
 		buttonGroup_5.add(rdbtnSituTem);
 		rdbtnSituTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
-		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar.setBounds(304, 0, 32, 28);
+		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton(
+				new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")), 15);
+
+		dfltcnbtnLimpar.setBackgroundColor(new Color(255, 204, 153));
+		dfltcnbtnLimpar.setHoverColor(new Color(255, 204, 153));
+		dfltcnbtnLimpar.setSize(30, 30);
+		dfltcnbtnLimpar.setBounds(291, 17, 35, 29);
 		panel_6.add(dfltcnbtnLimpar);
-		dfltcnbtnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
-		dfltcnbtnLimpar.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-		dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
+
 		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -329,11 +322,10 @@ public class QuartoModal extends JFrame {
 
 		btnNewButton.setBounds(17, 600, 136, 44);
 		panel_6.add(btnNewButton);
-
 		if (quartoAtual == null) {
 			DefaultIconButton btnSalvar = new DefaultIconButton("Cadastrar");
 			btnSalvar.setBounds(173, 600, 136, 44);
-		 
+
 			btnSalvar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -424,6 +416,7 @@ public class QuartoModal extends JFrame {
 			} else if (quartoAtual.getSituacao() == 1) {
 				rdbtnSituNaoTem.setSelected(true);
 			}
+
 //						int IdQuarto = ListaQuartos.get(i).getIdQuarto();
 //						int MaxPessoas = ListaQuartos.get(i).getMaxPessoas();
 //						String TipoCama = ListaQuartos.get(i).getTipoCama();
@@ -434,7 +427,7 @@ public class QuartoModal extends JFrame {
 //						Boolean Banheira = ListaQuartos.get(i).getBanheira();
 //						Boolean TV = ListaQuartos.get(i).getTV();
 //						Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();
-			//
+//			
 //						// Preenche os textfields com os dados recuperados
 //						QuartoSelcionado.setIdQuarto(IdQuarto);
 //						QuartoSelcionado.setMaxPessoas(MaxPessoas);
@@ -448,8 +441,10 @@ public class QuartoModal extends JFrame {
 //						QuartoSelcionado.setPrecoDiaria(PrecoDiaria);
 
 			DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
-			
-			 
+
+			btnAtualizar.setBounds(173, 600, 136, 44);
+			btnAtualizar.setBackgroundColor(Color.ORANGE);
+			btnAtualizar.setHoverColor(Color.ORANGE.darker());
 			btnAtualizar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -486,16 +481,12 @@ public class QuartoModal extends JFrame {
 //						q.setTV(Boolean.valueOf(textTv.getText()));
 					dao.atualizarQuarto(q);
 					quarto.atualizarJTable();
-					 dispose();
+					dispose();
 				}
 			});
-		
 
-
-		
-		btnAtualizar.setBounds(173, 600, 136, 44);
-		Principal.add(btnAtualizar);
+			panel_6.add(btnAtualizar);
 		}
-		
+
 	}
 }

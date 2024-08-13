@@ -90,7 +90,9 @@ public class Conta extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[60:60:60,grow][:95.00:95.00,grow][40px][40px][:64.00px:64.00px,grow][40px][40px][40px][279.00:279.00:279.00][353.00:449.00:353.00,grow][40px,grow]", "[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][83.00:83.00:83.00][][40px,grow]"));
+		Principal.setLayout(new MigLayout("",
+				"[60:60:60,grow][:95.00:95.00,grow][40px][40px,grow][:64.00px:64.00px,grow][40px][40px][40px][279.00:279.00:279.00][353.00:449.00:353.00,grow][40px,grow]",
+				"[57.00:57.00:57.00][40:40:40][40px][40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px:40px:40px][40px][83.00:83.00:83.00,grow][][40px,grow]"));
 
 		ImageIcon IC = new ImageIcon(
 				"C:\\Users\\Aluno\\Desktop\\HotelFazenda\\HotelFazenda\\src\\main\\java\\visao\\Avatar.jpg");
@@ -102,7 +104,7 @@ public class Conta extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Usuário:");
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Principal.add(lblNewLabel_7, "cell 1 2,alignx center,aligny center");
-		
+
 		JLabel lblNewLabel_19 = new JLabel("");
 		lblNewLabel_19.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblNewLabel_19.setForeground(new Color(255, 38, 38));
@@ -149,16 +151,16 @@ public class Conta extends JFrame {
 		JLabel lblNewLabel_9 = new JLabel("Email:");
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		Principal.add(lblNewLabel_9, "cell 1 4,alignx center");
-		
-				JLabel lblTelefone = new JLabel("Telefone:");
-				lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-				Principal.add(lblTelefone, "cell 3 6,alignx center");
-		
-				JLabel lblNewLabel_22 = new JLabel("");
-				lblNewLabel_22.setFont(new Font("Times New Roman", Font.PLAIN, 11));
-				lblNewLabel_22.setForeground(new Color(255, 38, 38));
-				Principal.add(lblNewLabel_22, "cell 4 6 4 1,growx");
-				
+
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		Principal.add(lblTelefone, "cell 3 6,alignx center");
+
+		JLabel lblNewLabel_22 = new JLabel("");
+		lblNewLabel_22.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblNewLabel_22.setForeground(new Color(255, 38, 38));
+		Principal.add(lblNewLabel_22, "cell 4 6 4 1,growx");
+
 		textTel = new JFormattedTextField(mNum);
 		textTel.addFocusListener(new FocusAdapter() {
 			@Override
@@ -177,12 +179,12 @@ public class Conta extends JFrame {
 		textTel.setText(Func.getTelefone());
 		Principal.add(textTel, "cell 4 6 4 1,growx");
 		textTel.setColumns(10);
-		
+
 		JLabel lblNewLabel_20 = new JLabel("");
 		lblNewLabel_20.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblNewLabel_20.setForeground(new Color(255, 38, 38));
 		Principal.add(lblNewLabel_20, "cell 2 7,growx");
-		
+
 		textEm = new JTextField();
 		textEm.addFocusListener(new FocusAdapter() {
 			@Override
@@ -206,11 +208,12 @@ public class Conta extends JFrame {
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(235, 235, 235));
 		Principal.add(panel_5, "cell 9 2 1 7,grow");
-		panel_5.setLayout(new MigLayout("", "[grow][grow][grow]", "[][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow]"));
-		
-				JLabel lblNewLabel_18_1 = new JLabel("Dados do Usuário");
-				panel_5.add(lblNewLabel_18_1, "cell 0 0 3 1,alignx center");
-				lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+		panel_5.setLayout(new MigLayout("", "[grow][grow][grow]",
+				"[][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow][50.00:50.00:50.00,grow]"));
+
+		JLabel lblNewLabel_18_1 = new JLabel("Dados do Usuário");
+		panel_5.add(lblNewLabel_18_1, "cell 0 0 3 1,alignx center");
+		lblNewLabel_18_1.setFont(new Font("Segoe UI", Font.PLAIN, 28));
 
 		JLabel lblNewLabel_6 = new JLabel("Nome");
 		lblNewLabel_6.setFont(new Font("Segoe UI", Font.PLAIN, 17));
@@ -296,25 +299,22 @@ public class Conta extends JFrame {
 		lblNewLabel_21.setForeground(new Color(255, 38, 38));
 		lblNewLabel_21.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		Principal.add(lblNewLabel_21, "flowx,cell 2 6,alignx right,aligny center");
-		
-		
+
 		JLabel lblNewLabel_221 = new JLabel("");
 		lblNewLabel_221.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblNewLabel_221.setForeground(new Color(255, 38, 38));
 		Principal.add(lblNewLabel_221, "cell 4 7,growx,alignx center");
-		
-		
-		
+
 		JLabel lblNewLabel_11 = new JLabel("Senha:");
 		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
 		Principal.add(lblNewLabel_11, "cell 1 8,alignx center,aligny center");
-		
+
 		JLabel lblNewLabel_23 = new JLabel("");
 		lblNewLabel_23.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblNewLabel_23.setForeground(new Color(255, 38, 38));
 		Principal.add(lblNewLabel_23, "cell 2 8 5 1,alignx right");
-		
+
 		passwordField = new JPasswordField();
 		passwordField.addFocusListener(new FocusAdapter() {
 			@Override
@@ -333,8 +333,6 @@ public class Conta extends JFrame {
 		Principal.add(passwordField, "flowx,cell 2 8 5 1,growx");
 		passwordField.setEchoChar('*');
 		passwordField.setText(Func.getUsuario().getSenha());
-
-		
 
 		ImageIcon Ver = new ImageIcon(Conta.class.getResource("/visao/Ver.png"));
 		ImageIcon NaoVer = new ImageIcon(Conta.class.getResource("/visao/NaoVer.png"));
@@ -358,10 +356,34 @@ public class Conta extends JFrame {
 		Conta Tela = this;
 		contentPane.add(Principal, "cell 1 1,grow");
 
-		DefaultIconButton btnSalvar = new DefaultIconButton("Cancelar");
-		btnSalvar.setText("Alterar dados");
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(250, 250, 250));
+		Principal.add(panel, "cell 2 9 6 1,grow");
+		panel.setLayout(null);
+		DefaultIconButton btnDescartarMudanas = new DefaultIconButton("Cancelar");
+		btnDescartarMudanas.setBounds(7, 20, 149, 44);
+		panel.add(btnDescartarMudanas);
+		btnDescartarMudanas.setBackgroundColor(new Color(255, 38, 38));
+		btnDescartarMudanas.setHoverColor(Color.RED);
+		btnDescartarMudanas.setHoverColor(Color.RED.darker());
 
-		btnSalvar.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		btnDescartarMudanas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textUser.setText(Func.getUsuario().getLogin());
+				textEm.setText(Func.getEmailFunc());
+				textPron.setText(Func.getPronomeFunc());
+				textTel.setText(Func.getTelefone());
+				passwordField.setText(Func.getUsuario().getSenha());
+
+			}
+		});
+
+		btnDescartarMudanas.setBackground(new Color(255, 38, 38));
+
+		DefaultIconButton btnSalvar = new DefaultIconButton("Salvar");
+		btnSalvar.setBounds(181, 20, 149, 44);
+		panel.add(btnSalvar);
+
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String SenhaN = passwordField.getText();
@@ -403,30 +425,8 @@ public class Conta extends JFrame {
 
 			}
 		});
-		btnSalvar.setForeground(Color.BLACK);
-		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
+
 		btnSalvar.setBackground(new Color(117, 187, 68));
-		Principal.add(btnSalvar, "cell 2 10,alignx center");
-		DefaultIconButton btnDescartarMudanas = new DefaultIconButton("Descartar Mudanças");
-		btnDescartarMudanas.setBackgroundColor(new Color(255, 38, 38));
-		btnDescartarMudanas.setHoverColor(Color.RED);
-		btnDescartarMudanas.setHoverColor(Color.RED.darker());
-
-		btnDescartarMudanas.setFont(new Font("Segoe UI", Font.PLAIN, 17));
-		btnDescartarMudanas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textUser.setText(Func.getUsuario().getLogin());
-				textEm.setText(Func.getEmailFunc());
-				textPron.setText(Func.getPronomeFunc());
-				textTel.setText(Func.getTelefone());
-				passwordField.setText(Func.getUsuario().getSenha());
-
-			}
-		});
-		btnDescartarMudanas.setForeground(Color.BLACK);
-		btnDescartarMudanas.setBorder(new RoundedBorder(Color.black, 10));
-		btnDescartarMudanas.setBackground(new Color(255, 38, 38));
-		Principal.add(btnDescartarMudanas, "cell 4 10,alignx center");
 
 	}
 

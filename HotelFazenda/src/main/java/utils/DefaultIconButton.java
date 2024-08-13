@@ -41,6 +41,12 @@ public class DefaultIconButton extends JButton {
 		initButton();
 	}
 
+	public DefaultIconButton(ImageIcon icon, int size) {
+		super();
+		setIcon(resizeAndRecolorIcon(icon, size, size, Color.WHITE)); // Redimensionar e colorir o ícone
+		initButton();
+	}
+
 	private void initButton() {
 		setContentAreaFilled(false);
 		setBorderPainted(false);

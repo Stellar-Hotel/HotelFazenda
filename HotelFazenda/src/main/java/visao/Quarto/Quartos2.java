@@ -6,8 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -18,24 +16,18 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
-import controle.Arredondar.RoundedBorder;
 import controle.Quartos.QuartosDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -53,10 +45,8 @@ import visao.Login;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Hospede.TelaDeHospedes;
-import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
-import javax.swing.JButton;
 
 public class Quartos2 extends JFrame {
 
@@ -190,8 +180,8 @@ public class Quartos2 extends JFrame {
 
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		atualizarJTable();
-		
-		JButton btnNewButton = new DefaultIconButton("Cadastrar hospede");
+
+		JButton btnNewButton = new DefaultIconButton("Cadastrar quartos");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -41,7 +41,6 @@ import controle.Hospede.HospedeDAO;
 import controle.Quartos.QuartosDAO;
 import controle.Servicos.ServicosDAO;
 import controle.ServicosConsumidos.ServicosConsumidosDAO;
-import controle.ServicosConsumidos.ServicosConsumidosDAO;
 import modelo.Atividades;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -49,7 +48,6 @@ import modelo.Hospedagens;
 import modelo.Hospedes;
 import modelo.Quartos;
 import modelo.Servicos;
-import modelo.ServicosConsumidos;
 import modelo.ServicosConsumidos;
 import net.miginfocom.swing.MigLayout;
 import utils.DefaultModal;
@@ -77,19 +75,19 @@ public class Home extends JFrame {
 	QuartosDAO QDao = QuartosDAO.getConexao();
 	FuncionariosDAO FDao = FuncionariosDAO.getConexao();
 	ServicosConsumidosDAO SDao = ServicosConsumidosDAO.getInstancia();
-	ServicosDAO SSDao=ServicosDAO.getInstancia();
-	
-	ArrayList <Hospedagens> listaHospedagens;
-	ArrayList <Hospedes> listaHospedes;
-	ArrayList <Atividades> listaAtividades;
-	ArrayList <Quartos> listaQuartos;
-	ArrayList <Funcionarios> listaFuncionarios;
-	ArrayList <ServicosConsumidos> listaServicos;
-	ServicosConsumidosDAO SDAO= ServicosConsumidosDAO.getInstancia();
+	ServicosDAO SSDao = ServicosDAO.getInstancia();
 
-	ArrayList <ServicosConsumidos> listaServicosC;
-	ArrayList <Servicos> listaServs;
-	
+	ArrayList<Hospedagens> listaHospedagens;
+	ArrayList<Hospedes> listaHospedes;
+	ArrayList<Atividades> listaAtividades;
+	ArrayList<Quartos> listaQuartos;
+	ArrayList<Funcionarios> listaFuncionarios;
+	ArrayList<ServicosConsumidos> listaServicos;
+	ServicosConsumidosDAO SDAO = ServicosConsumidosDAO.getInstancia();
+
+	ArrayList<ServicosConsumidos> listaServicosC;
+	ArrayList<Servicos> listaServs;
+
 	private int diasSelecionados = 3; // Valor padrão inicial
 
 	ArrayList<String> listaImagens = new ArrayList<String>(
@@ -108,47 +106,46 @@ public class Home extends JFrame {
 	};
 
 	public void loadAtividades() {
-	    ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
-	    ArrayList<Atividades> atividadesProximas = new ArrayList<>();
+		ArrayList<Atividades> listaAtividades = ADao.ListarAtividades();
+		ArrayList<Atividades> atividadesProximas = new ArrayList<>();
 
-	    LocalDate limite = hoje.plusDays(diasSelecionados);
+		LocalDate limite = hoje.plusDays(diasSelecionados);
 
-	    for (Atividades atividade : listaAtividades) {
-	        LocalDate dataAtividade = atividade.getData().toLocalDate();
-	        if (!dataAtividade.isBefore(hoje) && !dataAtividade.isAfter(limite)) {
-	            atividadesProximas.add(atividade);
-	        }
-	    }
+		for (Atividades atividade : listaAtividades) {
+			LocalDate dataAtividade = atividade.getData().toLocalDate();
+			if (!dataAtividade.isBefore(hoje) && !dataAtividade.isAfter(limite)) {
+				atividadesProximas.add(atividade);
+			}
+		}
 
-	    atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
+		atividadesProximas.sort(Comparator.comparing(Atividades::getHorario));
 
-	    mostrarAtividades.removeAll(); // Remove todos os componentes existentes
+		mostrarAtividades.removeAll(); // Remove todos os componentes existentes
 
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	    for (Atividades atividade : atividadesProximas) {
-	        String dataFormatada = atividade.getData().toLocalDate().format(formatter);
-	        String texto = atividade.getNomeAtividade() + " - " + dataFormatada + " - " + atividade.getHorario();
+		for (Atividades atividade : atividadesProximas) {
+			String dataFormatada = atividade.getData().toLocalDate().format(formatter);
+			String texto = atividade.getNomeAtividade() + " - " + dataFormatada + " - " + atividade.getHorario();
 
-	        JLabel labelAtividade = new JLabel(texto);
-	        labelAtividade.setFont(new Font("Arial", Font.PLAIN, 14));
-	        labelAtividade.setForeground(new Color(0, 102, 204)); // Azul
-	        labelAtividade.setOpaque(true); // Para a cor de fundo ser visível
-	        labelAtividade.setBackground(Color.WHITE);
-	        labelAtividade.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-	        labelAtividade.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			JLabel labelAtividade = new JLabel(texto);
+			labelAtividade.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelAtividade.setForeground(new Color(0, 102, 204)); // Azul
+			labelAtividade.setOpaque(true); // Para a cor de fundo ser visível
+			labelAtividade.setBackground(Color.WHITE);
+			labelAtividade.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+			labelAtividade.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-	        mostrarAtividades.add(labelAtividade);
-	        mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo
-	    }
+			mostrarAtividades.add(labelAtividade);
+			mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo
+		}
 
-	    // Adiciona um divisor final para garantir que o último label tenha um divisor
-	    mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo final
+		// Adiciona um divisor final para garantir que o último label tenha um divisor
+		mostrarAtividades.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço fixo final
 
-	    mostrarAtividades.revalidate(); // Revalida o layout do painel
-	    mostrarAtividades.repaint(); // Repaint o painel para aplicar as mudanças
+		mostrarAtividades.revalidate(); // Revalida o layout do painel
+		mostrarAtividades.repaint(); // Repaint o painel para aplicar as mudanças
 	}
-
 
 	public Home() {
 		setTitle("Tela Inicial");
@@ -167,16 +164,14 @@ public class Home extends JFrame {
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		Principal.setLayout(new MigLayout("",
-				"[100px:100px,grow][140,grow][100,grow][55][140,grow][100,grow][55][140,grow][100,grow][100px:100px:100px][117.25][:117.25:117.25,grow][100px:100px,grow]",
+				"[70:100px:70][140,grow][100,grow][55][140,grow][100,grow][55][140,grow][100,grow][100px:100px:100px][117.25][:117.25:117.25,grow][70:100px:70]",
 				"[188,grow][94][40][:90:90,grow][100,grow][:94:94][90,grow][100,grow][94]"));
 
 		lblNewLabel_9 = new JLabel();
-		
-		
-	    mostrarAtividades = new JPanel();
-	    mostrarAtividades.setLayout(new BoxLayout(mostrarAtividades, BoxLayout.Y_AXIS));
 
-		
+		mostrarAtividades = new JPanel();
+		mostrarAtividades.setLayout(new BoxLayout(mostrarAtividades, BoxLayout.Y_AXIS));
+
 		JLabel lblNewLabel_11 = new JLabel("");
 		lblNewLabel_11.setIcon(new ImageIcon(Home.class.getResource("/visao/arrowBack - Copia.png")));
 		lblNewLabel_11.addMouseListener(new MouseAdapter() {
@@ -244,26 +239,25 @@ public class Home extends JFrame {
 
 		panel_6.add(lblNewLabel_9, "cell 0 0,alignx center,aligny center");
 		comboBoxDias.addActionListener(e -> {
-		    switch ((String) comboBoxDias.getSelectedItem()) {
-		        case "3 dias":
-		            diasSelecionados = 3;
-		            break;
-		        case "7 dias":
-		            diasSelecionados = 7;
-		            break;
-		        case "15 dias":
-		            diasSelecionados = 15;
-		            break;
-		        case "30 dias":
-		            diasSelecionados = 30;
-		            break;
-		        case "60 dias":
-		            diasSelecionados = 60;
-		            break;
-		    }
-		    loadAtividades();
+			switch ((String) comboBoxDias.getSelectedItem()) {
+			case "3 dias":
+				diasSelecionados = 3;
+				break;
+			case "7 dias":
+				diasSelecionados = 7;
+				break;
+			case "15 dias":
+				diasSelecionados = 15;
+				break;
+			case "30 dias":
+				diasSelecionados = 30;
+				break;
+			case "60 dias":
+				diasSelecionados = 60;
+				break;
+			}
+			loadAtividades();
 		});
-
 
 		loadInfos();
 		updateImage();
@@ -408,11 +402,11 @@ public class Home extends JFrame {
 		lblFunc.setText(String.valueOf(listaFuncionarios.size()));
 		lblHospedagem.setText(String.valueOf(listaHospedagens.size()));
 
-		ServicosConsumidos s=new ServicosConsumidos();
+		ServicosConsumidos s = new ServicosConsumidos();
 
 		listaServicosC.add(s);
 		lblServs.setText(String.valueOf(listaServicosC.size()));
-		
+
 		mostrarAtividades.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 		Principal.add(mostrarAtividades, "cell 10 3 2 6,grow");
@@ -421,7 +415,7 @@ public class Home extends JFrame {
 
 	public void screen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1452, 756);
+		setBounds(100, 100, 1829, 843);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -748,8 +742,8 @@ public class Home extends JFrame {
 		listaFuncionarios = FDao.ListarFuncionarios();
 		listaServicos = SDao.ListarServicos();
 
-		listaServs=SSDao.ListarServicos();
-		listaServicosC=SDao.ListarServicos();
+		listaServs = SSDao.ListarServicos();
+		listaServicosC = SDao.ListarServicos();
 	}
 
 	private void updateImage() {

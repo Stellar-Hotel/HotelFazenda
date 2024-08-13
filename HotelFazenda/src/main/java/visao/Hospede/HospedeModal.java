@@ -1,7 +1,6 @@
 package visao.Hospede;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,33 +13,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
-import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Hospede.HospedeDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
 import modelo.Hospedes;
-import net.miginfocom.swing.MigLayout;
 import utils.DefaultIconButton;
-import visao.Hospede.TelaDeHospedes.LetterDocumentFilter;
 import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ImageIcon;
+import visao.Quarto.Quartos2;
 
 public class HospedeModal extends JFrame {
 
@@ -113,7 +106,7 @@ public class HospedeModal extends JFrame {
 		panel_5.setBounds(10, 11, 534, 413);
 		Principal.add(panel_5);
 
-		JLabel lblNewLabel_7 = new JLabel("Cadastrar hospede");
+		JLabel lblNewLabel_7 = new JLabel(hospede == null ? "Cadastrar hospede" : "Atualizar hospede");
 		lblNewLabel_7.setBounds(10, 11, 267, 22);
 		lblNewLabel_7.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
@@ -198,11 +191,13 @@ public class HospedeModal extends JFrame {
 
 		textEmail.setColumns(10);
 
-		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar_1.setIcon(new ImageIcon(HospedeModal.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-		dfltcnbtnLimpar_1.setBackgroundColor(new Color(0, 255, 255));
-		dfltcnbtnLimpar_1.setHoverColor(Color.cyan);
-		dfltcnbtnLimpar_1.setBounds(461, 32, 55, 40);
+		DefaultIconButton dfltcnbtnLimpar_1 = new DefaultIconButton(
+				new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")), 15);
+
+		dfltcnbtnLimpar_1.setBackgroundColor(new Color(255, 204, 153));
+		dfltcnbtnLimpar_1.setHoverColor(new Color(255, 204, 153));
+		dfltcnbtnLimpar_1.setBounds(486, 57, 55, 40);
+		dfltcnbtnLimpar_1.setSize(30, 30);
 		dfltcnbtnLimpar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textNome.setText(" ");
@@ -241,16 +236,16 @@ public class HospedeModal extends JFrame {
 						String Email = textEmail.getText();
 
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                        dateFormat.setLenient(false);
-                        Date data = null;
+						dateFormat.setLenient(false);
+						Date data = null;
 
-                        try {
-                            data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
-                        } catch (ParseException e1) {
-                            TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
-                            telaErro.setVisible(true);
-                            return;
-                        }
+						try {
+							data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
+						} catch (ParseException e1) {
+							TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+							telaErro.setVisible(true);
+							return;
+						}
 
 						Hospedes hospede = new Hospedes();
 						hospede.setNome(Nome);
@@ -291,7 +286,8 @@ public class HospedeModal extends JFrame {
 			DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
 			btnAtualizar.setBounds(280, 353, 215, 42);
 			panel_5.add(btnAtualizar);
-			btnAtualizar.setBackground(new Color(117, 187, 68));
+			btnAtualizar.setBackgroundColor(Color.ORANGE);
+			btnAtualizar.setHoverColor(Color.ORANGE.darker());
 			btnAtualizar.setBorder(new RoundedBorder(Color.BLACK, 8));
 			btnAtualizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -309,19 +305,17 @@ public class HospedeModal extends JFrame {
 						String Pronome = textPronome.getText();
 						String Email = textEmail.getText();
 
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						dateFormat.setLenient(false);
+						Date data = null;
 
-						 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						    dateFormat.setLenient(false);
-						    Date data = null;
-
-						    try {
-	                            data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
-						    } catch (ParseException e1) {
-						        TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
-						        telaErro.setVisible(true);
-						        return; // Sai do método após mostrar o erro
-						    }
-
+						try {
+							data = new Date(dateFormat.parse(textNascimento.getText().trim()).getTime());
+						} catch (ParseException e1) {
+							TelaErro telaErro = new TelaErro("Data inválida. Insira no formato DD/MM/YYYY.");
+							telaErro.setVisible(true);
+							return; // Sai do método após mostrar o erro
+						}
 
 						Hospedes hospede1 = new Hospedes();
 						hospede1.setNome(Nome);
