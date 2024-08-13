@@ -1,4 +1,4 @@
-package visao;
+package visao.Quarto;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -6,8 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -18,24 +16,18 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
-import controle.Arredondar.RoundedBorder;
 import controle.Quartos.QuartosDAO;
 import modelo.CurrentFunc;
 import modelo.Funcionarios;
@@ -47,10 +39,12 @@ import raven.cell.TableActionCellRender;
 import raven.cell.TableActionEvent;
 import utils.DefaultIconButton;
 import utils.DefaultModal;
+import visao.Conta;
+import visao.Home;
+import visao.Login;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Hospede.TelaDeHospedes;
-import visao.ModaisDeAvisos.TelaSucesso;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 
@@ -61,25 +55,14 @@ public class Quartos2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JTable table;
-	private JTextField textCPF;
-	private JTextField textChecki;
-	private JTextField textChecko;
-	private JTextField textTipo;
-	private JTextField textCapacidade;
-	private JTextField textCama;
-	private JTextField textDiaria;
+
 	protected JPanel contentPane;
 	protected JPanel BarraLateral;
 	protected JPanel BarraSuperior;
 	protected JPanel BarraInferior;
 
 	Funcionarios Func2 = CurrentFunc.getInstance().getLoggedInFuncionario();
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
-	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
-	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
-	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
+	Quartos2 quarto;
 
 	protected void atualizarJTable() {
 
@@ -87,12 +70,19 @@ public class Quartos2 extends JFrame {
 
 			@Override
 			public void onEdit(int row) {
-				System.out.println("Edit row : " + row);
+				QuartoModal modal = new QuartoModal(quarto, ListaQuartos.get(row));
+				modal.setLocationRelativeTo(null);
+				modal.setVisible(true);
 			}
 
 			@Override
 			public void onDelete(int row) {
+				Quartos q = new Quartos();
+				QuartosDAO dao = QuartosDAO.getConexao();
 
+				q.setIdQuarto(ListaQuartos.get(row).getIdQuarto());
+				dao.removerQuarto(q);
+				atualizarJTable();
 			}
 
 		};
@@ -134,7 +124,8 @@ public class Quartos2 extends JFrame {
 
 		table.getColumnModel().getColumn(10).setCellEditor(new TableActionCellEditor(event, true, true));
 		table.setRowHeight(50);
-		table.getColumnModel().getColumn(10).setPreferredWidth(145);
+		table.getColumnModel().getColumn(10).setMaxWidth(220);
+		table.getColumnModel().getColumn(10).setMinWidth(220);
 	}
 
 	/**
@@ -142,35 +133,13 @@ public class Quartos2 extends JFrame {
 	 */
 	public Quartos2() {
 
-		MaskFormatter Num1 = null;
-		try {
-			Num1 = new MaskFormatter("#");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		MaskFormatter Num2 = null;
-		try {
-			Num2 = new MaskFormatter("##");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		MaskFormatter Num3 = null;
-		try {
-			Num3 = new MaskFormatter("####.##");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		quarto = this;
 
 		screen();
 		setTitle("Tela de Quartos");
+		ListaQuartos = new ArrayList<Quartos>();
 
 		Quartos quartos = new Quartos();
-
-		ListaQuartos = new ArrayList<Quartos>();
 
 		DecimalFormat formato = new DecimalFormat("#.##");
 
@@ -200,299 +169,6 @@ public class Quartos2 extends JFrame {
 		Principal.setLayout(
 				new MigLayout("", "[338.00:338.00:338.00,grow][10:10:10,grow][500.00,grow]", "[][322.00,grow,fill]"));
 
-		JPanel panel_5 = new JPanel();
-		Principal.add(panel_5, "cell 0 1,grow");
-		panel_5.setLayout(new MigLayout("", "[grow][]", "[grow][grow]"));
-
-		JPanel panel_6 = new JPanel();
-		panel_5.add(panel_6, "cell 0 0 2 2,grow");
-		panel_6.setLayout(new MigLayout("", "[::100px,grow][100px:74.00:150px,grow][::100px,grow]", "[][][][grow][grow][grow][grow][grow][grow][grow][][][]"));
-
-		JLabel lblNewLabel_7 = new JLabel("Tipo: ");
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_7, "cell 0 1,alignx trailing");
-
-		textCPF = new JTextField();
-
-		textChecki = new JTextField();
-
-		textChecko = new JTextField();
-
-		textTipo = new JFormattedTextField(Num1);
-		textTipo.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textTipo, "cell 1 1 2 1,growx");
-		textTipo.setColumns(10);
-
-		JLabel lblNewLabel_9 = new JLabel("Situação: ");
-		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_9, "cell 0 4,alignx trailing");
-		
-		JPanel panel_7 = new JPanel();
-		panel_6.add(panel_7, "cell 1 4 2 1,grow");
-		panel_7.setLayout(new MigLayout("", "[40px][10px][40px][grow]", "[]"));
-		
-		JRadioButton rdbtnSituTem = new JRadioButton("Ocupado");
-		buttonGroup_5.add(rdbtnSituTem);
-		rdbtnSituTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_7.add(rdbtnSituTem, "cell 0 0");
-		
-		JRadioButton rdbtnSituNaoTem = new JRadioButton("Livre");
-		buttonGroup_5.add(rdbtnSituNaoTem);
-		rdbtnSituNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_7.add(rdbtnSituNaoTem, "cell 2 0");
-
-		JLabel lblNewLabel_10 = new JLabel("Capacidade: ");
-		lblNewLabel_10.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_10, "cell 0 2,alignx trailing");
-
-		textCapacidade = new JFormattedTextField(Num2);
-		textCapacidade.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCapacidade, "cell 1 2 2 1,growx");
-		textCapacidade.setColumns(10);
-
-		JLabel lblNewLabel_11 = new JLabel("Manutenção: ");
-		lblNewLabel_11.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_11, "cell 0 5,alignx trailing");
-		
-		JPanel panel_4 = new JPanel();
-		panel_6.add(panel_4, "cell 1 5 2 1,grow");
-		panel_4.setLayout(new MigLayout("", "[40px][10px][40px][grow]", "[40px]"));
-		
-		JRadioButton rdbtnManuTem = new JRadioButton("Feita");
-		buttonGroup_4.add(rdbtnManuTem);
-		rdbtnManuTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_4.add(rdbtnManuTem, "cell 0 0");
-		
-		JRadioButton rdbtnManuNaoTem = new JRadioButton("Não feita");
-		buttonGroup_4.add(rdbtnManuNaoTem);
-		rdbtnManuNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_4.add(rdbtnManuNaoTem, "cell 2 0");
-
-		JLabel lblNewLabel_12 = new JLabel("Cama: ");
-		lblNewLabel_12.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_12, "cell 0 3,alignx trailing");
-
-		textCama = new JTextField();
-		textCama.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textCama, "cell 1 3 2 1,growx");
-		textCama.setColumns(10);
-
-		JLabel lblNewLabel_13 = new JLabel("Frigobar: ");
-		lblNewLabel_13.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_13, "cell 0 6,alignx trailing,aligny center");
-		
-				JRadioButton rdbtnFrigoTem = new JRadioButton("Possui");
-				panel_6.add(rdbtnFrigoTem, "cell 1 6,alignx center");
-				rdbtnFrigoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-				buttonGroup.add(rdbtnFrigoTem);
-		
-		JRadioButton rdbtnFrigoNaoTem = new JRadioButton("Não possui");
-		rdbtnFrigoNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(rdbtnFrigoNaoTem, "cell 2 6,alignx center");
-
-		JLabel lblNewLabel_14 = new JLabel("Ar Condicionado: ");
-		lblNewLabel_14.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_14, "cell 0 7,alignx trailing,aligny center");
-		
-				JRadioButton rdbtnArTem = new JRadioButton("Possui");
-				panel_6.add(rdbtnArTem, "flowx,cell 1 7,alignx center");
-				rdbtnArTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-				buttonGroup_1.add(rdbtnArTem);
-		
-		JRadioButton rdbtnArNaoTem = new JRadioButton("Não possui");
-		rdbtnArNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(rdbtnArNaoTem, "cell 2 7,alignx center");
-
-		JLabel lblNewLabel_16 = new JLabel("Banheira: ");
-		lblNewLabel_16.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_16, "cell 0 8,alignx trailing,aligny center");
-		
-				JRadioButton rdbtnBanTem = new JRadioButton("Possui");
-				panel_6.add(rdbtnBanTem, "cell 1 8,alignx center");
-				rdbtnBanTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-				buttonGroup_2.add(rdbtnBanTem);
-		
-		JRadioButton rdbtnBanNaoTem = new JRadioButton("Não possui");
-		rdbtnBanNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(rdbtnBanNaoTem, "cell 2 8,alignx center");
-
-		JLabel lblNewLabel_17 = new JLabel("Televisão: ");
-		lblNewLabel_17.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_17, "cell 0 9,alignx trailing,aligny center");
-		
-				JRadioButton rdbtnTvTem = new JRadioButton("Possui");
-				panel_6.add(rdbtnTvTem, "cell 1 9,alignx center");
-				rdbtnTvTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-				buttonGroup_3.add(rdbtnTvTem);
-		
-		JRadioButton rdbtnTvNaoTem = new JRadioButton("Não possui");
-		rdbtnTvNaoTem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(rdbtnTvNaoTem, "cell 2 9,alignx center");
-
-		JLabel lblNewLabel_18 = new JLabel("Diária: ");
-		lblNewLabel_18.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		panel_6.add(lblNewLabel_18, "cell 0 10,alignx trailing,aligny center");
-
-		textDiaria = new JFormattedTextField(Num3);
-		textDiaria.setBorder(new RoundedBorder(Color.black, 10));
-		panel_6.add(textDiaria, "cell 1 10 2 1,growx");
-		textDiaria.setColumns(10);
-
-		DefaultIconButton btnSalvar = new DefaultIconButton("Inserir");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSalvar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Quartos q = new Quartos();
-				QuartosDAO dao = QuartosDAO.getConexao();
-
-				if (rdbtnArTem.isSelected() || rdbtnArNaoTem.isSelected()) {
-					q.setArCondicionado(rdbtnArTem.isSelected() ? true : false);
-				}
-
-				if (rdbtnBanTem.isSelected() || rdbtnBanNaoTem.isSelected()) {
-					q.setBanheira(rdbtnBanTem.isSelected() ? true : false);
-				}
-
-				if (rdbtnFrigoTem.isSelected() || rdbtnFrigoNaoTem.isSelected()) {
-					q.setFrigobar(rdbtnFrigoTem.isSelected() ? true : false);
-				}
-
-				if (rdbtnTvTem.isSelected() || rdbtnTvNaoTem.isSelected()) {
-					q.setTV(rdbtnTvTem.isSelected() ? true : false);
-				}
-				
-				if(rdbtnManuTem.isSelected()|| rdbtnManuNaoTem.isSelected())
-				{
-					q.setManutencao(String.valueOf(rdbtnManuTem.isSelected()?1:0));
-				}
-
-				if(rdbtnSituTem.isSelected()||rdbtnSituNaoTem.isSelected())
-				{
-					q.setSituacao(rdbtnSituTem.isSelected()?2:1);
-				}
-				
-				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
-				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
-				q.setTipoCama(textCama.getText());
-				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
-				dao.inserirQuarto(q);
-				
-				TelaSucesso s = new TelaSucesso("Quarto reservado com sucesso");
-				s.setVisible(true);
-				
-				atualizarJTable();
-			}
-		});
-
-		DefaultIconButton dfltcnbtnLimpar = new DefaultIconButton("Limpar");
-		dfltcnbtnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		dfltcnbtnLimpar.setBackgroundColor(new Color(0, 255, 255));
-		dfltcnbtnLimpar.setIcon(new ImageIcon(Quartos2.class.getResource("/visao/rsz_1rsz_eraser256x239.png")));
-		dfltcnbtnLimpar.setHoverColor(new Color(0,255,255));
-		dfltcnbtnLimpar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textCama.setText(null);
-				textCapacidade.setText(null);
-				textChecki.setText(null);
-				textChecko.setText(null);
-				textCPF.setText(null);
-				textDiaria.setText(null);
-				textTipo.setText(null);
-
-				buttonGroup.clearSelection();
-				buttonGroup_1.clearSelection();
-				buttonGroup_2.clearSelection();
-				buttonGroup_3.clearSelection();
-				buttonGroup_4.clearSelection();
-				buttonGroup_5.clearSelection();
-			}
-		});
-		dfltcnbtnLimpar.setText("");
-		dfltcnbtnLimpar.setBorder(new RoundedBorder(Color.black, 10));
-		dfltcnbtnLimpar.setBackground(new Color(0, 255, 255));
-		dfltcnbtnLimpar.setHoverColor(new Color(0, 255, 255));
-		panel_6.add(dfltcnbtnLimpar, "cell 2 0,alignx right");
-		btnSalvar.setBorder(new RoundedBorder(Color.black, 10));
-		btnSalvar.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnSalvar, "cell 0 12,grow");
-
-		DefaultIconButton btnAtualizar = new DefaultIconButton("Atualizar");
-		btnAtualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAtualizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Quartos q = new Quartos();
-				QuartosDAO dao = QuartosDAO.getConexao();
-				int linha = table.getSelectedRow();
-
-				q.setIdQuarto(ListaQuartos.get(linha).getIdQuarto());
-				q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
-				q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
-				q.setTipoCama(textCama.getText());
-				q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
-
-				if (rdbtnArTem.isSelected() || rdbtnArNaoTem.isSelected()) {
-					q.setArCondicionado(rdbtnArTem.isSelected() ? true : false);
-				}
-				if (rdbtnBanTem.isSelected() || rdbtnBanNaoTem.isSelected()) {
-					q.setBanheira(rdbtnBanTem.isSelected() ? true : false);
-				}
-				if (rdbtnFrigoTem.isSelected() || rdbtnFrigoNaoTem.isSelected()) {
-					q.setFrigobar(rdbtnFrigoTem.isSelected() ? true : false);
-				}
-				if (rdbtnTvTem.isSelected() || rdbtnTvNaoTem.isSelected()) {
-					q.setTV(rdbtnTvTem.isSelected() ? true : false);
-				}
-				if(rdbtnManuTem.isSelected()|| rdbtnManuNaoTem.isSelected())
-				{
-					q.setManutencao(String.valueOf(rdbtnManuTem.isSelected()?1: 0));
-				}
-				if(rdbtnSituTem.isSelected()||rdbtnSituNaoTem.isSelected())
-				{
-					q.setSituacao(rdbtnSituTem.isSelected()?2:1);
-				}
-//				q.setArCondicionado(Boolean.valueOf(textAr.getText()));
-//				q.setBanheira(Boolean.valueOf(textBanheira.getText()));
-//				q.setFrigobar(Boolean.valueOf(textFrigobar.getText()));
-//				q.setTV(Boolean.valueOf(textTv.getText()));
-				dao.atualizarQuarto(q);
-				atualizarJTable();
-			}
-		});
-		btnAtualizar.setBorder(new RoundedBorder(Color.black, 10));
-		btnAtualizar.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnAtualizar, "cell 1 12,alignx center,growy");
-
-		DefaultIconButton btnExcluir = new DefaultIconButton("Excluir");
-		btnExcluir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Quartos q = new Quartos();
-				QuartosDAO dao = QuartosDAO.getConexao();
-				int linha = table.getSelectedRow();
-
-				q.setIdQuarto(ListaQuartos.get(linha).getIdQuarto());
-				dao.removerQuarto(q);
-				atualizarJTable();
-			}
-		});
-		btnExcluir.setBorder(new RoundedBorder(Color.black, 10));
-		btnExcluir.setBackground(new Color(117, 187, 68));
-		panel_6.add(btnExcluir, "cell 2 12,alignx center,growy");
-		
-
-
 		JLabel lblNewLabel_1 = new JLabel("Quartos");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 36));
 		Principal.add(lblNewLabel_1, "cell 0 0");
@@ -501,103 +177,22 @@ public class Quartos2 extends JFrame {
 				new String[] { "Número do quarto", "Situação do quarto", "Ações" });
 
 		table = new CustomTable(model1);
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				if (!e.getValueIsAdjusting()) {
-					int i = table.getSelectedRow();
-					if (i != -1) { // Verifica se alguma linha foi selecionada
-						textCama.setText(ListaQuartos.get(i).getTipoCama());
-						textCapacidade.setText(String.valueOf(ListaQuartos.get(i).getMaxPessoas()));
-						textDiaria.setText(String.valueOf(ListaQuartos.get(i).getPrecoDiaria()));
-						textTipo.setText(String.valueOf(ListaQuartos.get(i).getTipoQuarto()));
-
-						// Frigobar
-						if (ListaQuartos.get(i).getFrigobar() == true) {
-							rdbtnFrigoTem.setSelected(true);
-						} else if (ListaQuartos.get(i).getFrigobar() == false) {
-							rdbtnFrigoNaoTem.setSelected(true);
-						}
-
-						// TV
-						if (ListaQuartos.get(i).getTV() == true) {
-							rdbtnTvTem.setSelected(true);
-						} else if (ListaQuartos.get(i).getTV() == false) {
-							rdbtnTvNaoTem.setSelected(true);
-						}
-
-						// Ar condicionado
-						if (ListaQuartos.get(i).getArCondicionado() == true) {
-							rdbtnArTem.setSelected(true);
-						} else if (ListaQuartos.get(i).getArCondicionado() == false) {
-							rdbtnArNaoTem.setSelected(true);
-						}
-
-						// Banheira
-						if (ListaQuartos.get(i).getBanheira() == true) {
-							rdbtnBanTem.setSelected(true);
-						} else if (ListaQuartos.get(i).getBanheira() == false) {
-							rdbtnBanNaoTem.setSelected(true);
-						}
-						
-						if(ListaQuartos.get(i).getManutencao().equals("1"))
-						{
-							rdbtnManuTem.setSelected(true);
-						} else if(ListaQuartos.get(i).getManutencao().equals("0"))
-						{
-							rdbtnManuNaoTem.setSelected(true);
-						}
-						if(ListaQuartos.get(i).getSituacao()==2)
-						{
-							rdbtnSituTem.setSelected(true);
-						} else if(ListaQuartos.get(i).getSituacao()==1)
-						{
-							rdbtnSituNaoTem.setSelected(true);
-						}
-					}
-				}
-			}
-
-		});
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		atualizarJTable();
-		Principal.add(scrollPane1, "cell 2 1,grow");
 
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent event) {
-				if (!event.getValueIsAdjusting()) {
-					int i = table.getSelectedRow();
-					if (i != -1) { // Verifica se alguma linha foi selecionada
-						// Recupera os dados da linha selecionada
-						int IdQuarto = ListaQuartos.get(i).getIdQuarto();
-						int MaxPessoas = ListaQuartos.get(i).getMaxPessoas();
-						String TipoCama = ListaQuartos.get(i).getTipoCama();
-						String Manutencao = ListaQuartos.get(i).getManutencao();
-						Integer TipoQuarto = ListaQuartos.get(i).getTipoQuarto();
-						Boolean Frigobar = ListaQuartos.get(i).getFrigobar();
-						Boolean ArCondicionado = ListaQuartos.get(i).getArCondicionado();
-						Boolean Banheira = ListaQuartos.get(i).getBanheira();
-						Boolean TV = ListaQuartos.get(i).getTV();
-						Float PrecoDiaria = ListaQuartos.get(i).getPrecoDiaria();
-
-						// Preenche os textfields com os dados recuperados
-						QuartoSelcionado.setIdQuarto(IdQuarto);
-						QuartoSelcionado.setMaxPessoas(MaxPessoas);
-						QuartoSelcionado.setTipoCama(TipoCama);
-						QuartoSelcionado.setManutencao(Manutencao);
-						QuartoSelcionado.setTipoQuarto(TipoQuarto);
-						QuartoSelcionado.setFrigobar(Frigobar);
-						QuartoSelcionado.setArCondicionado(ArCondicionado);
-						QuartoSelcionado.setBanheira(Banheira);
-						QuartoSelcionado.setTV(TV);
-						QuartoSelcionado.setPrecoDiaria(PrecoDiaria);
-
-					}
-				}
+		JButton btnNewButton = new DefaultIconButton("Cadastrar quartos");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuartoModal modal = new QuartoModal(quarto, null);
+				modal.setLocationRelativeTo(null);
+				modal.setVisible(true);
 			}
 		});
+		Principal.add(btnNewButton, "cell 2 0,alignx right,aligny center");
+		Principal.add(scrollPane1, "cell 0 1 3 1,grow");
+
 		contentPane.add(Principal, "cell 1 1,grow");
 
 	}

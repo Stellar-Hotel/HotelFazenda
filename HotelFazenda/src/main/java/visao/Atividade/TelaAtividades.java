@@ -32,7 +32,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.MaskFormatter;
-import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controle.Atividades.AtividadesDAO;
 import modelo.Atividades;
@@ -48,10 +47,10 @@ import utils.DefaultModal;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
-import visao.Quartos2;
 import visao.Funcionario.AdminFuncionarios;
 import visao.Hospede.TelaDeHospedes;
 import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Quarto.Quartos2;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
 
@@ -173,8 +172,8 @@ public class TelaAtividades extends JFrame {
 		table = new CustomTable(model1);
 		cTable.setViewportView(table);
 
-		model1 = (new DefaultTableModel(new Object[][] {}, new String[] {"IdadeMinima", "Horario",
-				"HorarioFim", "NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
+		model1 = (new DefaultTableModel(new Object[][] {}, new String[] { "IdadeMinima", "Horario", "HorarioFim",
+				"NomeAtividade", "Data", "IDFuncionario", "Capacidade", "Ações" }));
 
 		model2 = (new DefaultTableModel(new Object[][] {},
 				new String[] { "IdAtividade", "Funcionario", "NomeAtividade" }));
@@ -543,26 +542,24 @@ public class TelaAtividades extends JFrame {
 			}
 
 		};
-		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdadeMinima", "Horario", "HorarioFim", "NomeAtividade", "Data", "Capacidade", "Ações" });
+		DefaultTableModel modelo1 = new DefaultTableModel(new Object[][] {}, new String[] { "IdadeMinima", "Horario",
+				"HorarioFim", "NomeAtividade", "Data", "Capacidade", "Ações" });
 
 		AtividadesDAO AtivDAO = AtividadesDAO.getInstancia();
 		ListaAtividades = AtivDAO.ListarAtividades();
 
 		for (int i = 0; i < ListaAtividades.size(); i++) {
-            String[] brDate;
-            String date;
-            Atividades p = ListaAtividades.get(i);
+			String[] brDate;
+			String date;
+			Atividades p = ListaAtividades.get(i);
 
+			brDate = p.getData().toString().split("-");
+			date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
 
-            brDate = p.getData().toString().split("-");
-            date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
-
-            modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
-                    p.getNomeAtividade(), date, p.getCapacidade() });
-        }
+			modelo1.addRow(new Object[] { p.getIdAtividade(), p.getIdadeMinima(), p.getHorario(), p.getHorarioFim(),
+					p.getNomeAtividade(), date, p.getCapacidade() });
+		}
 		table.setModel(modelo1);
-		
-
 
 		TableActionCellRender cellRenderer = new TableActionCellRender(true, true); // Inicialmente nenhuma linha
 																					// selecionada

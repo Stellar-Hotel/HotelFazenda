@@ -14,27 +14,20 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import javax.swing.text.MaskFormatter;
 
 import controle.Arredondar.RoundedBorder;
 import controle.Hospede.HospedeDAO;
@@ -51,14 +44,12 @@ import utils.DefaultModal;
 import visao.Conta;
 import visao.Home;
 import visao.Login;
-import visao.Quartos2;
 import visao.Atividade.TelaAtividades;
 import visao.Funcionario.AdminFuncionarios;
-import visao.ModaisDeAvisos.TelaErro;
 import visao.ModaisDeAvisos.TelaSucesso;
+import visao.Quarto.Quartos2;
 import visao.Reserva.TelaDeAcomodacoes;
 import visao.Servico.TelaServicos;
-import javax.swing.JButton;
 
 public class TelaDeHospedes extends JFrame {
 
@@ -76,33 +67,30 @@ public class TelaDeHospedes extends JFrame {
 
 	public TelaDeHospedes() {
 		screen();
-		telaPrincipal=this;
+		telaPrincipal = this;
 		setTitle("Tela de Hospedes");
-	
 
 		JPanel Principal = new JPanel();
 		Principal.setBackground(new Color(250, 250, 250));
 		contentPane.add(Principal, "cell 1 1,grow");
-		Principal.setLayout(new MigLayout("", "[70:n:70][183.00][grow][70:n:70]", "[][][:50:50,grow][303.00,grow][20:n:20]"));
+		Principal.setLayout(
+				new MigLayout("", "[70:n:70][183.00][grow][70:n:70]", "[][][:50:50,grow][303.00,grow][20:n:20]"));
 
 		JLabel lblNewLabel_9 = new JLabel("Hospede");
 		lblNewLabel_9.setFont(new Font("Segoe UI", Font.PLAIN, 38));
 		Principal.add(lblNewLabel_9, "cell 1 1,alignx left");
-		
-				DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar hospede");
-				btnCadastrar.setBackground(new Color(117, 187, 68));
-				btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
-				btnCadastrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						HospedeModal modal = new HospedeModal(telaPrincipal, null);
-						modal.setLocationRelativeTo(null);
-						modal.setVisible(true);
-					}
-				});
-				Principal.add(btnCadastrar, "cell 2 1,alignx right");
-		
- 
-		
+
+		DefaultIconButton btnCadastrar = new DefaultIconButton("Cadastrar hospede");
+		btnCadastrar.setBackground(new Color(117, 187, 68));
+		btnCadastrar.setBorder(new RoundedBorder(Color.BLACK, 8));
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HospedeModal modal = new HospedeModal(telaPrincipal, null);
+				modal.setLocationRelativeTo(null);
+				modal.setVisible(true);
+			}
+		});
+		Principal.add(btnCadastrar, "cell 2 1,alignx right");
 
 		JScrollPane scrollPane = new JScrollPane();
 		Principal.add(scrollPane, "cell 1 2 2 2,grow");
@@ -478,15 +466,15 @@ public class TelaDeHospedes extends JFrame {
 		listahospedes = hospedeDAO.ListarHospedes();
 
 		for (int i = 0; i < listahospedes.size(); i++) {
-            String[] brDate;
-            String date;
+			String[] brDate;
+			String date;
 
 			Hospedes h = listahospedes.get(i);
-			
+
 			brDate = h.getDataNasc().toString().split("-");
 			date = brDate[2] + "/" + brDate[1] + "/" + brDate[0];
-			Model.addRow(new Object[] { h.getNome(), h.getSobrenome(), date, h.getDocumento(),
-					h.getNacionalidade(), h.getPronome(), h.getEmail() });
+			Model.addRow(new Object[] { h.getNome(), h.getSobrenome(), date, h.getDocumento(), h.getNacionalidade(),
+					h.getPronome(), h.getEmail() });
 		}
 		table.setModel(Model);
 
