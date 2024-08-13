@@ -494,8 +494,8 @@ public class FuncionarioModal extends JFrame {
 		Principal.add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel(funcionario == null ? "Cadastrar funcionário" : "Atualizar funcionário");
-		lblNewLabel.setBounds(10, 11, 179, 22);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		lblNewLabel.setBounds(10, 11, 339, 22);
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		Principal.add(lblNewLabel);
 	}
 }

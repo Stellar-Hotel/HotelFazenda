@@ -119,8 +119,8 @@ public class QuartoModal extends JFrame {
 		textChecko = new JTextField();
 
 		JLabel lblNewLabel = new JLabel(quartoAtual == null ? "Cadastrar quarto" : "Atualizar quarto");
-		lblNewLabel.setBounds(10, 11, 139, 22);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		lblNewLabel.setBounds(10, 11, 249, 22);
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
 		Principal.add(lblNewLabel);
 
 		JPanel panel_6 = new JPanel();
@@ -362,7 +362,7 @@ public class QuartoModal extends JFrame {
 					q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 					dao.inserirQuarto(q);
 
-					TelaSucesso s = new TelaSucesso("Quarto reservado com sucesso");
+					TelaSucesso s = new TelaSucesso("Quarto cadastrado com sucesso");
 					s.setVisible(true);
 
 					quarto.atualizarJTable();
@@ -453,7 +453,7 @@ public class QuartoModal extends JFrame {
 
 					q.setIdQuarto(q.getIdQuarto());
 					q.setMaxPessoas(Integer.valueOf(textCapacidade.getText().trim()));
-//					q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
+					q.setPrecoDiaria(Float.valueOf(textDiaria.getText()));
 					q.setTipoCama(textCama.getText());
 					q.setTipoQuarto(Integer.valueOf(textTipo.getText()));
 
@@ -480,6 +480,9 @@ public class QuartoModal extends JFrame {
 //						q.setFrigobar(Boolean.valueOf(textFrigobar.getText()));
 //						q.setTV(Boolean.valueOf(textTv.getText()));
 					dao.atualizarQuarto(q);
+					TelaSucesso s = new TelaSucesso("Quarto atualizado com sucesso");
+					s.setVisible(true);
+					
 					quarto.atualizarJTable();
 					dispose();
 				}

@@ -108,7 +108,7 @@ public class HospedeModal extends JFrame {
 
 		JLabel lblNewLabel_7 = new JLabel(hospede == null ? "Cadastrar hospede" : "Atualizar hospede");
 		lblNewLabel_7.setBounds(10, 11, 267, 22);
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		lblNewLabel_7.setFont(new Font("Segoe UI", Font.BOLD, 22));
 
 		JLabel lblNewLabel_10 = new JLabel("Nome");
 		lblNewLabel_10.setBounds(10, 69, 443, 18);
